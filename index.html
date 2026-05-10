@@ -2,124 +2,105 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EnergaTor | Разделенная энергетика будущего</title>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>ЭнергаТор — Технология ТСА</title>
     <style>
-        :root {
-            --deep-blue: #020617;
-            --red-gold: #D4AF37;
-            --glass: rgba(15, 23, 42, 0.8);
-            --text-main: #e2e8f0;
-            --text-dim: #94a3b8;
+        body { margin: 0; background: #0a0f1d; font-family: sans-serif; color: white; overflow-x: hidden; }
+        canvas { display: block; }
+        .hero-content {
+            position: absolute; top: 15%; width: 100%; text-align: center; z-index: 10; pointer-events: none;
         }
-
-        body {
-            background-color: var(--deep-blue);
-            color: var(--text-main);
-            font-family: 'Inter', sans-serif;
-            margin: 0;
-            line-height: 1.6;
-            background-image: radial-gradient(circle at 50% -20%, #1e293b, var(--deep-blue));
+        h1 { color: #d4af37; font-size: 3.5rem; margin: 0; text-transform: uppercase; letter-spacing: 5px; }
+        p { font-size: 1.2rem; color: #94a3b8; max-width: 600px; margin: 20px auto; line-height: 1.6; }
+        .nav-btn {
+            pointer-events: auto; padding: 15px 40px; border: 2px solid #d4af37; color: #d4af37;
+            text-decoration: none; font-weight: bold; transition: 0.3s; background: rgba(0,0,0,0.5);
         }
-
-        h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; text-transform: uppercase; letter-spacing: 2px; }
-
-        .navbar { padding: 20px 50px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(212, 175, 55, 0.1); }
-        .logo { color: var(--red-gold); font-weight: 700; font-size: 1.5rem; }
-
-        .hero { text-align: center; padding: 100px 20px; max-width: 1000px; margin: 0 auto; }
-        .hero h1 { font-size: 4rem; color: var(--red-gold); margin-bottom: 10px; }
-        .hero p { font-size: 1.3rem; color: var(--text-dim); margin-bottom: 30px; }
-
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; padding: 50px; max-width: 1300px; margin: 0 auto; }
-        
-        .card { 
-            background: var(--glass); 
-            border: 1px solid rgba(212, 175, 55, 0.2); 
-            padding: 40px; 
-            border-radius: 20px; 
-            transition: 0.4s; 
-            backdrop-filter: blur(10px);
-            cursor: pointer;
-        }
-        .card:hover { border-color: var(--red-gold); transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
-        .card h3 { color: var(--red-gold); margin-top: 0; font-size: 1.4rem; border-bottom: 1px solid rgba(212, 175, 55, 0.1); padding-bottom: 15px; }
-        
-        .card-detail { display: none; margin-top: 20px; color: var(--text-dim); animation: fadeIn 0.5s; }
-        .card.active .card-detail { display: block; }
-
-        .tag { font-size: 0.7rem; background: rgba(212, 175, 55, 0.1); color: var(--red-gold); padding: 4px 10px; border-radius: 50px; margin-right: 5px; }
-
-        .cta-section { background: rgba(212, 175, 55, 0.03); padding: 80px 20px; text-align: center; border-top: 1px solid rgba(212, 175, 55, 0.1); }
-        .btn { background: var(--red-gold); color: var(--deep-blue); padding: 15px 40px; border: none; border-radius: 5px; font-weight: 700; cursor: pointer; text-transform: uppercase; transition: 0.3s; }
-        .btn:hover { opacity: 0.8; transform: scale(1.05); }
-
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        @media (max-width: 768px) { .hero h1 { font-size: 2.5rem; } .grid { padding: 20px; } }
+        .nav-btn:hover { background: #d4af37; color: #0a0f1d; }
     </style>
 </head>
 <body>
 
-<nav class="navbar">
-    <div class="logo">ENERGA•TOR</div>
-    <div style="color: var(--text-dim); font-size: 0.8rem;">ENGINEERING THE FUTURE</div>
-</nav>
-
-<section class="hero">
-    <span class="tag">ИННОВАЦИОННАЯ МЕХАНИКА</span>
-    <h1>ЭнергаТор</h1>
-    <p>Комплексная система разделенной энергетики, исключающая финансовую и экологическую зависимость общества от традиционных энергоресурсов.</p>
-</section>
-
-<div class="grid">
-    <div class="card" onclick="this.classList.toggle('active')">
-        <h3>Технологический базис</h3>
-        <p>Архитектура превосходства: 7 ключевых деталей и отсутствие возвратно-поступательного движения.</p>
-        <div class="card-detail">
-            <ul>
-                <li><strong>Неоднократный цикл:</strong> Уникальная возможность повторного использования энергии в рамках одного рабочего цикла.</li>
-                <li><strong>Чистая среда:</strong> Полное отсутствие ГСМ (масел и горючего).</li>
-                <li><strong>Компактность:</strong> Минимальный вес и объем при неограниченной масштабируемости.</li>
-                <li><strong>Доступность:</strong> Технологии изготовления понятны и отработаны десятилетиями.</li>
-            </ul>
-        </div>
+    <div class="hero-content">
+        <h1>ЭнергаТор</h1>
+        <p>Тороидальный силовой агрегат (ТСА): Бесконтактная магнитная передача энергии. Нулевое трение, максимальный ресурс.</p>
+        <a href="#intelligence" class="nav-btn">АНАЛИТИЧЕСКИЙ ХАБ</a>
     </div>
 
-    <div class="card" onclick="this.classList.toggle('active')">
-        <h3>Триада ресурсов</h3>
-        <p>Генерация электроэнергии с попутным получением тепла и холода без дополнительных затрат.</p>
-        <div class="card-detail">
-            <p>Система обеспечивает электроэнергию для оборудования, тепло для агросектора (теплиц) и холод для систем хранения продукции одновременно или по выбору пользователя.</p>
-        </div>
-    </div>
+    <div id="canvas-container"></div>
 
-    <div class="card" onclick="this.classList.toggle('active')">
-        <h3>Жизнеобеспечение (Блэкаут)</h3>
-        <p>Работа критической инфраструктуры даже при полной потере внешней электросети.</p>
-        <div class="card-detail">
-            <p>Используя запас сжатого воздуха в баллонах, ЭнергаТор обеспечивает бесперебойную работу лифтов, насосов водоснабжения и отопления в жилых комплексах.</p>
-        </div>
-    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.getElementById('canvas-container').appendChild(renderer.domElement);
 
-    <div class="card" onclick="this.classList.toggle('active')">
-        <h3>Логистика и Транспорт</h3>
-        <p>Уход от углеводородов и радикальное уменьшение объема и стоимости АКБ.</p>
-        <div class="card-detail">
-            <p>Решение проблем деградации батарей и работы в экстремальных температурах. Быстрая замена малых АКБ для роботов-доставщиков и легкого транспорта.</p>
-        </div>
-    </div>
-</div>
+        // Освещение
+        const light = new THREE.PointLight(0xd4af37, 1, 100);
+        light.position.set(10, 10, 10);
+        scene.add(light);
+        scene.add(new THREE.AmbientLight(0x404040));
 
-<section class="cta-section">
-    <h2>Готовы к детальному обсуждению?</h2>
-    <p style="color: var(--text-dim); max-width: 600px; margin: 0 auto 30px;">Мы ищем единомышленников и инвесторов категории Smart Money для масштабирования технологии, которая изменит баланс сил в энергетике.</p>
-    <button class="btn">Запросить документацию</button>
-</section>
+        // 1. Баллоны (Цилиндры)
+        const tankGeo = new THREE.CylinderGeometry(0.5, 0.5, 3, 32);
+        const tankMat = new THREE.MeshPhongMaterial({ color: #1e293b, transparent: true, opacity: 0.7 });
+        
+        const tank1 = new THREE.Mesh(tankGeo, tankMat);
+        tank1.position.set(-5, 0, 0);
+        scene.add(tank1);
 
-<footer>
-    <p style="color: var(--text-dim); padding: 40px;">&copy; 2026 Проект ЭнергаТор. 90% материалов системы подлежат вторичной переработке.</p>
-</footer>
+        const tank2 = new THREE.Mesh(tankGeo, tankMat);
+        tank2.position.set(5, 0, 0);
+        scene.add(tank2);
 
+        // 2. ТСА (Тороид)
+        const torusGeo = new THREE.TorusGeometry(2, 0.4, 16, 100);
+        const torusMat = new THREE.MeshPhongMaterial({ color: 0x334155, transparent: true, opacity: 0.4, wireframe: true });
+        const tca = new THREE.Mesh(torusGeo, torusMat);
+        tca.rotation.x = Math.PI / 2;
+        scene.add(tca);
+
+        // 3. Маховик (Внешний диск над тороидом)
+        const wheelGeo = new THREE.TorusGeometry(2.5, 0.1, 16, 100);
+        const wheelMat = new THREE.MeshPhongMaterial({ color: 0xd4af37 });
+        const flywheel = new THREE.Mesh(wheelGeo, wheelMat);
+        flywheel.rotation.x = Math.PI / 2;
+        flywheel.position.y = 0.5; // Расположен чуть выше тороида
+        scene.add(flywheel);
+
+        // 4. Поршень (Маленькая сфера внутри тора)
+        const pistonGeo = new THREE.SphereGeometry(0.3, 32, 32);
+        const pistonMat = new THREE.MeshPhongMaterial({ color: 0xffffff, emissive: 0xd4af37 });
+        const piston = new THREE.Mesh(pistonGeo, pistonMat);
+        scene.add(piston);
+
+        camera.position.z = 8;
+        camera.position.y = 3;
+        camera.lookAt(0,0,0);
+
+        let angle = 0;
+        function animate() {
+            requestAnimationFrame(animate);
+            
+            angle += 0.02;
+            
+            // Движение поршня по кругу внутри тора
+            piston.position.x = 2 * Math.cos(angle);
+            piston.position.z = 2 * Math.sin(angle);
+            
+            // Синхронное вращение маховика (магнитная связь)
+            flywheel.rotation.z = -angle; 
+            
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        window.addEventListener('resize', () => {
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+        });
+    </script>
 </body>
 </html>
