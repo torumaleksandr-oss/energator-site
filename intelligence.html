@@ -1,0 +1,306 @@
+HTML
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ЭнергаТор — Аналитический Хаб Мультиагентной Системы</title>
+    <style>
+        :root {
+            --bg-color: #0a0f1d;
+            --card-bg: #111827;
+            --text-color: #f3f4f6;
+            --text-muted: #9ca3af;
+            --accent-gold: #d4af37;
+            --accent-blue: #38bdf8;
+            --accent-green: #34d399;
+            --border-color: #1f2937;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.5;
+        }
+
+        .header {
+            border-bottom: 1px solid var(--border-color);
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(11, 15, 29, 0.8);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header h1 {
+            font-size: 1.5rem;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent-gold);
+        }
+
+        .status-bar {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent-green);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--accent-green);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.95); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(0.95); opacity: 0.5; }
+        }
+
+        .dashboard-container {
+            max-width: 1600px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .intro-block {
+            margin-bottom: 40px;
+            background: linear-gradient(90deg, rgba(17, 24, 39, 0.6) 0%, rgba(11, 15, 29, 0.4) 100%);
+            border-left: 4px solid var(--accent-gold);
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .intro-block p {
+            margin: 0;
+            color: var(--text-muted);
+            font-size: 1.05rem;
+        }
+
+        .agents-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .agent-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .agent-card:hover {
+            transform: translateY(-2px);
+            border-color: #334155;
+        }
+
+        .agent-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .agent-title {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        .agent-meta {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent-blue);
+            background-color: rgba(56, 189, 248, 0.1);
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+
+        .agent-body h4 {
+            margin: 0 0 10px 0;
+            color: var(--accent-gold);
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .agent-body ul {
+            margin: 0 0 20px 0;
+            padding-left: 20px;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .agent-body li {
+            margin-bottom: 8px;
+        }
+
+        .btn-report {
+            display: inline-block;
+            text-align: center;
+            background-color: transparent;
+            border: 1px solid var(--accent-blue);
+            color: var(--accent-blue);
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .btn-report:hover {
+            background-color: var(--accent-blue);
+            color: var(--bg-color);
+        }
+
+        .btn-report.gold {
+            border-color: var(--accent-gold);
+            color: var(--accent-gold);
+        }
+
+        .btn-report.gold:hover {
+            background-color: var(--accent-gold);
+            color: var(--bg-color);
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <h1>EnergaTor Intelligence</h1>
+        <div class="status-bar">
+            <div class="pulse-dot"></div>
+            <span>Мультиагентная сеть Antigravity 2.0 активна</span>
+        </div>
+    </header>
+
+    <main class="dashboard-container">
+        <section class="intro-block">
+            <p><strong>Панель оперативного мониторинга:</strong> Пять специализированных ИИ-агентов осуществляют непрерывный сквозной анализ макроэкономических, инфраструктурных и финансовых триггеров для развертывания систем Тороидальных Преобразующих Агрегатов (ТПА).</p>
+        </section>
+
+        <section class="agents-grid">
+            
+            <div class="agent-card">
+                <div>
+                    <div class="agent-header">
+                        <h3 class="agent-title">Макроэнергетика и Сырье</h3>
+                        <span class="agent-meta">Агент №1</span>
+                    </div>
+                    <div class="agent-body">
+                        <h4>Область мониторинга:</h4>
+                        <ul>
+                            <li>Котировки первичных энергоносителей (газ, уголь, нефть).</li>
+                            <li>Рыночный баланс критических металлов: сталь, алюминий, медь.</li>
+                            <li>Динамика цен и доступность сырья для батарей: литий, кобальт.</li>
+                            <li>Корреляция цен с геополитическими факторами риска.</li>
+                        </ul>
+                    </div>
+                </div>
+                <a href="energy.html" class="btn-report">Открыть сырьевой отчет</a>
+            </div>
+
+            <div class="agent-card">
+                <div>
+                    <div class="agent-header">
+                        <h3 class="agent-title">Транспортный Сектор</h3>
+                        <span class="agent-meta">Агент №2</span>
+                    </div>
+                    <div class="agent-body">
+                        <h4>Область мониторинга:</h4>
+                        <ul>
+                            <li>Динамика перехода мирового автопрома на электротягу.</li>
+                            <li>Логистический и сырьевой кризис литий-ионных накопителей.</li>
+                            <li>Анализ эффективности утилизации и переработки батарей (лимит 5–10%).</li>
+                            <li>Технико-экономический анализ TCO городского и грузового транспорта.</li>
+                        </ul>
+                    </div>
+                </div>
+                <a href="transport.html" class="btn-report">Открыть анализ автопрома</a>
+            </div>
+
+            <div class="agent-card">
+                <div>
+                    <div class="agent-header">
+                        <h3 class="agent-title">Инфраструктура и Сети</h3>
+                        <span class="agent-meta">Агент №3</span>
+                    </div>
+                    <div class="agent-body">
+                        <h4>Область мониторинга:</h4>
+                        <ul>
+                            <li>Фиксация каскадных аварий, веерных и глобальных блэкаутов.</li>
+                            <li>Аудит стабильности частоты сетей при пиковых нагрузках ВИЕ.</li>
+                            <li>Мониторинг объема инвестиций в промышленные накопители.</li>
+                            <li>Анализ дефицита и капиталоемкости традиционных ГАЭС.</li>
+                        </ul>
+                    </div>
+                </div>
+                <a href="networks.html" class="btn-report">Открыть аудит энергосетей</a>
+            </div>
+
+            <div class="agent-card">
+                <div>
+                    <div class="agent-header">
+                        <h3 class="agent-title">Коммерческий Интегратор</h3>
+                        <span class="agent-meta">Агент №4</span>
+                    </div>
+                    <div class="agent-body">
+                        <h4>Область мониторинга:</h4>
+                        <ul>
+                            <li>Поиск ниш для локальной интеграции тригенерационных комплексов.</li>
+                            <li>Расчет операционных рисков малого бизнеса (HoReCa, фермерские хозяйства).</li>
+                            <li>Анализ уязвимости независимых узлов связи и дата-центров.</li>
+                            <li>Оценка окупаемости замещения дизельной генерации системами ТПА.</li>
+                        </ul>
+                    </div>
+                </div>
+                <a href="business.html" class="btn-report">Открыть карту бизнес-ниш</a>
+            </div>
+
+            <div class="agent-card">
+                <div>
+                    <div class="agent-header">
+                        <h3 class="agent-title">Капитал и Фандрейзинг</h3>
+                        <span class="agent-meta">Агент №5</span>
+                    </div>
+                    <div class="agent-body">
+                        <h4>Область мониторинга:</h4>
+                        <ul>
+                            <li>Сканирование открытых грантовых программ (USAID, фонды ESG, ЕС).</li>
+                            <li>Поиск платформ для запуска целевых краудфандинг-кампаний.</li>
+                            <li>Мониторинг профильных синдикатов бизнес-ангелов и венчурных фондов.</li>
+                            <li>Сбор заявок на программы финансирования энергонезависимости.</li>
+                        </ul>
+                    </div>
+                </div>
+                <a href="investors.html" class="btn-report gold">Привлечь ресурсы</a>
+            </div>
+
+        </section>
+    </main>
+
+</body>
+</html>
