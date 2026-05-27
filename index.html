@@ -46,7 +46,7 @@ HTML
             flex-direction: column;
             justify-content: space-between;
             align-items: center;
-            padding: 60px 20px;
+            padding: 40px 20px;
             box-sizing: border-box;
             pointer-events: none;
         }
@@ -54,9 +54,10 @@ HTML
         .brand-zone {
             text-align: center;
             pointer-events: auto;
+            max-width: 900px;
         }
 
-        brand-title {
+        .brand-title {
             display: block;
             font-size: 4rem;
             font-weight: 900;
@@ -69,30 +70,32 @@ HTML
 
         .brand-subtitle {
             display: block;
-            font-size: 1.2rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            margin-top: 10px;
+            font-size: 1.25rem;
+            color: #cbd5e1;
+            font-weight: 600;
+            line-height: 1.5;
+            margin-top: 15px;
+            border-bottom: 1px solid rgba(200, 117, 51, 0.3);
+            padding-bottom: 15px;
         }
 
         .content-zone {
             max-width: 800px;
             text-align: center;
             background: rgba(6, 10, 19, 0.85);
-            padding: 30px 40px;
+            padding: 25px 40px;
             border-radius: 6px;
             border-top: 2px solid var(--copper-primary);
             box-shadow: 0 20px 50px rgba(0,0,0,0.5);
             pointer-events: auto;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
         }
 
         .content-zone p {
-            font-size: 1.15rem;
+            font-size: 1.1rem;
             line-height: 1.7;
             color: var(--text-main);
-            margin: 0 0 25px 0;
+            margin: 0 0 20px 0;
         }
 
         .space-btn {
@@ -120,9 +123,10 @@ HTML
         }
 
         @media (max-width: 768px) {
-            brand-title { font-size: 2.5rem; letter-spacing: 6px; }
+            .brand-title { font-size: 2.5rem; letter-spacing: 6px; }
+            .brand-subtitle { font-size: 1rem; }
             .content-zone { padding: 20px; }
-            .content-zone p { font-size: 1rem; }
+            .content-zone p { font-size: 0.95rem; }
         }
     </style>
 </head>
@@ -132,8 +136,8 @@ HTML
 
     <div class="interface-layer">
         <header class="brand-zone">
-            <brand-title>ЭнергаТор</brand-title>
-            <span class="brand-subtitle">Пневмогидравлическая Экосистема Будущего</span>
+            <span class="brand-title">ЭнергаТор</span>
+            <span class="brand-subtitle">Энергетическая независимость вашего транспорта, дома и бизнеса в условиях глобальных кризисов и блэкаутов</span>
         </header>
 
         <main class="content-zone">
@@ -149,7 +153,6 @@ HTML
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
-        // Инициализация сцены
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
         const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
@@ -157,7 +160,7 @@ HTML
         renderer.setPixelRatio(window.devicePixelRatio);
         document.getElementById('canvas-container').appendChild(renderer.domElement);
 
-        // Освещение (направленный медный свет)
+        // Освещение под оттенок меди
         const topLight = new THREE.PointLight(0xe5873d, 1.8, 100);
         topLight.position.set(0, 8, 4);
         scene.add(topLight);
@@ -167,11 +170,10 @@ HTML
         scene.add(fillLight);
         scene.add(new THREE.AmbientLight(0x0f172a));
 
-        // Группа для вращения всей центральной установки
         const mainGroup = new THREE.Group();
         scene.add(mainGroup);
 
-        // 1. Стационарные Баллоны (БВД / БСД) по бокам
+        // 1. Технологические Баллоны по бокам
         const cylinderGeo = new THREE.CylinderGeometry(0.35, 0.35, 3.4, 32);
         const cylinderMat = new THREE.MeshPhongMaterial({ color: 0x111827, specular: 0x334155, shininess: 30 });
         
@@ -183,33 +185,31 @@ HTML
         rightTank.position.set(4.5, 0, -0.5);
         mainGroup.add(rightTank);
 
-        // 2. Модуль ТПА (Тороидальный корпус из шлифованной темной меди)
+        // 2. Модуль ТПА (Тороид из темной меди)
         const torusGeo = new THREE.TorusGeometry(2.2, 0.3, 24, 100);
         const torusMat = new THREE.MeshPhongMaterial({ 
             color: 0x542e1b, 
             specular: 0xc87533, 
-            shininess: 40,
-            wireframe: false
+            shininess: 40
         });
         const tpaBody = new THREE.Mesh(torusGeo, torusMat);
         tpaBody.rotation.x = Math.PI / 2;
         mainGroup.add(tpaBody);
 
-        // Вспомогательная сетка тора для визуального объема
         const wireTorusMat = new THREE.MeshBasicMaterial({ color: 0xc87533, wireframe: true, transparent: true, opacity: 0.08 });
         const tpaWire = new THREE.Mesh(torusGeo, wireTorusMat);
         tpaWire.rotation.x = Math.PI / 2;
         mainGroup.add(tpaWire);
 
-        // 3. Бесконтактный Маховик-Вентилятор (Яркое красное золото, парит над тором)
+        // 3. Бесконтактный Маховик-Вентилятор (Парит сверху)
         const flywheelGeo = new THREE.TorusGeometry(2.4, 0.06, 16, 100);
         const flywheelMat = new THREE.MeshPhongMaterial({ color: 0xe5873d, specular: 0xffffff, shininess: 90 });
         const flywheel = new THREE.Mesh(flywheelGeo, flywheelMat);
         flywheel.rotation.x = Math.PI / 2;
-        flywheel.position.y = 0.6; // Парит сверху
+        flywheel.position.y = 0.6;
         mainGroup.add(flywheel);
 
-        // Ребра маховика (имитация лопастей вентилятора)
+        // Лопасти маховика
         const bladeGeo = new THREE.BoxGeometry(0.1, 0.02, 0.4);
         const blades = [];
         for(let i=0; i<8; i++) {
@@ -221,27 +221,23 @@ HTML
             blades.push(blade);
         }
 
-        // 4. Индикатор внутреннего ротора/поршня (Сфера внутри тора)
+        // 4. Индикатор внутреннего ротора (Ошибка синтаксиса цвета устранена)
         const rotorGeo = new THREE.SphereGeometry(0.2, 32, 32);
-        const rotorMat = new THREE.MeshPhongMaterial({ color: #ffffff, emissive: 0xe5873d, emissiveIntensity: 0.6 });
+        const rotorMat = new THREE.MeshPhongMaterial({ color: 0xffffff, emissive: 0xe5873d, emissiveIntensity: 0.6 });
         const rotorIndicator = new THREE.Mesh(rotorGeo, rotorMat);
         mainGroup.add(rotorIndicator);
 
-        // Камера
         camera.position.set(0, 4.5, 7.5);
         camera.lookAt(0, 0, 0);
 
-        // Анимационный цикл
         let time = 0;
         function animate() {
             requestAnimationFrame(animate);
             time += 0.015;
 
-            // Движение индикатора внутри тора
             rotorIndicator.position.x = 2.2 * Math.cos(time);
             rotorIndicator.position.z = 2.2 * Math.sin(time);
 
-            // Синхронное вращение внешнего маховика и лопастей (магнитный перенос момента)
             flywheel.rotation.z = -time;
             blades.forEach((blade, index) => {
                 const baseAngle = (index / 8) * Math.PI * 2;
@@ -251,14 +247,12 @@ HTML
                 blade.rotation.y = -currentAngle;
             });
 
-            // Мягкий наклон всей установки для лучшего 3D-восприятия
             mainGroup.rotation.y = Math.sin(time * 0.1) * 0.15;
 
             renderer.render(scene, camera);
         }
         animate();
 
-        // Адаптивность экрана
         window.addEventListener('resize', () => {
             renderer.setSize(window.innerWidth, window.innerHeight);
             camera.aspect = window.innerWidth / window.innerHeight;
@@ -266,3 +260,4 @@ HTML
         });
     </script>
 </body>
+</html>
