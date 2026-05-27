@@ -1,103 +1,264 @@
+
 HTML
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>ЭнергаТор — Технология ТСА</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ЭнергаТор — Пневмогидравлическая Экосистема</title>
     <style>
-        body { margin: 0; background: #0a0f1d; font-family: sans-serif; color: white; overflow-x: hidden; }
-        canvas { display: block; }
-        .hero-content {
-            position: absolute; top: 15%; width: 100%; text-align: center; z-index: 10; pointer-events: none;
+        :root {
+            --space-bg: #060a13;
+            --copper-primary: #c87533;
+            --copper-light: #e5873d;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
         }
-        h1 { color: #d4af37; font-size: 3.5rem; margin: 0; text-transform: uppercase; letter-spacing: 5px; }
-        p { font-size: 1.2rem; color: #94a3b8; max-width: 600px; margin: 20px auto; line-height: 1.6; }
-        .nav-btn {
-            pointer-events: auto; padding: 15px 40px; border: 2px solid #d4af37; color: #d4af37;
-            text-decoration: none; font-weight: bold; transition: 0.3s; background: rgba(0,0,0,0.5);
+
+        body, html { 
+            margin: 0; 
+            padding: 0; 
+            width: 100%; 
+            height: 100%; 
+            overflow: hidden; 
+            background-color: var(--space-bg); 
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+            color: var(--text-main);
+        }
+
+        #canvas-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .interface-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: 60px 20px;
+            box-sizing: border-box;
+            pointer-events: none;
+        }
+
+        .brand-zone {
+            text-align: center;
+            pointer-events: auto;
+        }
+
+        brand-title {
+            display: block;
+            font-size: 4rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 12px;
+            color: var(--copper-primary);
+            margin: 0;
+            text-shadow: 0 0 30px rgba(200, 117, 51, 0.2);
+        }
+
+        .brand-subtitle {
+            display: block;
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-top: 10px;
+        }
+
+        .content-zone {
+            max-width: 800px;
+            text-align: center;
+            background: rgba(6, 10, 19, 0.85);
+            padding: 30px 40px;
+            border-radius: 6px;
+            border-top: 2px solid var(--copper-primary);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            pointer-events: auto;
+            margin-bottom: 20px;
+        }
+
+        .content-zone p {
+            font-size: 1.15rem;
+            line-height: 1.7;
+            color: var(--text-main);
+            margin: 0 0 25px 0;
+        }
+
+        .space-btn {
+            display: block;
+            width: 100%;
+            box-sizing: border-box;
+            background: transparent;
+            border: 2px solid var(--copper-primary);
+            color: var(--copper-primary);
+            padding: 18px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            text-decoration: none;
+            transition: all 0.3s ease;
             border-radius: 4px;
+            cursor: pointer;
         }
-        .nav-btn:hover { background: #d4af37; color: #0a0f1d; }
+
+        .space-btn:hover {
+            background: var(--copper-primary);
+            color: var(--space-bg);
+            box-shadow: 0 0 25px rgba(200, 117, 51, 0.5);
+        }
+
+        @media (max-width: 768px) {
+            brand-title { font-size: 2.5rem; letter-spacing: 6px; }
+            .content-zone { padding: 20px; }
+            .content-zone p { font-size: 1rem; }
+        }
     </style>
 </head>
 <body>
 
-    <div class="hero-content">
-        <h1>ЭнергаТор</h1>
-        <p>Тороидальный силовой агрегат (ТСА): Бесконтактная магнитная передача энергии. Нулевое трение, максимальный ресурс.</p>
-        <a href="intelligence.html" class="nav-btn">АНАЛИТИЧЕСКИЙ ХАБ</a>
-    </div>
-
     <div id="canvas-container"></div>
+
+    <div class="interface-layer">
+        <header class="brand-zone">
+            <brand-title>ЭнергаТор</brand-title>
+            <span class="brand-subtitle">Пневмогидравлическая Экосистема Будущего</span>
+        </header>
+
+        <main class="content-zone">
+            <p>
+                Технологическая платформа ЭнергаТор открывает эру независимой пневмогидравлической тригенерации. 
+                За счет использования замкнутого возвратного цикла и энергии сжатого воздуха мы полностью исключаем деградацию накопителей, 
+                обеспечиваем экспресс-дозаправку за минуты и гарантируем абсолютную автономность вашего транспорта, 
+                дома и бизнеса там, где бессильны традиционные сети и дефицитные химические батареи.
+            </p>
+            <a href="intelligence.html" class="space-btn">Вход в Пространство ЭнергаТор</a>
+        </main>
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
+        // Инициализация сцены
         const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
         const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
         renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(window.devicePixelRatio);
         document.getElementById('canvas-container').appendChild(renderer.domElement);
 
-        // Освещение
-        const light = new THREE.PointLight(0xd4af37, 1, 100);
-        light.position.set(10, 10, 10);
-        scene.add(light);
-        scene.add(new THREE.AmbientLight(0x404040));
+        // Освещение (направленный медный свет)
+        const topLight = new THREE.PointLight(0xe5873d, 1.8, 100);
+        topLight.position.set(0, 8, 4);
+        scene.add(topLight);
 
-        // 1. Баллоны (Цилиндры) - Ошибка синтаксиса цвета устранена
-        const tankGeo = new THREE.CylinderGeometry(0.5, 0.5, 3, 32);
-        const tankMat = new THREE.MeshPhongMaterial({ color: 0x1e293b, transparent: true, opacity: 0.7 });
+        const fillLight = new THREE.DirectionalLight(0x1e293b, 1);
+        fillLight.position.set(-5, -5, 5);
+        scene.add(fillLight);
+        scene.add(new THREE.AmbientLight(0x0f172a));
+
+        // Группа для вращения всей центральной установки
+        const mainGroup = new THREE.Group();
+        scene.add(mainGroup);
+
+        // 1. Стационарные Баллоны (БВД / БСД) по бокам
+        const cylinderGeo = new THREE.CylinderGeometry(0.35, 0.35, 3.4, 32);
+        const cylinderMat = new THREE.MeshPhongMaterial({ color: 0x111827, specular: 0x334155, shininess: 30 });
         
-        const tank1 = new THREE.Mesh(tankGeo, tankMat);
-        tank1.position.set(-5, 0, 0);
-        scene.add(tank1);
+        const leftTank = new THREE.Mesh(cylinderGeo, cylinderMat);
+        leftTank.position.set(-4.5, 0, -0.5);
+        mainGroup.add(leftTank);
 
-        const tank2 = new THREE.Mesh(tankGeo, tankMat);
-        tank2.position.set(5, 0, 0);
-        scene.add(tank2);
+        const rightTank = new THREE.Mesh(cylinderGeo, cylinderMat);
+        rightTank.position.set(4.5, 0, -0.5);
+        mainGroup.add(rightTank);
 
-        // 2. ТСА (Тороид)
-        const torusGeo = new THREE.TorusGeometry(2, 0.4, 16, 100);
-        const torusMat = new THREE.MeshPhongMaterial({ color: 0x334155, transparent: true, opacity: 0.4, wireframe: true });
-        const tca = new THREE.Mesh(torusGeo, torusMat);
-        tca.rotation.x = Math.PI / 2;
-        scene.add(tca);
+        // 2. Модуль ТПА (Тороидальный корпус из шлифованной темной меди)
+        const torusGeo = new THREE.TorusGeometry(2.2, 0.3, 24, 100);
+        const torusMat = new THREE.MeshPhongMaterial({ 
+            color: 0x542e1b, 
+            specular: 0xc87533, 
+            shininess: 40,
+            wireframe: false
+        });
+        const tpaBody = new THREE.Mesh(torusGeo, torusMat);
+        tpaBody.rotation.x = Math.PI / 2;
+        mainGroup.add(tpaBody);
 
-        // 3. Маховик (Внешний диск над тороидом)
-        const wheelGeo = new THREE.TorusGeometry(2.5, 0.1, 16, 100);
-        const wheelMat = new THREE.MeshPhongMaterial({ color: 0xd4af37 });
-        const flywheel = new THREE.Mesh(wheelGeo, wheelMat);
+        // Вспомогательная сетка тора для визуального объема
+        const wireTorusMat = new THREE.MeshBasicMaterial({ color: 0xc87533, wireframe: true, transparent: true, opacity: 0.08 });
+        const tpaWire = new THREE.Mesh(torusGeo, wireTorusMat);
+        tpaWire.rotation.x = Math.PI / 2;
+        mainGroup.add(tpaWire);
+
+        // 3. Бесконтактный Маховик-Вентилятор (Яркое красное золото, парит над тором)
+        const flywheelGeo = new THREE.TorusGeometry(2.4, 0.06, 16, 100);
+        const flywheelMat = new THREE.MeshPhongMaterial({ color: 0xe5873d, specular: 0xffffff, shininess: 90 });
+        const flywheel = new THREE.Mesh(flywheelGeo, flywheelMat);
         flywheel.rotation.x = Math.PI / 2;
-        flywheel.position.y = 0.5;
-        scene.add(flywheel);
+        flywheel.position.y = 0.6; // Парит сверху
+        mainGroup.add(flywheel);
 
-        // 4. Поршень (Маленькая сфера внутри тора)
-        const pistonGeo = new THREE.SphereGeometry(0.3, 32, 32);
-        const pistonMat = new THREE.MeshPhongMaterial({ color: 0xffffff, emissive: 0xd4af37 });
-        const piston = new THREE.Mesh(pistonGeo, pistonMat);
-        scene.add(piston);
+        // Ребра маховика (имитация лопастей вентилятора)
+        const bladeGeo = new THREE.BoxGeometry(0.1, 0.02, 0.4);
+        const blades = [];
+        for(let i=0; i<8; i++) {
+            const blade = new THREE.Mesh(bladeGeo, flywheelMat);
+            const angle = (i / 8) * Math.PI * 2;
+            blade.position.set(2.4 * Math.cos(angle), 0.6, 2.4 * Math.sin(angle));
+            blade.rotation.y = -angle;
+            mainGroup.add(blade);
+            blades.push(blade);
+        }
 
-        camera.position.z = 8;
-        camera.position.y = 3;
-        camera.lookAt(0,0,0);
+        // 4. Индикатор внутреннего ротора/поршня (Сфера внутри тора)
+        const rotorGeo = new THREE.SphereGeometry(0.2, 32, 32);
+        const rotorMat = new THREE.MeshPhongMaterial({ color: #ffffff, emissive: 0xe5873d, emissiveIntensity: 0.6 });
+        const rotorIndicator = new THREE.Mesh(rotorGeo, rotorMat);
+        mainGroup.add(rotorIndicator);
 
-        let angle = 0;
+        // Камера
+        camera.position.set(0, 4.5, 7.5);
+        camera.lookAt(0, 0, 0);
+
+        // Анимационный цикл
+        let time = 0;
         function animate() {
             requestAnimationFrame(animate);
-            
-            angle += 0.02;
-            
-            // Движение поршня по кругу внутри тора
-            piston.position.x = 2 * Math.cos(angle);
-            piston.position.z = 2 * Math.sin(angle);
-            
-            // Синхронное вращение маховика (магнитная связь)
-            flywheel.rotation.z = -angle; 
-            
+            time += 0.015;
+
+            // Движение индикатора внутри тора
+            rotorIndicator.position.x = 2.2 * Math.cos(time);
+            rotorIndicator.position.z = 2.2 * Math.sin(time);
+
+            // Синхронное вращение внешнего маховика и лопастей (магнитный перенос момента)
+            flywheel.rotation.z = -time;
+            blades.forEach((blade, index) => {
+                const baseAngle = (index / 8) * Math.PI * 2;
+                const currentAngle = baseAngle - time;
+                blade.position.x = 2.4 * Math.cos(currentAngle);
+                blade.position.z = 2.4 * Math.sin(currentAngle);
+                blade.rotation.y = -currentAngle;
+            });
+
+            // Мягкий наклон всей установки для лучшего 3D-восприятия
+            mainGroup.rotation.y = Math.sin(time * 0.1) * 0.15;
+
             renderer.render(scene, camera);
         }
         animate();
 
+        // Адаптивность экрана
         window.addEventListener('resize', () => {
             renderer.setSize(window.innerWidth, window.innerHeight);
             camera.aspect = window.innerWidth / window.innerHeight;
@@ -105,4 +266,3 @@ HTML
         });
     </script>
 </body>
-</html>
