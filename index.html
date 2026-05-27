@@ -153,107 +153,126 @@ HTML
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setPixelRatio(window.devicePixelRatio);
-        document.getElementById('canvas-container').appendChild(renderer.domElement);
+        let scene, camera, renderer, mainGroup, flywheel, blades = [], rotorIndicator;
+        let time = 0;
 
-        // Освещение под оттенок меди
-        const topLight = new THREE.PointLight(0xe5873d, 1.8, 100);
-        topLight.position.set(0, 8, 4);
-        scene.add(topLight);
+        function init3D() {
+            const container = document.getElementById('canvas-container');
+            if (!container) return;
 
-        const fillLight = new THREE.DirectionalLight(0x1e293b, 1);
-        fillLight.position.set(-5, -5, 5);
-        scene.add(fillLight);
-        scene.add(new THREE.AmbientLight(0x0f172a));
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+            
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            container.appendChild(renderer.domElement);
 
-        const mainGroup = new THREE.Group();
-        scene.add(mainGroup);
+            // Световые акценты (насыщенная медь)
+            const topLight = new THREE.PointLight(0xe5873d, 2, 100);
+            topLight.position.set(0, 8, 4);
+            scene.add(topLight);
 
-        // 1. Технологические Баллоны по бокам
-        const cylinderGeo = new THREE.CylinderGeometry(0.35, 0.35, 3.4, 32);
-        const cylinderMat = new THREE.MeshPhongMaterial({ color: 0x111827, specular: 0x334155, shininess: 30 });
-        
-        const leftTank = new THREE.Mesh(cylinderGeo, cylinderMat);
-        leftTank.position.set(-4.5, 0, -0.5);
-        mainGroup.add(leftTank);
+            const fillLight = new THREE.DirectionalLight(0x1e293b, 1.2);
+            fillLight.position.set(-5, -5, 5);
+            scene.add(fillLight);
+            scene.add(new THREE.AmbientLight(0x0f172a));
 
-        const rightTank = new THREE.Mesh(cylinderGeo, cylinderMat);
-        rightTank.position.set(4.5, 0, -0.5);
-        mainGroup.add(rightTank);
+            mainGroup = new THREE.Group();
+            scene.add(mainGroup);
 
-        // 2. Модуль ТПА (Тороид из темной меди)
-        const torusGeo = new THREE.TorusGeometry(2.2, 0.3, 24, 100);
-        const torusMat = new THREE.MeshPhongMaterial({ 
-            color: 0x542e1b, 
-            specular: 0xc87533, 
-            shininess: 40
-        });
-        const tpaBody = new THREE.Mesh(torusGeo, torusMat);
-        tpaBody.rotation.x = Math.PI / 2;
-        mainGroup.add(tpaBody);
+            // 1. Технологические Баллоны по бокам
+            const cylinderGeo = new THREE.CylinderGeometry(0.35, 0.35, 3.4, 32);
+            const cylinderMat = new THREE.MeshPhongMaterial({ color: 0x111827, specular: 0x334155, shininess: 30 });
+            
+            const leftTank = new THREE.Mesh(cylinderGeo, cylinderMat);
+            leftTank.position.set(-4.5, 0, -0.5);
+            mainGroup.add(leftTank);
 
-        const wireTorusMat = new THREE.MeshBasicMaterial({ color: 0xc87533, wireframe: true, transparent: true, opacity: 0.08 });
-        const tpaWire = new THREE.Mesh(torusGeo, wireTorusMat);
-        tpaWire.rotation.x = Math.PI / 2;
-        mainGroup.add(tpaWire);
+            const rightTank = new THREE.Mesh(cylinderGeo, cylinderMat);
+            rightTank.position.set(4.5, 0, -0.5);
+            mainGroup.add(rightTank);
 
-        // 3. Бесконтактный Маховик-Вентилятор (Парит сверху)
-        const flywheelGeo = new THREE.TorusGeometry(2.4, 0.06, 16, 100);
-        const flywheelMat = new THREE.MeshPhongMaterial({ color: 0xe5873d, specular: 0xffffff, shininess: 90 });
-        const flywheel = new THREE.Mesh(flywheelGeo, flywheelMat);
-        flywheel.rotation.x = Math.PI / 2;
-        flywheel.position.y = 0.6;
-        mainGroup.add(flywheel);
+            // 2. Модуль ТПА (Тороид)
+            const torusGeo = new THREE.TorusGeometry(2.2, 0.3, 24, 100);
+            const torusMat = new THREE.MeshPhongMaterial({ 
+                color: 0x542e1b, 
+                specular: 0xc87533, 
+                shininess: 40
+            });
+            const tpaBody = new THREE.Mesh(torusGeo, torusMat);
+            tpaBody.rotation.x = Math.PI / 2;
+            mainGroup.add(tpaBody);
 
-        // Лопасти маховика
-        const bladeGeo = new THREE.BoxGeometry(0.1, 0.02, 0.4);
-        const blades = [];
-        for(let i=0; i<8; i++) {
-            const blade = new THREE.Mesh(bladeGeo, flywheelMat);
-            const angle = (i / 8) * Math.PI * 2;
-            blade.position.set(2.4 * Math.cos(angle), 0.6, 2.4 * Math.sin(angle));
-            blade.rotation.y = -angle;
-            mainGroup.add(blade);
-            blades.push(blade);
+            // 3. Бесконтактный Маховик
+            const flywheelGeo = new THREE.TorusGeometry(2.4, 0.06, 16, 100);
+            const flywheelMat = new THREE.MeshPhongMaterial({ color: 0xe5873d, specular: 0xffffff, shininess: 90 });
+            flywheel = new THREE.Mesh(flywheelGeo, flywheelMat);
+            flywheel.rotation.x = Math.PI / 2;
+            flywheel.position.y = 0.6;
+            mainGroup.add(flywheel);
+
+            // Лопасти маховика
+            const bladeGeo = new THREE.BoxGeometry(0.1, 0.02, 0.4);
+            for(let i=0; i<8; i++) {
+                const blade = new THREE.Mesh(bladeGeo, flywheelMat);
+                const angle = (i / 8) * Math.PI * 2;
+                blade.position.set(2.4 * Math.cos(angle), 0.6, 2.4 * Math.sin(angle));
+                blade.rotation.y = -angle;
+                mainGroup.add(blade);
+                blades.push(blade);
+            }
+
+            // 4. Индикатор внутреннего ротора
+            const rotorGeo = new THREE.SphereGeometry(0.2, 32, 32);
+            const rotorMat = new THREE.MeshPhongMaterial({ color: 0xffffff, emissive: 0xe5873d, emissiveIntensity: 0.6 });
+            rotorIndicator = new THREE.Mesh(rotorGeo, rotorMat);
+            mainGroup.add(rotorIndicator);
+
+            camera.position.set(0, 4.5, 7.5);
+            camera.lookAt(0, 0, 0);
+
+            // Принудительный старт анимации
+            animate();
         }
 
-        // 4. Индикатор внутреннего ротора (Ошибка синтаксиса цвета устранена)
-        const rotorGeo = new THREE.SphereGeometry(0.2, 32, 32);
-        const rotorMat = new THREE.MeshPhongMaterial({ color: 0xffffff, emissive: 0xe5873d, emissiveIntensity: 0.6 });
-        const rotorIndicator = new THREE.Mesh(rotorGeo, rotorMat);
-        mainGroup.add(rotorIndicator);
-
-        camera.position.set(0, 4.5, 7.5);
-        camera.lookAt(0, 0, 0);
-
-        let time = 0;
         function animate() {
             requestAnimationFrame(animate);
             time += 0.015;
 
-            rotorIndicator.position.x = 2.2 * Math.cos(time);
-            rotorIndicator.position.z = 2.2 * Math.sin(time);
+            if (rotorIndicator) {
+                rotorIndicator.position.x = 2.2 * Math.cos(time);
+                rotorIndicator.position.z = 2.2 * Math.sin(time);
+            }
 
-            flywheel.rotation.z = -time;
-            blades.forEach((blade, index) => {
-                const baseAngle = (index / 8) * Math.PI * 2;
-                const currentAngle = baseAngle - time;
-                blade.position.x = 2.4 * Math.cos(currentAngle);
-                blade.position.z = 2.4 * Math.sin(currentAngle);
-                blade.rotation.y = -currentAngle;
-            });
+            if (flywheel) {
+                flywheel.rotation.z = -time;
+            }
 
-            mainGroup.rotation.y = Math.sin(time * 0.1) * 0.15;
+            if (blades.length > 0) {
+                blades.forEach((blade, index) => {
+                    const baseAngle = (index / 8) * Math.PI * 2;
+                    const currentAngle = baseAngle - time;
+                    blade.position.x = 2.4 * Math.cos(currentAngle);
+                    blade.position.z = 2.4 * Math.sin(currentAngle);
+                    blade.rotation.y = -currentAngle;
+                });
+            }
+
+            if (mainGroup) {
+                // Плавное 3D покачивание всей сцены
+                mainGroup.rotation.y = Math.sin(time * 0.1) * 0.15;
+                mainGroup.rotation.x = Math.cos(time * 0.05) * 0.05;
+            }
 
             renderer.render(scene, camera);
         }
-        animate();
+
+        // Запуск после полной загрузки окна
+        window.onload = init3D;
 
         window.addEventListener('resize', () => {
+            if (!camera || !renderer) return;
             renderer.setSize(window.innerWidth, window.innerHeight);
             camera.aspect = window.innerWidth / window.innerHeight;
             camera.updateProjectionMatrix();
