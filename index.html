@@ -24,7 +24,7 @@ HTML
             color: var(--text-main);
         }
 
-        /* Высококонтрастная галерея на заднем плане */
+        /* Галерея на заднем плане с гарантированными фото */
         .background-gallery {
             position: absolute;
             top: 0;
@@ -47,7 +47,7 @@ HTML
         }
 
         .slide.active {
-            opacity: 0.92; /* Предельная сочность */
+            opacity: 0.9; 
         }
 
         /* Виньетка по самым краям экрана */
@@ -57,7 +57,7 @@ HTML
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle, rgba(1,3,8,0.05) 0%, rgba(1,3,8,0.75) 100%);
+            background: radial-gradient(circle, rgba(1,3,8,0.05) 0%, rgba(1,3,8,0.8) 100%);
             z-index: 2;
         }
 
@@ -160,12 +160,18 @@ HTML
 </head>
 <body>
 
+    <!-- Задний план: Жестко зафиксированные, проверенные фото без сбоев алгоритмов -->
     <div class="background-gallery">
-        <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1620714223084-8fcacc6dfd8d?auto=format&fit=crop&w=1920&q=80')"></div>
-        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=1920&q=80')"></div>
-        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1559136555-9303baea8ebd?auto=format&fit=crop&w=1920&q=80')"></div>
-        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1920&q=80')"></div>
-        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1498804103079-a6351b050096?auto=format&fit=crop&w=1920&q=80')"></div>
+        <!-- 1. Аэротакси (Стильный летающий аппарат) -->
+        <div class="slide active" style="background-image: url('https://images.pexels.com/photos/10103759/pexels-photo-10103759.jpeg?auto=compress&cs=tinysrgb&w=1920')"></div>
+        <!-- 2. Современный технологичный Автомобиль -->
+        <div class="slide" style="background-image: url('https://images.pexels.com/photos/210019/pexels-photo-210019.jpeg?auto=compress&cs=tinysrgb&w=1920')"></div>
+        <!-- 3. Скоростной катер/лодка на воде -->
+        <div class="slide" style="background-image: url('https://images.pexels.com/photos/1645025/pexels-photo-1645025.jpeg?auto=compress&cs=tinysrgb&w=1920')"></div>
+        <!-- 4. Частное современное домохозяйство -->
+        <div class="slide" style="background-image: url('https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=1920')"></div>
+        <!-- 5. Стильный коммерческий фасад (Кафе) -->
+        <div class="slide" style="background-image: url('https://images.pexels.com/photos/1307698/pexels-photo-1307698.jpeg?auto=compress&cs=tinysrgb&w=1920')"></div>
     </div>
     
     <div class="overlay"></div>
@@ -173,7 +179,7 @@ HTML
     <div class="interface-layer">
         <header class="brand-zone">
             <span class="brand-title">ЭнергаТор</span>
-            <span class="brand-subtitle">Энергетическая независимость вашего транспорта, дома и бизнеса в условиях глобальных кризисов и блэкаутов</span>
+            <span class="brand-subtitle">Энергетическая независимость вашего транспорта, дома и бизнеса в условиях глобаческих кризисов и блэкаутов</span>
         </header>
 
         <main class="content-zone">
@@ -196,6 +202,7 @@ HTML
             slides[currentSlide].classList.add('active');
         }
 
+        // Переключение каждые 4 секунды
         setInterval(nextSlide, 4000);
     </script>
 </body>
