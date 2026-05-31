@@ -24,7 +24,7 @@ HTML
             color: var(--text-main);
         }
 
-        /* Галерея на заднем плане с высокой видимостью */
+        /* Галерея на заднем плане — максимальный обзор */
         .background-gallery {
             position: absolute;
             top: 0;
@@ -47,20 +47,21 @@ HTML
         }
 
         .slide.active {
-            opacity: 0.75; /* Картинки теперь яркие и четко видны */
+            opacity: 0.75;
         }
 
-        /* Затемнение по краям для фокуса на центре */
+        /* Мягкий центральный фильтр для контраста текста */
         .overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle, rgba(4,7,16,0.2) 0%, rgba(4,7,16,0.85) 90%);
+            background: radial-gradient(circle, rgba(4,7,16,0.3) 0%, rgba(4,7,16,0.8) 85%);
             z-index: 2;
         }
 
+        /* Прозрачный слой интерфейса без прямоугольников */
         .interface-layer {
             position: absolute;
             top: 0;
@@ -72,19 +73,16 @@ HTML
             flex-direction: column;
             justify-content: space-between;
             align-items: center;
-            padding: 50px 20px;
+            padding: 60px 20px;
             box-sizing: border-box;
             pointer-events: none;
         }
 
+        /* Название парит в воздухе */
         .brand-zone {
             text-align: center;
             pointer-events: auto;
             max-width: 900px;
-            background: rgba(4, 7, 16, 0.65);
-            padding: 15px 30px;
-            border-radius: 4px;
-            backdrop-filter: blur(5px);
         }
 
         .brand-title {
@@ -95,7 +93,8 @@ HTML
             letter-spacing: 14px;
             color: var(--copper-primary);
             margin: 0;
-            text-shadow: 0 0 40px rgba(200, 117, 51, 0.4);
+            /* Тень для защиты от сливания с фоном */
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.9), 0 0 40px rgba(200, 117, 51, 0.4);
         }
 
         .brand-subtitle {
@@ -104,36 +103,36 @@ HTML
             color: var(--text-main);
             font-weight: 600;
             line-height: 1.5;
-            margin-top: 10px;
+            margin-top: 15px;
             letter-spacing: 1px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
         }
 
+        /* Текстовый блок стал полностью прозрачным */
         .content-zone {
             max-width: 750px;
             text-align: center;
-            background: rgba(4, 7, 16, 0.88); /* Плотная подложка для идеального чтения */
-            padding: 35px 45px;
-            border-radius: 8px;
-            border-top: 3px solid var(--copper-primary);
-            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8);
             pointer-events: auto;
-            backdrop-filter: blur(10px);
             margin-bottom: 20px;
+            padding: 0 20px;
         }
 
         .content-zone p {
-            font-size: 1.25rem;
-            line-height: 1.65;
+            font-size: 1.3rem;
+            line-height: 1.7;
             color: var(--text-main);
-            margin: 0 0 30px 0;
-            font-weight: 400;
+            margin: 0 0 35px 0;
+            font-weight: 500;
+            /* Четкая тень под буквами */
+            text-shadow: 0 2px 15px rgba(0, 0, 0, 0.95), 0 1px 4px rgba(0, 0, 0, 0.95);
         }
 
+        /* Кнопка-пробел тоже парит на фоне */
         .space-btn {
             display: block;
             width: 100%;
             box-sizing: border-box;
-            background: transparent;
+            background: rgba(4, 7, 16, 0.4); /* Едва заметный стеклянный оттенок внутри */
             border: 2px solid var(--copper-primary);
             color: var(--copper-primary);
             padding: 20px;
@@ -145,29 +144,36 @@ HTML
             transition: all 0.3s ease;
             border-radius: 4px;
             cursor: pointer;
+            backdrop-filter: blur(3px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
         }
 
         .space-btn:hover {
             background: var(--copper-primary);
             color: var(--space-bg);
-            box-shadow: 0 0 30px rgba(200, 117, 51, 0.6);
+            box-shadow: 0 0 30px rgba(200, 117, 51, 0.7);
         }
 
         @media (max-width: 768px) {
             .brand-title { font-size: 2.8rem; letter-spacing: 6px; }
             .brand-subtitle { font-size: 1rem; }
-            .content-zone { padding: 25px; }
             .content-zone p { font-size: 1.1rem; }
         }
     </style>
 </head>
 <body>
 
+    <!-- Задний план: Открытая панорама объектов -->
     <div class="background-gallery">
+        <!-- Авиатакси -->
         <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1517976487492-5750f3195933?auto=format&fit=crop&w=1920&q=80')"></div>
+        <!-- Технологичный Автомобиль -->
         <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1617788138017-80ad40651399?auto=format&fit=crop&w=1920&q=80')"></div>
+        <!-- Катер на воде -->
         <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?auto=format&fit=crop&w=1920&q=80')"></div>
+        <!-- Частное домохозяйство -->
         <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1920&q=80')"></div>
+        <!-- Кафе-заправка -->
         <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1920&q=80')"></div>
     </div>
     
@@ -199,12 +205,7 @@ HTML
             slides[currentSlide].classList.add('active');
         }
 
-        // Плавное переключение каждые 4 секунды
         setInterval(nextSlide, 4000);
     </script>
 </body>
 </html>
-
-            
-            
-     
