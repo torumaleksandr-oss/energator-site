@@ -1,18 +1,16 @@
-
 HTML
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ЭнергаТор — Энергетическая Независимость</title>
+    <title>ЭнергаТор — Автономная Энергия</title>
     <style>
         :root {
-            --space-bg: #060a13;
+            --space-bg: #040710;
             --copper-primary: #c87533;
             --copper-light: #e5873d;
-            --text-main: #f1f5f9;
-            --text-muted: #cbd5e1;
+            --text-main: #f8fafc;
         }
 
         body, html { 
@@ -26,7 +24,7 @@ HTML
             color: var(--text-main);
         }
 
-        /* Галерея на заднем плане */
+        /* Галерея на заднем плане с высокой видимостью */
         .background-gallery {
             position: absolute;
             top: 0;
@@ -45,21 +43,21 @@ HTML
             background-size: cover;
             background-position: center;
             opacity: 0;
-            transition: opacity 1.5s ease-in-out;
+            transition: opacity 1.2s ease-in-out;
         }
 
         .slide.active {
-            opacity: 0.35; /* Оптимальная яркость, чтобы текст отлично читался */
+            opacity: 0.75; /* Картинки теперь яркие и четко видны */
         }
 
-        /* Затемняющий градиент поверх фото */
+        /* Затемнение по краям для фокуса на центре */
         .overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle, rgba(6,10,19,0.4) 0%, rgba(6,10,19,0.9) 85%);
+            background: radial-gradient(circle, rgba(4,7,16,0.2) 0%, rgba(4,7,16,0.85) 90%);
             z-index: 2;
         }
 
@@ -74,7 +72,7 @@ HTML
             flex-direction: column;
             justify-content: space-between;
             align-items: center;
-            padding: 40px 20px;
+            padding: 50px 20px;
             box-sizing: border-box;
             pointer-events: none;
         }
@@ -83,48 +81,52 @@ HTML
             text-align: center;
             pointer-events: auto;
             max-width: 900px;
-            margin-top: 20px;
+            background: rgba(4, 7, 16, 0.65);
+            padding: 15px 30px;
+            border-radius: 4px;
+            backdrop-filter: blur(5px);
         }
 
         .brand-title {
             display: block;
-            font-size: 4rem;
+            font-size: 4.5rem;
             font-weight: 900;
             text-transform: uppercase;
-            letter-spacing: 12px;
+            letter-spacing: 14px;
             color: var(--copper-primary);
             margin: 0;
-            text-shadow: 0 0 30px rgba(200, 117, 51, 0.3);
+            text-shadow: 0 0 40px rgba(200, 117, 51, 0.4);
         }
 
         .brand-subtitle {
             display: block;
-            font-size: 1.25rem;
+            font-size: 1.3rem;
             color: var(--text-main);
             font-weight: 600;
             line-height: 1.5;
-            margin-top: 15px;
-            border-bottom: 1px solid rgba(200, 117, 51, 0.3);
-            padding-bottom: 15px;
+            margin-top: 10px;
+            letter-spacing: 1px;
         }
 
         .content-zone {
-            max-width: 800px;
+            max-width: 750px;
             text-align: center;
-            background: rgba(6, 10, 19, 0.85);
-            padding: 30px 40px;
-            border-radius: 6px;
-            border-top: 2px solid var(--copper-primary);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+            background: rgba(4, 7, 16, 0.88); /* Плотная подложка для идеального чтения */
+            padding: 35px 45px;
+            border-radius: 8px;
+            border-top: 3px solid var(--copper-primary);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8);
             pointer-events: auto;
+            backdrop-filter: blur(10px);
             margin-bottom: 20px;
         }
 
         .content-zone p {
-            font-size: 1.15rem;
-            line-height: 1.7;
+            font-size: 1.25rem;
+            line-height: 1.65;
             color: var(--text-main);
-            margin: 0 0 25px 0;
+            margin: 0 0 30px 0;
+            font-weight: 400;
         }
 
         .space-btn {
@@ -134,11 +136,11 @@ HTML
             background: transparent;
             border: 2px solid var(--copper-primary);
             color: var(--copper-primary);
-            padding: 18px;
-            font-size: 1.1rem;
+            padding: 20px;
+            font-size: 1.15rem;
             font-weight: bold;
             text-transform: uppercase;
-            letter-spacing: 4px;
+            letter-spacing: 5px;
             text-decoration: none;
             transition: all 0.3s ease;
             border-radius: 4px;
@@ -148,25 +150,25 @@ HTML
         .space-btn:hover {
             background: var(--copper-primary);
             color: var(--space-bg);
-            box-shadow: 0 0 25px rgba(200, 117, 51, 0.5);
+            box-shadow: 0 0 30px rgba(200, 117, 51, 0.6);
         }
 
         @media (max-width: 768px) {
-            .brand-title { font-size: 2.5rem; letter-spacing: 6px; }
+            .brand-title { font-size: 2.8rem; letter-spacing: 6px; }
             .brand-subtitle { font-size: 1rem; }
-            .content-zone { padding: 20px; }
-            .content-zone p { font-size: 1rem; }
+            .content-zone { padding: 25px; }
+            .content-zone p { font-size: 1.1rem; }
         }
     </style>
 </head>
 <body>
 
     <div class="background-gallery">
-        <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1508614589041-895b88991e3e?auto=format&fit=crop&w=1920&q=80')"></div>
-        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1566041510394-cf7c8fe21800?auto=format&fit=crop&w=1920&q=80')"></div>
-        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1559136555-9303baea8ebd?auto=format&fit=crop&w=1920&q=80')"></div>
-        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1920&q=80')"></div>
-        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1920&q=80')"></div>
+        <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1517976487492-5750f3195933?auto=format&fit=crop&w=1920&q=80')"></div>
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1617788138017-80ad40651399?auto=format&fit=crop&w=1920&q=80')"></div>
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?auto=format&fit=crop&w=1920&q=80')"></div>
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1920&q=80')"></div>
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1920&q=80')"></div>
     </div>
     
     <div class="overlay"></div>
@@ -180,8 +182,7 @@ HTML
         <main class="content-zone">
             <p>
                 Технологическая платформа ЭнергаТор предоставляет электроэнергию, холод и тепло. 
-                За счет использования энергии сжатого воздуха мы исключаем деградацию накопителей. 
-                Мы создаем автономную энергию для вашего транспорта, дома и бизнеса там, где бессильны традиционные сети — 
+                Мы создаем автономную энергию для вашего транспорта, дома и бизнеса — 
                 проще, дешевле и экологичнее по сравнению с любыми другими вариантами.
             </p>
             <a href="intelligence.html" class="space-btn">Вход в Пространство ЭнергаТор</a>
@@ -189,7 +190,6 @@ HTML
     </div>
 
     <script>
-        // Скрипт автоматического переключения слайдов галереи
         const slides = document.querySelectorAll('.slide');
         let currentSlide = 0;
 
@@ -199,8 +199,12 @@ HTML
             slides[currentSlide].classList.add('active');
         }
 
-        // Переключение происходит каждые 4 секунды (4000 миллисекунд)
+        // Плавное переключение каждые 4 секунды
         setInterval(nextSlide, 4000);
     </script>
 </body>
 </html>
+
+            
+            
+     
