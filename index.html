@@ -5,14 +5,14 @@ HTML
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ЭнергаТор — Пневмогидравлическая Экосистема</title>
+    <title>ЭнергаТор — Энергетическая Независимость</title>
     <style>
         :root {
             --space-bg: #060a13;
             --copper-primary: #c87533;
             --copper-light: #e5873d;
             --text-main: #f1f5f9;
-            --text-muted: #94a3b8;
+            --text-muted: #cbd5e1;
         }
 
         body, html { 
@@ -26,13 +26,41 @@ HTML
             color: var(--text-main);
         }
 
-        #canvas-container {
+        /* Галерея на заднем плане */
+        .background-gallery {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             z-index: 1;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+        }
+
+        .slide.active {
+            opacity: 0.35; /* Оптимальная яркость, чтобы текст отлично читался */
+        }
+
+        /* Затемняющий градиент поверх фото */
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(6,10,19,0.4) 0%, rgba(6,10,19,0.9) 85%);
+            z-index: 2;
         }
 
         .interface-layer {
@@ -55,6 +83,7 @@ HTML
             text-align: center;
             pointer-events: auto;
             max-width: 900px;
+            margin-top: 20px;
         }
 
         .brand-title {
@@ -65,13 +94,13 @@ HTML
             letter-spacing: 12px;
             color: var(--copper-primary);
             margin: 0;
-            text-shadow: 0 0 30px rgba(200, 117, 51, 0.2);
+            text-shadow: 0 0 30px rgba(200, 117, 51, 0.3);
         }
 
         .brand-subtitle {
             display: block;
             font-size: 1.25rem;
-            color: #cbd5e1;
+            color: var(--text-main);
             font-weight: 600;
             line-height: 1.5;
             margin-top: 15px;
@@ -83,19 +112,19 @@ HTML
             max-width: 800px;
             text-align: center;
             background: rgba(6, 10, 19, 0.85);
-            padding: 25px 40px;
+            padding: 30px 40px;
             border-radius: 6px;
             border-top: 2px solid var(--copper-primary);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
             pointer-events: auto;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
         }
 
         .content-zone p {
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             line-height: 1.7;
             color: var(--text-main);
-            margin: 0 0 20px 0;
+            margin: 0 0 25px 0;
         }
 
         .space-btn {
@@ -126,13 +155,21 @@ HTML
             .brand-title { font-size: 2.5rem; letter-spacing: 6px; }
             .brand-subtitle { font-size: 1rem; }
             .content-zone { padding: 20px; }
-            .content-zone p { font-size: 0.95rem; }
+            .content-zone p { font-size: 1rem; }
         }
     </style>
 </head>
 <body>
 
-    <div id="canvas-container"></div>
+    <div class="background-gallery">
+        <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1508614589041-895b88991e3e?auto=format&fit=crop&w=1920&q=80')"></div>
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1566041510394-cf7c8fe21800?auto=format&fit=crop&w=1920&q=80')"></div>
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1559136555-9303baea8ebd?auto=format&fit=crop&w=1920&q=80')"></div>
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1920&q=80')"></div>
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1920&q=80')"></div>
+    </div>
+    
+    <div class="overlay"></div>
 
     <div class="interface-layer">
         <header class="brand-zone">
@@ -142,141 +179,28 @@ HTML
 
         <main class="content-zone">
             <p>
-                Технологическая платформа ЭнергаТор открывает эру независимой пневмогидравлической тригенерации. 
-                За счет использования замкнутого возвратного цикла и энергии сжатого воздуха мы полностью исключаем деградацию накопителей, 
-                обеспечиваем экспресс-дозаправку за минуты и гарантируем абсолютную автономность вашего транспорта, 
-                дома и бизнеса там, где бессильны традиционные сети и дефицитные химические батареи.
+                Технологическая платформа ЭнергаТор предоставляет электроэнергию, холод и тепло. 
+                За счет использования энергии сжатого воздуха мы исключаем деградацию накопителей. 
+                Мы создаем автономную энергию для вашего транспорта, дома и бизнеса там, где бессильны традиционные сети — 
+                проще, дешевле и экологичнее по сравнению с любыми другими вариантами.
             </p>
             <a href="intelligence.html" class="space-btn">Вход в Пространство ЭнергаТор</a>
         </main>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
-        let scene, camera, renderer, mainGroup, flywheel, blades = [], rotorIndicator;
-        let time = 0;
+        // Скрипт автоматического переключения слайдов галереи
+        const slides = document.querySelectorAll('.slide');
+        let currentSlide = 0;
 
-        function init3D() {
-            const container = document.getElementById('canvas-container');
-            if (!container) return;
-
-            scene = new THREE.Scene();
-            camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
-            
-            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-            container.appendChild(renderer.domElement);
-
-            // Световые акценты (насыщенная медь)
-            const topLight = new THREE.PointLight(0xe5873d, 2, 100);
-            topLight.position.set(0, 8, 4);
-            scene.add(topLight);
-
-            const fillLight = new THREE.DirectionalLight(0x1e293b, 1.2);
-            fillLight.position.set(-5, -5, 5);
-            scene.add(fillLight);
-            scene.add(new THREE.AmbientLight(0x0f172a));
-
-            mainGroup = new THREE.Group();
-            scene.add(mainGroup);
-
-            // 1. Технологические Баллоны по бокам
-            const cylinderGeo = new THREE.CylinderGeometry(0.35, 0.35, 3.4, 32);
-            const cylinderMat = new THREE.MeshPhongMaterial({ color: 0x111827, specular: 0x334155, shininess: 30 });
-            
-            const leftTank = new THREE.Mesh(cylinderGeo, cylinderMat);
-            leftTank.position.set(-4.5, 0, -0.5);
-            mainGroup.add(leftTank);
-
-            const rightTank = new THREE.Mesh(cylinderGeo, cylinderMat);
-            rightTank.position.set(4.5, 0, -0.5);
-            mainGroup.add(rightTank);
-
-            // 2. Модуль ТПА (Тороид)
-            const torusGeo = new THREE.TorusGeometry(2.2, 0.3, 24, 100);
-            const torusMat = new THREE.MeshPhongMaterial({ 
-                color: 0x542e1b, 
-                specular: 0xc87533, 
-                shininess: 40
-            });
-            const tpaBody = new THREE.Mesh(torusGeo, torusMat);
-            tpaBody.rotation.x = Math.PI / 2;
-            mainGroup.add(tpaBody);
-
-            // 3. Бесконтактный Маховик
-            const flywheelGeo = new THREE.TorusGeometry(2.4, 0.06, 16, 100);
-            const flywheelMat = new THREE.MeshPhongMaterial({ color: 0xe5873d, specular: 0xffffff, shininess: 90 });
-            flywheel = new THREE.Mesh(flywheelGeo, flywheelMat);
-            flywheel.rotation.x = Math.PI / 2;
-            flywheel.position.y = 0.6;
-            mainGroup.add(flywheel);
-
-            // Лопасти маховика
-            const bladeGeo = new THREE.BoxGeometry(0.1, 0.02, 0.4);
-            for(let i=0; i<8; i++) {
-                const blade = new THREE.Mesh(bladeGeo, flywheelMat);
-                const angle = (i / 8) * Math.PI * 2;
-                blade.position.set(2.4 * Math.cos(angle), 0.6, 2.4 * Math.sin(angle));
-                blade.rotation.y = -angle;
-                mainGroup.add(blade);
-                blades.push(blade);
-            }
-
-            // 4. Индикатор внутреннего ротора
-            const rotorGeo = new THREE.SphereGeometry(0.2, 32, 32);
-            const rotorMat = new THREE.MeshPhongMaterial({ color: 0xffffff, emissive: 0xe5873d, emissiveIntensity: 0.6 });
-            rotorIndicator = new THREE.Mesh(rotorGeo, rotorMat);
-            mainGroup.add(rotorIndicator);
-
-            camera.position.set(0, 4.5, 7.5);
-            camera.lookAt(0, 0, 0);
-
-            // Принудительный старт анимации
-            animate();
+        function nextSlide() {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
         }
 
-        function animate() {
-            requestAnimationFrame(animate);
-            time += 0.015;
-
-            if (rotorIndicator) {
-                rotorIndicator.position.x = 2.2 * Math.cos(time);
-                rotorIndicator.position.z = 2.2 * Math.sin(time);
-            }
-
-            if (flywheel) {
-                flywheel.rotation.z = -time;
-            }
-
-            if (blades.length > 0) {
-                blades.forEach((blade, index) => {
-                    const baseAngle = (index / 8) * Math.PI * 2;
-                    const currentAngle = baseAngle - time;
-                    blade.position.x = 2.4 * Math.cos(currentAngle);
-                    blade.position.z = 2.4 * Math.sin(currentAngle);
-                    blade.rotation.y = -currentAngle;
-                });
-            }
-
-            if (mainGroup) {
-                // Плавное 3D покачивание всей сцены
-                mainGroup.rotation.y = Math.sin(time * 0.1) * 0.15;
-                mainGroup.rotation.x = Math.cos(time * 0.05) * 0.05;
-            }
-
-            renderer.render(scene, camera);
-        }
-
-        // Запуск после полной загрузки окна
-        window.onload = init3D;
-
-        window.addEventListener('resize', () => {
-            if (!camera || !renderer) return;
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-        });
+        // Переключение происходит каждые 4 секунды (4000 миллисекунд)
+        setInterval(nextSlide, 4000);
     </script>
 </body>
 </html>
