@@ -7,10 +7,10 @@ HTML
     <title>ЭнергаТор — Автономная Энергия</title>
     <style>
         :root {
-            --space-bg: #040710;
+            --space-bg: #02040a;
             --copper-primary: #c87533;
             --copper-light: #e5873d;
-            --text-main: #f8fafc;
+            --text-main: #ffffff;
         }
 
         body, html { 
@@ -24,7 +24,7 @@ HTML
             color: var(--text-main);
         }
 
-        /* Галерея на заднем плане — максимальный обзор */
+        /* Высококонтрастная галерея на заднем плане */
         .background-gallery {
             position: absolute;
             top: 0;
@@ -43,25 +43,25 @@ HTML
             background-size: cover;
             background-position: center;
             opacity: 0;
-            transition: opacity 1.2s ease-in-out;
+            transition: opacity 1.0s ease-in-out;
         }
 
         .slide.active {
-            opacity: 0.75;
+            opacity: 0.9; /* Максимальный контраст и сочность изображений */
         }
 
-        /* Мягкий центральный фильтр для контраста текста */
+        /* Эффект виньетки: затемнение только по самым краям экрана */
         .overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle, rgba(4,7,16,0.3) 0%, rgba(4,7,16,0.8) 85%);
+            background: radial-gradient(circle, rgba(2,4,10,0.1) 0%, rgba(2,4,10,0.75) 100%);
             z-index: 2;
         }
 
-        /* Прозрачный слой интерфейса без прямоугольников */
+        /* Полностью прозрачный слой интерфейса */
         .interface-layer {
             position: absolute;
             top: 0;
@@ -78,7 +78,6 @@ HTML
             pointer-events: none;
         }
 
-        /* Название парит в воздухе */
         .brand-zone {
             text-align: center;
             pointer-events: auto;
@@ -93,8 +92,8 @@ HTML
             letter-spacing: 14px;
             color: var(--copper-primary);
             margin: 0;
-            /* Тень для защиты от сливания с фоном */
-            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.9), 0 0 40px rgba(200, 117, 51, 0.4);
+            /* Сверхчеткая двойная тень для защиты текста */
+            text-shadow: 0 4px 12px rgba(0, 0, 0, 1), 0 0 40px rgba(200, 117, 51, 0.5);
         }
 
         .brand-subtitle {
@@ -105,10 +104,9 @@ HTML
             line-height: 1.5;
             margin-top: 15px;
             letter-spacing: 1px;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
+            text-shadow: 0 3px 8px rgba(0, 0, 0, 1), 0 1px 3px rgba(0, 0, 0, 1);
         }
 
-        /* Текстовый блок стал полностью прозрачным */
         .content-zone {
             max-width: 750px;
             text-align: center;
@@ -118,22 +116,20 @@ HTML
         }
 
         .content-zone p {
-            font-size: 1.3rem;
+            font-size: 1.35rem;
             line-height: 1.7;
             color: var(--text-main);
             margin: 0 0 35px 0;
-            font-weight: 500;
-            /* Четкая тень под буквами */
-            text-shadow: 0 2px 15px rgba(0, 0, 0, 0.95), 0 1px 4px rgba(0, 0, 0, 0.95);
+            font-weight: 600; /* Сделали шрифт чуть плотнее для идеального контраста */
+            text-shadow: 0 3px 12px rgba(0, 0, 0, 1), 0 1px 4px rgba(0, 0, 0, 1);
         }
 
-        /* Кнопка-пробел тоже парит на фоне */
         .space-btn {
             display: block;
             width: 100%;
             box-sizing: border-box;
-            background: rgba(4, 7, 16, 0.4); /* Едва заметный стеклянный оттенок внутри */
-            border: 2px solid var(--copper-primary);
+            background: rgba(2, 4, 10, 0.6); /* Легкий защитный стеклянный слой кнопки */
+            border: 2.5px solid var(--copper-primary);
             color: var(--copper-primary);
             padding: 20px;
             font-size: 1.15rem;
@@ -144,14 +140,16 @@ HTML
             transition: all 0.3s ease;
             border-radius: 4px;
             cursor: pointer;
-            backdrop-filter: blur(3px);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.8);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
         }
 
         .space-btn:hover {
             background: var(--copper-primary);
             color: var(--space-bg);
-            box-shadow: 0 0 30px rgba(200, 117, 51, 0.7);
+            box-shadow: 0 0 35px rgba(200, 117, 51, 0.8);
+            text-shadow: none;
         }
 
         @media (max-width: 768px) {
@@ -163,17 +161,11 @@ HTML
 </head>
 <body>
 
-    <!-- Задний план: Открытая панорама объектов -->
     <div class="background-gallery">
-        <!-- Авиатакси -->
-        <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1517976487492-5750f3195933?auto=format&fit=crop&w=1920&q=80')"></div>
-        <!-- Технологичный Автомобиль -->
+        <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1559136555-9303baea8ebd?auto=format&fit=crop&w=1920&q=80')"></div>
         <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1617788138017-80ad40651399?auto=format&fit=crop&w=1920&q=80')"></div>
-        <!-- Катер на воде -->
-        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?auto=format&fit=crop&w=1920&q=80')"></div>
-        <!-- Частное домохозяйство -->
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1545569341-9eb8b30979d9?auto=format&fit=crop&w=1920&q=80')"></div>
         <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1920&q=80')"></div>
-        <!-- Кафе-заправка -->
         <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1920&q=80')"></div>
     </div>
     
@@ -205,6 +197,7 @@ HTML
             slides[currentSlide].classList.add('active');
         }
 
+        // Плавное переключение каждые 4 секунды
         setInterval(nextSlide, 4000);
     </script>
 </body>
