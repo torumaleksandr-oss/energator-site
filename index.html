@@ -7,11 +7,9 @@ HTML
     <title>ЭнергаТор — Автономная Энергия</title>
     <style>
         :root {
-            --space-bg: #030712;
-            --copper-dark: #7c2d12;
+            --space-bg: #02040a;
             --copper-primary: #c87533;
-            --copper-light: #ea580c;
-            --text-main: #f8fafc;
+            --text-main: #ffffff;
         }
 
         body, html { 
@@ -25,37 +23,44 @@ HTML
             color: var(--text-main);
         }
 
-        /* Полностью автономный энергетический фон (без внешних картинок) */
-        .animated-bg {
+        /* Высококонтрастная панорамная галерея */
+        .background-gallery {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             z-index: 1;
-            background: linear-gradient(125deg, #030712, #111827, #1e1b4b, #7c2d12, #030712);
-            background-size: 400% 400%;
-            animation: gradientAnimation 12s ease infinite;
         }
 
-        @keyframes gradientAnimation {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1.0s ease-in-out;
         }
 
-        /* Эффект виньетки и глубины */
+        .slide.active {
+            opacity: 0.95; /* Максимальная яркость и четкость */
+        }
+
+        /* Защитный контрастный фильтр только по краям экрана */
         .overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle, rgba(3,7,18,0.1) 0%, rgba(3,7,18,0.85) 90%);
+            background: radial-gradient(circle, rgba(2,4,10,0) 0%, rgba(2,4,10,0.7) 100%);
             z-index: 2;
         }
 
-        /* Воздушный слой интерфейса */
+        /* Прозрачный слой интерфейса поверх изображений */
         .interface-layer {
             position: absolute;
             top: 0;
@@ -86,7 +91,7 @@ HTML
             letter-spacing: 14px;
             color: var(--copper-primary);
             margin: 0;
-            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8), 0 0 30px rgba(200, 117, 51, 0.3);
+            text-shadow: 0 4px 15px #000000, 0 0 30px rgba(200, 117, 51, 0.6);
         }
 
         .brand-subtitle {
@@ -97,7 +102,7 @@ HTML
             line-height: 1.5;
             margin-top: 15px;
             letter-spacing: 1px;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
+            text-shadow: 0 3px 10px #000000, 0 1px 4px #000000;
         }
 
         .content-zone {
@@ -113,15 +118,15 @@ HTML
             line-height: 1.7;
             color: var(--text-main);
             margin: 0 0 35px 0;
-            font-weight: 500;
-            text-shadow: 0 2px 15px rgba(0, 0, 0, 0.9);
+            font-weight: 600; 
+            text-shadow: 0 3px 14px #000000, 0 1px 5px #000000;
         }
 
         .space-btn {
             display: block;
             width: 100%;
             box-sizing: border-box;
-            background: rgba(3, 7, 18, 0.4); 
+            background: rgba(2, 4, 10, 0.7); 
             border: 2.5px solid var(--copper-primary);
             color: var(--copper-primary);
             padding: 20px;
@@ -134,7 +139,7 @@ HTML
             border-radius: 4px;
             cursor: pointer;
             backdrop-filter: blur(4px);
-            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.7);
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.9);
         }
 
         .space-btn:hover {
@@ -152,7 +157,18 @@ HTML
 </head>
 <body>
 
-    <div class="animated-bg"></div>
+    <div class="background-gallery">
+        <div class="slide active" style="background-image: url('https://template.canva.com/EAD7Y9Z3m6E/1/0/1600w-vG8Mh3m6E5k.jpg')"></div>
+        
+        <div class="slide" style="background-image: url('https://images.template.net/289047/electric-car-charging-station-background-edit-online.jpg')"></div>
+        
+        <div class="slide" style="background-image: url('https://pub-static.fotor.com/assets/bg/b8f9e61c-0e7d-4b8c-b02f-bb66ff8d234a.jpg')"></div>
+        
+        <div class="slide" style="background-image: url('https://img.freepik.com/free-photo/luxury-modern-house-with-pool_1127-4344.jpg?w=1380')"></div>
+        
+        <div class="slide" style="background-image: url('https://img.freepik.com/free-photo/modern-bakery-shop-facade-design_53876-139745.jpg?w=1380')"></div>
+    </div>
+    
     <div class="overlay"></div>
 
     <div class="interface-layer">
@@ -171,6 +187,18 @@ HTML
         </main>
     </div>
 
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        let currentSlide = 0;
+
+        function nextSlide() {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+
+        // Переключение каждые 4 секунды
+        setInterval(nextSlide, 4000);
+    </script>
 </body>
 </html>
-
