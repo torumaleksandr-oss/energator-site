@@ -9,7 +9,6 @@ HTML
         :root {
             --space-bg: #02040a;
             --copper-primary: #c87533;
-            --copper-light: #ea580c;
             --text-main: #ffffff;
         }
 
@@ -24,7 +23,7 @@ HTML
             color: var(--text-main);
         }
 
-        /* Автономная галерея векторных образов (Без внешних ссылок) */
+        /* Локальная высококонтрастная галерея */
         .background-gallery {
             position: absolute;
             top: 0;
@@ -40,117 +39,28 @@ HTML
             left: 0;
             width: 100%;
             height: 100%;
+            background-size: cover;
+            background-position: center;
             opacity: 0;
-            transition: opacity 1.2s ease-in-out;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            box-sizing: border-box;
+            transition: opacity 1.0s ease-in-out;
         }
 
         .slide.active {
-            opacity: 1; 
+            opacity: 0.95; /* Максимальная сочность оригинальных файлов */
         }
 
-        /* Сцена 1: Авиатакси */
-        .slide-aviation {
-            background: radial-gradient(circle at 50% 30%, #1e293b 0%, #02040a 75%);
-        }
-        .slide-aviation::before {
-            content: "";
-            width: 320px;
-            height: 65px;
-            background: linear-gradient(90deg, transparent, var(--copper-primary), transparent);
-            clip-path: polygon(0% 50%, 50% 0%, 100% 50%, 50% 100%);
-            transform: translateY(-50px) rotate(-8deg);
-            filter: drop-shadow(0 0 25px var(--copper-light));
-            opacity: 0.8;
-        }
-
-        /* Сцена 2: Автомобиль */
-        .slide-car {
-            background: radial-gradient(circle at 50% 70%, #0f172a 0%, #02040a 80%);
-        }
-        .slide-car::before {
-            content: "";
-            width: 280px;
-            height: 80px;
-            background: linear-gradient(0deg, #1e293b, var(--copper-primary));
-            clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);
-            transform: translateY(30px);
-            opacity: 0.7;
-        }
-
-        /* Сцена 3: Скоростной катер */
-        .slide-boat {
-            background: radial-gradient(circle at 30% 50%, #090d16 0%, #02040a 85%);
-        }
-        .slide-boat::before {
-            content: "";
-            width: 340px;
-            height: 6px;
-            background: linear-gradient(90deg, var(--copper-light), transparent);
-            transform: translateY(70px) rotate(-4deg);
-            box-shadow: 0 -12px 35px var(--copper-primary);
-        }
-
-        /* Сцена 4: Домохозяйство */
-        .slide-house {
-            background: radial-gradient(circle at 70% 40%, #1c1917 0%, #02040a 75%);
-        }
-        .slide-house::before {
-            content: "";
-            width: 180px;
-            height: 180px;
-            border-left: 4px solid var(--copper-primary);
-            border-bottom: 4px solid var(--copper-primary);
-            transform: rotate(-45deg) translateY(-20px);
-            opacity: 0.7;
-        }
-
-        /* Сцена 5: Кафе / HoReCa */
-        .slide-cafe {
-            background: radial-gradient(circle at 50% 50%, #2e1065 0%, #02040a 85%);
-        }
-        .slide-cafe::before {
-            content: "";
-            width: 300px;
-            height: 150px;
-            border: 3px dashed var(--copper-primary);
-            box-shadow: inset 0 0 50px rgba(200, 117, 51, 0.3);
-            opacity: 0.6;
-        }
-
-        /* Мощные визуальные текстовые метки рынков */
-        .market-label {
-            position: absolute;
-            bottom: 170px;
-            font-size: 1.2rem;
-            text-transform: uppercase;
-            letter-spacing: 6px;
-            color: var(--copper-primary);
-            font-weight: 800;
-            text-shadow: 0 0 20px rgba(200, 117, 51, 0.7);
-            border: 2px solid var(--copper-primary);
-            padding: 10px 25px;
-            border-radius: 4px;
-            background: rgba(2, 4, 10, 0.85);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-
-        /* Глубокая виньетка */
+        /* Контрастная виньетка по краям экрана */
         .overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle, rgba(2,4,10,0) 0%, rgba(2,4,10,0.8) 100%);
+            background: radial-gradient(circle, rgba(2,4,10,0) 0%, rgba(2,4,10,0.75) 100%);
             z-index: 2;
         }
 
-        /* Прозрачный интерфейсный слой */
+        /* Полностью прозрачный воздушный слой интерфейса */
         .interface-layer {
             position: absolute;
             top: 0;
@@ -192,7 +102,7 @@ HTML
             line-height: 1.5;
             margin-top: 15px;
             letter-spacing: 1px;
-            text-shadow: 0 3px 10px #000000;
+            text-shadow: 0 3px 10px #000000, 0 1px 4px #000000;
         }
 
         .content-zone {
@@ -209,14 +119,14 @@ HTML
             color: var(--text-main);
             margin: 0 0 35px 0;
             font-weight: 600; 
-            text-shadow: 0 3px 14px #000000;
+            text-shadow: 0 3px 14px #000000, 0 1px 5px #000000;
         }
 
         .space-btn {
             display: block;
             width: 100%;
             box-sizing: border-box;
-            background: rgba(2, 4, 10, 0.8); 
+            background: rgba(2, 4, 10, 0.7); 
             border: 2.5px solid var(--copper-primary);
             color: var(--copper-primary);
             padding: 20px;
@@ -229,7 +139,7 @@ HTML
             border-radius: 4px;
             cursor: pointer;
             backdrop-filter: blur(4px);
-            box-shadow: 0 4px 25px #000000;
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.9);
         }
 
         .space-btn:hover {
@@ -242,30 +152,20 @@ HTML
             .brand-title { font-size: 2.8rem; letter-spacing: 6px; }
             .brand-subtitle { font-size: 1rem; }
             .content-zone p { font-size: 1.1rem; }
-            .market-label { bottom: 140px; font-size: 0.9rem; letter-spacing: 3px; }
         }
     </style>
 </head>
 <body>
 
+    /* Обращение идет к внутренним файлам репозитория */
     <div class="background-gallery">
-        <div class="slide slide-aviation active">
-            <span class="market-label">Рыночный сектор: Авиация и Аэротакси</span>
-        </div>
-        <div class="slide slide-car">
-            <span class="market-label">Рыночный сектор: Автомобильный транспорт</span>
-        </div>
-        <div class="slide slide-boat">
-            <span class="market-label">Рыночный сектор: Скоростной Водный флот</span>
-        </div>
-        <div class="slide slide-house">
-            <span class="market-label">Рыночный сектор: Частные домохозяйства</span>
-        </div>
-        <div class="slide slide-cafe">
-            <span class="market-label">Рыночный сектор: Коммерческие объекты / Кафе</span>
-        </div>
+        <div class="slide active" style="background-image: url('aviation.jpg')"></div>
+        <div class="slide" style="background-image: url('car.jpg')"></div>
+        <div class="slide" style="background-image: url('boat.jpg')"></div>
+        <div class="slide" style="background-image: url('house.jpg')"></div>
+        <div class="slide" style="background-image: url('cafe.jpg')"></div>
     </div>
-
+    
     <div class="overlay"></div>
 
     <div class="interface-layer">
@@ -294,7 +194,6 @@ HTML
             slides[currentSlide].classList.add('active');
         }
 
-        // Переключение сцен каждые 4 секунды
         setInterval(nextSlide, 4000);
     </script>
 </body>
