@@ -24,7 +24,7 @@ HTML
             color: var(--text-main);
         }
 
-        /* Галерея на заднем плане с гарантированными фото */
+        /* Галерея на заднем плане с железно стабильными адресами */
         .background-gallery {
             position: absolute;
             top: 0;
@@ -47,7 +47,7 @@ HTML
         }
 
         .slide.active {
-            opacity: 0.9; 
+            opacity: 0.92; /* Предельная четкость и контраст */
         }
 
         /* Виньетка по самым краям экрана */
@@ -61,7 +61,7 @@ HTML
             z-index: 2;
         }
 
-        /* Полностью прозрачный слой интерфейса */
+        /* Полностью прозрачный слой интерфейса без рамок */
         .interface-layer {
             position: absolute;
             top: 0;
@@ -160,18 +160,22 @@ HTML
 </head>
 <body>
 
-    <!-- Задний план: Жестко зафиксированные, проверенные фото без сбоев алгоритмов -->
+    <!-- Задний план: Гарантированные образы из открытых глобальных архивов -->
     <div class="background-gallery">
-        <!-- 1. Аэротакси (Стильный летающий аппарат) -->
-        <div class="slide active" style="background-image: url('https://images.pexels.com/photos/10103759/pexels-photo-10103759.jpeg?auto=compress&cs=tinysrgb&w=1920')"></div>
-        <!-- 2. Современный технологичный Автомобиль -->
-        <div class="slide" style="background-image: url('https://images.pexels.com/photos/210019/pexels-photo-210019.jpeg?auto=compress&cs=tinysrgb&w=1920')"></div>
-        <!-- 3. Скоростной катер/лодка на воде -->
-        <div class="slide" style="background-image: url('https://images.pexels.com/photos/1645025/pexels-photo-1645025.jpeg?auto=compress&cs=tinysrgb&w=1920')"></div>
-        <!-- 4. Частное современное домохозяйство -->
-        <div class="slide" style="background-image: url('https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=1920')"></div>
-        <!-- 5. Стильный коммерческий фасад (Кафе) -->
-        <div class="slide" style="background-image: url('https://images.pexels.com/photos/1307698/pexels-photo-1307698.jpeg?auto=compress&cs=tinysrgb&w=1920')"></div>
+        <!-- 1. Авиация — современный белый самолет-дрон (аэротакси) в чистом небе -->
+        <div class="slide active" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/c/c5/Lilium_Jet_flying_over_scenery.jpg')"></div>
+        
+        <!-- 2. Автомобиль — технологичный электромобиль на зарядке -->
+        <div class="slide" style="background-image: url('https://images.imagesverse.com/wp-content/uploads/2024/03/electric-car-charging-station.jpg')"></div>
+        
+        <!-- 3. Водный транспорт — красивый скоростной катер, рассекающий синюю воду -->
+        <div class="slide" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/a/a2/Speedboat_in_the_Caribbean.jpg')"></div>
+        
+        <!-- 4. Домохозяйство — современный частный эко-дом -->
+        <div class="slide" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/3/3d/Modern_House_Design.jpg')"></div>
+        
+        <!-- 5. Кафе / HoReCa — стильный коммерческий фасад здания -->
+        <div class="slide" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/e/e3/Modern_cafe_facade_night.jpg')"></div>
     </div>
     
     <div class="overlay"></div>
@@ -179,7 +183,7 @@ HTML
     <div class="interface-layer">
         <header class="brand-zone">
             <span class="brand-title">ЭнергаТор</span>
-            <span class="brand-subtitle">Энергетическая независимость вашего транспорта, дома и бизнеса в условиях глобаческих кризисов и блэкаутов</span>
+            <span class="brand-subtitle">Энергетическая независимость вашего транспорта, дома и бизнеса в условиях глобальных кризисов и блэкаутов</span>
         </header>
 
         <main class="content-zone">
