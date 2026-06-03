@@ -7,183 +7,227 @@ HTML
     <title>ЭнергаТор — Аналитический Хаб Мультиагентной Системы</title>
     <style>
         :root {
-            --bg-color: #0a0f1d;
-            --card-bg: #111827;
-            --text-color: #f3f4f6;
-            --text-muted: #9ca3af;
-            --accent-gold: #d4af37;
-            --accent-blue: #38bdf8;
-            --accent-green: #34d399;
-            --border-color: #1f2937;
+            --space-bg: #030712;
+            --copper-primary: #c87533;
+            --copper-light: #ea580c;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --glass-bg: rgba(15, 23, 42, 0.45);
+            --glass-border: rgba(200, 117, 51, 0.2);
         }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
+        body, html {
             margin: 0;
             padding: 0;
-            line-height: 1.5;
+            width: 100%;
+            min-height: 100%;
+            background-color: var(--space-bg);
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+            color: var(--text-main);
+            background: radial-gradient(circle at 50% 30%, #0f172a 0%, #030712 80%);
+            background-attachment: fixed;
         }
 
+        /* Шапка в стиле главной страницы */
         .header {
-            border-bottom: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--glass-border);
             padding: 20px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: rgba(11, 15, 29, 0.8);
-            backdrop-filter: blur(10px);
+            background: rgba(3, 7, 18, 0.8);
+            backdrop-filter: blur(12px);
             position: sticky;
             top: 0;
             z-index: 100;
         }
 
         .header h1 {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             margin: 0;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--accent-gold);
+            letter-spacing: 4px;
+            color: var(--copper-primary);
+            text-shadow: 0 0 20px rgba(200, 117, 51, 0.3);
         }
 
-        .status-bar {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 0.85rem;
-            color: var(--text-muted);
+        .btn-back {
+            color: var(--text-main);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border: 1px solid var(--copper-primary);
+            padding: 8px 18px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            background: rgba(200, 117, 51, 0.05);
         }
 
-        .pulse-dot {
-            width: 8px;
-            height: 8px;
-            background-color: var(--accent-green);
-            border-radius: 50%;
-            box-shadow: 0 0 8px var(--accent-green);
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(0.95); opacity: 0.5; }
-            50% { transform: scale(1.1); opacity: 1; }
-            100% { transform: scale(0.95); opacity: 0.5; }
+        .btn-back:hover {
+            background: var(--copper-primary);
+            color: var(--space-bg);
+            box-shadow: 0 0 20px rgba(200, 117, 51, 0.4);
         }
 
         .dashboard-container {
             max-width: 1600px;
             margin: 40px auto;
-            padding: 0 20px;
+            padding: 0 30px;
+            box-sizing: border-box;
         }
 
-        .intro-block {
-            margin-bottom: 40px;
-            background: linear-gradient(90deg, rgba(17, 24, 39, 0.6) 0%, rgba(11, 15, 29, 0.4) 100%);
-            border-left: 4px solid var(--accent-gold);
-            padding: 20px;
-            border-radius: 0 8px 8px 0;
-        }
-
-        .intro-block p {
-            margin: 0;
-            color: var(--text-muted);
-            font-size: 1.05rem;
-        }
-
-        .agents-grid {
+        /* Интерактивная матрица из 9 окон */
+        .matrix-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 30px;
+            margin-bottom: 40px;
         }
 
-        .agent-card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 25px;
+        /* Парящие стеклянные карточки окон */
+        .window-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            padding: 30px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            transition: transform 0.2s, border-color 0.2s;
+            backdrop-filter: blur(10px);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
 
-        .agent-card:hover {
-            transform: translateY(-2px);
-            border-color: #334155;
+        .window-card:hover {
+            border-color: var(--copper-primary);
+            background: rgba(15, 23, 42, 0.6);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(200, 117, 51, 0.15);
         }
 
-        .agent-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            border-bottom: 1px solid var(--border-color);
+        .window-header {
+            border-bottom: 1px solid rgba(200, 117, 51, 0.15);
             padding-bottom: 15px;
             margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        .agent-title {
+        .window-title {
             margin: 0;
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: var(--text-color);
-        }
-
-        .agent-meta {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--accent-blue);
-            background-color: rgba(56, 189, 248, 0.1);
-            padding: 4px 8px;
-            border-radius: 4px;
-        }
-
-        .agent-body h4 {
-            margin: 0 0 10px 0;
-            color: var(--accent-gold);
-            font-size: 0.95rem;
-            text-transform: uppercase;
+            font-size: 1.3rem;
+            font-weight: 700;
             letter-spacing: 0.5px;
+            color: var(--text-main);
         }
 
-        .agent-body ul {
-            margin: 0 0 20px 0;
+        .window-num {
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: var(--copper-primary);
+            border: 1px solid var(--copper-primary);
+            padding: 2px 8px;
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+
+        .window-body ul {
+            margin: 0 0 25px 0;
             padding-left: 20px;
             color: var(--text-muted);
-            font-size: 0.95rem;
+            font-size: 1rem;
         }
 
-        .agent-body li {
-            margin-bottom: 8px;
+        .window-body li {
+            margin-bottom: 10px;
+            line-height: 1.5;
         }
 
-        .btn-report {
-            display: inline-block;
+        /* Кнопки действий окон */
+        .btn-action {
+            display: block;
             text-align: center;
-            background-color: transparent;
-            border: 1px solid var(--accent-blue);
-            color: var(--accent-blue);
-            padding: 10px 20px;
-            border-radius: 6px;
+            background: transparent;
+            border: 1.5px solid var(--copper-primary);
+            color: var(--copper-primary);
+            padding: 12px;
+            border-radius: 4px;
             text-decoration: none;
             font-size: 0.9rem;
-            font-weight: 500;
-            transition: all 0.2s;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
         }
 
-        .btn-report:hover {
-            background-color: var(--accent-blue);
-            color: var(--bg-color);
+        .btn-action:hover {
+            background: var(--copper-primary);
+            color: var(--space-bg);
+            box-shadow: 0 0 25px rgba(200, 117, 51, 0.4);
         }
 
-        .btn-report.gold {
-            border-color: var(--accent-gold);
-            color: var(--accent-gold);
+        /* Нижняя стратегическая панель */
+        .bottom-panel {
+            background: linear-gradient(180deg, rgba(200, 117, 51, 0.05) 0%, rgba(200, 117, 51, 0.15) 100%);
+            border: 2px solid var(--copper-primary);
+            border-radius: 8px;
+            padding: 35px;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+            margin-top: 40px;
         }
 
-        .btn-report.gold:hover {
-            background-color: var(--accent-gold);
-            color: var(--bg-color);
+        .panel-title {
+            margin: 0 0 15px 0;
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--copper-primary);
+            font-weight: 800;
+        }
+
+        .panel-text {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: var(--text-main);
+            margin-bottom: 25px;
+        }
+
+        .btn-panel {
+            display: inline-block;
+            background: var(--copper-primary);
+            color: var(--space-bg);
+            border: none;
+            padding: 16px 35px;
+            font-size: 1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(200, 117, 51, 0.4);
+        }
+
+        .btn-panel:hover {
+            background: #ffffff;
+            color: var(--space-bg);
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.6);
+            cursor: pointer;
+        }
+
+        /* Адаптивность для экранов разного разрешения */
+        @media (max-width: 1200px) {
+            .matrix-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .matrix-grid { grid-template-columns: 1fr; }
+            .header { padding: 20px; }
+            .header h1 { font-size: 1.2rem; }
+            .dashboard-container { padding: 0 15px; }
         }
     </style>
 </head>
@@ -191,116 +235,184 @@ HTML
 
     <header class="header">
         <h1>EnergaTor Intelligence</h1>
-        <div class="status-bar">
-            <div class="pulse-dot"></div>
-            <span>Мультиагентная сеть Antigravity 2.0 активна</span>
-        </div>
+        <a href="index.html" class="btn-back">← На главную</a>
     </header>
 
     <main class="dashboard-container">
-        <section class="intro-block">
-            <p><strong>Панель оперативного мониторинга:</strong> Пять специализированных ИИ-агентов осуществляют непрерывный сквозной анализ макроэкономических, инфраструктурных и финансовых триггеров для развертывания систем Тороидальных Преобразующих Агрегатов (ТПА).</p>
-        </section>
+        <div class="matrix-grid" id="matrixGrid"></div>
 
-        <section class="agents-grid">
-            
-            <div class="agent-card">
-                <div>
-                    <div class="agent-header">
-                        <h3 class="agent-title">Макроэнергетика и Сырье</h3>
-                        <span class="agent-meta">Агент №1</span>
-                    </div>
-                    <div class="agent-body">
-                        <h4>Область мониторинга:</h4>
-                        <ul>
-                            <li>Котировки первичных энергоносителей (газ, уголь, нефть).</li>
-                            <li>Рыночный баланс критических металлов: сталь, алюминий, медь.</li>
-                            <li>Динамика цен и доступность сырья для батарей: литий, кобальт.</li>
-                            <li>Корреляция цен с геополитическими факторами риска.</li>
-                        </ul>
-                    </div>
-                </div>
-                <a href="energy.html" class="btn-report">Открыть сырьевой отчет</a>
-            </div>
-
-            <div class="agent-card">
-                <div>
-                    <div class="agent-header">
-                        <h3 class="agent-title">Транспортный Сектор</h3>
-                        <span class="agent-meta">Агент №2</span>
-                    </div>
-                    <div class="agent-body">
-                        <h4>Область мониторинга:</h4>
-                        <ul>
-                            <li>Динамика перехода мирового автопрома на электротягу.</li>
-                            <li>Логистический и сырьевой кризис литий-ионных накопителей.</li>
-                            <li>Анализ эффективности утилизации и переработки батарей (лимит 5–10%).</li>
-                            <li>Технико-экономический анализ TCO городского и грузового транспорта.</li>
-                        </ul>
-                    </div>
-                </div>
-                <a href="transport.html" class="btn-report">Открыть анализ автопрома</a>
-            </div>
-
-            <div class="agent-card">
-                <div>
-                    <div class="agent-header">
-                        <h3 class="agent-title">Инфраструктура и Сети</h3>
-                        <span class="agent-meta">Агент №3</span>
-                    </div>
-                    <div class="agent-body">
-                        <h4>Область мониторинга:</h4>
-                        <ul>
-                            <li>Фиксация каскадных аварий, веерных и глобальных блэкаутов.</li>
-                            <li>Аудит стабильности частоты сетей при пиковых нагрузках ВИЕ.</li>
-                            <li>Мониторинг объема инвестиций в промышленные накопители.</li>
-                            <li>Анализ дефицита и капиталоемкости традиционных ГАЭС.</li>
-                        </ul>
-                    </div>
-                </div>
-                <a href="networks.html" class="btn-report">Открыть аудит энергосетей</a>
-            </div>
-
-            <div class="agent-card">
-                <div>
-                    <div class="agent-header">
-                        <h3 class="agent-title">Коммерческий Интегратор</h3>
-                        <span class="agent-meta">Агент №4</span>
-                    </div>
-                    <div class="agent-body">
-                        <h4>Область мониторинга:</h4>
-                        <ul>
-                            <li>Поиск ниш для локальной интеграции тригенерационных комплексов.</li>
-                            <li>Расчет операционных рисков малого бизнеса (HoReCa, фермерские хозяйства).</li>
-                            <li>Анализ уязвимости независимых узлов связи и дата-центров.</li>
-                            <li>Оценка окупаемости замещения дизельной генерации системами ТПА.</li>
-                        </ul>
-                    </div>
-                </div>
-                <a href="business.html" class="btn-report">Открыть карту бизнес-ниш</a>
-            </div>
-
-            <div class="agent-card">
-                <div>
-                    <div class="agent-header">
-                        <h3 class="agent-title">Капитал и Фандрейзинг</h3>
-                        <span class="agent-meta">Агент №5</span>
-                    </div>
-                    <div class="agent-body">
-                        <h4>Область мониторинга:</h4>
-                        <ul>
-                            <li>Сканирование открытых грантовых программ (USAID, фонды ESG, ЕС).</li>
-                            <li>Поиск платформ для запуска целевых краудфандинг-кампаний.</li>
-                            <li>Мониторинг профильных синдикатов бизнес-ангелов и венчурных фондов.</li>
-                            <li>Сбор заявок на программы финансирования энергонезависимости.</li>
-                        </ul>
-                    </div>
-                </div>
-                <a href="investors.html" class="btn-report gold">Привлечь ресурсы</a>
-            </div>
-
-        </section>
+        <section class="bottom-panel" id="bottomPanel"></section>
     </main>
 
+    <script>
+        /****************************************************************************
+         * МАССИВ ДАННЫХ ДЛЯ РЕДАКТИРОВАНИЯ ХАБА
+         * Александр, чтобы изменить или дополнить текст в любом окне,
+         * просто отредактируйте соответствующий блок текста ниже.
+         ****************************************************************************/
+        const hubData = {
+            // Окно 1
+            window1: {
+                title: "Аэро-Пространство",
+                num: "Окно 1",
+                items: [
+                    "Аэротакси и тяжелые дроны.",
+                    "Дроны для доставки грузов и посылок.",
+                    "Аппараты для съёмки и видеопроизводства.",
+                    "Исследования сложных промышленных объектов.",
+                    "Поиск людей и мониторинг потерянной техники."
+                ],
+                btnText: "Мониторинг полетов"
+            },
+            // Окно 2
+            window2: {
+                title: "Легкий и коммерческий транспорт",
+                num: "Окно 2",
+                items: [
+                    "Технологичные автомобили и мопеды.",
+                    "Грузовые и пассажирские тук-туки.",
+                    "Автономные службы экспресс-доставки.",
+                    "Городские пассажирские электробусы.",
+                    "Электробусики для развозки коммерческих грузов."
+                ],
+                btnText: "Логистический анализ"
+            },
+            // Окно 3
+            window3: {
+                title: "Морской и Подводный флот",
+                num: "Окно 3",
+                items: [
+                    "Скоростные катера и технологичные яхты.",
+                    "Интеграция баллонов СВ в полостях двойного дна.",
+                    "Дроны для поиска и исследований подводных объектов.",
+                    "Поиск затонувших кораблей и аудит коммуникаций.",
+                    "Заправочные комплексы: преобразование энергии солнца, ветра и волн в СВ."
+                ],
+                btnText: "Аудит акваторий"
+            },
+            // Окно 4
+            window4: {
+                title: "Муниципальная стационарная энергетика",
+                num: "Окно 4",
+                items: [
+                    "Аварийное и резервное жизнеобеспечение зданий.",
+                    "Автономное питание лифтовых шахт.",
+                    "Бесперебойная работа насосов отопления и подачи воды.",
+                    "Системы вентиляции и кондиционирования высоток."
+                ],
+                btnText: "Статус систем жизнеобеспечения"
+            },
+            // Окно 5
+            window5: {
+                title: "Автономная робототехника",
+                num: "Окно 5",
+                items: [
+                    "Складской спецтранспорт и погрузчики.",
+                    "Стационарные и мобильные точки заправки СВ.",
+                    "Зарядка и оперативная замена мини-АКБ для спецтранспорта.",
+                    "Выделенные хабы для заправки СВ летающих дронов.",
+                    "Замена мини-АКБ для дронов по пути следования заказа."
+                ],
+                btnText: "Статистика робототехники"
+            },
+            // Окно 6
+            window6: {
+                title: "Коммерческий сектор",
+                num: "Окно 6",
+                items: [
+                    "Решения для малого бизнеса и сектора HoReCa.",
+                    "Автономное энергообеспечение теплиц.",
+                    "Кейс «Кафе Су-Вид» со встроенной службой доставки.",
+                    "Хранение продуктов питания, холод и тепло.",
+                    "Обеспечение телекоммуникаций, хранения данных, кемпингов и мотелей."
+                ],
+                btnText: "Карта интеграции"
+            },
+            // Окно 7
+            window7: {
+                title: "Архитектура Технологии",
+                num: "Окно 7",
+                items: [
+                    "Неоднократное использование энергии сжатого воздуха. ТПА, рабочее давление 5 бар.",
+                    "СОЖ в 800 раз плотнее воздуха — абсолютная защита ТПА от обмерзания.",
+                    "Одновременная генерация: холод, тепло, электроэнергия.",
+                    "Ресурс промышленных баллонов — 20+ лет. Дешевизна и простота обслуживания.",
+                    "Отсутствие дефицитных материалов. Взрывная, пожарная безопасность и полная вторичная переработка."
+                ],
+                btnText: "Технические спецификации"
+            },
+            // Окно 8
+            window8: {
+                title: "Открытая трибуна",
+                num: "Окно 8",
+                items: [
+                    "Независимая экспертная оценка технологических параметров.",
+                    "Обратная связь, отзывы партнеров и профильных инженеров.",
+                    "Раздел острых вопросов, дискуссий и профессиональных мнений."
+                ],
+                btnText: "Принять участие в дискуссии"
+            },
+            // Окно 9
+            window9: {
+                title: "Лаборатория решений",
+                num: "Окно 9",
+                items: [
+                    "Глобальный банк идей и модернизаций для системы TORUM.",
+                    "Регистрация внешних запросов на разработку модификаций.",
+                    "Сбор предложений по расширению экосистемы на новые рынки."
+                ],
+                btnText: "Отправить предложение"
+            },
+            // НИЖНЯЯ ПАНЕЛЬ
+            bottomPanel: {
+                title: "Патентный пул и стратегическое партнерство",
+                text: "Доступ к расширенной технологической документации, архитектуре Тороидальных Преобразующих Агрегатов (ТПА) и международным патентам предоставляется авторизованным инвесторам категории «Smart Money». Действует обязательное подписание формы NDA по приоритетам развития платформы от 06.04.2026.",
+                btnText: "Открыть сейф / Получить доступ к NDA"
+            }
+        };
+
+        /****************************************************************************
+         * СИСТЕМНЫЙ КОД (АВТОМАТИЧЕСКАЯ СБОРКА ИНТЕРФЕЙСА)
+         * Этот код считывает данные из массива выше и строит страницу.
+         ****************************************************************************/
+        const gridContainer = document.getElementById('matrixGrid');
+        
+        // Генерация 9 окон
+        for (let i = 1; i <= 9; i++) {
+            const data = hubData[`window${i}`];
+            if (data) {
+                const card = document.createElement('div');
+                card.className = 'window-card';
+                
+                let listHtml = '';
+                data.items.forEach(item => {
+                    listHtml += `<li>${item}</li>`;
+                });
+
+                card.innerHTML = `
+                    <div>
+                        <div class="window-header">
+                            <h3 class="window-title">${data.title}</h3>
+                            <span class="window-num">${data.num}</span>
+                        </div>
+                        <div class="window-body">
+                            <ul>${listHtml}</ul>
+                        </div>
+                    </div>
+                    <a href="#" class="btn-action" onclick="alert('Запуск модуля: ${data.title}'); return false;">${data.btnText}</a>
+                `;
+                gridContainer.appendChild(card);
+            }
+        }
+
+        // Генерация нижней панели
+        const panelContainer = document.getElementById('bottomPanel');
+        const pData = hubData.bottomPanel;
+        panelContainer.innerHTML = `
+            <h2 class="panel-title">${pData.title}</h2>
+            <p class="panel-text">${pData.text}</p>
+            <button class="btn-panel" onclick="alert('Запрос на авторизацию NDA отправлен в патентный отдел ЭнергаТор.');">${pData.btnText}</button>
+        `;
+    </script>
 </body>
 </html>
