@@ -1,3 +1,9 @@
+Александр, без проблем. Вот полный, готовый код для второй страницы (intelligence.html) со всей интерактивной матрицей из 9 окон, полноэкранным раскрытием статей и выделенным местом под видеоматериалы.
+
+Вы можете в любой момент дополнять или изменять тексты, статьи и ссылки прямо внизу файла, в блоке const hubData.
+
+Заменяйте код на GitHub на этот чистовой вариант:
+
 HTML
 <!DOCTYPE html>
 <html lang="ru">
@@ -28,7 +34,6 @@ HTML
             background-attachment: fixed;
         }
 
-        /* Шапка в стиле главной страницы */
         .header {
             border-bottom: 1px solid var(--glass-border);
             padding: 20px 40px;
@@ -48,7 +53,6 @@ HTML
             text-transform: uppercase;
             letter-spacing: 4px;
             color: var(--copper-primary);
-            text-shadow: 0 0 20px rgba(200, 117, 51, 0.3);
         }
 
         .btn-back {
@@ -78,7 +82,7 @@ HTML
             box-sizing: border-box;
         }
 
-        /* Интерактивная матрица из 9 окон */
+        /* Сетка матрицы из 9 окон */
         .matrix-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -86,7 +90,6 @@ HTML
             margin-bottom: 40px;
         }
 
-        /* Парящие стеклянные карточки окон */
         .window-card {
             background: var(--glass-bg);
             border: 1px solid var(--glass-border);
@@ -98,6 +101,7 @@ HTML
             backdrop-filter: blur(10px);
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            cursor: pointer;
         }
 
         .window-card:hover {
@@ -120,7 +124,6 @@ HTML
             margin: 0;
             font-size: 1.3rem;
             font-weight: 700;
-            letter-spacing: 0.5px;
             color: var(--text-main);
         }
 
@@ -131,7 +134,6 @@ HTML
             border: 1px solid var(--copper-primary);
             padding: 2px 8px;
             border-radius: 4px;
-            text-transform: uppercase;
         }
 
         .window-body ul {
@@ -141,12 +143,8 @@ HTML
             font-size: 1rem;
         }
 
-        .window-body li {
-            margin-bottom: 10px;
-            line-height: 1.5;
-        }
+        .window-body li { margin-bottom: 10px; line-height: 1.5; }
 
-        /* Кнопки действий окон */
         .btn-action {
             display: block;
             text-align: center;
@@ -155,79 +153,116 @@ HTML
             color: var(--copper-primary);
             padding: 12px;
             border-radius: 4px;
-            text-decoration: none;
             font-size: 0.9rem;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 2px;
-            transition: all 0.3s ease;
         }
 
-        .btn-action:hover {
-            background: var(--copper-primary);
-            color: var(--space-bg);
-            box-shadow: 0 0 25px rgba(200, 117, 51, 0.4);
+        /* ПОЛНОЭКРАННОЕ ОКНО ДЛЯ РАЗВЕРНУТОЙ АНАЛИТИКИ */
+        .fullscreen-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(3, 7, 18, 0.95);
+            z-index: 1000;
+            display: none;
+            justify-content: center;
+            align-items: flex-start;
+            overflow-y: auto;
+            padding: 60px 20px;
+            box-sizing: border-box;
+            backdrop-filter: blur(15px);
         }
 
-        /* Нижняя стратегическая панель */
+        .modal-content {
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid var(--copper-primary);
+            border-radius: 12px;
+            max-width: 1000px;
+            width: 100%;
+            padding: 45px;
+            box-sizing: border-box;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+            margin-bottom: 60px;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 25px;
+            right: 30px;
+            font-size: 2.5rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .modal-close:hover { color: var(--copper-primary); }
+
+        .modal-title-zone {
+            border-bottom: 2px solid var(--copper-primary);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .modal-title-zone h2 {
+            margin: 0;
+            font-size: 2.2rem;
+            color: var(--text-main);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .modal-article {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: var(--text-main);
+            margin-bottom: 40px;
+            white-space: pre-line; /* Позволяет делать абзацы в тексте */
+        }
+
+        /* Контейнер для адаптивного видео */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            background: #000;
+            border-radius: 6px;
+            border: 1px solid var(--glass-border);
+            margin-top: 30px;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Ниже — нижняя стратегическая панель */
         .bottom-panel {
             background: linear-gradient(180deg, rgba(200, 117, 51, 0.05) 0%, rgba(200, 117, 51, 0.15) 100%);
             border: 2px solid var(--copper-primary);
             border-radius: 8px;
             padding: 35px;
-            backdrop-filter: blur(12px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
             margin-top: 40px;
         }
 
-        .panel-title {
-            margin: 0 0 15px 0;
-            font-size: 1.5rem;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            color: var(--copper-primary);
-            font-weight: 800;
-        }
+        .panel-title { margin: 0 0 15px 0; font-size: 1.5rem; text-transform: uppercase; letter-spacing: 3px; color: var(--copper-primary); }
+        .panel-text { font-size: 1.1rem; line-height: 1.6; color: var(--text-main); margin-bottom: 25px; }
+        .btn-panel { display: inline-block; background: var(--copper-primary); color: var(--space-bg); border: none; padding: 16px 35px; font-size: 1rem; font-weight: bold; text-transform: uppercase; letter-spacing: 3px; border-radius: 4px; transition: all 0.3s ease; }
+        .btn-panel:hover { background: #ffffff; cursor: pointer; }
 
-        .panel-text {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: var(--text-main);
-            margin-bottom: 25px;
-        }
-
-        .btn-panel {
-            display: inline-block;
-            background: var(--copper-primary);
-            color: var(--space-bg);
-            border: none;
-            padding: 16px 35px;
-            font-size: 1rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            text-decoration: none;
-            border-radius: 4px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 20px rgba(200, 117, 51, 0.4);
-        }
-
-        .btn-panel:hover {
-            background: #ffffff;
-            color: var(--space-bg);
-            box-shadow: 0 0 30px rgba(255, 255, 255, 0.6);
-            cursor: pointer;
-        }
-
-        /* Адаптивность для экранов разного разрешения */
-        @media (max-width: 1200px) {
-            .matrix-grid { grid-template-columns: repeat(2, 1fr); }
-        }
+        @media (max-width: 1200px) { .matrix-grid { grid-template-columns: repeat(2, 1fr); } }
         @media (max-width: 768px) {
             .matrix-grid { grid-template-columns: 1fr; }
-            .header { padding: 20px; }
-            .header h1 { font-size: 1.2rem; }
-            .dashboard-container { padding: 0 15px; }
+            .modal-content { padding: 20px; }
+            .modal-title-zone h2 { font-size: 1.5rem; }
         }
     </style>
 </head>
@@ -240,130 +275,145 @@ HTML
 
     <main class="dashboard-container">
         <div class="matrix-grid" id="matrixGrid"></div>
-
         <section class="bottom-panel" id="bottomPanel"></section>
     </main>
 
+    <div class="fullscreen-modal" id="infoModal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal()">&times;</span>
+            <div class="modal-title-zone">
+                <h2 id="mTitle">Заголовок</h2>
+            </div>
+            <div class="modal-article" id="mContent">
+                Здесь будет подробный развернутый текст статьи...
+            </div>
+            <div id="mVideoZone"></div>
+        </div>
+    </div>
+
     <script>
         /****************************************************************************
-         * МАССИВ ДАННЫХ ДЛЯ РЕДАКТИРОВАНИЯ ХАБА
-         * Александр, чтобы изменить или дополнить текст в любом окне,
-         * просто отредактируйте соответствующий блок текста ниже.
+         * МАССИВ ДАННЫХ ДЛЯ РЕДАКТИРОВАНИЯ ХАБА (9 окон + Статьи + Видео)
+         * Александр, дополняйте тексты статей (fullText) и ссылки на видео (videoUrl) здесь.
          ****************************************************************************/
         const hubData = {
-            // Окно 1
             window1: {
                 title: "Аэро-Пространство",
                 num: "Окно 1",
                 items: [
                     "Аэротакси и тяжелые дроны.",
-                    "Дроны для доставки грузов и посылок.",
-                    "Аппараты для съёмки и видеопроизводства.",
-                    "Исследования сложных промышленных объектов.",
-                    "Поиск людей и мониторинг потерянной техники."
+                    "Дроны для доставки, съёмки и исследований промышленных объектов.",
+                    "Поиск людей и мониторинг техники."
                 ],
-                btnText: "Мониторинг полетов"
+                btnText: "Развернуть аналитику",
+                fullTitle: "Аэро-Пространство: Перспективы интеграции систем ТПА",
+                fullText: "Внедрение закрытых пневмогидравлических систем в сектор eVTOL (аэротакси) и тяжелых беспилотников эффективно снимает ограничения литий-ионных накопителей. Использование энергии сжатого воздуха обеспечивает мгновенную дозаправку за минуты вместо многочасового простоя у электрической сети, гарантируя полную эксплуатационную готовность техники.",
+                videoUrl: "" 
             },
-            // Окно 2
             window2: {
                 title: "Легкий и коммерческий транспорт",
                 num: "Окно 2",
                 items: [
-                    "Технологичные автомобили и мопеды.",
-                    "Грузовые и пассажирские тук-туки.",
-                    "Автономные службы экспресс-доставки.",
-                    "Городские пассажирские электробусы.",
-                    "Электробусики для развозки коммерческих грузов."
+                    "Автомобили, мопеды, тук-туки.",
+                    "Службы экспресс-доставки и городские пассажирские электробусы.",
+                    "Электробусики для развозки грузов."
                 ],
-                btnText: "Логистический анализ"
+                btnText: "Развернуть аналитику",
+                fullTitle: "Декарбонизация коммерческого и легкого транспорта",
+                fullText: "Интеграция систем ЭнергаТор в логистические цепочки и муниципальный транспорт кардинально снижает общую стоимость владения (TCO). Отсутствие износа и деградации рабочих цилиндров обеспечивает непрерывный цикл работы автопарка в режиме 24/7 в любых климатических условиях.",
+                videoUrl: ""
             },
-            // Окно 3
             window3: {
                 title: "Морской и Подводный флот",
                 num: "Окно 3",
                 items: [
-                    "Скоростные катера и технологичные яхты.",
-                    "Интеграция баллонов СВ в полостях двойного дна.",
-                    "Дроны для поиска и исследований подводных объектов.",
-                    "Поиск затонувших кораблей и аудит коммуникаций.",
+                    "Катера, яхты, интеграция баллонов СВ в полостях двойного дна.",
+                    "Дроны для поиска затонувших кораблей и исследований объектов.",
                     "Заправочные комплексы: преобразование энергии солнца, ветра и волн в СВ."
                 ],
-                btnText: "Аудит акваторий"
+                btnText: "Развернуть аналитику",
+                fullTitle: "Морские и подводные энергосистемы закрытого цикла",
+                fullText: "Инновационное размещение баллонов высокого давления в технологических полостях двойного дна скоростных судов обеспечивает высокую безопасность и сохранение полезного объема. Автономные плавучие станции аккумулируют внешнюю энергию волн, ветра и солнца, преобразуя ее в сжатый воздух прямо на акватории.",
+                videoUrl: ""
             },
-            // Окно 4
             window4: {
                 title: "Муниципальная стационарная энергетика",
                 num: "Окно 4",
                 items: [
-                    "Аварийное и резервное жизнеобеспечение зданий.",
+                    "Аварийное жизнеобеспечение жилых и административных зданий.",
                     "Автономное питание лифтовых шахт.",
-                    "Бесперебойная работа насосов отопления и подачи воды.",
-                    "Системы вентиляции и кондиционирования высоток."
+                    "Резервное обеспечение насосов отопления, подачи воды и вентиляции."
                 ],
-                btnText: "Статус систем жизнеобеспечения"
+                btnText: "Развернуть аналитику",
+                fullTitle: "Стационарная тригенерация для умных зданий и высоток",
+                fullText: "В критических условиях веерных блэкаутов ТПА обеспечивают мгновенный запуск резервных мощностей. Архитектура системы позволяет параллельно генерировать электроэнергию для внутренних сетей, тепло для контуров отопления и холод для вентиляционных систем, защищая инфраструктуру.",
+                videoUrl: ""
             },
-            // Окно 5
             window5: {
                 title: "Автономная робототехника",
                 num: "Окно 5",
                 items: [
-                    "Складской спецтранспорт и погрузчики.",
-                    "Стационарные и мобильные точки заправки СВ.",
-                    "Зарядка и оперативная замена мини-АКБ для спецтранспорта.",
-                    "Выделенные хабы для заправки СВ летающих дронов.",
-                    "Замена мини-АКБ для дронов по пути следования заказа."
+                    "Складской спецтранспорт и автоматизированные погрузчики.",
+                    "Системы быстрой заправки СВ, зарядки и замены мини-АКБ.",
+                    "Выделенные хабы заправки и замены АКБ для летающих дронов по пути следования."
                 ],
-                btnText: "Статистика робототехники"
+                btnText: "Развернуть аналитику",
+                fullTitle: "Робототехнические комплексы и автоматизированные склады",
+                fullText: "Автоматизированные складские терминалы требуют максимального уровня пожарной и взрывобезопасности. Пневматический спецтранспорт полностью исключает риски самовозгорания химических батарей и сохраняет 100% эффективности в специализированных низкотемпературных холодильных зонах.",
+                videoUrl: ""
             },
-            // Окно 6
             window6: {
                 title: "Коммерческий сектор",
                 num: "Окно 6",
                 items: [
-                    "Решения для малого бизнеса и сектора HoReCa.",
-                    "Автономное энергообеспечение теплиц.",
-                    "Кейс «Кафе Су-Вид» со встроенной службой доставки.",
-                    "Хранение продуктов питания, холод и тепло.",
+                    "Бизнес, HoReCa, автономное энергообеспечение теплиц.",
+                    "Кейс «Кафе Су-Вид» со встроенной системой доставки и хранения.",
                     "Обеспечение телекоммуникаций, хранения данных, кемпингов и мотелей."
                 ],
-                btnText: "Карта интеграции"
+                btnText: "Развернуть аналитику",
+                fullTitle: "Коммерческая тригенерация: Максимизация маржи бизнеса",
+                fullText: "Технологический кейс «Кафе Су-Вид» демонстрирует предельную эффективность тригенерации: одновременное распределение ресурсов ТПА на электроснабжение технологических линий, выработку высокоточного тепла для кулинарных процессов и глубокого холода для камер долговременного хранения сырья.",
+                videoUrl: ""
             },
-            // Окно 7
             window7: {
                 title: "Архитектура Технологии",
                 num: "Окно 7",
                 items: [
                     "Неоднократное использование энергии сжатого воздуха. ТПА, рабочее давление 5 бар.",
                     "СОЖ в 800 раз плотнее воздуха — абсолютная защита ТПА от обмерзания.",
-                    "Одновременная генерация: холод, тепло, электроэнергия.",
-                    "Ресурс промышленных баллонов — 20+ лет. Дешевизна и простота обслуживания.",
-                    "Отсутствие дефицитных материалов. Взрывная, пожарная безопасность и полная вторичная переработка."
+                    "Ресурс промышленных баллонов 20+ лет. Дешевизна, взрыво- и пожаробезопасность."
                 ],
-                btnText: "Технические спецификации"
+                btnText: "Развернуть аналитику",
+                fullTitle: "Архитектура Платформы: Тороидальные Преобразующие Агрегаты",
+                fullText: "Физические основы работы систем TORUM. Специальная смазочно-охлаждающая жидкость (СОЖ), плотность которой превышает плотность воздуха в 800 раз, полностью ликвидирует физический эффект критического обмерзания узлов при расширении рабочих газов. Давление в 5 бар гарантирует длительный жизненный цикл оборудования и максимальную экологичность.",
+                videoUrl: ""
             },
-            // Окно 8
             window8: {
                 title: "Открытая трибуна",
                 num: "Окно 8",
                 items: [
-                    "Независимая экспертная оценка технологических параметров.",
-                    "Обратная связь, отзывы партнеров и профильных инженеров.",
-                    "Раздел острых вопросов, дискуссий и профессиональных мнений."
+                    "Независимая экспертная оценка технических параметров.",
+                    "Профессиональная обратная связь, отзывы партнеров и инженеров.",
+                    "Раздел вопросов, дискуссий и профильных мнений."
                 ],
-                btnText: "Принять участие в дискуссии"
+                btnText: "Открыть трибуну",
+                fullTitle: "Открытая трибуна: Дискуссии и Отзывы экспертов",
+                fullText: "Пространство открытого диалога для верификации инженерных параметров платформы. Профильные специалисты, эксперты в области термодинамики и потенциальные партнеры обмениваются мнениями и получают детальные разъяснения от конструкторского бюро проекта.",
+                videoUrl: ""
             },
-            // Окно 9
             window9: {
                 title: "Лаборатория решений",
                 num: "Окно 9",
                 items: [
-                    "Глобальный банк идей и модернизаций для системы TORUM.",
-                    "Регистрация внешних запросов на разработку модификаций.",
+                    "Глобальный банк идей и глубоких модернизаций для системы TORUM.",
+                    "Регистрация внешних запросов на проектирование модификаций.",
                     "Сбор предложений по расширению экосистемы на новые рынки."
                 ],
-                btnText: "Отправить предложение"
+                btnText: "Открыть лабораторию",
+                fullTitle: "Лаборатория решений: Сбор идей и внешних запросов",
+                fullText: "Центр обработки нестандартных инженерных задач. Сюда аккумулируются запросы на адаптацию систем TORUM под узкоспециализированные индустриальные требования, включая перспективные концепции автономной генерации энергии в космическом пространстве без использования фотоэлектрических панелей.",
+                videoUrl: ""
             },
-            // НИЖНЯЯ ПАНЕЛЬ
             bottomPanel: {
                 title: "Патентный пул и стратегическое партнерство",
                 text: "Доступ к расширенной технологической документации, архитектуре Тороидальных Преобразующих Агрегатов (ТПА) и международным патентам предоставляется авторизованным инвесторам категории «Smart Money». Действует обязательное подписание формы NDA по приоритетам развития платформы от 06.04.2026.",
@@ -371,23 +421,17 @@ HTML
             }
         };
 
-        /****************************************************************************
-         * СИСТЕМНЫЙ КОД (АВТОМАТИЧЕСКАЯ СБОРКА ИНТЕРФЕЙСА)
-         * Этот код считывает данные из массива выше и строит страницу.
-         ****************************************************************************/
+        // Автоматическая генерация матрицы на странице
         const gridContainer = document.getElementById('matrixGrid');
-        
-        // Генерация 9 окон
         for (let i = 1; i <= 9; i++) {
             const data = hubData[`window${i}`];
             if (data) {
                 const card = document.createElement('div');
                 card.className = 'window-card';
+                card.setAttribute('onclick', `openModal('window${i}')`);
                 
                 let listHtml = '';
-                data.items.forEach(item => {
-                    listHtml += `<li>${item}</li>`;
-                });
+                data.items.forEach(item => { listHtml += `<li>${item}</li>`; });
 
                 card.innerHTML = `
                     <div>
@@ -399,13 +443,39 @@ HTML
                             <ul>${listHtml}</ul>
                         </div>
                     </div>
-                    <a href="#" class="btn-action" onclick="alert('Запуск модуля: ${data.title}'); return false;">${data.btnText}</a>
+                    <div class="btn-action">${data.btnText}</div>
                 `;
                 gridContainer.appendChild(card);
             }
         }
 
-        // Генерация нижней панели
+        // Логика работы полноэкранного модального окна
+        function openModal(windowKey) {
+            const data = hubData[windowKey];
+            document.getElementById('mTitle').innerText = data.fullTitle;
+            document.getElementById('mContent').innerText = data.fullText;
+            
+            const videoZone = document.getElementById('mVideoZone');
+            if (data.videoUrl && data.videoUrl !== "") {
+                videoZone.innerHTML = `
+                    <div class="video-container">
+                        <iframe src="${data.videoUrl}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>`;
+            } else {
+                videoZone.innerHTML = ""; 
+            }
+            
+            document.getElementById('infoModal').style.display = 'flex';
+            document.body.style.overflow = 'hidden'; 
+        }
+
+        function closeModal() {
+            document.getElementById('infoModal').style.style.display = 'none';
+            document.getElementById('mVideoZone').innerHTML = ""; 
+            document.body.style.overflow = 'auto';
+        }
+
+        // Рендер нижней панели
         const panelContainer = document.getElementById('bottomPanel');
         const pData = hubData.bottomPanel;
         panelContainer.innerHTML = `
