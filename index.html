@@ -23,7 +23,7 @@ HTML
             color: var(--text-main);
         }
 
-        /* Фоновая галерея (Ваши ракеты и яхты) */
+        /* Фоновая галерея (Ваши работающие картинки) */
         .background-gallery {
             position: absolute;
             top: 0;
@@ -59,7 +59,7 @@ HTML
             z-index: 2;
         }
 
-        /* Премиальная языковая панель в верхнем углу */
+        /* Языковая панель в верхнем углу */
         .lang-panel {
             position: absolute;
             top: 30px;
@@ -91,7 +91,7 @@ HTML
             text-shadow: 0 0 10px rgba(200, 117, 51, 0.5);
         }
 
-        /* Воздушный интерфейсный слой */
+        /* Интерфейсный слой */
         .interface-layer {
             position: absolute;
             top: 0;
@@ -136,7 +136,6 @@ HTML
             text-shadow: 0 3px 10px #000000;
         }
 
-        /* Плашка текущего рыночного сектора на фоне */
         .market-indicator {
             font-size: 1.1rem;
             text-transform: uppercase;
@@ -200,18 +199,20 @@ HTML
 </head>
 <body>
 
-    <!-- Ваша галерея изображений (Берется из вашего репозитория) -->
     <div class="background-gallery">
-        <div class="slide active" style="background-image: url('aviation.jpg')"></div>
-        <div class="slide" style="background-image: url('car.jpg')"></div>
-        <div class="slide" style="background-image: url('boat.jpg')"></div>
-        <div class="slide" style="background-image: url('house.jpg')"></div>
-        <div class="slide" style="background-image: url('cafe.jpg')"></div>
+        <div class="slide active" style="background-image: url('https://images.deliveryhero.io/image/fd-my/LH/m7ku-listing.jpg?auto=format&fit=crop&w=1920&q=80')"></div>
+        
+        <div class="slide" style="background-image: url('https://cdni.autocarindia.com/Utils/ImageResizer.ashx?n=https://cdni.autocarindia.com/ExtraImages/20211116055554_EV_charging.jpg&w=1920&h=1080&q=85&c=1')"></div>
+        
+        <div class="slide" style="background-image: url('https://www.boatinternational.com/uploads/2022/03/30/8410b070-b003-11ec-bc61-3965d1bca117-technohull-38-grand-sport.jpg')"></div>
+        
+        <div class="slide" style="background-image: url('https://www.architectureartdesigns.com/wp-content/uploads/2014/09/15-Magnificent-Modern-House-Designs-That-Will-Blow-Your-Mind-1-630x420.jpg')"></div>
+        
+        <div class="slide" style="background-image: url('https://retaildesignblog.net/wp-content/uploads/2016/11/Fumi-coffee-shop-by-Alberto-Caiola-Shanghai-China.jpg')"></div>
     </div>
     
     <div class="overlay"></div>
 
-    <!-- Международный переключатель языков -->
     <nav class="lang-panel">
         <button class="lang-btn" onclick="changeLang('ua')">UA</button>
         <button class="lang-btn" onclick="changeLang('en')">EN</button>
@@ -223,7 +224,6 @@ HTML
         <header class="brand-zone">
             <span class="brand-title">ЭнергаТор</span>
             <span class="brand-subtitle" id="lnSubtitle">Энергетическая независимость вашего транспорта, дома и бизнеса в условиях глобальных кризисов и блэкаутов</span>
-            <!-- Сюда выводится название текущего слайда на выбранном языке -->
             <div class="market-indicator" id="marketIndicator"></div>
         </header>
 
@@ -239,50 +239,46 @@ HTML
 
     <script>
         /****************************************************************************
-         * МАССИВ МУЛЬТИЯЗЫЧНЫХ ДАННЫХ ГЛАВНОЙ СТРАНИЦЫ
+         * МАССИВ МУЛЬТИЯЗЫЧНЫХ ДАННЫХ
          ****************************************************************************/
         const translations = {
             ua: {
                 subtitle: "Енергетична незалежність вашого транспорту, будинку та бізнесу в умовах глобальних криз і блекаутів",
-                description: "Технологічна платформа ЕнергаТор надає електроенергію, холод і тепло. Ми створюємо автономну енергію для вашого транспорту, будинку та бізнесу — простіше, дешевше та екологічніше порівняно з будь-якими іншими варіантами.",
+                description: "Технологічна платформа ЕнергаТор надає електроенергію, холод і тепло. Мы створюємо автономну енергію для вашого транспорту, будинку та бізнесу — простіше, дешевше та екологічніше порівняно з будь-якими іншими варіантами.",
                 btnText: "Вхід у Простір ЕнергаТор",
-                markets: ["Авіація та Аеротаксі", "Автомобільний транспорт", "Скоросний Водний флот", "Приватні домогосподарства", "Комерційні об'єкти / Кафе"]
+                markets: ["Космічні технології та Авіація", "Автомобільний транспорт", "Преміальний Водний флот", "Приватні домогосподарства", "Комерційні об'єкти / Кафе"]
             },
             en: {
                 subtitle: "Energy independence for your transport, home, and business amid global crises and blackouts",
                 description: "The EnergaTor technology platform provides electricity, cold, and heat. We deliver autonomous energy for your transport, home, and business — simpler, cheaper, and more eco-friendly than any alternative.",
                 btnText: "Enter EnergaTor Space",
-                markets: ["Aerospace & Air Taxis", "Automotive Transport", "High-Speed Marine Fleet", "Private Households", "Commercial Facilities / Cafes"]
+                markets: ["Space Technologies & Aerospace", "Automotive Transport", "Premium Marine Fleet", "Private Households", "Commercial Facilities / Cafes"]
             },
             de: {
                 subtitle: "Energieunabhängigkeit für Ihren Transport, Ihr Zuhause und Ihr Unternehmen inmitten globaler Krisen und Blackouts",
-                description: "Die Technologieplattform EnergaTor liefert Strom, Kälte und Wärme. Wir erzeugen autonome Energie für Ihren Transport, Ihr Zuhause und Ihr Unternehmen — einfacher, günstiger und umweltfreundlicher als jede Alternative.",
+                description: "Die Technologieplattform EnergaTor liefert Strom, Kälte und Wärme. Wir erzeugen autonome @@@@ Energie für Ihren Transport, Ihr Zuhause und Ihr Unternehmen — einfacher, günstiger und umweltfreundlicher als jede Alternative.",
                 btnText: "EnergaTor Raum Betreten",
-                markets: ["Luftfahrt & Flugtaxis", "Automobiltransport", "Schnelle Marineflotte", "Private Haushalte", "Gewerbeobjekte / Cafés"]
+                markets: ["Weltraumtechnologien & Luftfahrt", "Automobiltransport", "Premium Marineflotte", "Private Haushalte", "Gewerbeobjekte / Cafés"]
             },
             ru: {
                 subtitle: "Энергетическая независимость вашего транспорта, дома и бизнеса в условиях глобальных кризисов и блэкаутов",
-                description: "Технологическая платформа ЭнергаТор предоставляет электроэнергию, холод и тепло. Мы создаем автономную энергию для вашего транспорта, дома и бизнеса — проще, дешевле и экологичнее по сравнению с любыми другими вариантами.",
+                description: "Технологическая платформа ЭнергаТор предоставляет электроэнергию, холод и тепло. Мы создаем автономную ﻿энергию для вашего транспорта, дома и бизнеса — проще, дешевле и экологичнее по сравнению с любыми другими вариантами.",
                 btnText: "Вход в Пространство ЭнергаТор",
-                markets: ["Авиация и Аэротакси", "Автомобильный транспорт", "Скоростной Водный флот", "Частные домохозяйства", "Коммерческие объекты / Кафе"]
+                markets: ["Космические технологии и Авиация", "Автомобильный транспорт", "Премиальный Водный флот", "Частные домохозяйства", "Коммерческие объекты / Кафе"]
             }
         };
 
-        // Текущий язык (по умолчанию проверяем сохраненный или ставим русский)
         let currentLang = localStorage.getItem('energator_lang') || 'ru';
 
-        // Функция переключения языка
         function changeLang(lang) {
             currentLang = lang;
-            localStorage.setItem('energator_lang', lang); // Сохраняем выбор в память браузера
+            localStorage.setItem('energator_lang', lang); 
             
-            // Обновляем активность кнопок
             document.querySelectorAll('.lang-btn').forEach(btn => {
                 if (btn.innerText.toLowerCase() === lang) btn.classList.add('active');
                 else btn.classList.remove('active');
             });
 
-            // Переводим интерфейс
             document.getElementById('lnSubtitle').innerText = translations[lang].subtitle;
             document.getElementById('lnDescription').innerText = translations[lang].description;
             document.getElementById('lnBtn').innerText = translations[lang].btnText;
@@ -290,7 +286,6 @@ HTML
             updateMarketIndicator();
         }
 
-        // Логика работы слайдера
         const slides = document.querySelectorAll('.slide');
         let currentSlide = 0;
 
@@ -305,7 +300,6 @@ HTML
             updateMarketIndicator();
         }
 
-        // Запуск инициализации при загрузке страницы
         changeLang(currentLang);
         setInterval(nextSlide, 4000);
     </script>
