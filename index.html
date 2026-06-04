@@ -7,14 +7,13 @@ HTML
     <title>ЭнергаТор — Автономная Энергия</title>
     <style>
         :root {
-            --space-bg: #040710;
+            --space-bg: #02040a;
             --copper-primary: #c87533;
-            --copper-light: #e5873d;
-            --text-main: #f8fafc;
+            --text-main: #ffffff;
         }
 
         body, html { 
-            margin: 0; 
+            margin: 0;
             padding: 0; 
             width: 100%; 
             height: 100%; 
@@ -24,7 +23,7 @@ HTML
             color: var(--text-main);
         }
 
-        /* Галерея на заднем плане — максимальный обзор */
+        /* Фоновая галерея (Ваши ракеты и яхты) */
         .background-gallery {
             position: absolute;
             top: 0;
@@ -47,21 +46,52 @@ HTML
         }
 
         .slide.active {
-            opacity: 0.75;
+            opacity: 0.90; 
         }
 
-        /* Мягкий центральный фильтр для контраста текста */
         .overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle, rgba(4,7,16,0.3) 0%, rgba(4,7,16,0.8) 85%);
+            background: radial-gradient(circle, rgba(2,4,10,0) 0%, rgba(2,4,10,0.8) 100%);
             z-index: 2;
         }
 
-        /* Прозрачный слой интерфейса без прямоугольников */
+        /* Премиальная языковая панель в верхнем углу */
+        .lang-panel {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            z-index: 100;
+            display: flex;
+            gap: 15px;
+            pointer-events: auto;
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: none;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.9rem;
+            font-weight: 700;
+            cursor: pointer;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            padding: 5px;
+        }
+
+        .lang-btn:hover {
+            color: var(--text-main);
+        }
+
+        .lang-btn.active {
+            color: var(--copper-primary);
+            text-shadow: 0 0 10px rgba(200, 117, 51, 0.5);
+        }
+
+        /* Воздушный интерфейсный слой */
         .interface-layer {
             position: absolute;
             top: 0;
@@ -73,12 +103,11 @@ HTML
             flex-direction: column;
             justify-content: space-between;
             align-items: center;
-            padding: 60px 20px;
+            padding: 80px 20px 60px 20px;
             box-sizing: border-box;
             pointer-events: none;
         }
 
-        /* Название парит в воздухе */
         .brand-zone {
             text-align: center;
             pointer-events: auto;
@@ -93,8 +122,7 @@ HTML
             letter-spacing: 14px;
             color: var(--copper-primary);
             margin: 0;
-            /* Тень для защиты от сливания с фоном */
-            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.9), 0 0 40px rgba(200, 117, 51, 0.4);
+            text-shadow: 0 4px 15px #000000, 0 0 40px rgba(200, 117, 51, 0.5);
         }
 
         .brand-subtitle {
@@ -105,10 +133,20 @@ HTML
             line-height: 1.5;
             margin-top: 15px;
             letter-spacing: 1px;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
+            text-shadow: 0 3px 10px #000000;
         }
 
-        /* Текстовый блок стал полностью прозрачным */
+        /* Плашка текущего рыночного сектора на фоне */
+        .market-indicator {
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--copper-primary);
+            font-weight: 800;
+            text-shadow: 0 2px 10px #000000;
+            margin-top: 20px;
+        }
+
         .content-zone {
             max-width: 750px;
             text-align: center;
@@ -118,22 +156,20 @@ HTML
         }
 
         .content-zone p {
-            font-size: 1.3rem;
+            font-size: 1.35rem;
             line-height: 1.7;
             color: var(--text-main);
             margin: 0 0 35px 0;
-            font-weight: 500;
-            /* Четкая тень под буквами */
-            text-shadow: 0 2px 15px rgba(0, 0, 0, 0.95), 0 1px 4px rgba(0, 0, 0, 0.95);
+            font-weight: 600; 
+            text-shadow: 0 3px 14px #000000;
         }
 
-        /* Кнопка-пробел тоже парит на фоне */
         .space-btn {
             display: block;
             width: 100%;
             box-sizing: border-box;
-            background: rgba(4, 7, 16, 0.4); /* Едва заметный стеклянный оттенок внутри */
-            border: 2px solid var(--copper-primary);
+            background: rgba(2, 4, 10, 0.7); 
+            border: 2.5px solid var(--copper-primary);
             color: var(--copper-primary);
             padding: 20px;
             font-size: 1.15rem;
@@ -144,67 +180,133 @@ HTML
             transition: all 0.3s ease;
             border-radius: 4px;
             cursor: pointer;
-            backdrop-filter: blur(3px);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.9);
         }
 
         .space-btn:hover {
             background: var(--copper-primary);
             color: var(--space-bg);
-            box-shadow: 0 0 30px rgba(200, 117, 51, 0.7);
+            box-shadow: 0 0 35px rgba(200, 117, 51, 0.8);
         }
 
         @media (max-width: 768px) {
             .brand-title { font-size: 2.8rem; letter-spacing: 6px; }
             .brand-subtitle { font-size: 1rem; }
             .content-zone p { font-size: 1.1rem; }
+            .lang-panel { top: 20px; right: 20px; gap: 8px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Задний план: Открытая панорама объектов -->
+    <!-- Ваша галерея изображений (Берется из вашего репозитория) -->
     <div class="background-gallery">
-        <!-- Авиатакси -->
-        <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1517976487492-5750f3195933?auto=format&fit=crop&w=1920&q=80')"></div>
-        <!-- Технологичный Автомобиль -->
-        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1617788138017-80ad40651399?auto=format&fit=crop&w=1920&q=80')"></div>
-        <!-- Катер на воде -->
-        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?auto=format&fit=crop&w=1920&q=80')"></div>
-        <!-- Частное домохозяйство -->
-        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1920&q=80')"></div>
-        <!-- Кафе-заправка -->
-        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1920&q=80')"></div>
+        <div class="slide active" style="background-image: url('aviation.jpg')"></div>
+        <div class="slide" style="background-image: url('car.jpg')"></div>
+        <div class="slide" style="background-image: url('boat.jpg')"></div>
+        <div class="slide" style="background-image: url('house.jpg')"></div>
+        <div class="slide" style="background-image: url('cafe.jpg')"></div>
     </div>
     
     <div class="overlay"></div>
 
+    <!-- Международный переключатель языков -->
+    <nav class="lang-panel">
+        <button class="lang-btn" onclick="changeLang('ua')">UA</button>
+        <button class="lang-btn" onclick="changeLang('en')">EN</button>
+        <button class="lang-btn" onclick="changeLang('de')">DE</button>
+        <button class="lang-btn active" onclick="changeLang('ru')">RU</button>
+    </nav>
+
     <div class="interface-layer">
         <header class="brand-zone">
             <span class="brand-title">ЭнергаТор</span>
-            <span class="brand-subtitle">Энергетическая независимость вашего транспорта, дома и бизнеса в условиях глобальных кризисов и блэкаутов</span>
+            <span class="brand-subtitle" id="lnSubtitle">Энергетическая независимость вашего транспорта, дома и бизнеса в условиях глобальных кризисов и блэкаутов</span>
+            <!-- Сюда выводится название текущего слайда на выбранном языке -->
+            <div class="market-indicator" id="marketIndicator"></div>
         </header>
 
         <main class="content-zone">
-            <p>
+            <p id="lnDescription">
                 Технологическая платформа ЭнергаТор предоставляет электроэнергию, холод и тепло. 
                 Мы создаем автономную энергию для вашего транспорта, дома и бизнеса — 
                 проще, дешевле и экологичнее по сравнению с любыми другими вариантами.
             </p>
-            <a href="intelligence.html" class="space-btn">Вход в Пространство ЭнергаТор</a>
+            <a href="intelligence.html" class="space-btn" id="lnBtn">Вход в Пространство ЭнергаТор</a>
         </main>
     </div>
 
     <script>
+        /****************************************************************************
+         * МАССИВ МУЛЬТИЯЗЫЧНЫХ ДАННЫХ ГЛАВНОЙ СТРАНИЦЫ
+         ****************************************************************************/
+        const translations = {
+            ua: {
+                subtitle: "Енергетична незалежність вашого транспорту, будинку та бізнесу в умовах глобальних криз і блекаутів",
+                description: "Технологічна платформа ЕнергаТор надає електроенергію, холод і тепло. Ми створюємо автономну енергію для вашого транспорту, будинку та бізнесу — простіше, дешевше та екологічніше порівняно з будь-якими іншими варіантами.",
+                btnText: "Вхід у Простір ЕнергаТор",
+                markets: ["Авіація та Аеротаксі", "Автомобільний транспорт", "Скоросний Водний флот", "Приватні домогосподарства", "Комерційні об'єкти / Кафе"]
+            },
+            en: {
+                subtitle: "Energy independence for your transport, home, and business amid global crises and blackouts",
+                description: "The EnergaTor technology platform provides electricity, cold, and heat. We deliver autonomous energy for your transport, home, and business — simpler, cheaper, and more eco-friendly than any alternative.",
+                btnText: "Enter EnergaTor Space",
+                markets: ["Aerospace & Air Taxis", "Automotive Transport", "High-Speed Marine Fleet", "Private Households", "Commercial Facilities / Cafes"]
+            },
+            de: {
+                subtitle: "Energieunabhängigkeit für Ihren Transport, Ihr Zuhause und Ihr Unternehmen inmitten globaler Krisen und Blackouts",
+                description: "Die Technologieplattform EnergaTor liefert Strom, Kälte und Wärme. Wir erzeugen autonome Energie für Ihren Transport, Ihr Zuhause und Ihr Unternehmen — einfacher, günstiger und umweltfreundlicher als jede Alternative.",
+                btnText: "EnergaTor Raum Betreten",
+                markets: ["Luftfahrt & Flugtaxis", "Automobiltransport", "Schnelle Marineflotte", "Private Haushalte", "Gewerbeobjekte / Cafés"]
+            },
+            ru: {
+                subtitle: "Энергетическая независимость вашего транспорта, дома и бизнеса в условиях глобальных кризисов и блэкаутов",
+                description: "Технологическая платформа ЭнергаТор предоставляет электроэнергию, холод и тепло. Мы создаем автономную энергию для вашего транспорта, дома и бизнеса — проще, дешевле и экологичнее по сравнению с любыми другими вариантами.",
+                btnText: "Вход в Пространство ЭнергаТор",
+                markets: ["Авиация и Аэротакси", "Автомобильный транспорт", "Скоростной Водный флот", "Частные домохозяйства", "Коммерческие объекты / Кафе"]
+            }
+        };
+
+        // Текущий язык (по умолчанию проверяем сохраненный или ставим русский)
+        let currentLang = localStorage.getItem('energator_lang') || 'ru';
+
+        // Функция переключения языка
+        function changeLang(lang) {
+            currentLang = lang;
+            localStorage.setItem('energator_lang', lang); // Сохраняем выбор в память браузера
+            
+            // Обновляем активность кнопок
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                if (btn.innerText.toLowerCase() === lang) btn.classList.add('active');
+                else btn.classList.remove('active');
+            });
+
+            // Переводим интерфейс
+            document.getElementById('lnSubtitle').innerText = translations[lang].subtitle;
+            document.getElementById('lnDescription').innerText = translations[lang].description;
+            document.getElementById('lnBtn').innerText = translations[lang].btnText;
+            
+            updateMarketIndicator();
+        }
+
+        // Логика работы слайдера
         const slides = document.querySelectorAll('.slide');
         let currentSlide = 0;
+
+        function updateMarketIndicator() {
+            document.getElementById('marketIndicator').innerText = translations[currentLang].markets[currentSlide];
+        }
 
         function nextSlide() {
             slides[currentSlide].classList.remove('active');
             currentSlide = (currentSlide + 1) % slides.length;
             slides[currentSlide].classList.add('active');
+            updateMarketIndicator();
         }
 
+        // Запуск инициализации при загрузке страницы
+        changeLang(currentLang);
         setInterval(nextSlide, 4000);
     </script>
 </body>
