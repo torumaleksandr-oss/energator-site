@@ -49,11 +49,37 @@ HTML
             color: var(--copper-primary);
         }
 
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        /* Языковая панель */
+        .lang-panel {
+            display: flex;
+            gap: 12px;
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: none;
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 0.85rem;
+            font-weight: 700;
+            cursor: pointer;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .lang-btn:hover { color: var(--text-main); }
+        .lang-btn.active { color: var(--copper-primary); text-shadow: 0 0 8px rgba(200, 117, 51, 0.5); }
+
         .btn-back {
             color: var(--text-main);
             text-decoration: none;
             font-weight: 600;
-            font-size: 0.95rem;
+            font-size: 0.85rem;
             letter-spacing: 1px;
             text-transform: uppercase;
             border: 1px solid var(--copper-primary);
@@ -76,7 +102,6 @@ HTML
             box-sizing: border-box;
         }
 
-        /* Сетка матрицы */
         .matrix-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -95,7 +120,7 @@ HTML
             backdrop-filter: blur(10px);
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            cursor: pointer; /* Делаем всю карточку кликабельной */
+            cursor: pointer;
         }
 
         .window-card:hover {
@@ -116,25 +141,27 @@ HTML
 
         .window-title {
             margin: 0;
-            font-size: 1.3rem;
+            font-size: 1.25rem;
             font-weight: 700;
             color: var(--text-main);
+            line-height: 1.3;
         }
 
         .window-num {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             font-weight: bold;
             color: var(--copper-primary);
             border: 1px solid var(--copper-primary);
-            padding: 2px 8px;
+            padding: 2px 6px;
             border-radius: 4px;
+            white-space: nowrap;
         }
 
         .window-body ul {
             margin: 0 0 25px 0;
-            padding-left: 20px;
+            padding-left: 18px;
             color: var(--text-muted);
-            font-size: 1rem;
+            font-size: 0.95rem;
         }
 
         .window-body li { margin-bottom: 10px; line-height: 1.5; }
@@ -147,13 +174,13 @@ HTML
             color: var(--copper-primary);
             padding: 12px;
             border-radius: 4px;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 2px;
         }
 
-        /* ПОЛНОЭКРАННОЕ МОДАЛЬНОЕ ОКНО ДЛЯ СТАТЕЙ И ВИДЕО */
+        /* ПОЛНОЭКРАННОЕ ОКНО */
         .fullscreen-modal {
             position: fixed;
             top: 0;
@@ -162,7 +189,7 @@ HTML
             height: 100%;
             background: rgba(3, 7, 18, 0.95);
             z-index: 1000;
-            display: none; /* Изначально скрыто */
+            display: none;
             justify-content: center;
             align-items: flex-start;
             overflow-y: auto;
@@ -204,7 +231,7 @@ HTML
 
         .modal-title-zone h2 {
             margin: 0;
-            font-size: 2.2rem;
+            font-size: 2.1rem;
             color: var(--text-main);
             text-transform: uppercase;
             letter-spacing: 2px;
@@ -215,12 +242,12 @@ HTML
             line-height: 1.8;
             color: var(--text-main);
             margin-bottom: 40px;
+            white-space: pre-line;
         }
 
-        /* Контейнер для адаптивного видео */
         .video-container {
             position: relative;
-            padding-bottom: 56.25%; /* Пропорции 16:9 */
+            padding-bottom: 56.25%;
             height: 0;
             overflow: hidden;
             background: #000;
@@ -229,15 +256,8 @@ HTML
             margin-top: 30px;
         }
 
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
-        /* Нижняя панель */
         .bottom-panel {
             background: linear-gradient(180deg, rgba(200, 117, 51, 0.05) 0%, rgba(200, 117, 51, 0.15) 100%);
             border: 2px solid var(--copper-primary);
@@ -254,8 +274,10 @@ HTML
         @media (max-width: 1200px) { .matrix-grid { grid-template-columns: repeat(2, 1fr); } }
         @media (max-width: 768px) {
             .matrix-grid { grid-template-columns: 1fr; }
+            .header { padding: 20px; flex-direction: column; gap: 15px; }
+            .header-controls { width: 100%; justify-content: space-between; }
             .modal-content { padding: 20px; }
-            .modal-title-zone h2 { font-size: 1.5rem; }
+            .modal-title-zone h2 { font-size: 1.4rem; }
         }
     </style>
 </head>
@@ -263,7 +285,15 @@ HTML
 
     <header class="header">
         <h1>EnergaTor Intelligence</h1>
-        <a href="index.html" class="btn-back">← На главную</a>
+        <div class="header-controls">
+            <nav class="lang-panel">
+                <button class="lang-btn" id="btn-ua" onclick="changeLang('ua')">UA</button>
+                <button class="lang-btn" id="btn-en" onclick="changeLang('en')">EN</button>
+                <button class="lang-btn" id="btn-de" onclick="changeLang('de')">DE</button>
+                <button class="lang-btn" id="btn-ru" onclick="changeLang('ru')">RU</button>
+            </nav>
+            <a href="index.html" class="btn-back" id="lnBack">← На главную</a>
+        </div>
     </header>
 
     <main class="dashboard-container">
@@ -277,172 +307,379 @@ HTML
             <div class="modal-title-zone">
                 <h2 id="mTitle">Заголовок</h2>
             </div>
-            <div class="modal-article" id="mContent">
-                Здесь будет подробный развернутый текст статьи...
-            </div>
+            <div class="modal-article" id="mContent">Статья...</div>
             <div id="mVideoZone"></div>
         </div>
     </div>
 
     <script>
         /****************************************************************************
-         * МАССИВ ДАННЫХ ДЛЯ РЕДАКТИРОВАНИЯ (9 окон + Полноэкранные статьи + Видео)
-         * Александр, добавляйте статьи и ссылки на видео прямо внутрь этих блоков.
+         * МАССИВ МУЛЬТИЯЗЫЧНЫХ ДАННЫХ ДЛЯ ВСЕХ 9 ОКРН И СТАТЕЙ
          ****************************************************************************/
-        const hubData = {
-            window1: {
-                title: "Аэро-Пространство",
-                num: "Окно 1",
-                items: ["Аэротакси и тяжелые дроны.", "Грузовая экспресс-доставка.", "Промышленный аудит объектов."],
+        const hubTranslations = {
+            ua: {
+                back: "← На головну",
+                alertNda: "Запит на авторизацію NDA надіслано до патентного відділу ЕнергаТор.",
+                alertMod: "Запуск модуля: ",
+                windowLabels: ["Вікно 1", "Вікно 2", "Вікно 3", "Вікно 4", "Вікно 5", "Вікно 6", "Вікно 7", "Вікно 8", "Вікно 9"],
+                btnText: "Розгорнути аналітику",
+                btnText8: "Відкрити трибуну",
+                btnText9: "Відкрити лабораторію",
+                
+                window1: {
+                    title: "Аеро-Простір",
+                    items: ["Аеротаксі та важкі дрони.", "Дрони для доставки, зйомки та досліджень промислових об'єктів.", "Пошук людей та моніторинг техніки."],
+                    fullTitle: "Аеро-Простір: Перспективи інтеграції систем ТПА",
+                    fullText: "Впровадження закритих пневмогідравлічних систем у сектор eVTOL (аеротаксі) та важких безпілотників ефективно знімає обмеження літій-іонних накопичувачів. Використання енергії стисненого повітря забезпечує миттєву дозаправку за хвилини замість багатогодинного простою біля електричної мережі."
+                },
+                window2: {
+                    title: "Легкий та комерційний транспорт",
+                    items: ["Автомобілі, мопеди, тук-туки.", "Служби експрес-доставки та міські пасажирські електробуси.", "Електробусики для розвезення вантажів."],
+                    fullTitle: "Декарбонізація комерційного та легкого транспорту",
+                    fullText: "Інтеграція систем ЕнергаТор у логістичні ланцюжки та муніципальний транспорт кардинально знижує загальну вартість володіння (TCO). Відсутність зносу та деградації робочих циліндрів забезпечує безперервний цикл роботи автопарку в режимі 24/7."
+                },
+                window3: {
+                    title: "Морський та Підводний флот",
+                    items: ["Катери, яхти, інтеграція балонів СВ у порожнинах подвійного дна.", "Дрони для пошуку затонулих кораблів та досліджень об'єктів.", "Заправні комплекси: перетворення енергії сонця, вітру та хвиль у СВ."],
+                    fullTitle: "Морські та підводні енергосистеми закритого циклу",
+                    fullText: "Інноваційне розміщення балонів високого тиску в технологічних порожнинах подвійного дна швидкісних суден забезпечує високу безпеку та збереження корисного об'єму. Автономні плавучі станції акумулюють зовнішню енергію хвиль, вітру та сонця."
+                },
+                window4: {
+                    title: "Муніципальна стаціонарна енергетика",
+                    items: ["Аварійне життєзабезпечення житлових та адміністративних будівель.", "Автономне живлення ліфтових шахт.", "Резервне забезпечення насосів опалення, подачі води та вентиляції."],
+                    fullTitle: "Стаціонарна тригенерація для розумних будівель",
+                    fullText: "В критичних умовах віялових блекаутів ТПА забезпечують миттєвий запуск резервних потужностей. Архітектура системи дозволяє паралельно генерувати електроенергію, тепло для контурів опалення та холод для вентиляційних систем."
+                },
+                window5: {
+                    title: "Автономна робототехніка",
+                    items: ["Складський спецтранспорт та автоматизовані навантажувачі.", "Системи швидкої заправки СВ, зарядки та заміни міні-АКБ.", "Виділені хаби заправки та заміни АКБ для літаючих дронів."],
+                    fullTitle: "Робототехнічні комплекси та автоматизовані склади",
+                    fullText: "Автоматизовані складські термінали вимагають максимального рівня пожежної та вибухобезпеки. Пневматичний спецтранспорт повністю виключає ризики самозаймання і зберігає 100% ефективності у низькотемпературних зонах."
+                },
+                window6: {
+                    title: "Комерційний сектор",
+                    items: ["Рішення для малого бізнесу, HoReCa та теплиць.", "Кейс «Кафе Су-Від» із системою доставки та зберігання.", "Забезпечення телекомунікацій, зберігання даних, кемпінгів та мотелів."],
+                    fullTitle: "Комерційна тригенерація: Максимізація маржі бізнесу",
+                    fullText: "Технологічний кейс «Кафе Су-Від» демонструє граничну ефективність тригенерації: одночасне розподіл ресурсів ТПА на електропостачання технологічних ліній, вироблення високоточного тепла для кулінарних процесів та глибокого холоду."
+                },
+                window7: {
+                    title: "Архітектура Технології",
+                    items: ["ТПА та робочий тиск 5 бар. Багаторазове використання повітря.", "ЗОР у 800 разів щільніша за повітря — захист ТПА від обмерзання.", "Ресурс балонів 20+ років. Відсутність дефіцитних матеріалів."],
+                    fullTitle: "Архітектура Платформи: Тороїдальні Перетворюючі Агрегати",
+                    fullText: "Фізичні основи роботи систем TORUM. Спеціальна змащувально-охолоджувальна рідина (ЗОР) повністю ліквідує ефект критичного обмерзання вузлів при розширенні газів. Робочий тиск у 5 бар гарантує тривалий життєвий цикл обладнання."
+                },
+                window8: {
+                    title: "Відкрита трибуна",
+                    items: ["Незалежна експертна оцінка параметрів.", "Професійний зворотний зв'язок, відгуки партнерів та інженерів.", "Розділ запитань, дискусій та профільних думок."],
+                    fullTitle: "Відкрита трибуна: Дискусії та Відгуки експертів",
+                    fullText: "Простір відкритого діалогу для верифікації інженерних параметрів платформи ЕнергаТор. Профільні фахівці обмінюються думками та отримують детальні роз'яснення від конструкторського бюро проекту."
+                },
+                window9: {
+                    title: "Лабораторія рішень",
+                    items: ["Глобальний банк ідей та модернізацій для системи TORUM.", "Реєстрація зовнішніх запитів на проектування модифікацій.", "Збір пропозицій щодо розширення екосистеми на нові ринки."],
+                    fullTitle: "Лабораторія рішень: Сбор ідей та зовнішніх запитів",
+                    fullText: "Центр обробки нестандартних інженерних завдань. Сюди акумулюються запити на адаптацію систем TORUM, включаючи перспективні концепції автономної генерації енергії в космічному просторі без використання фотоелектричних панелей."
+                },
+                bottomPanel: {
+                    title: "Патентний пул та стратегічне партнерство",
+                    text: "Доступ до розширеної технологічної документації, архітектури Тороїдальних Перетворюючих Агрегатів (ТПА) та міжнародних патентів надається авторизованим інвесторам категорії «Smart Money». Діє обов'язкове підписання форми NDA щодо пріоритетів розвитку платформи від 06.04.2026.",
+                    btnText: "Відкрити сейф / Отримати доступ до NDA"
+                }
+            },
+            en: {
+                back: "← To Home",
+                alertNda: "NDA authorization request has been sent to the EnergaTor patent department.",
+                alertMod: "Launching module: ",
+                windowLabels: ["Window 1", "Window 2", "Window 3", "Window 4", "Window 5", "Window 6", "Window 7", "Window 8", "Window 9"],
+                btnText: "Expand Analysis",
+                btnText8: "Open Tribune",
+                btnText9: "Open Lab",
+
+                window1: {
+                    title: "Aerospace",
+                    items: ["Air taxis and heavy drones.", "Drones for delivery, filming, and industrial facility research.", "Search and rescue operations and equipment monitoring."],
+                    fullTitle: "Aerospace: Perspectives of PTU Systems Integration",
+                    fullText: "The implementation of closed pneumohydraulic systems in the eVTOL (air taxi) and heavy drone sectors effectively removes the limitations of lithium-ion batteries. Utilizing compressed air energy provides instant refueling in minutes instead of hours of downtime near an electrical grid."
+                },
+                window2: {
+                    title: "Light & Commercial Transport",
+                    items: ["Electric cars, mopeds, and tuk-tuks.", "Express delivery services and municipal passenger e-buses.", "Electric vans for commercial cargo delivery."],
+                    fullTitle: "Decarbonization of Commercial and Light Transport",
+                    fullText: "Integration of EnergaTor systems into logistics chains and municipal transport drastically reduces the total cost of ownership (TCO). The absence of wear and degradation of working cylinders ensures a continuous fleet operation cycle 24/7."
+                },
+                window3: {
+                    title: "Marine & Subsea Fleet",
+                    items: ["Speedboats, yachts, integration of CA cylinders in double bottom cavities.", "Drones for shipwreck searches and subsea facility research.", "Refueling complexes: converting solar, wind, and wave energy into CA."],
+                    fullTitle: "Marine and Subsea Closed-Loop Energy Systems",
+                    fullText: "Innovative placement of high-pressure cylinders in the technological cavities of the double bottom of high-speed vessels ensures high safety and preservation of useful volume. Autonomous floating stations accumulate external wave, wind, and solar energy."
+                },
+                window4: {
+                    title: "Municipal Stationary Energy",
+                    items: ["Emergency life support for residential and administrative buildings.", "Autonomous power supply for elevator shafts.", "Backup power for heating pumps, water supply, and ventilation."],
+                    fullTitle: "Stationary Trigeneration for Smart Buildings",
+                    fullText: "Under critical conditions of rolling blackouts, PTUs provide an instant launch of backup power. The system's architecture allows parallel generation of electricity, heat for heating circuits, and cold for ventilation systems."
+                },
+                window5: {
+                    title: "Autonomous Robotics",
+                    items: ["Warehouse special transport and automated forklifts.", "Fast CA refueling systems, charging, and mini-battery replacement.", "Dedicated refueling and battery replacement hubs for flying drones."],
+                    fullTitle: "Robotic Complexes and Automated Warehouses",
+                    fullText: "Automated warehouse terminals require the highest level of fire and explosion safety. Pneumatic special transport completely eliminates the risks of chemical battery self-ignition and maintains 100% efficiency in low-temperature zones."
+                },
+                window6: {
+                    title: "Commercial Sector",
+                    items: ["Solutions for small business, HoReCa, and autonomous greenhouses.", "The 'Sous-Vide Cafe' case with built-in delivery and storage system.", "Powering telecommunications, data storage, campings, and motels."],
+                    fullTitle: "Commercial Trigeneration: Maximizing Business Margins",
+                    fullText: "The 'Sous-Vide Cafe' technological case demonstrates the ultimate efficiency of trigeneration: simultaneous distribution of PTU resources for power supply of technological lines, generation of high-precision heat for culinary processes, and deep cold."
+                },
+                window7: {
+                    title: "Technology Architecture",
+                    items: ["PTU and working pressure of 5 bar. Repeated use of air.", "Coolant 800 times denser than air — absolute protection from icing.", "Cylinder lifespan of 20+ years. No scarce materials used."],
+                    fullTitle: "Platform Architecture: Toroidal Transforming Units",
+                    fullText: "Physical foundations of TORUM systems operation. A special lubricating coolant completely liquidates the effect of critical icing of components during gas expansion. A working pressure of 5 bar guarantees a long equipment life cycle."
+                },
+                window8: {
+                    title: "Open Tribune",
+                    items: ["Independent expert evaluation of technical parameters.", "Professional feedback, reviews from partners and engineers.", "Section for questions, discussions, and professional opinions."],
+                    fullTitle: "Open Tribune: Discussions and Expert Reviews",
+                    fullText: "A space for open dialogue to verify the engineering parameters of the EnergaTor platform. Industry specialists exchange views and receive detailed explanations from the project's design bureau."
+                },
+                window9: {
+                    title: "Solutions Laboratory",
+                    items: ["Global bank of ideas and deep modernizations for the TORUM system.", "Registration of external requests for modification design.", "Gathering proposals to expand the ecosystem into new markets."],
+                    fullTitle: "Solutions Laboratory: Gathering Ideas and External Requests",
+                    fullText: "A center for processing non-standard engineering tasks. Requests for adapting TORUM systems accumulate here, including perspective concepts of autonomous energy generation in outer space without using photovoltaic panels."
+                },
+                bottomPanel: {
+                    title: "Patent Pool and Strategic Partnership",
+                    text: "Access to expanded technological documentation, the architecture of Toroidal Transforming Units (PTU), and international patents is granted to authorized 'Smart Money' investors. Signing an NDA regarding platform development priorities dated 06.04.2026 is mandatory.",
+                    btnText: "Open Safe / Access NDA Form"
+                }
+            },
+            de: {
+                back: "← Zum Hauptmenü",
+                alertNda: "Die NDA-Autorisierungsanfrage wurde an die Patentabteilung von EnergaTor gesendet.",
+                alertMod: "Modul wird gestartet: ",
+                windowLabels: ["Fenster 1", "Fenster 2", "Fenster 3", "Fenster 4", "Fenster 5", "Fenster 6", "Fenster 7", "Fenster 8", "Fenster 9"],
+                btnText: "Analytik Erweitern",
+                btnText8: "Tribüne Öffnen",
+                btnText9: "Labor Öffnen",
+
+                window1: {
+                    title: "Luft- und Raumfahrt",
+                    items: ["Flugtaxis und schwere Drohnen.", "Drohnen für Lieferung, Filmen und Erforschung von Industrieobjekten.", "Personensuche und Geräteüberwachung."],
+                    fullTitle: "Luft- und Raumfahrt: Perspektiven der TTA-Systemintegration",
+                    fullText: "Die Implementierung geschlossener pneumohydraulischer Systeme im eVTOL-Sektor (Flugtaxis) und bei schweren Drohnen hebt die Einschränkungen von Lithium-Ionen-Akkus effektiv auf. Die Nutzung von Druckluftenergie ermöglicht eine sofortige Betankung in Minuten statt stundenlanger Ausfallzeiten am Stromnetz."
+                },
+                window2: {
+                    title: "Leichter & kommerzieller Transport",
+                    items: ["Elektroautos, Mopeds und Tuk-Tuks.", "Expresslieferdienste und städtische Passagier-E-Busse.", "Elektro-Transporter für die gewerbliche Frachtzustellung."],
+                    fullTitle: "Dekarbonisierung des kommerziellen und leichten Transports",
+                    fullText: "Die Integration von EnergaTor-Systemen in Logistikketten und den kommunalen Verkehr senkt die Gesamtbetriebskosten (TCO) drastisch. Der Verzicht auf Verschleiß und Degradation der Arbeitszylinder ermöglicht einen kontinuierlichen Flottenbetrieb rund um die Uhr."
+                },
+                window3: {
+                    title: "Marine & Unterwasserflotte",
+                    items: ["Schnellboote, Yachten, Integration von DL-Zylindern in Doppelbodenhohlräumen.", "Drohnen für Schiffswracksuche und Unterwasserforschung.", "Betankungsanlagen: Umwandlung von Sonnen-, Wind- und Wellenenergie in DL."],
+                    fullTitle: "Geschlossene Energie-Systeme für Marine und Unterwasser",
+                    fullText: "Die innovative Platzierung von Hochdruckzylindern in den technologischen Hohlräumen des Doppelbodens von Schnellbooten sorgt für hohe Sicherheit und Erhalt des Nutzvolumens. Autonome schwimmende Stationen akkumulieren externe Wellen-, Wind- und Sonnenenergie."
+                },
+                window4: {
+                    title: "Kommunale stationäre Energie",
+                    items: ["Notлеп-Lebenserhaltung für Wohn- und Verwaltungsgebäude.", "Autonome Stromversorgung für Aufzugsschächte.", "Notstrom für Heizungspumpen, Wasserversorgung und Lüftung."],
+                    fullTitle: "Stationäre Trigeneration für Smart Buildings",
+                    fullText: "Unter den kritischen Bedingungen von rollierenden Blackouts sorgen TTAs für einen sofortigen Start der Notstromversorgung. Die Architektur des Systems ermöglicht die parallele Erzeugung von Strom, Wärme für Heizkreise und Kälte für Lüftungsanlagen."
+                },
+                window5: {
+                    title: "Autonome Robotik",
+                    items: ["Lager-Spezialtransport und automatisierte Gabelstapler.", "Schnelle DL-Betankungssysteme, Laden und Mini-Batteriewechsel.", "Spezielle Betankungs- und Batteriewechsel-Hubs für Flugdrohnen."],
+                    fullTitle: "Robotische Komplexe und automatisierte Lager",
+                    fullText: "Automatisierte Lagerterminals erfordern ein Höchstmaß an Brand- und Explosionsschutz. Pneumatische Spezialtransporte eliminieren die Risiken einer Selbstentzündung chemischer Batterien vollständig und behalten in Tieftemperaturzonen eine 100%ige Effizienz bei."
+                },
+                window6: {
+                    title: "Gewerblicher Sektor",
+                    items: ["Lösungen für Kleinunternehmen, HoReCa und autonome Gewächshäuser.", "Der Fall 'Sous-Vide-Café' mit integriertem Liefer- und Lagersystem.", "Stromversorgung für Telekommunikation, Datenspeicherung, Campings und Motels."],
+                    fullTitle: "Gewerbliche Trigeneration: Maximierung der Geschäftsmargen",
+                    fullText: "Der technologische Fall 'Sous-Vide-Café' demonstriert die ultimative Effizienz der Trigeneration: gleichzeitige Verteilung der TTA-Ressourcen für die Stromversorgung technologischer Linien, Erzeugung hochpräziser Wärme für kulinarische Prozesse und Tiefkälte."
+                },
+                window7: {
+                    title: "Technologiearchitektur",
+                    items: ["TTA und Arbeitsdruck von 5 bar. Mehrfache Luftnutzung.", "Kühlmittel 800-mal dichter als Luft — absoluter Schutz vor Vereisung.", "Zylinderlebensdauer von 20+ Jahren. Keine knappen Materialien."],
+                    fullTitle: "Plattformarchitektur: Toroidale Transformationsaggregate",
+                    fullText: "Physikalische Grundlagen des Betriebs von TORUM-Systemen. Ein spezielles Schmierkühlmittel beseitigt den Effekt der kritischen Vereisung von Bauteilen bei der Gasexpansion vollständig. Ein Arbeitsdruck von 5 bar garantiert einen langen Lebenszyklus der Geräte."
+                },
+                window8: {
+                    title: "Offene Tribüne",
+                    items: ["Unabhängige Expertenbewertung der technischen Parameter.", "Professionelles Feedback, Bewertungen von Partnern und Ingenieuren.", "Bereich für Fragen, Diskussionen und Fachmeinungen."],
+                    fullTitle: "Offene Tribüne: Diskussionen und Expertenbewertungen",
+                    fullText: "Ein Raum für den offenen Dialog zur Überprüfung der technischen Parameter der EnergaTor-Plattform. Branchenspecialisten tauschen Meinungen aus und erhalten detaillierte Erläuterungen aus dem Konstruktionsbüro des Projekts."
+                },
+                window9: {
+                    title: "Labor für Lösungen",
+                    items: ["Globale Ideenbank und tiefe Modernisierungen für das TORUM-System.", "Registrierung externer Anfragen für Modifikationsdesign.", "Sammeln von Vorschlägen zur Erweiterung des Ökosystems in neue Märkte."],
+                    fullTitle: "Labor für Lösungen: Sammeln von Ideen und externen Anfragen",
+                    fullText: "Ein Zentrum für die Bearbeitung unkonventioneller technischer Aufgaben. Hier sammeln sich Anfragen zur Anpassung von TORUM-Systemen, einschließlich perspektivischer Konzepte zur autonomen Energieerzeugung im Weltraum ohne den Einsatz von Photovoltaikmodulen."
+                },
+                bottomPanel: {
+                    title: "Patentpool und strategische Partnerschaft",
+                    text: "Der Zugang zur erweiterten technologischen Dokumentation, der Architektur der Toroidalen Transformationsaggregate (TTA) und internationalen Patenten wird autorisierten 'Smart Money'-Investoren gewährt. Die Unterzeichnung einer NDA bezüglich der Plattformentwicklungsprioritäten vom 06.04.2026 ist obligatorisch.",
+                    btnText: "Safe Öffnen / Zugang zum NDA-Formular"
+                }
+            },
+            ru: {
+                back: "← На главную",
+                alertNda: "Запрос на авторизацию NDA отправлен в патентный отдел ЭнергаТор.",
+                alertMod: "Запуск модуля: ",
+                windowLabels: ["Окно 1", "Окно 2", "Окно 3", "Окно 4", "Окно 5", "Окно 6", "Окно 7", "Окно 8", "Окно 9"],
                 btnText: "Развернуть аналитику",
-                // ПОЛНОЭКРАННЫЙ КОНТЕНТ:
-                fullTitle: "Аэро-Пространство: Перспективы интеграции систем ТПА",
-                fullText: "Здесь размещается ваша полноценная статья. Внедрение пневмогидравлических систем в сектор eVTOL (аэротакси) и тяжелых беспилотников решает главную проблему отрасли — критический вес и деградацию литий-ионных аккумуляторов. Технология ЭнергаТор обеспечивает быструю дозаправку сжатым воздухом за минуты, исключая многочасовые простои у зарядных станций.",
-                videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ" // Сюда вставляется ссылка на видео (формат embed)
-            },
-            window2: {
-                title: "Легкий и коммерческий транспорт",
-                num: "Окно 2",
-                items: ["Электромобили и мопеды.", "Грузовые тук-туки.", "Пассажирские электробусы."],
-                btnText: "Развернуть аналитику",
-                fullTitle: "Декарбонизация коммерческого и легкого транспорта",
-                fullText: "Интеграция систем ЭнергаТор в коммерческие автопарки, городские бусы и службы доставки снижает общую стоимость владения (TCO) на 40%. Отсутствие износа накопителей энергии позволяет эксплуатировать технику в режиме 24/7. В этом разделе вы можете разместить графики окупаемости и таблицы сравнения эффективности.",
-                videoUrl: "" // Если видео нет, оставляйте кавычки пустыми
-            },
-            window3: {
-                title: "Морской и Подводный флот",
-                num: "Окно 3",
-                items: ["Катера и технологичные яхты.", "Баллоны СВ в полостях двойного дна.", "Заправочные волновые комплексы."],
-                btnText: "Развернуть аналитику",
-                fullTitle: "Морские и подводные энергосистемы закрытого цикла",
-                fullText: "Использование полостей двойного дна скоростных катеров и лодок для безопасного размещения баллонов высокого давления — уникальное инженерное решение платформы. Автономные плавучие станции преобразуют кинетическую энергию волн, солнца и ветра в сжатый воздух, создавая полностью независимую заправочную инфраструктуру в акваториях.",
-                videoUrl: ""
-            },
-            window4: {
-                title: "Муниципальная стационарная энергетика",
-                num: "Окно 4",
-                items: ["Аварийное жизнеобеспечение зданий.", "Питание лифтовых шахт.", "Насосы отопления и подачи воды."],
-                btnText: "Развернуть аналитику",
-                fullTitle: "Стационарная тригенерация для умных зданий и высоток",
-                fullText: "В условиях блэкаутов ТПА обеспечивают мгновенный запуск резервного питания для критической инфраструктуры высотных зданий. Система одновременно выдает электричество для лифтов, тепло для контуров отопления и холод для систем кондиционирования, гарантируя полную автономность объекта.",
-                videoUrl: ""
-            },
-            window5: {
-                title: "Автономная робототехника",
-                num: "Окно 5",
-                items: ["Складские погрузчики и спецтранспорт.", "Станции заправки СВ.", "Хабы замены АКБ для дронов."],
-                btnText: "Развернуть аналитику",
-                fullTitle: "Робототехнические комплексы и автоматизированные склады",
-                fullText: "Складская логистика требует непрерывного цикла работы. Пневматические погрузчики и роботы-транспортировщики, работающие на сжатом воздухе, взрыво- и пожаробезопасны, могут использоваться в закрытых холодильных терминалах без потери емкости накопителя, которая неизбежна для химических батарей.",
-                videoUrl: ""
-            },
-            window6: {
-                title: "Коммерческий сектор",
-                num: "Окно 6",
-                items: ["Решения для HoReCa и теплиц.", "Кейс «Кафе Су-Вид».", "Кемпинги, мотели и дата-центры."],
-                btnText: "Развернуть аналитику",
-                fullTitle: "Коммерческая тригенерация: Максимизация маржи бизнеса",
-                fullText: "Бизнес-кейс «Кафе Су-Вид» демонстрирует идеальное распределение ресурсов: ТПА обеспечивает электроэнергию для кухни, тепло для приготовления блюд по технологии су-вид и глубокий холод для камер хранения продуктов. Это снижает затраты на энергосети до нуля.",
-                videoUrl: ""
-            },
-            window7: {
-                title: "Архитектура Технологии",
-                num: "Окно 7",
-                items: ["ТПА и рабочее давление 5 бар.", "Защита от обмерзания (СОЖ).", "Ресурс оборудования 20+ лет."],
-                btnText: "Развернуть аналитику",
-                fullTitle: "Архитектура Платформы: Тороидальные Преобразующие Агрегаты",
-                fullText: "Глубокое техническое описание патентов TORUM. Использование специальной смазочно-охлаждающей жидкости (СОЖ), которая в 800 раз плотнее воздуха, полностью ликвидирует проблему обмерзания узлов при расширении газов. Рабочее давление в 5 бар обеспечивает безопасность, долговечность и высочайший КПД тригенерации.",
-                videoUrl: ""
-            },
-            window8: {
-                title: "Открытая трибуна",
-                num: "Окно 8",
-                items: ["Экспертные оценки технологии.", "Отзывы инженеров и партнеров.", "Вопросы, мнения и дискуссии."],
-                btnText: "Открыть трибуну",
-                fullTitle: "Открытая трибуна: Дискуссии и Отзывы экспертов",
-                fullText: "Здесь будет развернут интерактивный блок обратной связи. Профессиональные инженеры, энергетики и инвесторы делятся мнениями, задают жесткие вопросы по термодинамике систем ТПА и получают официальные ответы от конструкторского бюро ЭнергаТор.",
-                videoUrl: ""
-            },
-            window9: {
-                title: "Лаборатория решений",
-                num: "Окно 9",
-                items: ["Банк идей и модернизаций.", "Регистрация внешних запросов.", "Проектирование под новые рынки."],
-                btnText: "Открыть лабораторию",
-                fullTitle: "Лаборатория решений: Сбор идей и внешних запросов",
-                fullText: "Форма взаимодействия с инжиниринговыми компаниями. Сюда поступают запросы на проектирование нестандартных узлов TORUM под узкие нужды заказчиков, включая системы энергогенерации в космосе без использования традиционных солнечных панелей.",
-                videoUrl: ""
-            },
-            bottomPanel: {
-                title: "Патентный пул и стратегическое партнерство",
-                text: "Доступ к расширенной технологической документации, архитектуре Тороидальных Преобразующих Агрегатов (ТПА) и международным патентам предоставляется авторизованным инвесторам категории «Smart Money». Действует обязательное подписание формы NDA по приоритетам развития платформы от 06.04.2026.",
-                btnText: "Открыть сейф / Получить доступ к NDA"
+                btnText8: "Открыть трибуну",
+                btnText9: "Открыть лабораторию",
+
+                window1: {
+                    title: "Аэро-Пространство",
+                    items: ["Аэротакси и тяжелые дроны.", "Дроны для доставки, съёмки и исследований промышленных объектов.", "Поиск людей и мониторинг техники."],
+                    fullTitle: "Аэро-Пространство: Перспективы интеграции систем ТПА",
+                    fullText: "Внедрение закрытых пневмогидравлических систем в сектор eVTOL (аэротакси) и тяжелых беспилотников эффективно снимает ограничения литий-ионных накопителей. Использование энергии сжатого воздуха обеспечивает мгновенную дозаправку за минуты вместо многочасового простоя у электрической сети."
+                },
+                window2: {
+                    title: "Легкий и коммерческий транспорт",
+                    items: ["Автомобили, мопеды, тук-туки.", "Службы экспресс-доставки и городские пассажирские электробусы.", "Электробусики для развозки грузов."],
+                    fullTitle: "Декарбонизация коммерческого и легкого транспорта",
+                    fullText: "Интеграция систем ЭнергаТор в логистические цепочки и муниципальный транспорт кардинально снижает общую стоимость владения (TCO). Отсутствие износа и деградации рабочих цилиндров обеспечивает непрерывный цикл работы автопарка в режиме 24/7."
+                },
+                window3: {
+                    title: "Морской и Подводный флот",
+                    items: ["Катера, яхты, интеграция баллонов СВ в полостях двойного дна.", "Дроны для поиска затонувших кораблей и исследований объектов.", "Заправочные комплексы: преобразование энергии солнца, ветра и волн в СВ."],
+                    fullTitle: "Морские и подводные энергосистемы закрытого цикла",
+                    fullText: "Инновационное размещение баллонов высокого давления в технологических полостях двойного дна скоростных судов обеспечивает высокую безопасность и сохранение полезного объема. Автономные плавучие станции аккумулируют внешнюю энергию волн, ветра и солнца."
+                },
+                window4: {
+                    title: "Муниципальная стационарная энергетика",
+                    items: ["Аварийное жизнеобеспечение жилых и административных зданий.", "Автономное питание лифтовых шахт.", "Резервное обеспечение насосов отопления, подачи воды и вентиляции."],
+                    fullTitle: "Стационарная тригенерация для умных зданий и высоток",
+                    fullText: "В критических условиях веерных блэкаутов ТПА обеспечивают мгновенный запуск резервных мощностей. Архитектура системы позволяет параллельно генерировать электроэнергию для внутренних сетей, тепло для контуров отопления и холод для вентиляционных систем."
+                },
+                window5: {
+                    title: "Автономная робототехника",
+                    items: ["Складской спецтранспорт и автоматизированные погрузчики.", "Системы быстрой заправки СВ, зарядки и замены мини-АКБ.", "Выделенные хабы заправки и замены АКБ для летающих дронов по пути следования."],
+                    fullTitle: "Робототехнические комплексы и автоматизированные склады",
+                    fullText: "Автоматизированные складские терминалы требуют максимального уровня пожарной и взрывобезопасности. Пневматический спецтранспорт полностью исключает риски самовозгорания химических батарей и сохраняет 100% эффективности в низкотемпературных зонах."
+                },
+                window6: {
+                    title: "Коммерческий сектор",
+                    items: ["Бизнес, HoReCa, автономное энергообеспечение теплиц.", "Кейс «Кафе Су-Вид» со встроенной системой доставки и хранения.", "Обеспечение телекоммуникаций, хранения данных, кемпингов и мотелей."],
+                    fullTitle: "Коммерческая тригенерация: Максимизация маржи бизнеса",
+                    fullText: "Технологический кейс «Кафе Су-Вид» демонстрирует предельную эффективность тригенерации: одновременное распределение ресурсов ТПА на электроснабжение технологических линий, выработку высокоточного тепла для кулинарных процессов и глубокого холода."
+                },
+                window7: {
+                    title: "Архитектура Технологии",
+                    items: ["Неоднократное использование энергии сжатого воздуха. ТПА, рабочее давление 5 бар.", "СОЖ в 800 раз плотнее воздуха — абсолютная защита ТПА от обмерзания.", "Ресурс промышленных баллонов 20+ лет. Дешевизна, взрыво- и пожаробезопасность."],
+                    fullTitle: "Архитектура Платформы: Тороидальные Преобразующие Агрегаты",
+                    fullText: "Физические основы работы систем TORUM. Специальная смазочно-охлаждающая жидкость (СОЖ), плотность которой превышает плотность воздуха в 800 раз, полностью ликвидирует физический эффект критического обмерзания узлов при расширении рабочих газов. Давление в 5 бар гарантирует длительный жизненный цикл оборудования."
+                },
+                window8: {
+                    title: "Открытая трибуна",
+                    items: ["Независимая экспертная оценка технических параметров.", "Профессиональная обратная связь, отзывы партнеров и инженеров.", "Раздел вопросов, дискуссий и профильных мнений."],
+                    fullTitle: "Открытая трибуна: Дискуссии и Отзывы экспертов",
+                    fullText: "Пространство открытого диалога для верификации инженерных параметров платформы. Профильные специалисты, эксперты в области термодинамики и потенциальные партнеры обмениваются мнениями и получают детальные разъяснения от конструкторского бюро проекта."
+                },
+                window9: {
+                    title: "Лаборатория решений",
+                    items: ["Глобальный банк идей и глубоких модернизаций для системы TORUM.", "Регистрация внешних запросов на проектирование модификаций.", "Сбор предложений по расширению экосистемы на новые рынки."],
+                    fullTitle: "Лаборатория решений: Сбор идей и внешних запросов",
+                    fullText: "Центр обработки нестандартных инженерных задач. Сюда аккумулируются запросы на адаптацию систем TORUM под узкоспециализированные индустриальные требования, включая перспективные концепции автономной генерации энергии в космическом пространстве без использования фотоэлектрических панелей."
+                },
+                bottomPanel: {
+                    title: "Патентный пул и стратегическое партнерство",
+                    text: "Доступ к расширенной технологической документации, архитектуре Тороидальных Преобразующих Агрегатов (ТПА) и международным патентам предоставляется авторизованным инвесторам категории «Smart Money». Действует обязательное подписание формы NDA по приоритетам развития платформы от 06.04.2026.",
+                    btnText: "Открыть сейф / Получить доступ к NDA"
+                }
             }
         };
 
-        // Генерация матрицы на странице
-        const gridContainer = document.getElementById('matrixGrid');
-        for (let i = 1; i <= 9; i++) {
-            const data = hubData[`window${i}`];
-            if (data) {
-                const card = document.createElement('div');
-                card.className = 'window-card';
-                // При клике на ЛЮБОЕ место карточки запускается функция открытия
-                card.setAttribute('onclick', `openModal('window${i}')`);
-                
-                let listHtml = '';
-                data.items.forEach(item => { listHtml += `<li>${item}</li>`; });
+        // Считываем язык из сессии
+        let currentLang = localStorage.getItem('energator_lang') || 'ru';
 
-                card.innerHTML = `
-                    <div>
-                        <div class="window-header">
-                            <h3 class="window-title">${data.title}</h3>
-                            <span class="window-num">${data.num}</span>
+        function changeLang(lang) {
+            currentLang = lang;
+            localStorage.setItem('energator_lang', lang);
+
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                if (btn.id === `btn-${lang}`) btn.classList.add('active');
+                else btn.classList.remove('active');
+            });
+
+            document.getElementById('lnBack').innerText = hubTranslations[lang].back;
+            
+            // Перестраиваем матрицу
+            renderMatrix();
+            renderBottomPanel();
+        }
+
+        function renderMatrix() {
+            const gridContainer = document.getElementById('matrixGrid');
+            gridContainer.innerHTML = ""; // Чистим перед рендером
+            
+            const trans = hubTranslations[currentLang];
+
+            for (let i = 1; i <= 9; i++) {
+                const data = trans[`window${i}`];
+                if (data) {
+                    const card = document.createElement('div');
+                    card.className = 'window-card';
+                    card.setAttribute('onclick', `openModal('window${i}')`);
+                    
+                    let listHtml = '';
+                    data.items.forEach(item => { listHtml += `<li>${item}</li>`; });
+
+                    let btnLbl = trans.btnText;
+                    if (i === 8) btnLbl = trans.btnText8;
+                    if (i === 9) btnLbl = trans.btnText9;
+
+                    card.innerHTML = `
+                        <div>
+                            <div class="window-header">
+                                <h3 class="window-title">${data.title}</h3>
+                                <span class="window-num">${trans.windowLabels[i-1]}</span>
+                            </div>
+                            <div class="window-body">
+                                <ul>${listHtml}</ul>
+                            </div>
                         </div>
-                        <div class="window-body">
-                            <ul>${listHtml}</ul>
-                        </div>
-                    </div>
-                    <div class="btn-action">${data.btnText}</div>
-                `;
-                gridContainer.appendChild(card);
+                        <div class="btn-action">${btnLbl}</div>
+                    `;
+                    gridContainer.appendChild(card);
+                }
             }
         }
 
-        // Функции модального окна
+        function renderBottomPanel() {
+            const panelContainer = document.getElementById('bottomPanel');
+            const pData = hubTranslations[currentLang].bottomPanel;
+            panelContainer.innerHTML = `
+                <h2 class="panel-title">${pData.title}</h2>
+                <p class="panel-text">${pData.text}</p>
+                <button class="btn-panel" onclick="alert(hubTranslations[currentLang].alertNda);">${pData.btnText}</button>
+            `;
+        }
+
         function openModal(windowKey) {
-            const data = hubData[windowKey];
+            const data = hubTranslations[currentLang][windowKey];
             document.getElementById('mTitle').innerText = data.fullTitle;
             document.getElementById('mContent').innerText = data.fullText;
             
-            const videoZone = document.getElementById('mVideoZone');
-            if (data.videoUrl && data.videoUrl !== "") {
-                videoZone.innerHTML = `
-                    <div class="video-container">
-                        <iframe src="${data.videoUrl}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>`;
-            } else {
-                videoZone.innerHTML = ""; // Если видео нет, блок пустой
-            }
+            // Заглушка под видео (если нужно будет встроить ссылку, добавьте параметр videoUrl в массив)
+            document.getElementById('mVideoZone').innerHTML = "";
             
             document.getElementById('infoModal').style.display = 'flex';
-            document.body.style.overflow = 'hidden'; // Запрещаем прокрутку основного сайта
+            document.body.style.overflow = 'hidden';
         }
 
         function closeModal() {
             document.getElementById('infoModal').style.display = 'none';
-            document.getElementById('mVideoZone').innerHTML = ""; // Стопаем видео при закрытии
             document.body.style.overflow = 'auto';
         }
 
-        // Рендер нижней панели
-        const panelContainer = document.getElementById('bottomPanel');
-        const pData = hubData.bottomPanel;
-        panelContainer.innerHTML = `
-            <h2 class="panel-title">${pData.title}</h2>
-            <p class="panel-text">${pData.text}</p>
-            <button class="btn-panel" onclick="alert('Запрос на авторизацию NDA отправлен в патентный отдел ЭнергаТор.');">${pData.btnText}</button>
-        `;
+        // Стартовый запуск
+        changeLang(currentLang);
     </script>
 </body>
 </html>
-
