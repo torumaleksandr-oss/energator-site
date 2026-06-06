@@ -1,0 +1,41 @@
+YAML
+name: EnergaTor AI Multi-Agent System
+
+on:
+  # Автоматический запуск по таймеру (каждый день в 09:00 утра по Гринвичу)
+  schedule:
+    - cron: '0 9 * * *'
+  # Позволяет запускать агентов вручную в любое время через интерфейс GitHub
+  workflow_dispatch:
+
+jobs:
+  update-hub-windows:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Шаг 1: Разворачиваем код репозитория
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    # Шаг 2: Настраиваем окружение Node.js (язык скрипта)
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+
+    # Шаг 3: Будим Агента №1 и запускаем его аналитический скрипт
+    - name: Run Industrial Analyst Agent 1
+      run: node agents/agent1.js
+
+    # Шаг 4: Робот автоматически подписывает изменения и отправляет их на ваш сайт
+    - name: Commit and Push changes to site
+      run: |
+        git config --global user.name "EnergaTor-AI-Agent"
+        git config --global user.email "agents@energator.net"
+        git add intelligence.html
+        # Проверяем, изменились ли данные, чтобы не делать пустых обновлений
+        git diff-index --quiet HEAD || git commit -m "Автоматическое обновление Хаба от ИИ-Агента №1 (Наземный транспорт)"
+        git push
+      env:
+        # Передаем роботу ваш защищенный ключ из сейфа
+        GITHUB_TOKEN: ${{ secrets.API_GITHUB_TOKEN }}
