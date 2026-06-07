@@ -1,2 +1,34 @@
-```json
-{"name": "EnergaTorAI", "on": {"push": {"branches": ["main"]}, "workflow_dispatch": {}}, "permissions": {"contents": "write"}, "jobs": {"build": {"runs-on": "ubuntu-latest", "steps": [{"name": "Checkout code", "uses": "actions/checkout@v4"}, {"name": "Set up Node", "uses": "actions/setup-node@v4", "with": {"node-version": "20"}}, {"name": "Run Agent", "run": "node agents/agent1.js"}, {"name": "Push results", "run": "git config --global user.name \"EnergaTor-AI-Agent\"\ngit config --global user.email \"agents@energator.net\"\ngit add intelligence.html\ngit commit -m \"AI Hub Update\" || echo \"No changes\"\ngit push origin HEAD\n"}]}}}
+YAML
+name: EnergaTorAI
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run Agent
+        run: node agents/agent1.js
+
+      - name: Push updates
+        run: |
+          git config --global user.name "EnergaTor-AI-Agent"
+          git config --global user.email "agents@energator.net"
+          git add intelligence.html
+          git commit -m "AI Matrix Update" || echo "No changes"
+          git push origin HEAD
