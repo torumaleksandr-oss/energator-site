@@ -1,318 +1,7 @@
-HTML
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ЭнергаТор — Аналитический Хаб Мультиагентной Системы</title>
-    <style>
-        :root {
-            --space-bg: #030712;
-            --copper-primary: #c87533;
-            --copper-light: #ea580c;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --glass-bg: rgba(15, 23, 42, 0.45);
-            --glass-border: rgba(200, 117, 51, 0.2);
-        }
-
-        body, html {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            min-height: 100%;
-            background-color: var(--space-bg);
-            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
-            color: var(--text-main);
-            background: radial-gradient(circle at 50% 30%, #0f172a 0%, #030712 80%);
-            background-attachment: fixed;
-        }
-
-        .header {
-            border-bottom: 1px solid var(--glass-border);
-            padding: 20px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(3, 7, 18, 0.8);
-            backdrop-filter: blur(12px);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .header h1 {
-            font-size: 1.6rem;
-            margin: 0;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            color: var(--copper-primary);
-        }
-
-        .header-controls {
-            display: flex;
-            align-items: center;
-            gap: 30px;
-        }
-
-        /* Языковая панель */
-        .lang-panel {
-            display: flex;
-            gap: 12px;
-        }
-
-        .lang-btn {
-            background: transparent;
-            border: none;
-            color: rgba(255, 255, 255, 0.3);
-            font-size: 0.85rem;
-            font-weight: 700;
-            cursor: pointer;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-        }
-
-        .lang-btn:hover { color: var(--text-main); }
-        .lang-btn.active { color: var(--copper-primary); text-shadow: 0 0 8px rgba(200, 117, 51, 0.5); }
-
-        .btn-back {
-            color: var(--text-main);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.85rem;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            border: 1px solid var(--copper-primary);
-            padding: 8px 18px;
-            border-radius: 4px;
-            transition: all 0.3s ease;
-            background: rgba(200, 117, 51, 0.05);
-        }
-
-        .btn-back:hover {
-            background: var(--copper-primary);
-            color: var(--space-bg);
-            box-shadow: 0 0 20px rgba(200, 117, 51, 0.4);
-        }
-
-        .dashboard-container {
-            max-width: 1600px;
-            margin: 40px auto;
-            padding: 0 30px;
-            box-sizing: border-box;
-        }
-
-        .matrix-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-
-        .window-card {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 8px;
-            padding: 30px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            backdrop-filter: blur(10px);
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            cursor: pointer;
-        }
-
-        .window-card:hover {
-            border-color: var(--copper-primary);
-            background: rgba(15, 23, 42, 0.6);
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(200, 117, 51, 0.15);
-        }
-
-        .window-header {
-            border-bottom: 1px solid rgba(200, 117, 51, 0.15);
-            padding-bottom: 15px;
-            margin-bottom: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .window-title {
-            margin: 0;
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: var(--text-main);
-            line-height: 1.3;
-        }
-
-        .window-num {
-            font-size: 0.75rem;
-            font-weight: bold;
-            color: var(--copper-primary);
-            border: 1px solid var(--copper-primary);
-            padding: 2px 6px;
-            border-radius: 4px;
-            white-space: nowrap;
-        }
-
-        .window-body ul {
-            margin: 0 0 25px 0;
-            padding-left: 18px;
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
-
-        .window-body li { margin-bottom: 10px; line-height: 1.5; }
-
-        .btn-action {
-            display: block;
-            text-align: center;
-            background: transparent;
-            border: 1.5px solid var(--copper-primary);
-            color: var(--copper-primary);
-            padding: 12px;
-            border-radius: 4px;
-            font-size: 0.85rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        /* ПОЛНОЭКРАННОЕ ОКНО */
-        .fullscreen-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(3, 7, 18, 0.95);
-            z-index: 1000;
-            display: none;
-            justify-content: center;
-            align-items: flex-start;
-            overflow-y: auto;
-            padding: 60px 20px;
-            box-sizing: border-box;
-            backdrop-filter: blur(15px);
-        }
-
-        .modal-content {
-            background: rgba(15, 23, 42, 0.8);
-            border: 1px solid var(--copper-primary);
-            border-radius: 12px;
-            max-width: 1000px;
-            width: 100%;
-            padding: 45px;
-            box-sizing: border-box;
-            position: relative;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.8);
-            margin-bottom: 60px;
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 25px;
-            right: 30px;
-            font-size: 2.5rem;
-            color: var(--text-muted);
-            cursor: pointer;
-            transition: color 0.3s;
-        }
-
-        .modal-close:hover { color: var(--copper-primary); }
-
-        .modal-title-zone {
-            border-bottom: 2px solid var(--copper-primary);
-            padding-bottom: 20px;
-            margin-bottom: 30px;
-        }
-
-        .modal-title-zone h2 {
-            margin: 0;
-            font-size: 2.1rem;
-            color: var(--text-main);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .modal-article {
-            font-size: 1.2rem;
-            line-height: 1.8;
-            color: var(--text-main);
-            margin-bottom: 40px;
-            white-space: pre-line;
-        }
-
-        .video-container {
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-            overflow: hidden;
-            background: #000;
-            border-radius: 6px;
-            border: 1px solid var(--glass-border);
-            margin-top: 30px;
-        }
-
-        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
-
-        .bottom-panel {
-            background: linear-gradient(180deg, rgba(200, 117, 51, 0.05) 0%, rgba(200, 117, 51, 0.15) 100%);
-            border: 2px solid var(--copper-primary);
-            border-radius: 8px;
-            padding: 35px;
-            margin-top: 40px;
-        }
-
-        .panel-title { margin: 0 0 15px 0; font-size: 1.5rem; text-transform: uppercase; letter-spacing: 3px; color: var(--copper-primary); }
-        .panel-text { font-size: 1.1rem; line-height: 1.6; color: var(--text-main); margin-bottom: 25px; }
-        .btn-panel { display: inline-block; background: var(--copper-primary); color: var(--space-bg); border: none; padding: 16px 35px; font-size: 1rem; font-weight: bold; text-transform: uppercase; letter-spacing: 3px; border-radius: 4px; transition: all 0.3s ease; }
-        .btn-panel:hover { background: #ffffff; cursor: pointer; }
-
-        @media (max-width: 1200px) { .matrix-grid { grid-template-columns: repeat(2, 1fr); } }
-        @media (max-width: 768px) {
-            .matrix-grid { grid-template-columns: 1fr; }
-            .header { padding: 20px; flex-direction: column; gap: 15px; }
-            .header-controls { width: 100%; justify-content: space-between; }
-            .modal-content { padding: 20px; }
-            .modal-title-zone h2 { font-size: 1.4rem; }
-        }
-    </style>
-</head>
-<body>
-
-    <header class="header">
-        <h1>EnergaTor Intelligence</h1>
-        <div class="header-controls">
-            <nav class="lang-panel">
-                <button class="lang-btn" id="btn-ua" onclick="changeLang('ua')">UA</button>
-                <button class="lang-btn" id="btn-en" onclick="changeLang('en')">EN</button>
-                <button class="lang-btn" id="btn-de" onclick="changeLang('de')">DE</button>
-                <button class="lang-btn" id="btn-ru" onclick="changeLang('ru')">RU</button>
-            </nav>
-            <a href="index.html" class="btn-back" id="lnBack"> На главную</a>
-        </div>
-    </header>
-
-    <main class="dashboard-container">
-        <div class="matrix-grid" id="matrixGrid"></div>
-        <section class="bottom-panel" id="bottomPanel"></section>
-    </main>
-
-    <div class="fullscreen-modal" id="infoModal">
-        <div class="modal-content">
-            <span class="modal-close" onclick="closeModal()">&times;</span>
-            <div class="modal-title-zone">
-                <h2 id="mTitle">Заголовок</h2>
-            </div>
-            <div class="modal-article" id="mContent">Статья...</div>
-            <div id="mVideoZone"></div>
-        </div>
-    </div>
-
-    <script>
+JavaScript
+        /****************************************************************************
+         * МАССИВ МУЛЬТИЯЗЫЧНЫХ ДАННЫХ ДЛЯ ВСЕХ 9 ОКОН И СТАТЕЙ (ОБНОВЛЕН ИИ)
+         ****************************************************************************/
         const hubTranslations = {
             ua: {
                 back: " На головну",
@@ -325,9 +14,9 @@ HTML
                 
                 window1: {
                     title: "Аеро-Простір",
-                    items: ["Аеротаксі та важкі дрони.", "Дрони для промислових досліджень, пошуку людей та об'єктів.", "Розвиток інфраструктури та оцінка параметрів."],
+                    items: ["Аеротаксі та важкі БПЛА вантажного класу.", "Дрони для промислових досліджень та зйомки об'єктів.", "Сканування параметрів автономності та часу роботи."],
                     fullTitle: "Аеро-Простір: Альтернатива хімічним акумуляторам",
-                    fullText: "Впровадження пневмогідравлічних систем у сектор eVTOL та важких безпілотників знімає жорсткі обмеження літій-іонних накопичувачів. Використання енергії стисненого повітря забезпечує швидку дозаправку за хвилини. Агенти відстежують технічні характеристики новинок, вантажопідйомність та час автономної роботи."
+                    fullText: "Впровадження пневмогідравлічних систем у сектор eVTOL та важких безпілотників знімає жорсткі обмеження літій-іонних накопичувачів. Використання енергії стисненого повітря забезпечує швидку дозаправку за хвилини. Агенти верифікують технічні характеристики новинок, вантажопідйомність та межі автономної роботи без підзарядки."
                 },
                 window2: {
                     title: "Легкий та комерційний транспорт",
@@ -343,19 +32,19 @@ HTML
                 },
                 window4: {
                     title: "Муніципальна стаціонарна енергетика",
-                    items: ["Аварійне життєзабезпечення житлових будівель при блэкаутах.", "Автономне живлення ліфтових шахт та насосів опалення.", "Зниження навантаження на магістральні ЛЕП у години пік."],
-                    fullTitle: "Стаціонарна тригенерація в умовах блеклаутів",
+                    items: ["Аварійне життєзабезпечення житлових будівель при блеккаутах.", "Автономне живлення ліфтових шахт та насосів опалення.", "Зниження навантаження на магістральні ЛЕП у години пік."],
+                    fullTitle: "Стаціонарна тригенерація в умовах блеккаутів",
                     fullText: "В критичних умовах віялових відключень системи забезпечують миттєвий запуск потужностей. Архітектура дозволяє паралельно генерувати електроенергію, тепло для опалення та холод для вентиляції. Це готове рішення для виживання інфраструктури та бізнесу."
                 },
                 window5: {
                     title: "Автономна робототехніка",
                     items: ["Складський спецтранспорт та автоматизовані навантажувачі.", "Системи швидкої заправки стисненим повітрям на підприємствах.", "Повна пожежна та вибухобезпека логістичних хабів."],
                     fullTitle: "Робототехничні комплекси та автоматизовані склади",
-                    fullText: "Автоматизовані термінали вимагають високого рівня пожежобезпеки. Пневматичний спецтранспорт повністю виключає ризики самозаймання батарей. Системи зберігають ефективність у низькотемпературних зонах і на закритих територіях підприємств."
+                    fullText: "Автоматизовані склади вимагають високого рівня пожежобезпеки. Пневматичний спецтранспорт повністю виключає ризики самозаймання батарей. Системи зберігають ефективність у низькотемпературних зонах і на закритих територіях підприємств."
                 },
                 window6: {
                     title: "Комерційна тригенерація",
-                    items: ["Рішення для малого бізнесу, HoReCa та дата-центрів.", "Кейс «Кафе Су-Від» із системою доставки та зберігання.", "Стабілізація мікроклімату тепличних господарств та виробництв."],
+                    items: ["Рішення для малого бізнесу, HoReCa та дата-центрів.", "Кейс «Кафе Су-Від» со встроенной системой доставки.", "Стабілізація мікроклімату тепличних господарств та виробництв."],
                     fullTitle: "Комерційна тригенерація: Оптимізація маржі бізнесу",
                     fullText: "Кейс «Кафе Су-Від» демонструє ефективність тригенерації: одночасний розподіл ресурсів на електропостачання технологічних ліній, вироблення тепла для кулінарних процесів та глибокого холоду. Дозволяє бізнесу функціонувати незалежно від зростання мережевих тарифів."
                 },
@@ -363,7 +52,7 @@ HTML
                     title: "Архітектура Технології",
                     items: ["Тороїдальні Перетворюючі Агрегати (ТПА) та тиск 5 бар.", "Багаторазове використання енергії повітря без деградації.", "СОЖ захищає елементи розширення газів від обмерзання."],
                     fullTitle: "Архітектура Платформи: Тороїдальні Перетворюючі Агрегати",
-                    fullText: "Фізичні основи роботи систем TORUM. Спеціальна змащувально-охолоджувальна рідина ліквідує ефект обмерзання вузлів при розширенні газів. Робочий тиск у 5 бар гарантує тривалий життєвий цикл без дефіцитних матеріалів. Ресурс промислових балонів становить понад 20 років."
+                    fullText: "Фізичні основи роботи систем TORUM. Спеціальна змащувально-охолоджувальна рідина ліквідує ефект обмерзання вузлів при розширенні газів. Давление в 5 бар гарантує тривалий життєвий цикл без дефіцитних матеріалів. Ресурс промышленных баллонов составляет более 20 лет."
                 },
                 window8: {
                     title: "Відкрита трибуна",
@@ -374,7 +63,7 @@ HTML
                 window9: {
                     title: "Лабораторія рішень",
                     items: ["Глобальний банк ідей та модернізацій системи TORUM.", "Реєстрація зовнішніх запитів на проектування модифікацій.", "Підготовка первинних раундів технічних відповідей."],
-                    fullTitle: "Лабораторія рішень: Оброботка інженерних запитів",
+                    fullTitle: "Лабораторія рішень: Обробка інженерних запитів",
                     fullText: "Центр обробки нестандартних завдань від інжинірингових компаній. Сюди акумулюються запити на адаптацію систем під локальні індустріальні вимоги, включаючи концепції генерації енергії в гармонії з довкіллям."
                 },
                 bottomPanel: {
@@ -394,7 +83,7 @@ HTML
 
                 window1: {
                     title: "Aerospace",
-                    items: ["Air taxis and heavy drones.", "Drones for industrial research, search and rescue operations.", "Infrastructure tracking and parameter assessment."],
+                    items: ["Air taxis and heavy cargo-class UAVs.", "Drones for industrial research and facility mapping.", "Tracking autonomy boundaries and operational limits."],
                     fullTitle: "Aerospace: Alternatives to Chemical Batteries",
                     fullText: "The implementation of pneumohydraulic systems in the eVTOL and heavy drone sectors removes the strict limitations of lithium-ion batteries. Utilizing compressed air energy provides fast refueling in minutes. Agents track technical parameters, payload capacity, and autonomous operation limits."
                 },
@@ -413,7 +102,7 @@ HTML
                 window4: {
                     title: "Municipal Stationary Energy",
                     items: ["Emergency life support for residential buildings during blackouts.", "Autonomous power supply for elevator shafts and heating pumps.", "Reducing peak loads on regional transmission lines."],
-                    fullTitle: "Stationary Trigeneration Amid Grid Failures",
+                    fullTitle: "Stationary Trigeneration Grid Support Asset",
                     fullText: "Under critical conditions of rolling blackouts, systems provide an instant power launch. The architecture allows parallel generation of electricity, heat for heating circuits, and cold for ventilation. This serves as a deployment-ready solution for business survival."
                 },
                 window5: {
@@ -463,9 +152,9 @@ HTML
 
                 window1: {
                     title: "Luft- und Raumfahrt",
-                    items: ["Flugtaxis und schwere Drohnen.", "Drohnen für industrielle Forschung, Personensuche und Objekte.", "Infrastrukturüberwachung und Parameterbewertung."],
+                    items: ["Flugtaxis und schwere Frachtdrohnen.", "Drohnen für industrielle Forschung und Objektkartierung.", "Überwachung von Autonomie- und Betriebsgrenzen."],
                     fullTitle: "Luft- und Raumfahrt: Alternativen zu chemischen Batterien",
-                    fullText: "Die Implementierung von Pneumohydraulik-Systemen im eVTOL- und schweren Drohnensektor hebt die strengen Einschränkungen von Lithium-Ionen-Akkus auf. Die Nutzung von Druckluftenergie ermöglicht eine schnelle Betankung in Minuten. Agenten überwachen technische Parameter, Nutzlast und autonome Betriebsgrenzen."
+                    fullText: "Die Region von Pneumohydraulik-Systemen im eVTOL- und schweren Drohnensektor hebt die strengen Einschränkungen von Lithium-Ionen-Akkus auf. Die Nutzung von Druckluftenergie ermöglicht eine schnelle Betankung in Minuten. Agenten überwachen technische Parameter, Nutzlast und autonome Betriebsgrenzen."
                 },
                 window2: {
                     title: "Leichter & kommerzieller Transport",
@@ -499,7 +188,7 @@ HTML
                 },
                 window7: {
                     title: "Technologiearchitektur",
-                    items: ["Toroidale Transformationsaggregate (TTA) und 5 bar Arbeitsdruck.", "Mehrfache Nutzung der Luftenergie ohne Jegliche Degradation.", "Kühlmittel schützt Gasexpansionselemente vor Vereisung."],
+                    items: ["Toroidale Transformationsaggregate (TTA) und 5 bar Arbeitsdruck.", "Mehrfache Nutzung der Luftenergie ohne jegliche Degradation.", "Kühlmittel schützt Gasexpansionselemente vor Vereisung."],
                     fullTitle: "Plattformarchitektur: Toroidale Transformationsaggregate",
                     fullText: "Physikalische Grundlagen des Betriebs von TORUM-Systemen. Ein spezielles Schmierkühlmittel beseitigt Vereisungseffekte bei der Gasexpansion vollständig. Ein Arbeitsdruck von 5 bar garantiert einen langen Lebenszyklus der Geräte ohne knappe Materialien. Die Lebensdauer industrieller Zylinder überschreitet 20 Jahre."
                 },
@@ -516,8 +205,8 @@ HTML
                     fullText: "Ein Zentrum für die Bearbeitung unkonventioneller technischer Aufgaben von Engineering-Firmen. Anfragen zur Anpassung von TORUM-Systemen an spezifische industrielle Anforderungen sammeln sich hier, einschließlich Konzepten, die im Einklang mit der Umwelt agieren."
                 },
                 bottomPanel: {
-                    title: "Patentpool und strategische Partnerschaft",
-                    text: "Der Zugang zur erweiterten technologischen Dokumentation, der Architektur der Toroidalen Transformationsaggregate (TTA) und internationalen Patenten wird autorisierten 'Smart Money'-Investoren gewährt. Die Unterzeichnung einer NDA bezüglich der Plattformentwicklungsprioritän vom 06.04.2026 ist obligatorisch.",
+                    title: "Patentpool und strategische Partnerships",
+                    text: "Der Zugang zur erweiterten technologischen Dokumentation, der Architektur der Toroidalen Transformationsaggregate (TTA) und internationalen Patenten wird autorisierten 'Smart Money'-Investoren gewährt. Die Unterzeichnung einer NDA bezüglich der Plattformentwicklungsprioritäten vom 06.04.2026 ist obligatorisch.",
                     btnText: "Safe Öffnen / Zugang zum NDA-Formular"
                 }
             },
@@ -532,7 +221,7 @@ HTML
 
                 window1: {
                     title: "Аэро-Пространство",
-                    items: ["Аэротакси и тяжелые дроны.", "Дроны для промышленных исследований, поиска людей и объектов.", "Развитие инфраструктуры и оценка параметров."],
+                    items: ["Аэротакси и тяжелые БПЛА грузового класса.", "Дроны для промышленных исследований и съемки объектов.", "Трекинг параметров автономности и времени работы."],
                     fullTitle: "Аэро-Пространство: Альтернатива химическим аккумуляторам",
                     fullText: "Внедрение пневмогидравлических систем в сектор eVTOL и тяжелых беспилотников снимает жесткие ограничения литий-ионных накопителей. Использование энергии сжатого воздуха обеспечивает быструю дозаправку за минуты. Агенты отслеживают технические характеристики новинок, грузоподъемность и время автономной работы."
                 },
@@ -558,11 +247,11 @@ HTML
                     title: "Автономная робототехника",
                     items: ["Складской спецтранспорт и автоматизированные погрузчики.", "Системы быстрой заправки сжатым воздухом на предприятиях.", "Полная пожарная и взрывобезопасность логистических хабов."],
                     fullTitle: "Робототехнические комплексы и автоматизированные склады",
-                    fullText: "Автоматизированные терминалы требуют высокого уровня пожаробезопасности. Пневматический спецтранспорт полностью исключает риски самовозгорания батарей. Системы сохраняют эффективность в низкотемпературных зонах и на закрытых территорияях предприятий."
+                    fullText: "Автоматизированные терминалы требуют высокого уровня пожаробезопасности. Пневматический спецтранспорт полностью исключает риски самовозгорания батарей. Системы сохраняют эффективность в низкотемпературных зонах и на закрытых территориях предприятий."
                 },
                 window6: {
                     title: "Коммерческая тригенерация",
-                    items: ["Решения для малого бизнеса, HoReCa и дата-центров.", "Кейс «Кафе Су-Вид» со встроенной системой доставки и хранения.", "Стабилизация микроклимата тепличных хозяйств и производств."],
+                    items: ["Решения для малого бизнеса, HoReCa и дата-центров.", "Кейс «Кафе Су-Вид» со встроенной системой доставки.", "Стабилизация микроклимата тепличных хозяйств и производств."],
                     fullTitle: "Коммерческая тригенерация: Максимизация маржи бизнеса",
                     fullText: "Кейс «Кафе Су-Вид» демонстрирует эффективность тригенерации: одновременное распределение ресурсов на электроснабжение технологических линий, выработку тепла для кулинарных процессов и глубокого холода. Позволяет бизнесу функционировать независимо от роста сетевых тарифов."
                 },
@@ -580,7 +269,7 @@ HTML
                 },
                 window9: {
                     title: "Лаборатория решений",
-                    items: ["Глобальный банк идей и модернизаций системы TORUM.", "Регистрация внешних запросов на проектирование модификаций.", "Подготовка первичных раундов технических ответов."],
+                    items: ["Глобальный банк идей и модернизаций системы TORUM.", "Реэстрация внешних запросов на проектирование модификаций.", "Подготовка первичных раундов технических ответов."],
                     fullTitle: "Лаборатория решений: Обработка инженерных запросов",
                     fullText: "Центр обработки нестандартных задач от инжиниринговых компаний. Сюда аккумулируются запросы на адаптацию систем под локальные индустриальные требования, включая концепции генерации энергии в гармонии с окружающей средой."
                 },
@@ -591,87 +280,3 @@ HTML
                 }
             }
         };
-
-        let currentLang = localStorage.getItem('energator_lang') || 'ru';
-
-        function changeLang(lang) {
-            currentLang = lang;
-            localStorage.setItem('energator_lang', lang);
-
-            document.querySelectorAll('.lang-btn').forEach(btn => {
-                if (btn.id === `btn-${lang}`) btn.classList.add('active');
-                else btn.classList.remove('active');
-            });
-
-            document.getElementById('lnBack').innerText = hubTranslations[lang].back;
-            
-            renderMatrix();
-            renderBottomPanel();
-        }
-
-        function renderMatrix() {
-            const gridContainer = document.getElementById('matrixGrid');
-            gridContainer.innerHTML = ""; 
-            
-            const trans = hubTranslations[currentLang];
-
-            for (let i = 1; i <= 9; i++) {
-                const data = trans[`window${i}`];
-                if (data) {
-                    const card = document.createElement('div');
-                    card.className = 'window-card';
-                    card.setAttribute('onclick', `openModal('window${i}')`);
-                    
-                    let listHtml = '';
-                    data.items.forEach(item => { listHtml += `<li>${item}</li>`; });
-
-                    let btnLbl = trans.btnText;
-                    if (i === 8) btnLbl = trans.btnText8;
-                    if (i === 9) btnLbl = trans.btnText9;
-
-                    card.innerHTML = `
-                        <div>
-                            <div class="window-header">
-                                <h3 class="window-title">${data.title}</h3>
-                                <span class="window-num">${trans.windowLabels[i-1]}</span>
-                            </div>
-                            <div class="window-body">
-                                <ul>${listHtml}</ul>
-                            </div>
-                        </div>
-                        <div class="btn-action">${btnLbl}</div>
-                    `;
-                    gridContainer.appendChild(card);
-                }
-            }
-        }
-
-        function renderBottomPanel() {
-            const panelContainer = document.getElementById('bottomPanel');
-            const pData = hubTranslations[currentLang].bottomPanel;
-            panelContainer.innerHTML = `
-                <h2 class="panel-title">${pData.title}</h2>
-                <p class="panel-text">${pData.text}</p>
-                <button class="btn-panel" onclick="alert(hubTranslations[currentLang].alertNda);">${pData.btnText}</button>
-            `;
-        }
-
-        function openModal(windowKey) {
-            const data = hubTranslations[currentLang][windowKey];
-            document.getElementById('mTitle').innerText = data.fullTitle;
-            document.getElementById('mContent').innerText = data.fullText;
-            document.getElementById('mVideoZone').innerHTML = "";
-            
-            document.getElementById('infoModal').style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeModal() {
-            document.getElementById('infoModal').style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-
-        changeLang(currentLang);
-    </script>
-</body>
-</html>
