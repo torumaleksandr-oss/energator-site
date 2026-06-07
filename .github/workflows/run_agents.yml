@@ -1,0 +1,2 @@
+```json
+{"name": "EnergaTorAI", "on": {"push": {"branches": ["main"]}, "workflow_dispatch": {}},
