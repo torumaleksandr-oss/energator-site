@@ -29,5 +29,5 @@ jobs:
           git config --global user.name "EnergaTor-AI-Agent"
           git config --global user.email "agents@energator.net"
           git add intelligence.html
-          git commit -m "AI Matrix Update" || echo "No changes"
+          git commit -m "AI Matrix Update" || echo "No changes" 
           git push origin HEAD
