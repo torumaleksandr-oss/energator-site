@@ -48,28 +48,28 @@ HTML
         <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-gray-800 pb-8 mb-12">
             <div>
                 <h1 class="text-3xl font-black text-white uppercase tracking-wider mb-2" data-ua="Аналітична Матриця Моніторингу" data-en="Analytical Intelligence Matrix" data-ru="Аналитическая Матрица Мониторинга" data-de="Analytische Überwachungsmatrix">Аналітична Матриця Моніторингу</h1>
-                <p class="text-sm text-gray-400 font-light" data-ua="Структуровані дані за галузевими напрямками. Оновлюється автоматично профільними ІИ-агентами." data-en="Structured data streams organized by industrial sectors. Updated automatically by designated AI agents." data-ru="Структурированные данные по отраслевым направлениям. Обновляется автоматически профильными ИИ-агентами." data-de="Strukturierte Datenströme nach Branchen. Automatisch aktualisiert durch designierte KI-Agenten.">Структуровані дані за галузевими напрямками. Оновлюється автоматично профільними ІИ-агентами.</p>
+                <p class="text-sm text-gray-400 font-light" data-ua="Структуровані дані за галузевими напрямками. Натисніть на вікно для розгортання аналітики." data-en="Structured data streams by industrial sectors. Click a window to expand analytical details." data-ru="Структурированные данные по отраслевым направлениям. Нажмите на окно для развертывания аналитики." data-de="Strukturierte Datenströme nach Branchen. Klicken Sie auf ein Fenster, um Details anzuzeigen.">Структуровані дані за галузевими напрямками. Натисніть на вікно для розгортання аналітики.</p>
             </div>
             <div class="mt-4 md:mt-0 flex items-center space-x-3 bg-gray-900 border border-gray-800 px-4 py-2 rounded font-mono text-xs">
                 <span class="h-2 w-2 rounded-full bg-techAccent animate-pulse"></span>
                 <span class="text-gray-400">AI Core:</span>
-                <span class="text-techAccent" id="ai-status">ACTIVE // TARGET_CONTOUR_OK</span>
+                <span class="text-techAccent" id="ai-status">ACTIVE // CONTROLL_MODE</span>
             </div>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-            <div id="hub-window-1" class="bg-techCard border border-gray-800 rounded p-6 flex flex-col justify-between hover:border-gray-700 transition-all">
+            <div id="hub-window-1" onclick="openWindow(1)" class="bg-techCard border border-gray-800 rounded p-6 flex flex-col justify-between hover:border-techAccent/50 cursor-pointer transition-all group">
                 <div>
                     <div class="flex justify-between items-center border-b border-gray-800 pb-3 mb-4">
                         <span class="text-xs font-mono text-techAccent">[ AGENT_02 // WIN_01 ]</span>
-                        <span class="text-xs font-mono uppercase text-gray-500">Aero-space</span>
+                        <span class="text-xs font-mono uppercase text-gray-500 group-hover:text-techAccent transition-colors">Aero-space →</span>
                     </div>
                     <h3 class="text-lg font-bold text-white mb-3" data-ua="Аеро-Простір (eVTOL, важкі дрони)" data-en="Aerospace (eVTOL, Heavy Drones)" data-ru="Аэро-Пространство (eVTOL, тяжелые дроны)" data-de="Luft- und Raumfahrt (eVTOL, schwere Drohnen)">Аеро-Простір (eVTOL, важкі дрони)</h3>
-                    <p class="agent-data-stream text-sm text-gray-400 font-light leading-relaxed" 
+                    <p class="agent-data-stream text-sm text-gray-400 font-light leading-relaxed line-clamp-3" 
                        data-ua="Сканування технологічних параметрів важких безпілотних систем, інфраструктури eVTOL та комплексів промислового пошуку. Оцінка вантажопідйомності та часу автономної роботи."
                        data-en="Monitoring parameters of heavy unmanned systems, eVTOL infrastructure, and industrial search complexes. Assessment of payload capacity and autonomous operation limits."
-                       data-ru="Сканирование технологических параметров тяжелых беспилотных систем, инфраструктуры eVTOL и комплексов промышленного поиска. Оценка грузоподъемности и времени автономной работы."
+                       data-ru="Сканирование technological параметров тяжелых беспилотных систем, инфраструктуры eVTOL и комплексов промышленного поиска. Оценка грузоподъемности и времени автономной работы."
                        data-de="Überwachung der Parameter schwerer unbemannter Systeme, der eVTOL-Infrastruktur und industrieller Suchkomplexe. Bewertung von Nutzlast und autonomen Betriebsgrenzen.">
                        Сканування технологічних параметрів важких безпілотних систем, інфраструктури eVTOL та комплексів промислового пошуку. Оцінка вантажопідйомності та часу автономної роботи.
                     </p>
@@ -77,32 +77,32 @@ HTML
                 <div class="mt-6 text-[10px] font-mono text-gray-600 border-t border-gray-900 pt-3">LAST_REFRESH: INITIAL_STATE</div>
             </div>
 
-            <div id="hub-window-2" class="bg-techCard border border-gray-800 rounded p-6 flex flex-col justify-between hover:border-gray-700 transition-all">
+            <div id="hub-window-2" onclick="openWindow(2)" class="bg-techCard border border-gray-800 rounded p-6 flex flex-col justify-between hover:border-techAccent/50 cursor-pointer transition-all group">
                 <div>
                     <div class="flex justify-between items-center border-b border-gray-800 pb-3 mb-4">
                         <span class="text-xs font-mono text-techAccent">[ AGENT_01 // WIN_02 ]</span>
-                        <span class="text-xs font-mono uppercase text-gray-500">Transport & Logistics</span>
+                        <span class="text-xs font-mono uppercase text-gray-500 group-hover:text-techAccent transition-colors">Logistics →</span>
                     </div>
                     <h3 class="text-lg font-bold text-white mb-3" data-ua="Комерційний та міський транспорт" data-en="Commercial & Urban Transport" data-ru="Коммерческий и городской транспорт" data-de="Gewerblicher & städtischer Transport">Комерційний та міський транспорт</h3>
-                    <p class="agent-data-stream text-sm text-gray-400 font-light leading-relaxed" 
-                       data-ua="Аналіз паливних криз, дефіциту сировини для хімічних АКБ (літій, кобальт), вимог декарбонізації. Моніторинг наземного комерційного, приватного та складського спецтранспорту."
+                    <p class="agent-data-stream text-sm text-gray-400 font-light leading-relaxed line-clamp-3" 
+                       data-ua="Аналіз паливних криз, дефіциту сировини для хімічних АКБ (літій, кобальт), вимог декарбонізації. Моніторинг наземного комерційного, приватного та складского спецтранспорту."
                        data-en="Analysis of fuel crises, rare-earth battery metal deficits (lithium, cobalt), and decarbonization rules. Tracking of commercial ground fleets, residential cars, and warehouse transport."
                        data-ru="Анализ топливных кризисов, дефицита сырья для химических АКБ (литий, кобальт), требований декарбонизации. Мониторинг наземного коммерческого, частного и складского спецтранспорта."
                        data-de="Analyse von Kraftstoffkrisen, Rohstoffdefiziten für chemische Batterien (Lithium, Kobalt) und Dekarbonisierungsregeln. Überwachung von gewerblichen Flotten und Lagerfahrzeugen.">
-                       Аналіз паливних криз, дефіциту сировини для хімічних АКБ (літій, кобальт), вимог декарбонізації. Моніторинг наземного комерційного, приватного та складського спецтранспорту.
+                       Аналіз паливних криз, дефіциту сировини для хімічних АКБ (літій, кобальт), вимог декарбонізації. Моніторинг наземного комерційного, приватного та складского спецтранспорту.
                     </p>
                 </div>
                 <div class="mt-6 text-[10px] font-mono text-gray-600 border-t border-gray-900 pt-3">LAST_REFRESH: INITIAL_STATE</div>
             </div>
 
-            <div id="hub-window-3" class="bg-techCard border border-gray-800 rounded p-6 flex flex-col justify-between hover:border-gray-700 transition-all">
+            <div id="hub-window-3" onclick="openWindow(3)" class="bg-techCard border border-gray-800 rounded p-6 flex flex-col justify-between hover:border-techAccent/50 cursor-pointer transition-all group">
                 <div>
                     <div class="flex justify-between items-center border-b border-gray-800 pb-3 mb-4">
                         <span class="text-xs font-mono text-techAccent">[ AGENT_02 // WIN_03 ]</span>
-                        <span class="text-xs font-mono uppercase text-gray-500">Marine fleet</span>
+                        <span class="text-xs font-mono uppercase text-gray-500 group-hover:text-techAccent transition-colors">Marine →</span>
                     </div>
                     <h3 class="text-lg font-bold text-white mb-3" data-ua="Морський та підводний флот" data-en="Marine & Underwater Fleet" data-ru="Морской и подводный флот" data-de="Marine- & Unterwasserflotte">Морський та підводний флот</h3>
-                    <p class="agent-data-stream text-sm text-gray-400 font-light leading-relaxed" 
+                    <p class="agent-data-stream text-sm text-gray-400 font-light leading-relaxed line-clamp-3" 
                        data-ua="Відстеження розробок у сфері автономних підводних комплексів, роботизованих систем промислових досліджень та берегової портової інфраструктури постачання."
                        data-en="Tracking developments in autonomous underwater systems, robotic industrial search complexes, and coastal port utility infrastructure."
                        data-ru="Отслеживание разработок в сфере автономных подводных комплексов, роботизированных систем промышленных исследований и береговой портовой инфраструктуры снабжения."
@@ -113,14 +113,14 @@ HTML
                 <div class="mt-6 text-[10px] font-mono text-gray-600 border-t border-gray-900 pt-3">LAST_REFRESH: INITIAL_STATE</div>
             </div>
 
-            <div id="hub-window-4" class="bg-techCard border border-gray-800 rounded p-6 flex flex-col justify-between hover:border-gray-700 transition-all">
+            <div id="hub-window-4" onclick="openWindow(4)" class="bg-techCard border border-gray-800 rounded p-6 flex flex-col justify-between hover:border-techAccent/50 cursor-pointer transition-all group">
                 <div>
                     <div class="flex justify-between items-center border-b border-gray-800 pb-3 mb-4">
                         <span class="text-xs font-mono text-techAccent">[ AGENT_03 // WIN_04 ]</span>
-                        <span class="text-xs font-mono uppercase text-gray-500">Municipal Energy</span>
+                        <span class="text-xs font-mono uppercase text-gray-500 group-hover:text-techAccent transition-colors">Grid →</span>
                     </div>
                     <h3 class="text-lg font-bold text-white mb-3" data-ua="Муніципальна енергетика (Блекаути)" data-en="Municipal Energy & Blackouts" data-ru="Муниципальная энергетика (Блэкауты)" data-de="Kommunale Energie & Blackouts">Муніципальна енергетика (Блекаути)</h3>
-                    <p class="agent-data-stream text-sm text-gray-400 font-light leading-relaxed" 
+                    <p class="agent-data-stream text-sm text-gray-400 font-light leading-relaxed line-clamp-3" 
                        data-ua="Фіксація великих системних аварій, віялових відключень у ЄС та світі. Аналіз динаміки зростання мережевих тарифів на тепло та електрику для бізнесу."
                        data-en="Logging major grid failures and rolling blackouts globally. Mapping the dynamics of rising network heating and electricity tariffs for enterprises."
                        data-ru="Фиксация крупных системных аварий, веерных отключений в ЕС и мире. Анализ динамики роста сетевых тарифов на тепло и электричество для бизнеса."
@@ -131,32 +131,32 @@ HTML
                 <div class="mt-6 text-[10px] font-mono text-gray-600 border-t border-gray-900 pt-3">LAST_REFRESH: INITIAL_STATE</div>
             </div>
 
-            <div id="hub-window-5" class="bg-techCard border border-gray-800 rounded p-6 flex flex-col justify-between hover:border-gray-700 transition-all">
+            <div id="hub-window-5" onclick="openWindow(5)" class="bg-techCard border border-gray-800 rounded p-6 flex flex-col justify-between hover:border-techAccent/50 cursor-pointer transition-all group">
                 <div>
                     <div class="flex justify-between items-center border-b border-gray-800 pb-3 mb-4">
                         <span class="text-xs font-mono text-techAccent">[ AGENT_03 // WIN_05 ]</span>
-                        <span class="text-xs font-mono uppercase text-gray-500">Robotics</span>
+                        <span class="text-xs font-mono uppercase text-gray-500 group-hover:text-techAccent transition-colors">Robotics →</span>
                     </div>
                     <h3 class="text-lg font-bold text-white mb-3" data-ua="Робототехніка (Склади, Доставка)" data-en="Robotics (Warehouses, Delivery)" data-ru="Робототехника (Склады, Доставка)" data-de="Robotik (Lagerhäuser, Zustellung)">Робототехніка (Склади, Доставка)</h3>
-                    <p class="agent-data-stream text-sm text-gray-400 font-light leading-relaxed" 
+                    <p class="agent-data-stream text-sm text-gray-400 font-light leading-relaxed line-clamp-3" 
                        data-ua="Аналіз автономних автоматизованих систем переміщення вантажів, внутрішньоскладських роботів та логістичних комплексів останньої милі."
                        data-en="Analysis of autonomous automated material handling systems, intra-warehouse robotics, and last-mile logistical complexes."
                        data-ru="Анализ автономных автоматизированных систем перемещения грузов, внутрискладских роботов и логистических комплексов последней мили."
                        data-de="Analyse autonomer automatisierter Materialflusssysteme, der Intralogistik-Robotik und Logistikkomplexe für die letzte Meile.">
-                       Аналіз автономних автоматизованих систем переміщення вантажів, внутрішньоскладських роботів та логістичних комплексів останньої милі.
+                       Аналіз автономних автоматизованих систем переміщення вантажів, внутрішньоскладських роботів та логістичних complexes останньої милі.
                     </p>
                 </div>
                 <div class="mt-6 text-[10px] font-mono text-gray-600 border-t border-gray-900 pt-3">LAST_REFRESH: INITIAL_STATE</div>
             </div>
 
-            <div id="hub-window-6" class="bg-techCard border border-gray-800 rounded p-6 flex flex-col justify-between hover:border-gray-700 transition-all">
+            <div id="hub-window-6" onclick="openWindow(6)" class="bg-techCard border border-gray-800 rounded p-6 flex flex-col justify-between hover:border-techAccent/50 cursor-pointer transition-all group">
                 <div>
                     <div class="flex justify-between items-center border-b border-gray-800 pb-3 mb-4">
                         <span class="text-xs font-mono text-techAccent">[ AGENT_03 // WIN_06 ]</span>
-                        <span class="text-xs font-mono uppercase text-gray-500">Trigeneration</span>
+                        <span class="text-xs font-mono uppercase text-gray-500 group-hover:text-techAccent transition-colors">Trigen →</span>
                     </div>
                     <h3 class="text-lg font-bold text-white mb-3" data-ua="Комерційна тригенерація" data-en="Commercial Trigeneration" data-ru="Коммерческая тригенерация" data-de="Gewerbliche Trigeneration">Комерційна тригенерація</h3>
-                    <p class="agent-data-stream text-sm text-gray-400 font-light leading-relaxed" 
+                    <p class="agent-data-stream text-sm text-gray-400 font-light leading-relaxed line-clamp-3" 
                        data-ua="Дослідження сумісності систем закритого циклу для HoReCa, великих дата-центрів та тепличних індустріальних господарств. Оптимізація балансу тепла/холоду."
                        data-en="Researching closed-loop grid-support frameworks for HoReCa, massive data centers, and industrial greenhouse complexes. Optimizing thermal balances."
                        data-ru="Исследование совместимости систем закрытого цикла для HoReCa, крупных дата-центров и тепличных индустриальных хозяйств. Оптимизация баланса тепла/холода."
@@ -167,14 +167,14 @@ HTML
                 <div class="mt-6 text-[10px] font-mono text-gray-600 border-t border-gray-900 pt-3">LAST_REFRESH: INITIAL_STATE</div>
             </div>
 
-            <div id="hub-window-7" class="bg-techCard border border-gray-800 rounded p-6 flex flex-col justify-between hover:border-gray-700 transition-all">
+            <div id="hub-window-7" onclick="openWindow(7)" class="bg-techCard border border-gray-800 rounded p-6 flex flex-col justify-between hover:border-techAccent/50 cursor-pointer transition-all group">
                 <div>
                     <div class="flex justify-between items-center border-b border-gray-800 pb-3 mb-4">
                         <span class="text-xs font-mono text-techAccent">[ AGENT_03 // WIN_07 ]</span>
-                        <span class="text-xs font-mono uppercase text-gray-500">TPA Architecture</span>
+                        <span class="text-xs font-mono uppercase text-gray-500 group-hover:text-techAccent transition-colors">TPA →</span>
                     </div>
                     <h3 class="text-lg font-bold text-white mb-3" data-ua="Архітектура ТПА" data-en="TPA Architecture" data-ru="Архитектура ТПА" data-de="TPA-Architektur">Архітектура ТПА</h3>
-                    <p class="agent-data-stream text-sm text-gray-400 font-light leading-relaxed" 
+                    <p class="agent-data-stream text-sm text-gray-400 font-light leading-relaxed line-clamp-3" 
                        data-ua="Технологічний моніторинг запірно-регулюючої та трубопровідної арматури високого тиску. Пошук сумісних рішень для роботи з пневмогідравлічними контурами."
                        data-en="Technological monitoring of high-pressure valves, actuators, and pipeline components. Verification of cross-compatibility with pneumohydraulic loops."
                        data-ru="Технологический мониторинг запорно-регулирующей и трубопроводной арматуры высокого давления. Поиск совместимых решений для работы с пневмогидравлическими контурами."
@@ -185,14 +185,14 @@ HTML
                 <div class="mt-6 text-[10px] font-mono text-gray-600 border-t border-gray-900 pt-3">LAST_REFRESH: INITIAL_STATE</div>
             </div>
 
-            <div id="hub-window-8" class="bg-techCard border border-gray-800 rounded p-6 flex flex-col justify-between hover:border-gray-700 transition-all">
+            <div id="hub-window-8" onclick="openWindow(8)" class="bg-techCard border border-gray-800 rounded p-6 flex flex-col justify-between hover:border-techAccent/50 cursor-pointer transition-all group">
                 <div>
                     <div class="flex justify-between items-center border-b border-gray-800 pb-3 mb-4">
                         <span class="text-xs font-mono text-techAccent">[ AGENT_04 // WIN_08 ]</span>
-                        <span class="text-xs font-mono uppercase text-gray-500">Open Forum</span>
+                        <span class="text-xs font-mono uppercase text-gray-500 group-hover:text-techAccent transition-colors">Forum →</span>
                     </div>
                     <h3 class="text-lg font-bold text-white mb-3" data-ua="Відкрита трибуна" data-en="Open Forum" data-ru="Открытая трибуна" data-de="Offenes Forum">Відкрита трибуна</h3>
-                    <p class="agent-data-stream text-sm text-gray-400 font-light leading-relaxed" 
+                    <p class="agent-data-stream text-sm text-gray-400 font-light leading-relaxed line-clamp-3" 
                        data-ua="Агрегація вхідних запитів, сортування звернень інжинірингових компаній на кастомізацію систем. Підготовка первинних технічних раундів відповідей."
                        data-en="Aggregation of incoming inquiries, filtering customization requests from engineering firms. Compilation of primary technical response rounds."
                        data-ru="Агрегация входящих вопросов, сортировка запросов от инжиниринговых компаний на кастомизацию систем. Подготовка первичных раундов ответов."
@@ -203,14 +203,14 @@ HTML
                 <div class="mt-6 text-[10px] font-mono text-gray-600 border-t border-gray-900 pt-3">LAST_REFRESH: INITIAL_STATE</div>
             </div>
 
-            <div id="hub-window-9" class="bg-techCard border border-gray-800 rounded p-6 flex flex-col justify-between hover:border-gray-700 transition-all">
+            <div id="hub-window-9" onclick="openWindow(9)" class="bg-techCard border border-gray-800 rounded p-6 flex flex-col justify-between hover:border-techAccent/50 cursor-pointer transition-all group">
                 <div>
                     <div class="flex justify-between items-center border-b border-gray-800 pb-3 mb-4">
                         <span class="text-xs font-mono text-techAccent">[ AGENT_04 // WIN_09 ]</span>
-                        <span class="text-xs font-mono uppercase text-gray-500">Solutions Lab</span>
+                        <span class="text-xs font-mono uppercase text-gray-500 group-hover:text-techAccent transition-colors">Lab →</span>
                     </div>
                     <h3 class="text-lg font-bold text-white mb-3" data-ua="Лабораторія рішень" data-en="Solutions Lab" data-ru="Лаборатория решений" data-de="Lösungslabor">Лабораторія рішень</h3>
-                    <p class="agent-data-stream text-sm text-gray-400 font-light leading-relaxed" 
+                    <p class="agent-data-stream text-sm text-gray-400 font-light leading-relaxed line-clamp-3" 
                        data-ua="Систематизація концептуальних інженерних пропозицій щодо кастомізації платформи під специфічні потреби регіональних муніципальних операторів."
                        data-en="Systematization of conceptual engineering frameworks for platform customization according to specific regional municipal operator demands."
                        data-ru="Систематизация концептуальных инженерных предложений по кастомизации платформы под специфические нужды региональных муниципальных операторов."
@@ -224,8 +224,52 @@ HTML
         </div>
     </main>
 
+    <div id="details-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-techCard border border-gray-700 w-full max-w-2xl rounded-lg p-6 shadow-2xl relative animate-in fade-in zoom-in-95 duration-200">
+            <button onclick="closeWindow()" class="absolute top-4 right-4 text-gray-400 hover:text-white font-mono text-lg">&times;</button>
+            
+            <div class="mb-4">
+                <span id="modal-meta" class="text-xs font-mono text-techAccent"></span>
+            </div>
+            <h2 id="modal-title" class="text-2xl font-bold text-white mb-4"></h2>
+            <div class="bg-gray-900/50 border border-gray-800 p-4 rounded mb-6">
+                <p id="modal-body" class="text-gray-300 text-sm leading-relaxed font-light"></p>
+            </div>
+            <div class="flex justify-end">
+                <button onclick="closeWindow()" class="bg-gray-800 hover:bg-gray-700 text-white text-xs uppercase tracking-wider font-bold px-4 py-2 rounded" data-ua="Закрити" data-en="Close" data-ru="Закрыть" data-de="Schließen">Закрити</button>
+            </div>
+        </div>
+    </div>
+
     <script>
+        let currentLang = 'ua';
+
+        // Функция открытия окна
+        function openWindow(id) {
+            const windowEl = document.getElementById(`hub-window-${id}`);
+            const meta = windowEl.querySelector('.flex span').innerText;
+            const title = windowEl.querySelector('h3').innerText;
+            const pEl = windowEl.querySelector('.agent-data-stream');
+            
+            // Забираем текст с учетом текущего выбранного языка
+            const bodyText = pEl.getAttribute(`data-${currentLang}`) || pEl.innerText;
+
+            document.getElementById('modal-meta').innerText = meta;
+            document.getElementById('modal-title').innerText = title;
+            document.getElementById('modal-body').innerText = bodyText;
+            
+            // Показываем модалку
+            document.getElementById('details-modal').classList.remove('hidden');
+        }
+
+        // Функция закрытия окна
+        function closeWindow() {
+            document.getElementById('details-modal').classList.add('hidden');
+        }
+
+        // Смена языков
         function changeHubLang(lang) {
+            currentLang = lang;
             const elements = document.querySelectorAll('[data-ua]');
             elements.forEach(el => {
                 const text = el.getAttribute(`data-${lang}`);
@@ -238,7 +282,16 @@ HTML
                 else btn.className = 'px-2 py-1 rounded text-gray-400 hover:text-white';
             });
             document.documentElement.lang = lang;
+            
+            // Если модальное окно открыто, обновляем язык кнопки закрытия в ней
+            const modalCloseBtn = document.querySelector('#details-modal button[data-ua]');
+            if(modalCloseBtn) modalCloseBtn.innerText = modalCloseBtn.getAttribute(`data-${lang}`);
         }
+
+        // Закрытие по клавише Esc
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeWindow();
+        });
     </script>
 </body>
 </html>
