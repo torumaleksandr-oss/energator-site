@@ -1,7 +1,150 @@
-JavaScript
-        /****************************************************************************
-         * МАССИВ МУЛЬТИЯЗЫЧНЫХ ДАННЫХ ДЛЯ ВСЕХ 9 ОКОН И СТАТЕЙ (ОБНОВЛЕН ИИ)
-         ****************************************************************************/
+HTML
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EnergaTor - Intelligence Hub</title>
+    <style>
+        :root {
+            --bg-color: #121212;
+            --panel-bg: #1e1e1e;
+            --accent-color: #c87533;
+            --text-color: #e0e0e0;
+            --muted-text: #a0a0a0;
+        }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        header {
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 15px;
+        }
+        h1 { color: var(--accent-color); margin: 0; font-size: 24px; }
+        .lang-selector button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--text-color);
+            padding: 5px 10px;
+            cursor: pointer;
+            margin-left: 5px;
+            border-radius: 4px;
+        }
+        .lang-selector button.active {
+            background: var(--accent-color);
+            color: #000;
+            font-weight: bold;
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 20px;
+            width: 100%;
+            max-width: 1200px;
+            margin-bottom: 40px;
+        }
+        .window-card {
+            background: var(--panel-bg);
+            border: 1px solid #333;
+            border-radius: 6px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: border-color 0.3s;
+        }
+        .window-card:hover { border-color: var(--accent-color); }
+        .window-card h3 { color: var(--accent-color); margin-top: 0; }
+        .window-card ul { padding-left: 20px; margin: 15px 0; color: var(--muted-text); }
+        .window-card ul li { margin-bottom: 8px; }
+        .btn {
+            background: var(--accent-color);
+            color: #000;
+            border: none;
+            padding: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8);
+            justify-content: center; align-items: center;
+            z-index: 1000;
+        }
+        .modal-content {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 30px;
+            border-radius: 8px;
+            max-width: 600px;
+            width: 90%;
+            position: relative;
+        }
+        .close-btn {
+            position: absolute;
+            top: 10px; right: 15px;
+            color: var(--accent-color);
+            font-size: 24px; cursor: pointer;
+        }
+        .footer-panel {
+            width: 100%; max-width: 1200px;
+            background: var(--panel-bg);
+            border: 1px dashed var(--accent-color);
+            padding: 25px; border-radius: 6px;
+            text-align: center; box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1 id="hub-main-title">EnergaTor AI Intelligence Matrix</h1>
+        <div class="lang-selector">
+            <button onclick="setLanguage('ua')" id="btn-ua">UA</button>
+            <button onclick="setLanguage('en')" id="btn-en">EN</button>
+            <button onclick="setLanguage('de')" id="btn-de">DE</button>
+            <button onclick="setLanguage('ru')" id="btn-ru">RU</button>
+        </div>
+    </header>
+
+    <div class="grid-container" id="grid-container">
+        <!-- 9 Окон генерируются динамически через JavaScript -->
+    </div>
+
+    <div class="footer-panel" id="footer-panel">
+        <h3 id="footer-title"></h3>
+        <p id="footer-text" style="color: var(--muted-text); margin: 15px 0;"></p>
+        <button class="btn" onclick="triggerNda()" id="footer-btn"></button>
+    </div>
+
+    <div class="modal" id="details-modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2 id="modal-title" style="color: var(--accent-color);"></h2>
+            <p id="modal-text" style="line-height: 1.6; color: var(--text-color);"></p>
+        </div>
+    </div >
+
+    <script>
+        // Наш массив данных, обновленный ИИ
         const hubTranslations = {
             ua: {
                 back: " На головну",
@@ -11,12 +154,11 @@ JavaScript
                 btnText: "Розгорнути аналітику",
                 btnText8: "Відкрити трибуну",
                 btnText9: "Відкрити лабораторію",
-                
                 window1: {
                     title: "Аеро-Простір",
                     items: ["Аеротаксі та важкі БПЛА вантажного класу.", "Дрони для промислових досліджень та зйомки об'єктів.", "Сканування параметрів автономності та часу роботи."],
                     fullTitle: "Аеро-Простір: Альтернатива хімічним акумуляторам",
-                    fullText: "Впровадження пневмогідравлічних систем у сектор eVTOL та важких безпілотників знімає жорсткі обмеження літій-іонних накопичувачів. Використання енергії стисненого повітря забезпечує швидку дозаправку за хвилини. Агенти верифікують технічні характеристики новинок, вантажопідйомність та межі автономної роботи без підзарядки."
+                    fullText: "Впровадження пневмогідравлічних систем у сектор eVTOL та важких безпілотників знімає жорсткі обмежения літій-іонних накопичувачів. Використання енергії стисненого повітря забезпечує швидку дозаправку за хвилини. Агенти верифікують технічні характеристики новинок, вантажопідйомність та межі автономної роботи без підзарядки."
                 },
                 window2: {
                     title: "Легкий та комерційний транспорт",
@@ -58,13 +200,13 @@ JavaScript
                     title: "Відкрита трибуна",
                     items: ["Агрегація вхідних запитань та експертних думок.", "Професійний зворотний зв'язок від інженерів та партнерів.", "Сортування запитів на кастомізацію систем."],
                     fullTitle: "Відкрита трибуна: Дискусії та Відгуки партнерів",
-                    fullText: "Простір діалогу для верифікації інженерних параметрів платформи ЕнергаТор. Профільні фахівці обмінюються думками, формують відгуки та отримують роз'яснення від конструкторського бюро проекту щодо модифікації систем."
+                    fullText: "Простір діалогу для верифікації інженерних параметраў платформи ЕнергаТор. Профільні фахівці обмінюються думками, формують відгуки та отримують роз'яснення від конструкторського бюро проекту щодо модифікації систем."
                 },
                 window9: {
                     title: "Лабораторія рішень",
                     items: ["Глобальний банк ідей та модернізацій системи TORUM.", "Реєстрація зовнішніх запитів на проектування модифікацій.", "Підготовка первинних раундів технічних відповідей."],
                     fullTitle: "Лабораторія рішень: Обробка інженерних запитів",
-                    fullText: "Центр обробки нестандартних завдань від інжинірингових компаній. Сюди акумулюються запити на адаптацію систем під локальні індустріальні вимоги, включаючи концепції генерації енергії в гармонії з довкіллям."
+                    fullText: "Центр обробки нестандартних завдань від інжинірингових компаній. Сюди акумулюються запити на адаптацію систем під локальні індустріальні вимоги, включаючи концепції генерации енергії в гармонії з довкіллям."
                 },
                 bottomPanel: {
                     title: "Патентний пул та стратегічне партнерство",
@@ -80,7 +222,6 @@ JavaScript
                 btnText: "Expand Analysis",
                 btnText8: "Open Tribune",
                 btnText9: "Open Lab",
-
                 window1: {
                     title: "Aerospace",
                     items: ["Air taxis and heavy cargo-class UAVs.", "Drones for industrial research and facility mapping.", "Tracking autonomy boundaries and operational limits."],
@@ -149,7 +290,6 @@ JavaScript
                 btnText: "Analytik Erweitern",
                 btnText8: "Tribüne Öffnen",
                 btnText9: "Labor Öffnen",
-
                 window1: {
                     title: "Luft- und Raumfahrt",
                     items: ["Flugtaxis und schwere Frachtdrohnen.", "Drohnen für industrielle Forschung und Objektkartierung.", "Überwachung von Autonomie- und Betriebsgrenzen."],
@@ -170,7 +310,7 @@ JavaScript
                 },
                 window4: {
                     title: "Kommunale stationäre Energie",
-                    items: ["Notstrom-Lebenserhaltung für Wohngebäude bei Blackouts.", "Autonome Stromversorgung für Aufzugsschächte und Heizungspumpen.", "Reduzierung von Spitzenlasten im regionalen Stromnetz."],
+                    items: ["Notstrom-Lebenserhaltung für Wohngebäude bei Blackouts.", "Autonome Stromversorgung für Aufzugsschächте und Heizungspumpen.", "Reduzierung von Spitzenlasten im regionalen Stromnetz."],
                     fullTitle: "Stationäre Trigeneration bei Netzausfällen",
                     fullText: "Unter den kritischen Bedingungen von rollierenden Blackouts sorgen Systeme für einen sofortigen Start der Stromversorgung. Die Architektur ermöglicht die parallele Erzeugung von Strom, Wärme für Heizkreise und Kälte für Lüftung. Dies dient als fertige Lösung für das Überleben von Unternehmen."
                 },
@@ -218,7 +358,6 @@ JavaScript
                 btnText: "Развернуть аналитику",
                 btnText8: "Открыть трибуну",
                 btnText9: "Открыть лабораторию",
-
                 window1: {
                     title: "Аэро-Пространство",
                     items: ["Аэротакси и тяжелые БПЛА грузового класса.", "Дроны для промышленных исследований и съемки объектов.", "Трекинг параметров автономности и времени работы."],
@@ -258,7 +397,7 @@ JavaScript
                 window7: {
                     title: "Архитектура Технологии",
                     items: ["Тороидальные Преобразующие Агрегаты (ТПА) и давление 5 бар.", "Многократное использование энергии воздуха без деградации.", "СОЖ защищает элементы расширения газов от обмерзания."],
-                    fullTitle: "Архитектура Платформы: Тороидальные Преобразующие Агрегаты",
+                    fullTitle: "Архитектура Платформи: Тороидальные Преобразующие Агрегаты",
                     fullText: "Физические основы работы систем TORUM. Специальная смазочно-охлаждающая жидкость ликвидирует эффект обмерзания узлов при расширении газов. Давление в 5 бар гарантирует длительный жизненный цикл без дефицитных материалов. Ресурс промышленных баллонов составляет более 20 лет."
                 },
                 window8: {
@@ -279,4 +418,71 @@ JavaScript
                     btnText: "Открыть сейф / Получить доступ к NDA"
                 }
             }
-        }; <!-- Force Cache Reset 2026 --> 
+        };
+
+        let currentLang = 'ua';
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            
+            // Подсветка активной кнопки
+            document.querySelectorAll('.lang-selector button').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(`btn-${lang}`).classList.add('active');
+            
+            const data = hubTranslations[lang];
+            
+            // Обновление заголовка и футера
+            document.getElementById('hub-main-title').innerText = lang === 'ua' ? 'ЕнергаТор AI Аналітична Матриця' : (lang === 'ru' ? 'ЭнергаТор AI Аналитическая Матрица' : (lang === 'de' ? 'EnergaTor AI Analytische Matrix' : 'EnergaTor AI Intelligence Matrix'));
+            document.getElementById('footer-title').innerText = data.bottomPanel.title;
+            document.getElementById('footer-text').innerText = data.bottomPanel.text;
+            document.getElementById('footer-btn').innerText = data.bottomPanel.btnText;
+            
+            // Генерация 9 окон
+            const grid = document.getElementById('grid-container');
+            grid.innerHTML = '';
+            
+            for(let i = 1; i <= 9; i++) {
+                const winData = data[`window${i}`];
+                const card = document.createElement('div');
+                card.className = 'window-card';
+                
+                let listHtml = '<ul>';
+                winData.items.forEach(item => { listHtml += `<li>${item}</li>`; });
+                listHtml += '</ul>';
+                
+                let btnLabel = data.btnText;
+                if(i === 8) btnLabel = data.btnText8;
+                if(i === 9) btnLabel = data.btnText9;
+                
+                card.innerHTML = `
+                    <div>
+                        <small style="color:var(--accent-color); font-weight:bold;">${data.windowLabels[i-1]}</small>
+                        <h3>${winData.title}</h3>
+                        ${listHtml}
+                    </div>
+                    <button class="btn" onclick="openWindow(${i})">${btnLabel}</button>
+                `;
+                grid.appendChild(card);
+            }
+        }
+
+        function openWindow(id) {
+            const winData = hubTranslations[currentLang][`window${id}`];
+            document.getElementById('modal-title').innerText = winData.fullTitle;
+            document.getElementById('modal-text').innerText = winData.fullText;
+            document.getElementById('details-modal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('details-modal').style.display = 'none';
+        }
+
+        function triggerNda() {
+            alert(hubTranslations[currentLang].alertNda);
+        }
+
+        // Инициализация при старте
+        setLanguage('ua');
+    </script>
+</body>
+</html>
