@@ -1,0 +1,33 @@
+```yaml
+name: EnergaTorAI
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.API_GITHUB_TOKEN }}
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run Agent
+        run: node agents/agent1.js
+
+      - name: Push updates
+        run: |
+          git config --global user.name "EnergaTor-AI-Agent"
+          git config --global user.email "agents@energator.net"
+          git add intelligence.html
+          git commit -m "AI Matrix Update" || echo "No changes"
+          git push origin HEAD
