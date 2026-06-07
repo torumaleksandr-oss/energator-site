@@ -1,297 +1,677 @@
 HTML
 <!DOCTYPE html>
-<html lang="ua">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EnergaTor — Analytical Intelligence Hub</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        techDark: '#0B0F17',
-                        techCard: '#131A26',
-                        techAccent: '#10B981',
-                        techBorder: '#1F2937'
-                    }
-                }
-            }
+    <title>ЭнергаТор — Аналитический Хаб Мультиагентной Системы</title>
+    <style>
+        :root {
+            --space-bg: #030712;
+            --copper-primary: #c87533;
+            --copper-light: #ea580c;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --glass-bg: rgba(15, 23, 42, 0.45);
+            --glass-border: rgba(200, 117, 51, 0.2);
         }
-    </script>
-</head>
-<body class="bg-techDark text-gray-200 font-sans antialiased">
 
-    <header class="border-b border-gray-800 bg-techDark/90 backdrop-blur sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <div class="flex items-center space-x-3">
-                <a href="index.html" class="h-10 w-10 rounded border-2 border-techAccent flex items-center justify-center font-bold text-techAccent text-xl tracking-wider">ET</a>
-                <span class="text-2xl font-black tracking-tight text-white">EnergaTor <span class="text-sm font-mono font-normal text-techAccent">Hub</span></span>
-            </div>
-            
-            <div class="flex items-center space-x-6">
-                <a href="index.html" class="text-sm uppercase tracking-wider text-gray-400 hover:text-white transition-colors" data-ua="На головну" data-en="Back to home" data-ru="На главную" data-de="Zur Startseite">На головну</a>
-                
-                <div class="flex space-x-1 bg-gray-800 p-1 rounded border border-gray-700 text-xs font-bold">
-                    <button onclick="changeHubLang('ua')" id="hbtn-ua" class="px-2 py-1 rounded bg-techAccent text-techDark font-bold">UA</button>
-                    <button onclick="changeHubLang('en')" id="hbtn-en" class="px-2 py-1 rounded text-gray-400 hover:text-white">EN</button>
-                    <button onclick="changeHubLang('ru')" id="hbtn-ru" class="px-2 py-1 rounded text-gray-400 hover:text-white">RU</button>
-                    <button onclick="changeHubLang('de')" id="hbtn-de" class="px-2 py-1 rounded text-gray-400 hover:text-white">DE</button>
-                </div>
-            </div>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            min-height: 100%;
+            background-color: var(--space-bg);
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+            color: var(--text-main);
+            background: radial-gradient(circle at 50% 30%, #0f172a 0%, #030712 80%);
+            background-attachment: fixed;
+        }
+
+        .header {
+            border-bottom: 1px solid var(--glass-border);
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(3, 7, 18, 0.8);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header h1 {
+            font-size: 1.6rem;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--copper-primary);
+        }
+
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        /* Языковая панель */
+        .lang-panel {
+            display: flex;
+            gap: 12px;
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: none;
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 0.85rem;
+            font-weight: 700;
+            cursor: pointer;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .lang-btn:hover { color: var(--text-main); }
+        .lang-btn.active { color: var(--copper-primary); text-shadow: 0 0 8px rgba(200, 117, 51, 0.5); }
+
+        .btn-back {
+            color: var(--text-main);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border: 1px solid var(--copper-primary);
+            padding: 8px 18px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            background: rgba(200, 117, 51, 0.05);
+        }
+
+        .btn-back:hover {
+            background: var(--copper-primary);
+            color: var(--space-bg);
+            box-shadow: 0 0 20px rgba(200, 117, 51, 0.4);
+        }
+
+        .dashboard-container {
+            max-width: 1600px;
+            margin: 40px auto;
+            padding: 0 30px;
+            box-sizing: border-box;
+        }
+
+        .matrix-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .window-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            backdrop-filter: blur(10px);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            cursor: pointer;
+        }
+
+        .window-card:hover {
+            border-color: var(--copper-primary);
+            background: rgba(15, 23, 42, 0.6);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(200, 117, 51, 0.15);
+        }
+
+        .window-header {
+            border-bottom: 1px solid rgba(200, 117, 51, 0.15);
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .window-title {
+            margin: 0;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-main);
+            line-height: 1.3;
+        }
+
+        .window-num {
+            font-size: 0.75rem;
+            font-weight: bold;
+            color: var(--copper-primary);
+            border: 1px solid var(--copper-primary);
+            padding: 2px 6px;
+            border-radius: 4px;
+            white-space: nowrap;
+        }
+
+        .window-body ul {
+            margin: 0 0 25px 0;
+            padding-left: 18px;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .window-body li { margin-bottom: 10px; line-height: 1.5; }
+
+        .btn-action {
+            display: block;
+            text-align: center;
+            background: transparent;
+            border: 1.5px solid var(--copper-primary);
+            color: var(--copper-primary);
+            padding: 12px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* ПОЛНОЭКРАННОЕ ОКНО */
+        .fullscreen-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(3, 7, 18, 0.95);
+            z-index: 1000;
+            display: none;
+            justify-content: center;
+            align-items: flex-start;
+            overflow-y: auto;
+            padding: 60px 20px;
+            box-sizing: border-box;
+            backdrop-filter: blur(15px);
+        }
+
+        .modal-content {
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid var(--copper-primary);
+            border-radius: 12px;
+            max-width: 1000px;
+            width: 100%;
+            padding: 45px;
+            box-sizing: border-box;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+            margin-bottom: 60px;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 25px;
+            right: 30px;
+            font-size: 2.5rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .modal-close:hover { color: var(--copper-primary); }
+
+        .modal-title-zone {
+            border-bottom: 2px solid var(--copper-primary);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .modal-title-zone h2 {
+            margin: 0;
+            font-size: 2.1rem;
+            color: var(--text-main);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .modal-article {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: var(--text-main);
+            margin-bottom: 40px;
+            white-space: pre-line;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            background: #000;
+            border-radius: 6px;
+            border: 1px solid var(--glass-border);
+            margin-top: 30px;
+        }
+
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+
+        .bottom-panel {
+            background: linear-gradient(180deg, rgba(200, 117, 51, 0.05) 0%, rgba(200, 117, 51, 0.15) 100%);
+            border: 2px solid var(--copper-primary);
+            border-radius: 8px;
+            padding: 35px;
+            margin-top: 40px;
+        }
+
+        .panel-title { margin: 0 0 15px 0; font-size: 1.5rem; text-transform: uppercase; letter-spacing: 3px; color: var(--copper-primary); }
+        .panel-text { font-size: 1.1rem; line-height: 1.6; color: var(--text-main); margin-bottom: 25px; }
+        .btn-panel { display: inline-block; background: var(--copper-primary); color: var(--space-bg); border: none; padding: 16px 35px; font-size: 1rem; font-weight: bold; text-transform: uppercase; letter-spacing: 3px; border-radius: 4px; transition: all 0.3s ease; }
+        .btn-panel:hover { background: #ffffff; cursor: pointer; }
+
+        @media (max-width: 1200px) { .matrix-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 768px) {
+            .matrix-grid { grid-template-columns: 1fr; }
+            .header { padding: 20px; flex-direction: column; gap: 15px; }
+            .header-controls { width: 100%; justify-content: space-between; }
+            .modal-content { padding: 20px; }
+            .modal-title-zone h2 { font-size: 1.4rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <h1>EnergaTor Intelligence</h1>
+        <div class="header-controls">
+            <nav class="lang-panel">
+                <button class="lang-btn" id="btn-ua" onclick="changeLang('ua')">UA</button>
+                <button class="lang-btn" id="btn-en" onclick="changeLang('en')">EN</button>
+                <button class="lang-btn" id="btn-de" onclick="changeLang('de')">DE</button>
+                <button class="lang-btn" id="btn-ru" onclick="changeLang('ru')">RU</button>
+            </nav>
+            <a href="index.html" class="btn-back" id="lnBack"> На главную</a>
         </div>
     </header>
 
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        
-        <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-gray-800 pb-8 mb-12">
-            <div>
-                <h1 class="text-3xl font-black text-white uppercase tracking-wider mb-2" data-ua="Аналітична Матриця Моніторингу" data-en="Analytical Intelligence Matrix" data-ru="Аналитическая Матрица Мониторинга" data-de="Analytische Überwachungsmatrix">Аналітична Матриця Моніторингу</h1>
-                <p class="text-sm text-gray-400 font-light" data-ua="Структуровані дані за галузевими напрямками. Натисніть на вікно для розгортання аналітики." data-en="Structured data streams by industrial sectors. Click a window to expand analytical details." data-ru="Структурированные данные по отраслевым направлениям. Нажмите на окно для развертывания аналитики." data-de="Strukturierte Datenströme nach Branchen. Klicken Sie auf ein Fenster, um Details anzuzeigen.">Структуровані дані за галузевими напрямками. Натисніть на вікно для розгортання аналітики.</p>
-            </div>
-            <div class="mt-4 md:mt-0 flex items-center space-x-3 bg-gray-900 border border-gray-800 px-4 py-2 rounded font-mono text-xs">
-                <span class="h-2 w-2 rounded-full bg-techAccent animate-pulse"></span>
-                <span class="text-gray-400">AI Core:</span>
-                <span class="text-techAccent" id="ai-status">ACTIVE // CONTROLL_MODE</span>
-            </div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-            <div id="hub-window-1" onclick="openWindow(1)" class="bg-techCard border border-gray-800 rounded p-6 flex flex-col justify-between hover:border-techAccent/50 cursor-pointer transition-all group">
-                <div>
-                    <div class="flex justify-between items-center border-b border-gray-800 pb-3 mb-4">
-                        <span class="text-xs font-mono text-techAccent">[ AGENT_02 // WIN_01 ]</span>
-                        <span class="text-xs font-mono uppercase text-gray-500 group-hover:text-techAccent transition-colors">Aero-space →</span>
-                    </div>
-                    <h3 class="text-lg font-bold text-white mb-3" data-ua="Аеро-Простір (eVTOL, важкі дрони)" data-en="Aerospace (eVTOL, Heavy Drones)" data-ru="Аэро-Пространство (eVTOL, тяжелые дроны)" data-de="Luft- und Raumfahrt (eVTOL, schwere Drohnen)">Аеро-Простір (eVTOL, важкі дрони)</h3>
-                    <p class="agent-data-stream text-sm text-gray-400 font-light leading-relaxed line-clamp-3" 
-                       data-ua="Сканування технологічних параметрів важких безпілотних систем, інфраструктури eVTOL та комплексів промислового пошуку. Оцінка вантажопідйомності та часу автономної роботи."
-                       data-en="Monitoring parameters of heavy unmanned systems, eVTOL infrastructure, and industrial search complexes. Assessment of payload capacity and autonomous operation limits."
-                       data-ru="Сканирование technological параметров тяжелых беспилотных систем, инфраструктуры eVTOL и комплексов промышленного поиска. Оценка грузоподъемности и времени автономной работы."
-                       data-de="Überwachung der Parameter schwerer unbemannter Systeme, der eVTOL-Infrastruktur und industrieller Suchkomplexe. Bewertung von Nutzlast und autonomen Betriebsgrenzen.">
-                       Сканування технологічних параметрів важких безпілотних систем, інфраструктури eVTOL та комплексів промислового пошуку. Оцінка вантажопідйомності та часу автономної роботи.
-                    </p>
-                </div>
-                <div class="mt-6 text-[10px] font-mono text-gray-600 border-t border-gray-900 pt-3">LAST_REFRESH: INITIAL_STATE</div>
-            </div>
-
-            <div id="hub-window-2" onclick="openWindow(2)" class="bg-techCard border border-gray-800 rounded p-6 flex flex-col justify-between hover:border-techAccent/50 cursor-pointer transition-all group">
-                <div>
-                    <div class="flex justify-between items-center border-b border-gray-800 pb-3 mb-4">
-                        <span class="text-xs font-mono text-techAccent">[ AGENT_01 // WIN_02 ]</span>
-                        <span class="text-xs font-mono uppercase text-gray-500 group-hover:text-techAccent transition-colors">Logistics →</span>
-                    </div>
-                    <h3 class="text-lg font-bold text-white mb-3" data-ua="Комерційний та міський транспорт" data-en="Commercial & Urban Transport" data-ru="Коммерческий и городской транспорт" data-de="Gewerblicher & städtischer Transport">Комерційний та міський транспорт</h3>
-                    <p class="agent-data-stream text-sm text-gray-400 font-light leading-relaxed line-clamp-3" 
-                       data-ua="Аналіз паливних криз, дефіциту сировини для хімічних АКБ (літій, кобальт), вимог декарбонізації. Моніторинг наземного комерційного, приватного та складского спецтранспорту."
-                       data-en="Analysis of fuel crises, rare-earth battery metal deficits (lithium, cobalt), and decarbonization rules. Tracking of commercial ground fleets, residential cars, and warehouse transport."
-                       data-ru="Анализ топливных кризисов, дефицита сырья для химических АКБ (литий, кобальт), требований декарбонизации. Мониторинг наземного коммерческого, частного и складского спецтранспорта."
-                       data-de="Analyse von Kraftstoffkrisen, Rohstoffdefiziten für chemische Batterien (Lithium, Kobalt) und Dekarbonisierungsregeln. Überwachung von gewerblichen Flotten und Lagerfahrzeugen.">
-                       Аналіз паливних криз, дефіциту сировини для хімічних АКБ (літій, кобальт), вимог декарбонізації. Моніторинг наземного комерційного, приватного та складского спецтранспорту.
-                    </p>
-                </div>
-                <div class="mt-6 text-[10px] font-mono text-gray-600 border-t border-gray-900 pt-3">LAST_REFRESH: INITIAL_STATE</div>
-            </div>
-
-            <div id="hub-window-3" onclick="openWindow(3)" class="bg-techCard border border-gray-800 rounded p-6 flex flex-col justify-between hover:border-techAccent/50 cursor-pointer transition-all group">
-                <div>
-                    <div class="flex justify-between items-center border-b border-gray-800 pb-3 mb-4">
-                        <span class="text-xs font-mono text-techAccent">[ AGENT_02 // WIN_03 ]</span>
-                        <span class="text-xs font-mono uppercase text-gray-500 group-hover:text-techAccent transition-colors">Marine →</span>
-                    </div>
-                    <h3 class="text-lg font-bold text-white mb-3" data-ua="Морський та підводний флот" data-en="Marine & Underwater Fleet" data-ru="Морской и подводный флот" data-de="Marine- & Unterwasserflotte">Морський та підводний флот</h3>
-                    <p class="agent-data-stream text-sm text-gray-400 font-light leading-relaxed line-clamp-3" 
-                       data-ua="Відстеження розробок у сфері автономних підводних комплексів, роботизованих систем промислових досліджень та берегової портової інфраструктури постачання."
-                       data-en="Tracking developments in autonomous underwater systems, robotic industrial search complexes, and coastal port utility infrastructure."
-                       data-ru="Отслеживание разработок в сфере автономных подводных комплексов, роботизированных систем промышленных исследований и береговой портовой инфраструктуры снабжения."
-                       data-de="Verfolgung von Entwicklungen bei autonomen Unterwassersystemen, robotischen Industriesuchkomplexen und der Infrastruktur von Küstenhäfen.">
-                       Відстеження розробок у сфері автономних підводних комплексів, роботизованих систем промислових досліджень та берегової портової інфраструктури постачання.
-                    </p>
-                </div>
-                <div class="mt-6 text-[10px] font-mono text-gray-600 border-t border-gray-900 pt-3">LAST_REFRESH: INITIAL_STATE</div>
-            </div>
-
-            <div id="hub-window-4" onclick="openWindow(4)" class="bg-techCard border border-gray-800 rounded p-6 flex flex-col justify-between hover:border-techAccent/50 cursor-pointer transition-all group">
-                <div>
-                    <div class="flex justify-between items-center border-b border-gray-800 pb-3 mb-4">
-                        <span class="text-xs font-mono text-techAccent">[ AGENT_03 // WIN_04 ]</span>
-                        <span class="text-xs font-mono uppercase text-gray-500 group-hover:text-techAccent transition-colors">Grid →</span>
-                    </div>
-                    <h3 class="text-lg font-bold text-white mb-3" data-ua="Муніципальна енергетика (Блекаути)" data-en="Municipal Energy & Blackouts" data-ru="Муниципальная энергетика (Блэкауты)" data-de="Kommunale Energie & Blackouts">Муніципальна енергетика (Блекаути)</h3>
-                    <p class="agent-data-stream text-sm text-gray-400 font-light leading-relaxed line-clamp-3" 
-                       data-ua="Фіксація великих системних аварій, віялових відключень у ЄС та світі. Аналіз динаміки зростання мережевих тарифів на тепло та електрику для бізнесу."
-                       data-en="Logging major grid failures and rolling blackouts globally. Mapping the dynamics of rising network heating and electricity tariffs for enterprises."
-                       data-ru="Фиксация крупных системных аварий, веерных отключений в ЕС и мире. Анализ динамики роста сетевых тарифов на тепло и электричество для бизнеса."
-                       data-de="Erfassung schwerer Netzausfälle und rollierender Blackouts weltweit. Analyse der Dynamik steigender Netztarife für Wärme und Strom für Unternehmen.">
-                       Фіксація великих системних аварій, віялових відключень у ЄС та світі. Аналіз динаміки зростання мережевих тарифів на тепло та електрику для бізнесу.
-                    </p>
-                </div>
-                <div class="mt-6 text-[10px] font-mono text-gray-600 border-t border-gray-900 pt-3">LAST_REFRESH: INITIAL_STATE</div>
-            </div>
-
-            <div id="hub-window-5" onclick="openWindow(5)" class="bg-techCard border border-gray-800 rounded p-6 flex flex-col justify-between hover:border-techAccent/50 cursor-pointer transition-all group">
-                <div>
-                    <div class="flex justify-between items-center border-b border-gray-800 pb-3 mb-4">
-                        <span class="text-xs font-mono text-techAccent">[ AGENT_03 // WIN_05 ]</span>
-                        <span class="text-xs font-mono uppercase text-gray-500 group-hover:text-techAccent transition-colors">Robotics →</span>
-                    </div>
-                    <h3 class="text-lg font-bold text-white mb-3" data-ua="Робототехніка (Склади, Доставка)" data-en="Robotics (Warehouses, Delivery)" data-ru="Робототехника (Склады, Доставка)" data-de="Robotik (Lagerhäuser, Zustellung)">Робототехніка (Склади, Доставка)</h3>
-                    <p class="agent-data-stream text-sm text-gray-400 font-light leading-relaxed line-clamp-3" 
-                       data-ua="Аналіз автономних автоматизованих систем переміщення вантажів, внутрішньоскладських роботів та логістичних комплексів останньої милі."
-                       data-en="Analysis of autonomous automated material handling systems, intra-warehouse robotics, and last-mile logistical complexes."
-                       data-ru="Анализ автономных автоматизированных систем перемещения грузов, внутрискладских роботов и логистических комплексов последней мили."
-                       data-de="Analyse autonomer automatisierter Materialflusssysteme, der Intralogistik-Robotik und Logistikkomplexe für die letzte Meile.">
-                       Аналіз автономних автоматизованих систем переміщення вантажів, внутрішньоскладських роботів та логістичних complexes останньої милі.
-                    </p>
-                </div>
-                <div class="mt-6 text-[10px] font-mono text-gray-600 border-t border-gray-900 pt-3">LAST_REFRESH: INITIAL_STATE</div>
-            </div>
-
-            <div id="hub-window-6" onclick="openWindow(6)" class="bg-techCard border border-gray-800 rounded p-6 flex flex-col justify-between hover:border-techAccent/50 cursor-pointer transition-all group">
-                <div>
-                    <div class="flex justify-between items-center border-b border-gray-800 pb-3 mb-4">
-                        <span class="text-xs font-mono text-techAccent">[ AGENT_03 // WIN_06 ]</span>
-                        <span class="text-xs font-mono uppercase text-gray-500 group-hover:text-techAccent transition-colors">Trigen →</span>
-                    </div>
-                    <h3 class="text-lg font-bold text-white mb-3" data-ua="Комерційна тригенерація" data-en="Commercial Trigeneration" data-ru="Коммерческая тригенерация" data-de="Gewerbliche Trigeneration">Комерційна тригенерація</h3>
-                    <p class="agent-data-stream text-sm text-gray-400 font-light leading-relaxed line-clamp-3" 
-                       data-ua="Дослідження сумісності систем закритого циклу для HoReCa, великих дата-центрів та тепличних індустріальних господарств. Оптимізація балансу тепла/холоду."
-                       data-en="Researching closed-loop grid-support frameworks for HoReCa, massive data centers, and industrial greenhouse complexes. Optimizing thermal balances."
-                       data-ru="Исследование совместимости систем закрытого цикла для HoReCa, крупных дата-центров и тепличных индустриальных хозяйств. Оптимизация баланса тепла/холода."
-                       data-de="Untersuchung von geschlossenen Systemen für HoReCa, Rechenzentren und industrielle Gewächshäuser. Optimierung der Wärme-/Kältebilanz.">
-                       Дослідження сумісності систем закритого циклу для HoReCa, великих дата-центрів та тепличних індустріальних господарств. Оптимізація балансу тепла/холоду.
-                    </p>
-                </div>
-                <div class="mt-6 text-[10px] font-mono text-gray-600 border-t border-gray-900 pt-3">LAST_REFRESH: INITIAL_STATE</div>
-            </div>
-
-            <div id="hub-window-7" onclick="openWindow(7)" class="bg-techCard border border-gray-800 rounded p-6 flex flex-col justify-between hover:border-techAccent/50 cursor-pointer transition-all group">
-                <div>
-                    <div class="flex justify-between items-center border-b border-gray-800 pb-3 mb-4">
-                        <span class="text-xs font-mono text-techAccent">[ AGENT_03 // WIN_07 ]</span>
-                        <span class="text-xs font-mono uppercase text-gray-500 group-hover:text-techAccent transition-colors">TPA →</span>
-                    </div>
-                    <h3 class="text-lg font-bold text-white mb-3" data-ua="Архітектура ТПА" data-en="TPA Architecture" data-ru="Архитектура ТПА" data-de="TPA-Architektur">Архітектура ТПА</h3>
-                    <p class="agent-data-stream text-sm text-gray-400 font-light leading-relaxed line-clamp-3" 
-                       data-ua="Технологічний моніторинг запірно-регулюючої та трубопровідної арматури високого тиску. Пошук сумісних рішень для роботи з пневмогідравлічними контурами."
-                       data-en="Technological monitoring of high-pressure valves, actuators, and pipeline components. Verification of cross-compatibility with pneumohydraulic loops."
-                       data-ru="Технологический мониторинг запорно-регулирующей и трубопроводной арматуры высокого давления. Поиск совместимых решений для работы с пневмогидравлическими контурами."
-                       data-de="Technische Überwachung von Hochdruckventilen und Rohrleitungsarmaturen. Validierung kompatibler Lösungen für den Einsatz in pneumohydraulischen Kreisläufen.">
-                       Технологічний моніторинг запірно-регулюючої та трубопровідної арматури високого тиску. Пошук сумісних рішень для роботи з пневмогідравлічними контурами.
-                    </p>
-                </div>
-                <div class="mt-6 text-[10px] font-mono text-gray-600 border-t border-gray-900 pt-3">LAST_REFRESH: INITIAL_STATE</div>
-            </div>
-
-            <div id="hub-window-8" onclick="openWindow(8)" class="bg-techCard border border-gray-800 rounded p-6 flex flex-col justify-between hover:border-techAccent/50 cursor-pointer transition-all group">
-                <div>
-                    <div class="flex justify-between items-center border-b border-gray-800 pb-3 mb-4">
-                        <span class="text-xs font-mono text-techAccent">[ AGENT_04 // WIN_08 ]</span>
-                        <span class="text-xs font-mono uppercase text-gray-500 group-hover:text-techAccent transition-colors">Forum →</span>
-                    </div>
-                    <h3 class="text-lg font-bold text-white mb-3" data-ua="Відкрита трибуна" data-en="Open Forum" data-ru="Открытая трибуна" data-de="Offenes Forum">Відкрита трибуна</h3>
-                    <p class="agent-data-stream text-sm text-gray-400 font-light leading-relaxed line-clamp-3" 
-                       data-ua="Агрегація вхідних запитів, сортування звернень інжинірингових компаній на кастомізацію систем. Підготовка первинних технічних раундів відповідей."
-                       data-en="Aggregation of incoming inquiries, filtering customization requests from engineering firms. Compilation of primary technical response rounds."
-                       data-ru="Агрегация входящих вопросов, сортировка запросов от инжиниринговых компаний на кастомизацию систем. Подготовка первичных раундов ответов."
-                       data-de="Aggregation eingehender Anfragen, Filterung von Customization-Wünschen von Engineering-Firmen. Vorbereitung primärer technischer Antwortrunden.">
-                       Агрегація вхідних запитів, сортування звернень інжинірингових компаній на кастомізацію систем. Підготовка первинних технічних раундів відповідей.
-                    </p>
-                </div>
-                <div class="mt-6 text-[10px] font-mono text-gray-600 border-t border-gray-900 pt-3">LAST_REFRESH: INITIAL_STATE</div>
-            </div>
-
-            <div id="hub-window-9" onclick="openWindow(9)" class="bg-techCard border border-gray-800 rounded p-6 flex flex-col justify-between hover:border-techAccent/50 cursor-pointer transition-all group">
-                <div>
-                    <div class="flex justify-between items-center border-b border-gray-800 pb-3 mb-4">
-                        <span class="text-xs font-mono text-techAccent">[ AGENT_04 // WIN_09 ]</span>
-                        <span class="text-xs font-mono uppercase text-gray-500 group-hover:text-techAccent transition-colors">Lab →</span>
-                    </div>
-                    <h3 class="text-lg font-bold text-white mb-3" data-ua="Лабораторія рішень" data-en="Solutions Lab" data-ru="Лаборатория решений" data-de="Lösungslabor">Лабораторія рішень</h3>
-                    <p class="agent-data-stream text-sm text-gray-400 font-light leading-relaxed line-clamp-3" 
-                       data-ua="Систематизація концептуальних інженерних пропозицій щодо кастомізації платформи під специфічні потреби регіональних муніципальних операторів."
-                       data-en="Systematization of conceptual engineering frameworks for platform customization according to specific regional municipal operator demands."
-                       data-ru="Систематизация концептуальных инженерных предложений по кастомизации платформы под специфические нужды региональных муниципальных операторов."
-                       data-de="Systematisierung konzeptioneller Engineering-Rahmenwerke zur Plattformanpassung an spezifische regionale kommunale Anforderungen.">
-                       Систематизація концептуальних інженерних пропозицій щодо кастомізації платформи під специфічні потреби регіональних муніципальних операторів.
-                    </p>
-                </div>
-                <div class="mt-6 text-[10px] font-mono text-gray-600 border-t border-gray-900 pt-3">LAST_REFRESH: INITIAL_STATE</div>
-            </div>
-
-        </div>
+    <main class="dashboard-container">
+        <div class="matrix-grid" id="matrixGrid"></div>
+        <section class="bottom-panel" id="bottomPanel"></section>
     </main>
 
-    <div id="details-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-techCard border border-gray-700 w-full max-w-2xl rounded-lg p-6 shadow-2xl relative animate-in fade-in zoom-in-95 duration-200">
-            <button onclick="closeWindow()" class="absolute top-4 right-4 text-gray-400 hover:text-white font-mono text-lg">&times;</button>
-            
-            <div class="mb-4">
-                <span id="modal-meta" class="text-xs font-mono text-techAccent"></span>
+    <div class="fullscreen-modal" id="infoModal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal()">&times;</span>
+            <div class="modal-title-zone">
+                <h2 id="mTitle">Заголовок</h2>
             </div>
-            <h2 id="modal-title" class="text-2xl font-bold text-white mb-4"></h2>
-            <div class="bg-gray-900/50 border border-gray-800 p-4 rounded mb-6">
-                <p id="modal-body" class="text-gray-300 text-sm leading-relaxed font-light"></p>
-            </div>
-            <div class="flex justify-end">
-                <button onclick="closeWindow()" class="bg-gray-800 hover:bg-gray-700 text-white text-xs uppercase tracking-wider font-bold px-4 py-2 rounded" data-ua="Закрити" data-en="Close" data-ru="Закрыть" data-de="Schließen">Закрити</button>
-            </div>
+            <div class="modal-article" id="mContent">Статья...</div>
+            <div id="mVideoZone"></div>
         </div>
     </div>
 
     <script>
-        let currentLang = 'ua';
+        const hubTranslations = {
+            ua: {
+                back: " На головну",
+                alertNda: "Запит на авторизацію NDA надіслано до патентного відділу ЕнергаТор.",
+                alertMod: "Запуск модуля: ",
+                windowLabels: ["Вікно 1", "Вікно 2", "Вікно 3", "Вікно 4", "Вікно 5", "Вікно 6", "Вікно 7", "Вікно 8", "Вікно 9"],
+                btnText: "Розгорнути аналітику",
+                btnText8: "Відкрити трибуну",
+                btnText9: "Відкрити лабораторію",
+                
+                window1: {
+                    title: "Аеро-Простір",
+                    items: ["Аеротаксі та важкі дрони.", "Дрони для промислових досліджень, пошуку людей та об'єктів.", "Розвиток інфраструктури та оцінка параметрів."],
+                    fullTitle: "Аеро-Простір: Альтернатива хімічним акумуляторам",
+                    fullText: "Впровадження пневмогідравлічних систем у сектор eVTOL та важких безпілотників знімає жорсткі обмеження літій-іонних накопичувачів. Використання енергії стисненого повітря забезпечує швидку дозаправку за хвилини. Агенти відстежують технічні характеристики новинок, вантажопідйомність та час автономної роботи."
+                },
+                window2: {
+                    title: "Легкий та комерційний транспорт",
+                    items: ["Наземний комерційний (до 3 тонн), приватний та соціальний транспорт.", "Міські пасажирські електробуси, таксі та спецтранспорт.", "Моніторинг дефіциту літію, кобальту та паливних криз."],
+                    fullTitle: "Декарбонізація та моніторинг паливного сектора",
+                    fullText: "Аналіз дефіциту нафтопродуктів та сировини для хімічних АКБ. Інтеграція систем ЕнергаТор у логістику та муніципальний транспорт знижує вартість володіння. Відсутність зносу циліндрів забезпечує безперервний цикл роботи парку 24/7. Досліджуються вимоги щодо декарбонізації міських просторів та утилізації батарей."
+                },
+                window3: {
+                    title: "Морський та Підводний флот",
+                    items: ["Катери, яхти, інтеграція балонів у порожнинах подвійного дна.", "Дрони для підводних досліджень та промислових робіт.", "Заправні комплекси на базі енергії сонця, вітру та хвиль."],
+                    fullTitle: "Морські та підводні енергосистеми закритого циклу",
+                    fullText: "Розміщення балонів тиску в технологічних порожнинах подвійного дна суден забезпечує безпеку та збереження об'єму. Роботизовані дрони виконують підводні дослідження. Автономні плавучі станції рекуперують зовнішню енергію хвиль, вітру та сонця."
+                },
+                window4: {
+                    title: "Муніципальна стаціонарна енергетика",
+                    items: ["Аварійне життєзабезпечення житлових будівель при блэкаутах.", "Автономне живлення ліфтових шахт та насосів опалення.", "Зниження навантаження на магістральні ЛЕП у години пік."],
+                    fullTitle: "Стаціонарна тригенерація в умовах блеклаутів",
+                    fullText: "В критичних умовах віялових відключень системи забезпечують миттєвий запуск потужностей. Архітектура дозволяє паралельно генерувати електроенергію, тепло для опалення та холод для вентиляції. Це готове рішення для виживання інфраструктури та бізнесу."
+                },
+                window5: {
+                    title: "Автономна робототехніка",
+                    items: ["Складський спецтранспорт та автоматизовані навантажувачі.", "Системи швидкої заправки стисненим повітрям на підприємствах.", "Повна пожежна та вибухобезпека логістичних хабів."],
+                    fullTitle: "Робототехничні комплекси та автоматизовані склади",
+                    fullText: "Автоматизовані термінали вимагають високого рівня пожежобезпеки. Пневматичний спецтранспорт повністю виключає ризики самозаймання батарей. Системи зберігають ефективність у низькотемпературних зонах і на закритих територіях підприємств."
+                },
+                window6: {
+                    title: "Комерційна тригенерація",
+                    items: ["Рішення для малого бізнесу, HoReCa та дата-центрів.", "Кейс «Кафе Су-Від» із системою доставки та зберігання.", "Стабілізація мікроклімату тепличних господарств та виробництв."],
+                    fullTitle: "Комерційна тригенерація: Оптимізація маржі бізнесу",
+                    fullText: "Кейс «Кафе Су-Від» демонструє ефективність тригенерації: одночасний розподіл ресурсів на електропостачання технологічних ліній, вироблення тепла для кулінарних процесів та глибокого холоду. Дозволяє бізнесу функціонувати незалежно від зростання мережевих тарифів."
+                },
+                window7: {
+                    title: "Архітектура Технології",
+                    items: ["Тороїдальні Перетворюючі Агрегати (ТПА) та тиск 5 бар.", "Багаторазове використання енергії повітря без деградації.", "СОЖ захищає елементи розширення газів від обмерзання."],
+                    fullTitle: "Архітектура Платформи: Тороїдальні Перетворюючі Агрегати",
+                    fullText: "Фізичні основи роботи систем TORUM. Спеціальна змащувально-охолоджувальна рідина ліквідує ефект обмерзання вузлів при розширенні газів. Робочий тиск у 5 бар гарантує тривалий життєвий цикл без дефіцитних матеріалів. Ресурс промислових балонів становить понад 20 років."
+                },
+                window8: {
+                    title: "Відкрита трибуна",
+                    items: ["Агрегація вхідних запитань та експертних думок.", "Професійний зворотний зв'язок від інженерів та партнерів.", "Сортування запитів на кастомізацію систем."],
+                    fullTitle: "Відкрита трибуна: Дискусії та Відгуки партнерів",
+                    fullText: "Простір діалогу для верифікації інженерних параметрів платформи ЕнергаТор. Профільні фахівці обмінюються думками, формують відгуки та отримують роз'яснення від конструкторського бюро проекту щодо модифікації систем."
+                },
+                window9: {
+                    title: "Лабораторія рішень",
+                    items: ["Глобальний банк ідей та модернізацій системи TORUM.", "Реєстрація зовнішніх запитів на проектування модифікацій.", "Підготовка первинних раундів технічних відповідей."],
+                    fullTitle: "Лабораторія рішень: Оброботка інженерних запитів",
+                    fullText: "Центр обробки нестандартних завдань від інжинірингових компаній. Сюди акумулюються запити на адаптацію систем під локальні індустріальні вимоги, включаючи концепції генерації енергії в гармонії з довкіллям."
+                },
+                bottomPanel: {
+                    title: "Патентний пул та стратегічне партнерство",
+                    text: "Доступ до розширеної технологічної документації, архітектури Тороїдальних Перетворюючих Агрегатів (ТПА) та міжнародних патентів надається авторизованим інвесторам категорії «Smart Money». Діє обов'язкове підписання форми NDA щодо пріоритетів розвитку платформи від 06.04.2026.",
+                    btnText: "Відкрити сейф / Отримати доступ до NDA"
+                }
+            },
+            en: {
+                back: " To Home",
+                alertNda: "NDA authorization request has been sent to the EnergaTor patent department.",
+                alertMod: "Launching module: ",
+                windowLabels: ["Window 1", "Window 2", "Window 3", "Window 4", "Window 5", "Window 6", "Window 7", "Window 8", "Window 9"],
+                btnText: "Expand Analysis",
+                btnText8: "Open Tribune",
+                btnText9: "Open Lab",
 
-        // Функция открытия окна
-        function openWindow(id) {
-            const windowEl = document.getElementById(`hub-window-${id}`);
-            const meta = windowEl.querySelector('.flex span').innerText;
-            const title = windowEl.querySelector('h3').innerText;
-            const pEl = windowEl.querySelector('.agent-data-stream');
-            
-            // Забираем текст с учетом текущего выбранного языка
-            const bodyText = pEl.getAttribute(`data-${currentLang}`) || pEl.innerText;
+                window1: {
+                    title: "Aerospace",
+                    items: ["Air taxis and heavy drones.", "Drones for industrial research, search and rescue operations.", "Infrastructure tracking and parameter assessment."],
+                    fullTitle: "Aerospace: Alternatives to Chemical Batteries",
+                    fullText: "The implementation of pneumohydraulic systems in the eVTOL and heavy drone sectors removes the strict limitations of lithium-ion batteries. Utilizing compressed air energy provides fast refueling in minutes. Agents track technical parameters, payload capacity, and autonomous operation limits."
+                },
+                window2: {
+                    title: "Light & Commercial Transport",
+                    items: ["Commercial ground fleets (up to 3 tons), private, and social transport.", "Municipal passenger e-buses, urban taxis, and special facilities transport.", "Monitoring fuel crises, lithium, and cobalt deficits."],
+                    fullTitle: "Decarbonization and Fuel Sector Monitoring",
+                    fullText: "Analysis of shortages in petroleum products and raw materials for chemical batteries. Integrating EnergaTor systems into logistics and municipal transport lowers the total cost of ownership. The absence of cylinder wear ensures a continuous fleet operation cycle 24/7. Urban decarbonization requirements and battery disposal challenges are monitored."
+                },
+                window3: {
+                    title: "Marine & Subsea Fleet",
+                    items: ["Speedboats, yachts, cylinder integration in double bottom cavities.", "Drones for subsea research and industrial operations.", "Refueling stations utilizing solar, wind, and wave energy."],
+                    fullTitle: "Marine and Subsea Closed-Loop Energy Systems",
+                    fullText: "Placement of pressure cylinders in the technological cavities of high-speed vessels ensures high safety and preserves useful volume. Robotic drones perform underwater research. Autonomous floating stations recover external wave, wind, and solar energy."
+                },
+                window4: {
+                    title: "Municipal Stationary Energy",
+                    items: ["Emergency life support for residential buildings during blackouts.", "Autonomous power supply for elevator shafts and heating pumps.", "Reducing peak loads on regional transmission lines."],
+                    fullTitle: "Stationary Trigeneration Amid Grid Failures",
+                    fullText: "Under critical conditions of rolling blackouts, systems provide an instant power launch. The architecture allows parallel generation of electricity, heat for heating circuits, and cold for ventilation. This serves as a deployment-ready solution for business survival."
+                },
+                window5: {
+                    title: "Autonomous Robotics",
+                    items: ["Warehouse special transport and automated forklifts.", "Fast compressed air refueling setups within enterprises.", "Fire and explosion safety across logistical hubs."],
+                    fullTitle: "Robotic Complexes and Automated Warehouses",
+                    fullText: "Automated terminals require high fire safety standards. Pneumatic transport completely eliminates chemical battery self-ignition risks. Systems maintain operational efficiency in low-temperature zones and indoor facility grounds."
+                },
+                window6: {
+                    title: "Commercial Trigeneration",
+                    items: ["Solutions for small business, HoReCa, and data centers.", "The 'Sous-Vide Cafe' case with integrated delivery and storage.", "Microclimate stabilization for greenhouses and production lines."],
+                    fullTitle: "Commercial Trigeneration: Maximizing Business Margins",
+                    fullText: "The 'Sous-Vide Cafe' case demonstrates trigeneration efficiency: simultaneous resource distribution for power supply, process heating, and deep cooling. It enables businesses to function independently from rising network tariffs."
+                },
+                window7: {
+                    title: "Technology Architecture",
+                    items: ["Toroidal Transforming Units (PTU) and 5 bar working pressure.", "Repeated air energy utilization without any degradation issues.", "Coolant protects gas expansion elements from critical icing."],
+                    fullTitle: "Platform Architecture: Toroidal Transforming Units",
+                    fullText: "Physical foundations of TORUM operations. A special lubricating coolant liquidates icing effects during gas expansion. A working pressure of 5 bar guarantees a long equipment life cycle without using scarce materials. Industrial cylinder lifespan exceeds 20 years."
+                },
+                window8: {
+                    title: "Open Tribune",
+                    items: ["Aggregation of incoming inquiries and expert feedback.", "Professional feedback from engineers and project partners.", "Sorting customization requests for technical systems."],
+                    fullTitle: "Open Tribune: Partner Discussions and Reviews",
+                    fullText: "A space for dialogue to verify the engineering parameters of the EnergaTor platform. Industry specialists exchange views, compile feedback, and receive detailed clarifications from the design bureau regarding system modifications."
+                },
+                window9: {
+                    title: "Solutions Laboratory",
+                    items: ["Global bank of ideas and modernizations for the TORUM system.", "Registration of external requests for modification design.", "Compiling primary rounds of technical responses."],
+                    fullTitle: "Solutions Laboratory: Processing Engineering Inquiries",
+                    fullText: "A center for processing non-standard engineering tasks from engineering firms. Requests for adapting TORUM systems to specific industrial requirements accumulate here, including concepts operating in harmony with the environment."
+                },
+                bottomPanel: {
+                    title: "Patent Pool and Strategic Partnership",
+                    text: "Access to expanded technological documentation, the architecture of Toroidal Transforming Units (PTU), and international patents is granted to authorized 'Smart Money' investors. Signing an NDA regarding platform development priorities dated 06.04.2026 is mandatory.",
+                    btnText: "Open Safe / Access NDA Form"
+                }
+            },
+            de: {
+                back: " Zum Hauptmenü",
+                alertNda: "Die NDA-Autorisierungsanfrage wurde an die Patentabteilung von EnergaTor gesendet.",
+                alertMod: "Modul wird gestartet: ",
+                windowLabels: ["Fenster 1", "Fenster 2", "Fenster 3", "Fenster 4", "Fenster 5", "Fenster 6", "Fenster 7", "Fenster 8", "Fenster 9"],
+                btnText: "Analytik Erweitern",
+                btnText8: "Tribüne Öffnen",
+                btnText9: "Labor Öffnen",
 
-            document.getElementById('modal-meta').innerText = meta;
-            document.getElementById('modal-title').innerText = title;
-            document.getElementById('modal-body').innerText = bodyText;
-            
-            // Показываем модалку
-            document.getElementById('details-modal').classList.remove('hidden');
-        }
+                window1: {
+                    title: "Luft- und Raumfahrt",
+                    items: ["Flugtaxis und schwere Drohnen.", "Drohnen für industrielle Forschung, Personensuche und Objekte.", "Infrastrukturüberwachung und Parameterbewertung."],
+                    fullTitle: "Luft- und Raumfahrt: Alternativen zu chemischen Batterien",
+                    fullText: "Die Implementierung von Pneumohydraulik-Systemen im eVTOL- und schweren Drohnensektor hebt die strengen Einschränkungen von Lithium-Ionen-Akkus auf. Die Nutzung von Druckluftenergie ermöglicht eine schnelle Betankung in Minuten. Agenten überwachen technische Parameter, Nutzlast und autonome Betriebsgrenzen."
+                },
+                window2: {
+                    title: "Leichter & kommerzieller Transport",
+                    items: ["Gewerbliche Flotten (bis 3 Tonnen), privater und sozialer Transport.", "Städtische Passagier-E-Busse, Taxis und Spezialtransport.", "Überwachung von Kraftstoffkrisen, Lithium- und Kobaltdefiziten."],
+                    fullTitle: "Dekarbonisierung und Überwachung des Kraftstoffsektors",
+                    fullText: "Analyse von Engpässen bei Erdölprodukten und Rohstoffen für chemische Batterien. Die Integration von EnergaTor-Systemen in Logistik und kommunalen Verkehr senkt die Gesamtbetriebskosten. Der Verzicht auf Zylinderverschleiß ermöglicht einen kontinuierlichen Flottenbetrieb rund um die Uhr 24/7. Anforderungen an die städtische Dekarbonisierung werden überwacht."
+                },
+                window3: {
+                    title: "Marine & Unterwasserflotte",
+                    items: ["Schnellboote, Yachten, Zylinderintegration in Doppelböden.", "Drohnen für Unterwasserforschung und industrielle Arbeiten.", "Betankungsanlagen auf Basis von Sonnen-, Wind- und Wellenenergie."],
+                    fullTitle: "Geschlossene Energiesysteme für Marine und Unterwasser",
+                    fullText: "Die Platzierung von Druckzylindern in den technologischen Hohlräumen des Doppelbodens von Schnellbooten sorgt für hohe Sicherheit und Erhalt des Nutzvolumens. Robotische Drohnen führen Unterwasserforschungen durch. Autonome schwimmende Stationen gewinnen externe Wellen-, Wind- und Sonnenenergie zurück."
+                },
+                window4: {
+                    title: "Kommunale stationäre Energie",
+                    items: ["Notstrom-Lebenserhaltung für Wohngebäude bei Blackouts.", "Autonome Stromversorgung für Aufzugsschächte und Heizungspumpen.", "Reduzierung von Spitzenlasten im regionalen Stromnetz."],
+                    fullTitle: "Stationäre Trigeneration bei Netzausfällen",
+                    fullText: "Unter den kritischen Bedingungen von rollierenden Blackouts sorgen Systeme für einen sofortigen Start der Stromversorgung. Die Architektur ermöglicht die parallele Erzeugung von Strom, Wärme für Heizkreise und Kälte für Lüftung. Dies dient als fertige Lösung für das Überleben von Unternehmen."
+                },
+                window5: {
+                    title: "Autonome Robotik",
+                    items: ["Lager-Spezialtransport und automatisierte Gabelstapler.", "Schnelle Druckluft-Betankungsanlagen in Unternehmen.", "Brandschutz und Explosionsschutz in Logistik-Hubs."],
+                    fullTitle: "Robotische Komplexe und automatisierte Lager",
+                    fullText: "Automatisierte Terminals erfordern hohe Brandschutzstandards. Pneumatische Spezialtransporte eliminieren die Risiken einer Selbstentzündung chemischer Batterien vollständig. Die Systeme behalten ihre Effizienz in Tieftemperaturzonen und auf geschlossenen Betriebsgeländen bei."
+                },
+                window6: {
+                    title: "Gewerbliche Trigeneration",
+                    items: ["Lösungen für Kleinunternehmen, HoReCa und Rechenzentren.", "Der Fall 'Sous-Vide-Café' mit integrierter Lieferung und Lagerung.", "Mikroklimastabilisierung für Gewächshäuser und Produktionslinien."],
+                    fullTitle: "Gewerbliche Trigeneration: Maximierung der Geschäftsmargen",
+                    fullText: "Der Fall 'Sous-Vide-Café' demonstriert die Effizienz der Trigeneration: gleichzeitige Ressourcenverteilung für Stromversorgung, Prozesswärme und Tiefkälte. Es ermöglicht Unternehmen, unabhängig von steigenden Netztarifen zu agieren."
+                },
+                window7: {
+                    title: "Technologiearchitektur",
+                    items: ["Toroidale Transformationsaggregate (TTA) und 5 bar Arbeitsdruck.", "Mehrfache Nutzung der Luftenergie ohne Jegliche Degradation.", "Kühlmittel schützt Gasexpansionselemente vor Vereisung."],
+                    fullTitle: "Plattformarchitektur: Toroidale Transformationsaggregate",
+                    fullText: "Physikalische Grundlagen des Betriebs von TORUM-Systemen. Ein spezielles Schmierkühlmittel beseitigt Vereisungseffekte bei der Gasexpansion vollständig. Ein Arbeitsdruck von 5 bar garantiert einen langen Lebenszyklus der Geräte ohne knappe Materialien. Die Lebensdauer industrieller Zylinder überschreitet 20 Jahre."
+                },
+                window8: {
+                    title: "Offene Tribüne",
+                    items: ["Aggregation eingehender Anfragen und Expertenmeinungen.", "Professionelles Feedback von Ingenieuren und Projektpartnern.", "Sortierung von Anpassungsanfragen für technische Systeme."],
+                    fullTitle: "Offene Tribüne: Partnerdiskussionen und Bewertungen",
+                    fullText: "Ein Raum für den Dialog zur Überprüfung der technischen Parameter der EnergaTor-Plattform. Branchenspecialisten tauschen Meinungen aus, verfassen Feedback und erhalten detaillierte Erläuterungen aus dem Konstruktionsbüro bezüglich Systemmodifikationen."
+                },
+                window9: {
+                    title: "Labor für Lösungen",
+                    items: ["Globale Ideenbank und Modernisierungen für das TORUM-System.", "Registrierung externer Anfragen für Modifikationsdesign.", "Zusammenstellung primärer technischer Antwortrunden."],
+                    fullTitle: "Labor für Lösungen: Bearbeitung technischer Anfragen",
+                    fullText: "Ein Zentrum für die Bearbeitung unkonventioneller technischer Aufgaben von Engineering-Firmen. Anfragen zur Anpassung von TORUM-Systemen an spezifische industrielle Anforderungen sammeln sich hier, einschließlich Konzepten, die im Einklang mit der Umwelt agieren."
+                },
+                bottomPanel: {
+                    title: "Patentpool und strategische Partnerschaft",
+                    text: "Der Zugang zur erweiterten technologischen Dokumentation, der Architektur der Toroidalen Transformationsaggregate (TTA) und internationalen Patenten wird autorisierten 'Smart Money'-Investoren gewährt. Die Unterzeichnung einer NDA bezüglich der Plattformentwicklungsprioritän vom 06.04.2026 ist obligatorisch.",
+                    btnText: "Safe Öffnen / Zugang zum NDA-Formular"
+                }
+            },
+            ru: {
+                back: " На главную",
+                alertNda: "Запрос на авторизацию NDA отправлен в патентный отдел ЭнергаТор.",
+                alertMod: "Запуск модуля: ",
+                windowLabels: ["Окно 1", "Окно 2", "Окно 3", "Окно 4", "Окно 5", "Окно 6", "Окно 7", "Окно 8", "Окно 9"],
+                btnText: "Развернуть аналитику",
+                btnText8: "Открыть трибуну",
+                btnText9: "Открыть лабораторию",
 
-        // Функция закрытия окна
-        function closeWindow() {
-            document.getElementById('details-modal').classList.add('hidden');
-        }
+                window1: {
+                    title: "Аэро-Пространство",
+                    items: ["Аэротакси и тяжелые дроны.", "Дроны для промышленных исследований, поиска людей и объектов.", "Развитие инфраструктуры и оценка параметров."],
+                    fullTitle: "Аэро-Пространство: Альтернатива химическим аккумуляторам",
+                    fullText: "Внедрение пневмогидравлических систем в сектор eVTOL и тяжелых беспилотников снимает жесткие ограничения литий-ионных накопителей. Использование энергии сжатого воздуха обеспечивает быструю дозаправку за минуты. Агенты отслеживают технические характеристики новинок, грузоподъемность и время автономной работы."
+                },
+                window2: {
+                    title: "Легкий и коммерческий транспорт",
+                    items: ["Наземный коммерческий (до 3 тонн), частный и социальный транспорт.", "Городские пассажирские электробусы, такси и спецтранспорт.", "Мониторинг дефицита лития, кобальта и топливных кризисов."],
+                    fullTitle: "Декарбонизация и мониторинг топливного сектора",
+                    fullText: "Анализ дефицита нефтепродуктов и сырья для химических АКБ. Интеграция систем ЭнергаТор в логистику и муниципальный транспорт снижает стоимость владения. Отсутствие износа цилиндров обеспечивает непрерывный цикл работы парка 24/7. Изучаются требования по декарбонизации городских пространств и утилизации батарей."
+                },
+                window3: {
+                    title: "Морской и Подводный флот",
+                    items: ["Катера, яхты, интеграция баллонов в полостях двойного дна.", "Дроны для подводных исследований и промышленных работ.", "Заправочные комплексы на базе энергии солнца, ветра и волн."],
+                    fullTitle: "Морские и подводные энергосистемы закрытого цикла",
+                    fullText: "Размещение баллонов давления в технологических полостях двойного дна судов обеспечивает безопасность и сохранение объема. Роботизированные дроны выполняют подводные исследования. Автономные плавучие станции рекуперируют внешнюю энергию волн, ветра и солнца."
+                },
+                window4: {
+                    title: "Муниципальная стационарная энергетика",
+                    items: ["Аварийное жизнеобеспечение жилых зданий при блэкаутах.", "Автономное питание лифтовых шахт и насосов отопления.", "Снижение нагрузки на магистральные ЛЭП в часы пик."],
+                    fullTitle: "Стационарная тригенерация в условиях блэкаутов",
+                    fullText: "В критических условиях веерных отключений системы обеспечивают мгновенный запуск мощностей. Архитектура позволяет параллельно генерировать электроэнергию, тепло для отопления и холод для вентиляции. Это готовое решение для выживания инфраструктуры и бизнеса."
+                },
+                window5: {
+                    title: "Автономная робототехника",
+                    items: ["Складской спецтранспорт и автоматизированные погрузчики.", "Системы быстрой заправки сжатым воздухом на предприятиях.", "Полная пожарная и взрывобезопасность логистических хабов."],
+                    fullTitle: "Робототехнические комплексы и автоматизированные склады",
+                    fullText: "Автоматизированные терминалы требуют высокого уровня пожаробезопасности. Пневматический спецтранспорт полностью исключает риски самовозгорания батарей. Системы сохраняют эффективность в низкотемпературных зонах и на закрытых территорияях предприятий."
+                },
+                window6: {
+                    title: "Коммерческая тригенерация",
+                    items: ["Решения для малого бизнеса, HoReCa и дата-центров.", "Кейс «Кафе Су-Вид» со встроенной системой доставки и хранения.", "Стабилизация микроклимата тепличных хозяйств и производств."],
+                    fullTitle: "Коммерческая тригенерация: Максимизация маржи бизнеса",
+                    fullText: "Кейс «Кафе Су-Вид» демонстрирует эффективность тригенерации: одновременное распределение ресурсов на электроснабжение технологических линий, выработку тепла для кулинарных процессов и глубокого холода. Позволяет бизнесу функционировать независимо от роста сетевых тарифов."
+                },
+                window7: {
+                    title: "Архитектура Технологии",
+                    items: ["Тороидальные Преобразующие Агрегаты (ТПА) и давление 5 бар.", "Многократное использование энергии воздуха без деградации.", "СОЖ защищает элементы расширения газов от обмерзания."],
+                    fullTitle: "Архитектура Платформы: Тороидальные Преобразующие Агрегаты",
+                    fullText: "Физические основы работы систем TORUM. Специальная смазочно-охлаждающая жидкость ликвидирует эффект обмерзания узлов при расширении газов. Давление в 5 бар гарантирует длительный жизненный цикл без дефицитных материалов. Ресурс промышленных баллонов составляет более 20 лет."
+                },
+                window8: {
+                    title: "Открытая трибуна",
+                    items: ["Агрегация входящих вопросов и экспертных мнений.", "Профессиональная обратная связь от инженеров и партнеров.", "Сортировка запросов на кастомизацию систем."],
+                    fullTitle: "Открытая трибуна: Дискуссии и Отзывы партнеров",
+                    fullText: "Пространство диалога для верификации инженерных параметров платформы ЭнергаТор. Профильные специалисты обмениваются мнениями, формируют отзывы и получают разъяснения от конструкторского бюро проекта относительно модификации систем."
+                },
+                window9: {
+                    title: "Лаборатория решений",
+                    items: ["Глобальный банк идей и модернизаций системы TORUM.", "Регистрация внешних запросов на проектирование модификаций.", "Подготовка первичных раундов технических ответов."],
+                    fullTitle: "Лаборатория решений: Обработка инженерных запросов",
+                    fullText: "Центр обработки нестандартных задач от инжиниринговых компаний. Сюда аккумулируются запросы на адаптацию систем под локальные индустриальные требования, включая концепции генерации энергии в гармонии с окружающей средой."
+                },
+                bottomPanel: {
+                    title: "Патентный пул и стратегическое партнерство",
+                    text: "Доступ к расширенной технологической документации, архитектуре Тороидальных Преобразующих Агрегатов (ТПА) и международным патентам предоставляется авторизованным инвесторам категории «Smart Money». Действует обязательное подписание формы NDA по приоритетам развития платформы от 06.04.2026.",
+                    btnText: "Открыть сейф / Получить доступ к NDA"
+                }
+            }
+        };
 
-        // Смена языков
-        function changeHubLang(lang) {
+        let currentLang = localStorage.getItem('energator_lang') || 'ru';
+
+        function changeLang(lang) {
             currentLang = lang;
-            const elements = document.querySelectorAll('[data-ua]');
-            elements.forEach(el => {
-                const text = el.getAttribute(`data-${lang}`);
-                if (text) el.innerText = text;
+            localStorage.setItem('energator_lang', lang);
+
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                if (btn.id === `btn-${lang}`) btn.classList.add('active');
+                else btn.classList.remove('active');
             });
 
-            ['ua', 'en', 'ru', 'de'].forEach(l => {
-                const btn = document.getElementById(`hbtn-${l}`);
-                if (l === lang) btn.className = 'px-2 py-1 rounded bg-techAccent text-techDark font-bold';
-                else btn.className = 'px-2 py-1 rounded text-gray-400 hover:text-white';
-            });
-            document.documentElement.lang = lang;
+            document.getElementById('lnBack').innerText = hubTranslations[lang].back;
             
-            // Если модальное окно открыто, обновляем язык кнопки закрытия в ней
-            const modalCloseBtn = document.querySelector('#details-modal button[data-ua]');
-            if(modalCloseBtn) modalCloseBtn.innerText = modalCloseBtn.getAttribute(`data-${lang}`);
+            renderMatrix();
+            renderBottomPanel();
         }
 
-        // Закрытие по клавише Esc
-        window.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') closeWindow();
-        });
+        function renderMatrix() {
+            const gridContainer = document.getElementById('matrixGrid');
+            gridContainer.innerHTML = ""; 
+            
+            const trans = hubTranslations[currentLang];
+
+            for (let i = 1; i <= 9; i++) {
+                const data = trans[`window${i}`];
+                if (data) {
+                    const card = document.createElement('div');
+                    card.className = 'window-card';
+                    card.setAttribute('onclick', `openModal('window${i}')`);
+                    
+                    let listHtml = '';
+                    data.items.forEach(item => { listHtml += `<li>${item}</li>`; });
+
+                    let btnLbl = trans.btnText;
+                    if (i === 8) btnLbl = trans.btnText8;
+                    if (i === 9) btnLbl = trans.btnText9;
+
+                    card.innerHTML = `
+                        <div>
+                            <div class="window-header">
+                                <h3 class="window-title">${data.title}</h3>
+                                <span class="window-num">${trans.windowLabels[i-1]}</span>
+                            </div>
+                            <div class="window-body">
+                                <ul>${listHtml}</ul>
+                            </div>
+                        </div>
+                        <div class="btn-action">${btnLbl}</div>
+                    `;
+                    gridContainer.appendChild(card);
+                }
+            }
+        }
+
+        function renderBottomPanel() {
+            const panelContainer = document.getElementById('bottomPanel');
+            const pData = hubTranslations[currentLang].bottomPanel;
+            panelContainer.innerHTML = `
+                <h2 class="panel-title">${pData.title}</h2>
+                <p class="panel-text">${pData.text}</p>
+                <button class="btn-panel" onclick="alert(hubTranslations[currentLang].alertNda);">${pData.btnText}</button>
+            `;
+        }
+
+        function openModal(windowKey) {
+            const data = hubTranslations[currentLang][windowKey];
+            document.getElementById('mTitle').innerText = data.fullTitle;
+            document.getElementById('mContent').innerText = data.fullText;
+            document.getElementById('mVideoZone').innerHTML = "";
+            
+            document.getElementById('infoModal').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('infoModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        changeLang(currentLang);
     </script>
 </body>
 </html>
