@@ -1,4 +1,11 @@
-```html
+Александр, то, что значка переводчика в адресной строке нет — это отличная новость! Это означает, что ваш браузер сейчас воспринимает страницу GitHub в ее оригинальном техническом виде и не пытается ничего искажать «на лету». Путь полностью свободен от помех.
+
+Раз поле файла hub.html сейчас абсолютно пустое, а переводчик спит, давайте завершим этот процесс в идеальной чистоте.
+
+Последние 3 простых действия:
+Скопируйте весь монолитный HTML-код из блока ниже (это финальная, защищенная версия Аналитического Хаба с правильными медными цветами, кнопками и встроенной логикой переключения 4 языков):
+
+HTML
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -126,8 +133,7 @@
     </header>
 
     <div class="grid-container" id="grid-container">
-        <!-- Окна генерируются динамически -->
-    </div>
+        </div>
 
     <div class="footer-panel" id="footer-panel">
         <h3 id="footer-title"></h3>
@@ -157,13 +163,13 @@
                     title: "Аеро-Простір",
                     items: ["Аеротаксі та важкі БПЛА вантажного класу.", "Дрони для промислових досліджень та зйомки об'єктів.", "Сканування параметрів автономності та часу роботи."],
                     fullTitle: "Аеро-Простір: Альтернатива хімічним акумуляторам",
-                    fullText: "Впровадження pneumatic-систем у сектор eVTOL та важких безпілотників знімає жорсткі обмеження літій-іонних накопичувачів. Використання енергії стисненого повітря забезпечує швидку дозаправку за хвилини. Агенти верифікують технічні характеристики новинок, вантажопідйомність та межі автономної роботи без підзарядки."
+                    fullText: "Впровадження пневмогідравлічних систем у сектор eVTOL та важких безпілотників знімає жорсткі обмеження літій-іонних накопичувачів. Використання енергії стисненого повітря забезпечує швидку дозаправку за хвилини. Агенти верифікують технічні характеристики новинок, вантажопідйомність та межі автономної роботи без підзарядки."
                 },
                 window2: {
                     title: "Легкий та комерційний транспорт",
                     items: ["Наземний комерційний (до 3 тонн), приватний та соціальний транспорт.", "Міські пасажирські електробуси, таксі та спецтранспорт.", "Моніторинг дефіциту літію, кобальту та паливних криз."],
                     fullTitle: "Декарбонізація та моніторинг паливного сектора",
-                    fullText: "Аналіз дефіциту нафтопродуктів та сировини для хімічних АКБ. Інтеграция систем ЕнергаТор у логістику та муніципальний транспорт знижує вартість володіння. Відсутність зносу циліндрів забезпечує безперервний цикл роботи парку 24/7. Досліджуються вимоги щодо декарбонізації міських просторів та утилізації батарей."
+                    fullText: "Аналіз дефіциту нафтопродуктів та сировини для хімічних АКБ. Інтеграція систем ЕнергаТор у логістику та муніципальний транспорт знижує вартість володіння. Відсутність зносу циліндрів забезпечує безперервний цикл роботи парку 24/7. Досліджуються вимоги щодо декарбонізації міських просторів та утилізації батарей."
                 },
                 window3: {
                     title: "Морський та Підводний флот",
@@ -175,13 +181,13 @@
                     title: "Муніципальна стаціонарна енергетика",
                     items: ["Аварійне життєзабезпечення житлових будівель при блеккаутах.", "Автономне живлення ліфтових шахт та насосів опалення.", "Зниження навантаження на магістральні ЛЕП у години пік."],
                     fullTitle: "Стаціонарна тригенерація в умовах блеккаутів",
-                    fullText: "В критичних умовах віялових відключень системи забезпечують миттєвий запуск потужностей. Архітектура дозволяє паралельно генерувати електроенергію, тепло для опалення та холод для вентиляції. Це готове рішення для виживання інфраструктури та бізнесу."
+                    fullText: "В критичних умовах віялових відключень системи забезпечують миттвий запуск потужностей. Архітектура дозволяє паралельно генерувати електроенергію, тепло для опалення та холод для вентиляції. Це готове рішення для виживання інфраструктури та бізнесу."
                 },
                 window5: {
                     title: "Автономна робототехніка",
-                    items: ["Складський спецтранспорт та автоматизовані навантажувачі.", "Системи швидкої заправки стисненим повітрям на підприємствах.", "Повна пожежна та вибухобезпека логістических хабів."],
+                    items: ["Складський спецтранспорт та автоматизовані навантажувачі.", "Системи швидкої заправки стисненим повітрям на підприємствах.", "Повна пожежна та вибухобезпека логістичних хабів."],
                     fullTitle: "Робототехничні комплекси та автоматизовані склади",
-                    fullText: "Automated склади вимагають високого рівня пожежобезпеки. Пневматичний спецтранспорт повністю виключає ризики самозаймання батарей. Системи зберігають ефективність у низькотемпературних зонах і на закритих територіях підприємств."
+                    fullText: "Автоматизовані склади вимагають високого рівня пожежобезпеки. Пневматичний спецтранспорт повністю виключає ризики самозаймання батарей. Системи зберігають ефективність у низькотемпературних зонах і на закритих територіях підприємств."
                 },
                 window6: {
                     title: "Комерційна тригенерація",
@@ -193,7 +199,7 @@
                     title: "Архітектура Технології",
                     items: ["Тороїдальні Перетворюючі Агрегати (ТПА) та тиск 5 бар.", "Багаторазове використання енергії повітря без деградації.", "СОЖ захищає елементи розширення газів від обмерзання."],
                     fullTitle: "Архітектура Платформи: Тороїдальні Перетворюючі Агрегати",
-                    fullText: "Фізичні основи роботи систем TORUM. Спеціальна змащувально-охолоджувальна рідина ліквідує ефект обмерзання вузлів при розширенні газів. Давление в 5 бар гарантує тривалий життєвий цикл без дефіцитних матеріалів. Ресурс промышленных баллонов составляет более 20 лет."
+                    fullText: "Физичні основи роботи систем TORUM. Спеціальна змащувально-охолоджувальна рідина ліквідує ефект обмерзання вузлів при розширенні газів. Давление в 5 бар гарантує тривалий життєвий цикл без дефіцитних матеріалів. Ресурс промышленных баллонов составляет более 20 лет."
                 },
                 window8: {
                     title: "Відкрита трибуна",
@@ -205,11 +211,11 @@
                     title: "Лабораторія рішень",
                     items: ["Глобальний банк ідей та модернізацій системи TORUM.", "Реєстрація зовнішніх запитів на проектування модифікацій.", "Підготовка первинних раундів технічних відповідей."],
                     fullTitle: "Лабораторія рішень: Обробка інженерних запитів",
-                    fullText: "Центр обробки нестандартних завдань від інжинірингових компаній. Сюди акумулюються запити на адаптацію систем під локальні індустріальні вимоги, включаючи концепції генерації енергії в гармонії з довкіллям."
+                    fullText: "Центр обробки нестандартних завдань від інжинірингових компаній. Сюди акамулюються запити на адаптацію систем під локальні індустріальні вимоги, включаючи концепції генерації енергії в гармонії з довкіллям."
                 },
                 bottomPanel: {
                     title: "Патентний пул та стратегічне партнерство",
-                    text: "Доступ до розширеної технологічної документації, архітектури Тороїдальних Перетворюючих Агрегатів (ТПА) та міжнародних патентів надається авторизованим инвесторам категорії «Smart Money». Діє обов'язкове підписання форми NDA щодо пріоритетів розвитку платформи від 06.04.2026.",
+                    text: "Доступ до розширеної технологічної документації, архітектури Тороїдальних Перетворюючих Агрегатів (ТПА) та міжнародних патентів надається авторизованим інвесторам категорії «Smart Money». Діє обов'язкове підписання форми NDA щодо пріоритетів розвитку платформи від 06.04.2026.",
                     btnText: "Відкрити сейф / Отримати доступ до NDA"
                 }
             },
@@ -292,7 +298,7 @@
                 window1: {
                     title: "Luft- und Raumfahrt",
                     items: ["Flugtaxis und schwere Frachtdrohnen.", "Drohnen für industrielle Forschung und Objektkartierung.", "Überwachung von Autonomie- und Betriebsgrenzen."],
-                    fullTitle: "Luft- und Raumfahrt: Alternativen zu chemischen Batterien",
+                    fullTitle: "Luft- und Raumfahrt: Alternativen to chemischen Batterien",
                     fullText: "Die Region von Pneumohydraulik-Systemen im eVTOL- und schweren Drohnensektor hebt die strengen Einschränkungen von Lithium-Ionen-Akkus auf. Die Nutzung von Druckluftenergie ermöglicht eine schnelle Betankung in Minuten. Agenten überwachen technische Parameter, Nutzlast und autonome Betriebsgrenzen."
                 },
                 window2: {
@@ -317,13 +323,13 @@
                     title: "Autonome Robotik",
                     items: ["Lager-Spezialtransport und automatisierte Gabelstapler.", "Schnelle Druckluft-Betankungsanlagen in Unternehmen.", "Brandschutz und Explosionsschutz in Logistik-Hubs."],
                     fullTitle: "Robotische Komplexe und automatisierte Lager",
-                    fullText: "Automatisierte Terminals erfordern hohe Brandschutzstandards. Pneumatische Spezialtransporte eliminieren die Risiken einer Selbstentzündung chemischer Batterien vollständig. Die Systeme behalten ihre Efizienz in Tieftemperaturzonen und auf geschlossenen Betriebsgeländen bei."
+                    fullText: "Automatisierte Terminals erfordern hohe Brandschutzstandards. Pneumatische Spezialtransporte eliminieren die Risiken einer Selbstentzündung chemischer Batterien vollständig. Die Systeme behalten ihre Effizienz in Tieftemperaturzonen und auf geschlossenen Betriebsgeländen bei."
                 },
                 window6: {
                     title: "Gewerbliche Trigeneration",
                     items: ["Lösungen für Kleinunternehmen, HoReCa und Rechenzentren.", "Der Fall 'Sous-Vide-Café' mit integrierter Lieferung und Lagerung.", "Mikroklimastabilisierung für Gewächshäuser und Produktionslinien."],
                     fullTitle: "Gewerbliche Trigeneration: Maximierung der Geschäftsmargen",
-                    fullText: "Der Fall 'Sous-Vide-Café' demonstriert die Efizienz der Trigeneration: gleichzeitige Ressourcenverteilung für Stromversorgung, Prozesswärme und Tiefkälte. Es ermöglicht Unternehmen, unabhängig von steigenden Netztarifen zu agieren."
+                    fullText: "Der Fall 'Sous-Vide-Café' demonstriert die Effizienz der Trigeneration: gleichzeitige Ressourcenverteilung für Stromversorgung, Prozesswärme und Tiefkälte. Es ermöglicht Unternehmen, unabhängig von steigenden Netztarifen zu agieren."
                 },
                 window7: {
                     title: "Technologiearchitektur",
@@ -341,7 +347,7 @@
                     title: "Labor für Lösungen",
                     items: ["Globale Ideenbank und Modernisierungen für das TORUM-System.", "Registrierung externer Anfragen für Modifikationsdesign.", "Zusammenstellung primärer technischer Antwortrunden."],
                     fullTitle: "Labor für Lösungen: Bearbeitung technischer Anfragen",
-                    fullText: "Ein Zentrum für die Bearbeitung unkonventioneller technischer Aufgaben von Engineering-Firmen. Anfragen zur Anpassung von TORUM-Systemen an spezifische industrielle Anforderungen sammeln sich hier, einschließlich Konzepten, die im Eigentum der Umwelt agieren."
+                    fullText: "Ein Zentrum für die Bearbeitung unkonventioneller technischer Aufgaben von Engineering-Firmen. Anfragen zur Anpassung von TORUM-Systemen an spezifische industrielle Anforderungen sammeln sich hier, einschließlich Konzepten, die im Einklang mit der Umwelt agieren."
                 },
                 bottomPanel: {
                     title: "Patentpool und strategische Partnerships",
@@ -367,7 +373,7 @@
                     title: "Легкий и коммерческий транспорт",
                     items: ["Наземный коммерческий (до 3 тонн), частный и социальный транспорт.", "Городские пассажирские электробусы, такси и спецтранспорт.", "Мониторинг дефицита лития, кобальта и топливных кризисов."],
                     fullTitle: "Декарбонизация и мониторинг топливного сектора",
-                    fullText: "Анализ дефицита нефтепродуктов и сырья для химических АКБ. Интеграция систем ЭнергаТор в логистику и муниципальный транспорт снижает стоимость владения. Отсутствие износа цилиндров обеспечивает непрерывный цикл работы парка 24/7. Изучаются требования по декарбонизации городских пространств и утилизации батарей."
+                    fullText: "Анализ дефицита нефтепродуктов и сырья для химических АКБ. Integration систем ЭнергаТор в логистику и муниципальный транспорт снижает стоимость владения. Отсутствие износа цилиндров обеспечивает непрерывный цикл работы парка 24/7. Изучаются требования по декарбонизации городских пространств и утилизации батарей."
                 },
                 window3: {
                     title: "Морской и Подводный флот",
@@ -424,11 +430,16 @@
         function setLanguage(lang) {
             currentLang = lang;
             document.querySelectorAll('.lang-selector button').forEach(btn => btn.classList.remove('active'));
-            document.getElementById(`btn-${lang}`).classList.add('active');
+            const activeBtn = document.getElementById(`btn-${lang}`);
+            if (activeBtn) activeBtn.classList.add('active');
             
             const data = hubTranslations[lang];
             
-            document.getElementById('hub-main-title').innerText = lang === 'ua' ? 'ЕнергаТор AI Аналітична Матриця' : (lang === 'ru' ? 'ЭнергаТор AI Аналитическая Матрица' : (lang === 'de' ? 'EnergaTor AI Analytische Matrix' : 'EnergaTor AI Intelligence Matrix'));
+            const mainTitle = document.getElementById('hub-main-title');
+            if (mainTitle) {
+                mainTitle.innerText = lang === 'ua' ? 'ЕнергаТор AI Аналітична Матриця' : (lang === 'ru' ? 'ЭнергаТор AI Аналитическая Матрица' : (lang === 'de' ? 'EnergaTor AI Analytische Matrix' : 'EnergaTor AI Intelligence Matrix'));
+            }
+            
             document.getElementById('footer-title').innerText = data.bottomPanel.title;
             document.getElementById('footer-text').innerText = data.bottomPanel.text;
             document.getElementById('footer-btn').innerText = data.bottomPanel.btnText;
