@@ -1,5 +1,5 @@
-```yaml
-name: EnergaTor-AI
+YAML
+name: EnergaTorAI
 
 on:
   push:
