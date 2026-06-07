@@ -67,8 +67,9 @@ async function runIndustrialAnalystAgent1() {
         }
     };
 
-    // Путь к файлу intelligence.html на GitHub
-    const targetFilePath = path.join(__dirname, '../intelligence.html');
+   JavaScript
+// Путь к файлу intelligence.html на GitHub
+const targetFilePath = path.join(__dirname, '../intelligence.html');
     
     if (!fs.existsSync(targetFilePath)) {
         console.error("Ошибка: Файл intelligence.html не найден!");
