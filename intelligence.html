@@ -17,10 +17,7 @@ HTML
         }
 
         body, html {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            min-height: 100%;
+            margin: 0; padding: 0; width: 100%; min-height: 100%;
             background-color: var(--space-bg);
             font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
             color: var(--text-main);
@@ -29,236 +26,85 @@ HTML
         }
 
         .header {
-            border-bottom: 1px solid var(--glass-border);
-            padding: 20px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(3, 7, 18, 0.8);
-            backdrop-filter: blur(12px);
-            position: sticky;
-            top: 0;
-            z-index: 100;
+            border-bottom: 1px solid var(--glass-border); padding: 20px 40px;
+            display: flex; justify-content: space-between; align-items: center;
+            background: rgba(3, 7, 18, 0.8); backdrop-filter: blur(12px);
+            position: sticky; top: 0; z-index: 100;
         }
 
-        .header class-title h1 {
-            font-size: 1.4rem;
-            margin: 0;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            color: var(--copper-primary);
-        }
-
-        .header-controls {
-            display: flex;
-            align-items: center;
-            gap: 30px;
-        }
-
-        .lang-panel {
-            display: flex;
-            gap: 12px;
-        }
-
-        .lang-btn {
-            background: transparent;
-            border: none;
-            color: rgba(255, 255, 255, 0.3);
-            font-size: 0.85rem;
-            font-weight: 700;
-            cursor: pointer;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-        }
-
+        .header h1 { font-size: 1.4rem; margin: 0; text-transform: uppercase; letter-spacing: 3px; color: var(--copper-primary); }
+        .header-controls { display: flex; align-items: center; gap: 30px; }
+        .lang-panel { display: flex; gap: 12px; }
+        .lang-btn { background: transparent; border: none; color: rgba(255, 255, 255, 0.3); font-size: 0.85rem; font-weight: 700; cursor: pointer; letter-spacing: 1px; transition: all 0.3s ease; }
         .lang-btn:hover { color: var(--text-main); }
         .lang-btn.active { color: var(--copper-primary); text-shadow: 0 0 8px rgba(200, 117, 51, 0.5); }
+        .btn-back { color: var(--text-main); text-decoration: none; font-weight: 600; font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase; border: 1px solid var(--copper-primary); padding: 8px 18px; border-radius: 4px; transition: all 0.3s ease; background: rgba(200, 117, 51, 0.05); }
+        .btn-back:hover { background: var(--copper-primary); color: var(--space-bg); box-shadow: 0 0 20px rgba(200, 117, 51, 0.4); }
 
-        .btn-back {
-            color: var(--text-main);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.85rem;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            border: 1px solid var(--copper-primary);
-            padding: 8px 18px;
-            border-radius: 4px;
-            transition: all 0.3s ease;
-            background: rgba(200, 117, 51, 0.05);
-        }
-
-        .btn-back:hover {
-            background: var(--copper-primary);
-            color: var(--space-bg);
-            box-shadow: 0 0 20px rgba(200, 117, 51, 0.4);
-        }
-
-        .dashboard-container {
-            max-width: 1600px;
-            margin: 40px auto;
-            padding: 0 30px;
-            box-sizing: border-box;
-        }
-
-        .matrix-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-
+        .dashboard-container { max-width: 1600px; margin: 40px auto; padding: 0 30px; box-sizing: border-box; }
+        .matrix-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-bottom: 40px; }
+        
         .window-card {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 8px;
-            padding: 30px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            backdrop-filter: blur(10px);
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            cursor: pointer;
+            background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 8px;
+            padding: 30px; display: flex; flex-direction: column; justify-content: space-between;
+            backdrop-filter: blur(10px); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3); cursor: pointer;
         }
-
-        .window-card:hover {
-            border-color: var(--copper-primary);
-            background: rgba(15, 23, 42, 0.6);
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(200, 117, 51, 0.15);
-        }
-
-        .window-header {
-            border-bottom: 1px solid rgba(200, 117, 51, 0.15);
-            padding-bottom: 15px;
-            margin-bottom: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .window-title {
-            margin: 0;
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: var(--text-main);
-            line-height: 1.3;
-        }
-
-        .window-num {
-            font-size: 0.75rem;
-            font-weight: bold;
-            color: var(--copper-primary);
-            border: 1px solid var(--copper-primary);
-            padding: 2px 6px;
-            border-radius: 4px;
-            white-space: nowrap;
-        }
-
-        .window-body ul {
-            margin: 0 0 25px 0;
-            padding-left: 18px;
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
-
+        .window-card:hover { border-color: var(--copper-primary); background: rgba(15, 23, 42, 0.6); transform: translateY(-5px); box-shadow: 0 15px 35px rgba(200, 117, 51, 0.15); }
+        .window-header { border-bottom: 1px solid rgba(200, 117, 51, 0.15); padding-bottom: 15px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; }
+        .window-title { margin: 0; font-size: 1.2rem; font-weight: 700; color: var(--text-main); line-height: 1.3; }
+        .window-num { font-size: 0.75rem; font-weight: bold; color: var(--copper-primary); border: 1px solid var(--copper-primary); padding: 2px 6px; border-radius: 4px; white-space: nowrap; }
+        .window-body ul { margin: 0 0 25px 0; padding-left: 18px; color: var(--text-muted); font-size: 0.95rem; }
         .window-body li { margin-bottom: 10px; line-height: 1.5; }
+        .btn-action { display: block; text-align: center; background: transparent; border: 1.5px solid var(--copper-primary); color: var(--copper-primary); padding: 12px; border-radius: 4px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; }
 
-        .btn-action {
-            display: block;
-            text-align: center;
-            background: transparent;
-            border: 1.5px solid var(--copper-primary);
-            color: var(--copper-primary);
-            padding: 12px;
-            border-radius: 4px;
-            font-size: 0.85rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
+        /* ИНТЕРАКТИВНОЕ ОКНО ПРЕЗЕНТАЦИИ */
         .fullscreen-modal {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(3, 7, 18, 0.95);
-            z-index: 1000;
-            display: none;
-            justify-content: center;
-            align-items: flex-start;
-            overflow-y: auto;
-            padding: 60px 20px;
-            box-sizing: border-box;
-            backdrop-filter: blur(15px);
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(3, 7, 18, 0.97); z-index: 1000; display: none;
+            justify-content: center; align-items: center; backdrop-filter: blur(20px);
         }
-
         .modal-content {
-            background: rgba(15, 23, 42, 0.8);
-            border: 1px solid var(--copper-primary);
-            border-radius: 12px;
-            max-width: 1000px;
-            width: 100%;
-            padding: 45px;
-            box-sizing: border-box;
-            position: relative;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.8);
-            margin-bottom: 60px;
+            background: #0b1329; border: 1px solid var(--copper-primary); border-radius: 12px;
+            max-width: 1200px; width: 95%; height: 85vh; display: flex; flex-direction: column;
+            position: relative; box-shadow: 0 30px 70px rgba(0,0,0,0.9); overflow: hidden;
         }
-
-        .modal-close {
-            position: absolute;
-            top: 25px; right: 30px;
-            font-size: 2.5rem;
-            color: var(--text-muted);
-            cursor: pointer;
-            transition: color 0.3s;
-        }
-
+        .modal-close { position: absolute; top: 20px; right: 25px; font-size: 2.5rem; color: var(--text-muted); cursor: pointer; z-index: 10; transition: color 0.3s; }
         .modal-close:hover { color: var(--copper-primary); }
-
-        .modal-title-zone {
-            border-bottom: 2px solid var(--copper-primary);
-            padding-bottom: 20px;
-            margin-bottom: 30px;
+        
+        .presentation-body { display: flex; width: 100%; height: 100%; }
+        .pres-sidebar { width: 30%; border-right: 1px solid rgba(200, 117, 51, 0.15); background: rgba(3, 7, 18, 0.4); padding: 40px 25px; display: flex; flex-direction: column; gap: 15px; }
+        .pres-main { width: 70%; padding: 40px; overflow-y: auto; display: flex; flex-direction: column; justify-content: space-between; }
+        
+        .step-btn {
+            background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(200, 117, 51, 0.2);
+            color: var(--text-muted); padding: 15px 20px; border-radius: 6px; text-align: left;
+            font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease;
         }
+        .step-btn:hover { border-color: var(--copper-primary); color: var(--text-main); }
+        .step-btn.active { background: var(--copper-primary); color: #000; border-color: var(--copper-primary); font-weight: 700; box-shadow: 0 0 15px rgba(200, 117, 51, 0.3); }
 
-        .modal-title-zone h2 {
-            margin: 0;
-            font-size: 1.8rem;
-            color: var(--text-main);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
+        .pres-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 20px; }
+        .pres-text-zone { font-size: 1.1rem; line-height: 1.7; color: var(--text-main); }
+        .pres-text-zone h2 { margin: 0 0 20px 0; color: var(--copper-primary); text-transform: uppercase; font-size: 1.4rem; letter-spacing: 1px; border-bottom: 1px solid rgba(200, 117, 51, 0.2); padding-bottom: 10px; }
+        .pres-media-zone { background: #030712; border-radius: 8px; border: 1px solid rgba(200, 117, 51, 0.15); display: flex; justify-content: center; align-items: center; min-height: 350px; position: relative; overflow: hidden; }
+        
+        .media-placeholder { text-align: center; color: var(--text-muted); padding: 20px; font-size: 0.95rem; }
+        .media-placeholder svg { width: 45px; height: 45px; fill: var(--copper-primary); margin-bottom: 15px; opacity: 0.7; }
 
-        .modal-article {
-            font-size: 1.15rem;
-            line-height: 1.8;
-            color: var(--text-main);
-            margin-bottom: 40px;
-            white-space: pre-line;
-        }
-
-        .bottom-panel {
-            background: linear-gradient(180deg, rgba(200, 117, 51, 0.05) 0%, rgba(200, 117, 51, 0.15) 100%);
-            border: 2px solid var(--copper-primary);
-            border-radius: 8px;
-            padding: 35px;
-            margin-top: 40px;
-        }
-
+        .bottom-panel { background: linear-gradient(180deg, rgba(200, 117, 51, 0.05) 0%, rgba(200, 117, 51, 0.15) 100%); border: 2px solid var(--copper-primary); border-radius: 8px; padding: 35px; margin-top: 40px; }
         .panel-title { margin: 0 0 15px 0; font-size: 1.4rem; text-transform: uppercase; letter-spacing: 3px; color: var(--copper-primary); }
         .panel-text { font-size: 1.05rem; line-height: 1.6; color: var(--text-main); margin-bottom: 25px; }
         .btn-panel { display: inline-block; background: var(--copper-primary); color: var(--space-bg); border: none; padding: 16px 35px; font-size: 1rem; font-weight: bold; text-transform: uppercase; letter-spacing: 3px; border-radius: 4px; transition: all 0.3s ease; }
         .btn-panel:hover { background: #ffffff; cursor: pointer; }
 
         @media (max-width: 1200px) { .matrix-grid { grid-template-columns: repeat(2, 1fr); } }
-        @media (max-width: 768px) {
-            .matrix-grid { grid-template-columns: 1fr; }
-            .header { padding: 20px; flex-direction: column; gap: 15px; }
-            .header-controls { width: 100%; justify-content: space-between; }
-            .modal-content { padding: 20px; }
-            .modal-title-zone h2 { font-size: 1.3rem; }
+        @media (max-width: 900px) {
+            .presentation-body { flex-direction: column; }
+            .pres-sidebar { width: 100%; height: auto; padding: 20px; flex-direction: row; overflow-x: auto; border-right: none; border-bottom: 1px solid rgba(200, 117, 51, 0.15); }
+            .pres-main { width: 100%; padding: 20px; }
+            .pres-grid { grid-template-columns: 1fr; }
+            .modal-content { height: 95vh; }
         }
     </style>
 </head>
@@ -285,11 +131,15 @@ HTML
     <div class="fullscreen-modal" id="infoModal">
         <div class="modal-content">
             <span class="modal-close" onclick="closeModal()">&times;</span>
-            <div class="modal-title-zone">
-                <h2 id="mTitle">Заголовок</h2>
+            <div class="presentation-body">
+                <div class="pres-sidebar" id="presSidebar"></div>
+                <div class="pres-main">
+                    <div class="pres-grid">
+                        <div class="pres-text-zone" id="presTextZone"></div>
+                        <div class="pres-media-zone" id="presMediaZone"></div>
+                    </div>
+                </div>
             </div>
-            <div class="modal-article" id="mContent">Статья...</div>
-            <div id="mVideoZone"></div>
         </div>
     </div>
 
@@ -303,201 +153,85 @@ HTML
                 btnText8: "Відкрити дискусію",
                 btnText9: "Увійти в лабораторію",
                 mainTitles: { ua: "ЕнергаТор: AI Аналітична Матриця", en: "EnergaTor: AI Intelligence Matrix", de: "EnergaTor: AI Analytische Matrix", ru: "ЭнергаТор: AI Аналитическая Матрица" },
+                stepLabels: {
+                    window2: ["01. Кліматичний тупик АКБ", "02. Гібридна буферна система", "03. Муніципальна економіка"],
+                    window4: ["01. Тепловий дисбаланс ЖКХ", "02. Стаціонарна тригенерація", "03. Мережевий резерв РВЧ"],
+                    window6: ["01. Видатки HoReCa", "02. Циркулярний контур Су-Від", "03. Автономна маржа"]
+                },
+                window1: { title: "Аерокосмічний сектор та БПЛА", items: ["Заміна літій-іонних накопичувачів у важких вантажних дронах.", "Миттєва пневматична дозаправка замість багатогодинного простою.", "Підвищення живучості безпілотних систем у зонах пошуку та порятунку."] },
+                window3: { title: "Морські та підводні комплекси", items: ["Інтеграція накопичувачів високого тиску в подвійне дно суден.", "Глибоководні роботизовані платформи без важких компресорів.", "Базові заправні станції на енергії хвиль, вітру та сонця."] },
+                window5: { title: "Складська та промислова робототехніка", items: ["100% пожежна та вибухобезпека закритих логістичних хабів.", "Швидка заправка повітрям без тривалого простою біля розеток.", "Стабільна працездатність у промислових низькотемпературних зонах."] },
+                window7: { title: "Фізика та архітектура ТПА системи", items: ["Замкнутий гідропневматичний контур без хімічної деградації.", "Технологія прямого перетворення тиску СОЖ без шатунів та клапанів.", "Ресурс каскадів 20+ років. Виробництво без рідкісних металів."] },
+                window8: { title: "Відкрита трибуна", items: ["Експертна верифікація параметрів гідропневматики.", "Прямий зворотний зв'язок від індустріальних партнерів.", "Агрегація галузевих відгуків та технічних запитів."] },
+                window9: { title: "Лабораторія рішень", items: ["Банк перспективних модернізацій та адаптацій системи.", "Реєстрація заявок на проектування нестандартних версій.", "Робота контуру в екстремальних екологічних режимах."] },
                 
-                window1: {
-                    title: "Аерокосмічний сектор та БПЛА",
-                    items: ["Заміна літій-іонних накопичувачів у важких вантажних дронах.", "Миттєва пневматична дозаправка замість багатогодинного простою.", "Підвищення живучості безпілотних систем у зонах пошуку та порятунку."],
-                    fullTitle: "Аеро-Простір: Радикальне подолання ємнісного тупика АКБ",
-                    fullText: "Впровадження пневмогідравлічних агрегатів у сектори eVTOL (аеротаксі) та важкої безпілотної авіації повністю знімає жорсткі вагові обмеження, притаманні хімічним батареям. Замість тривалого накопичення заряду система ЕнергаТор використовує щільність енергії стисненого повітря. Це забезпечує повне відновлення робочого ресурсу за хвилини. Технологія кардинально змінює правила автономності для пошукових, спасательних та тривалих дослідницьких місій у віддалених зонах."
-                },
                 window2: {
-                    title: "Муніципальний та логістичний транспорт",
-                    items: ["Повна кліматична незалежність при екстремальних температурах.", "Зниження ваги та вартості міських електробусів і таксі.", "Безперервний цикл експлуатації комерційного парку 24/7."],
-                    fullTitle: "Комерційний транспорт: Звільнення від температурної деградації",
-                    fullText: "Традиційні хімічні АКБ критично вразливі до погоди. Міський електробус при температурі нижче -15 °C миттєво втрачає до 35% номінального заряду — без урахування колосального видатку енергії на обігрів пасажирського салону. Аналогічне падіння ємності відбувається під час кондиціонування в жару.\n\nГідропневматична архітектура ЕнергаТор стабільно утримує первинні технічні характеристики в будь-якій кліматичній зоні. Повне усунення фактора зносу циліндрів і кратна оптимізація ваги бортових батарей забезпечують комерційній логістиці (до 3 тонн) і міським службам таксі безперервну цілодобову роботу 24/7 з мінімальною вартістю володіння (TCO)."
-                },
-                window3: {
-                    title: "Морські та підводні комплекси",
-                    items: ["Інтеграція накопичувачів високого тиску в подвійне дно суден.", "Глибоководні роботизовані платформи без важких компресорів.", "Базові заправні станції на енергії хвиль, вітру та сонця."],
-                    fullTitle: "Морський флот: Використання природного гідростатичного тиску",
-                    fullText: "Розміщення каскадів балонів високого тиску в технологічних порожнинах подвійного дна швидкісних катерів і яхт гарантує найвищий рівень безпеки без втрати корисного об'єму судна. \n\nУнікальна перевага розкривається на глибині: підводним роботам і автономним дослідницьким апаратам більше не потрібні важкі компресори для первинного стиснення — система використовує природний гідростатичний тиск океану для активації енергетичного контуру. Базові плавучі хаби акумулюють безкоштовну зовнішню енергію хвиль, вітру та сонця, переводячи її в потенціал сжатого повітря."
+                    title: "Комерційний & Муніципальний транспорт",
+                    items: ["Повна кліматична незалежність при екстремальних температурах.", "Гібридний контур: Суперконденсатори + АКБ + буферний ТПА.", "Час відновлення енергії на маршруті в межах 3-5 хвилин."],
+                    slides: [
+                        {
+                            title: "Проблема: Температурна деградація міського транзиту",
+                            text: "Традиційні хімічні АКБ критично вразливі до погоди. Міський електробус при температурі нижче -15 °C миттєво втрачає до 35% номінального запасу ходу. Одночасно з цим колосальні об'єми енергії витрачаються на обігрів пасажирського салону. Це змушує муніципалітети ставити надлишкові, важкі батареї, що знижує корисну вантажопідйомність і збільшує навантаження на міські електромережі під час зарядки.",
+                            mediaContent: "<div class='media-placeholder'><p>[ Графік падіння ємності літій-іонних систем при мінусових температурах за даними Sustainable Bus ]</p></div>"
+                        },
+                        {
+                            title: "Рішення: Гібридний буферний контур HESS",
+                            text: "Замість спроб накопичити всю енергію в хімічних елементах, транспортний модуль використовує зв'язку суперконденсаторів та легких АКБ, що постійно підживлюються від ТПА.\n\nСуперконденсатори повністю приймають на себе жорсткі пікові струми при старті важкої машини з місця та рекуперації при гальмуванні. АКБ працює в стабільному, щадному режимі низьких струмів. Енергетичне підживлення всього вузла здійснюється бортовим ТПА за рахунок каскаду балонів, що виключає перегрів і передчасний знос батарей.",
+                            mediaContent: "<div class='media-placeholder'><svg viewBox='0 0 24 24'><path d='M8 5v14l11-7z'/></svg><p>[ Відео: Принцип взаємодії ТПА з блоком суперконденсаторів на транспортній платформі ]</p></div>"
+                        },
+                        {
+                            title: "Оптимізація TCO та інфраструктури",
+                            text: "Така архітектура дозволяє зменшити вагу і вартість бортових акумуляторних касет в рази. Замість багатогодинного простою біля електричних розеток, відновлення енергетичного потенціалу стисненого газу на кінцевих станціях займає 3–5 хвилин. Термін служби механічних вузлів перевищує 20 років без деградації показників ємності.",
+                            mediaContent: "<div class='media-placeholder'><p><b>Показники для муніципального сектору:</b><br>• Економічна вартість зберігання (LCOS): Зниження до 40%<br>• Готовність автопарку до виходу на лінію: 24/7<br>• Локалізація виробництва без рідкоземельних матеріалів</p></div>"
+                        }
+                    ]
                 },
                 window4: {
                     title: "Стаціонарна енергетика та РВЧ",
-                    items: ["Миттєве перекриття блеккаутів у висотних будинках і ЖКХ.", "Резервне живлення ліфтів, систем водопостачання та вентиляції.", "Балансування частоти та аварійний захист магістральних мереж."],
-                    fullTitle: "Муніципальний сектор: Енергетична тригенерація та захист мереж",
-                    fullText: "В умовах віялових відключень та критичного дефіциту потужності стаціонарні установки забезпечують миттєвий підхоплюючий старт систем життєзабезпечення. Архітектура гарантує паралельну генерацію електрики, вироблення тепла для опалювальних контурів та глибокого холоду для примусової вентиляції будівель. \n\nКрім автономного виживання ЖКХ, система виступає як високоефективний інструмент для балансування загальних енергосистем в якості резерву підтримки та відновлення частоти. На відміну від хімічних накопичувачів, ЕнергаТор здійснює цикли 'вдих-видих' десятиліттями без втрати характеристик."
-                },
-                window5: {
-                    title: "Складська та промислова робототехніка",
-                    items: ["100% пожежна та вибухобезпека закритих логістичних хабів.", "Швидка заправка повітрям без тривалого простою біля розеток.", "Стабільна працездатність у промислових низькотемпературних зонах."],
-                    fullTitle: "Промислова автоматизація: Абсолютна безпека закритих терміналів",
-                    fullText: "Сучасні роботизовані склади та логістичні хаби потребують суворих стандартів протипожежної безпеки. Ризик самозаймання літієвих батарей у закритих просторах залишається критичною загрозою. \n\nПневматичний спецтранспорт та автоматизовані навантажувачі повністю виключають небезпеку займання. Системи зберігають абсолютну ККД в ізольованих низькотемпературних холодильних зонах і на хімічних підприємствах, де іскрозахист є головною умовою експлуатації."
+                    items: ["Перекриття тривалих блеккаутів у житлових комплексах.", "Автономне живлення критичної інфраструктури, ліфтів та насосів.", "Балансування частоти в загальних енергомережах."],
+                    slides: [
+                        {
+                            title: "Проблема: Тепловий перекіс і вразливість міст",
+                            text: "Офіційні дані Eurostat та IEA демонструють, що понад 60-70% всієї енергії домохозяйств витрачається на опалення та гаряче водопостачання, а влітку мережі задихаються від піків кондиціонування. Спроби перевести ЖКХ на класичні електричні системи приводять до перевантажень інфраструктури в години пік. При блеккаутах міста стають беззахисними через зупинку насосів подачі води та ліфтових шахт.",
+                            mediaContent: "<div class='media-placeholder'><p>[ Статистична діаграма Eurostat/IEA: Розподіл енерговитрат у житловому секторі ]</p></div>"
+                        },
+                        {
+                            title: "Рішення: Стаціонарна тригенерація будівель",
+                            text: "Стаціонарний модуль ТПА згладжує ці перекоси за рахунок ефекту тригенерації. Теплова енергія, що виділяється при заправці та утримується в теплообменниках БВД, БСД і БНД, напряму використовується для контурів опалення будинку.\n\nХолод, який утворюється при каскадному розширенні газів, йде на вентиляцію та кондиціонування. Пускові струми ліфтових двигунів повністю гасяться інтегрованою системою суперконденсаторів, що забезпечує стабільну роботу інфраструктури навіть за умов повної ізоляції від зовнішніх ЛЕП.",
+                            mediaContent: "<div class='media-placeholder'><svg viewBox='0 0 24 24'><path d='M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z'/></svg><p>[ Схема інтеграції ТПА в тепловий та електричний вузол багатоповерхового будинку ]</p></div>"
+                        },
+                        {
+                            title: "Балансування мережі та резерв РВЧ",
+                            text: "Поза аварійними режимами стаціонарні комплекси виступають як високоефективні активи для балансування загальних енергосистем. Маючи швидкість відгуку на рівні хімічних накопичувачів, ТПА здійснює цикли накопичення та віддачі енергії десятиліттями без деградації. Це ідеальне рішення для ринку резервів підтримки та відновлення частоти (РВЧ), де хімічний літій швидко зношується.",
+                            mediaContent: "<div class='media-placeholder'><p><b>Параметри довготривалого зберігання:</b><br>• Ресурс каскаду балонів: 20+ років<br>• Додаткові енергоресурси: Безкоштовний промисловий холод<br>• Екологічний індекс: 0% токсичних викидів при рециклінгу</p></div>"
+                        }
+                    ]
                 },
                 window6: {
-                    title: "Автономний малий бізнес та HoReCa",
-                    items: ["Синергія заправних пунктів СВ та кулінарної технології Су-Від.", "Безкоштовна теплова енергія для ресторанних і сервісних ліній.", "Автономне життєзабезпечення незалежних агро-комплексів."],
-                    fullTitle: "Коммерційний сектор: Циркулярна економіка та технологія Су-Від",
-                    fullText: "Ефективність комерційної тригенерації наочно доводиться кейсом енергозаправного пункту, об'єднаного з кафе швидкого харчування. Приготування страв за технологією Су-Від (Sous-Vide) потребує тривалого утримання точної температури в діалозі від 50°C до 85°C. \n\nЕнергаТор направляє тепло, що виділяється при швидкому стисненні повітря компресором, безпосередньо на кулінарні лінії, повністю усуваючи витрати на оплату мережевого газу чи електрики. Одночасне отримання холоду для зберігання продуктів та дешевого стисненого повітря для власної служби доставки забезпечує малому бізнесу абсолютне комерційне лідерство. Модель масштабується на автономні теплиці, телекомунікаційні вузли та дата-центри."
-                },
-                window7: {
-                    title: "Фізика та архітектура ТПА TORUM",
-                    items: ["Замкнутий гідропневматичний контур без хімічної деградації.", "СОЖ високої щільності захищає агрегат від критичного обмерзання.", "Ресурс балонів 20+ років. Виробництво без рідкісних металів."],
-                    fullTitle: "Архітектура Платформи: Замкнутий цикл високої щільності",
-                    fullText: "В основі системи TORUM лежить принцип багаторазового використання потенціалу стисненого повітря без втрати якості та тиску. Робочим органом, який безпосередньо тисне на поршень і виконує роль додаткових жорстких лопаток, є спеціальна змащувально-охолоджувальна рідина (СОЖ). \n\nЩільність СОЖ у 800 разів перевищує щільність повітря, що повністю блокує ефект критичного обмерзання внутрішніх вузлів при різкому розширенні газів. Конструкція позбавлена дефіцитних рідкоземельних матеріалів, а промислові каскади зберігають тиск місяцями. Номінальний термін служби металевих та композитних елементів становить понад 20 років із потенціалом вторинної переробки в 90%."
-                },
-                window8: {
-                    title: "Відкрита трибуна",
-                    items: ["Експертна верифікація параметрів гідропневматики.", "Прямий зворотний зв'язок від індустріальних партнерів.", "Агрегація галузевих відгуків та технічних запитів."],
-                    fullTitle: "Простір верифікації: Професійна експертиза та відгуки",
-                    fullText: "Спеціалізована панель для відкритого інженерного обміну думками. Тут акумулюються аналітичні відгуки експертів у галузі термодинаміки та промислової гідравліки. Конструкторське бюро здійснює прямий діалог, роз'яснюючи специфіку інтеграції систем TORUM у нестандартні цикли замовників."
-                },
-                window9: {
-                    title: "Лабораторія рішень",
-                    items: ["Банк перспективних модернізацій та адаптацій системи.", "Реєстрація заявок на проектування нестандартних версій.", "Робота контуру в екстремальних екологічних режимах."],
-                    fullTitle: "R&D Лабораторія: Обробка запитів на кастомізацію",
-                    fullText: "Технічний центр обробки складних інженерних завдань. Сюди надходять запити від промислових підприємств на проектування модифікацій агрегатів під конкретні умови експлуатації, включаючи екологічно чисту генерацію енергії без залучення сонячних панелей та традиційного палива."
+                    title: "Автономний малый бізнес & HoReCa",
+                    items: ["Кейс «Кафе Су-Від» з інтегрованою службою доставки.", "Використання безкоштовного тепла сжаття для кулінарних ліній.", "Абсолютна маржинальна незалежність від мережевих тарифів."],
+                    slides: [
+                        {
+                            title: "Проблема: Енергетичний тиск на малий сервісний бізнес",
+                            text: "Для об'єктів HoReCa, ресторанів та незалежних сервісних точок постійне зростання мережевих тарифів на електрику та газ є головним чинником зниження маржинальності. При цьому технологічні процеси (наприклад, тривала кулінарна обробка) вимагають безперервного та точного теплопостачання, а холодильні установки споживають колосальну кількість струму влітку.",
+                            mediaContent: "<div class='media-placeholder'><p>[ Аналітика витрат малих підприємств на енергоносії ]</p></div>"
+                        },
+                        {
+                            title: "Рішення: Циркулярний контур Су-Від",
+                            text: "Технологічний кейс об'єднання енергозаправного вузла малого транспорту доставки з точкою громадського харчування демонструє повне усунення цих витрат. Приготування страв за технологією Су-Від вимагає точного утримання температури води (50°C - 85°C).\n\nТепло, що акумулюється рідиною в теплообмінниках БВД, БСД і БНД при роботі компресора, перенаправляється на кулінарні лінії. Холод розширення газу одночасно забезпечує роботу складських морозильників та кондиціонування приміщень, закриваючи всі потреби закладу в межах єдиного фізичного процесу.",
+                            mediaContent: "<div class='media-placeholder'><svg viewBox='0 0 24 24'><path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 12 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H7c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.04-.42 1.99-1.07 2.75z'/></svg><p>[ Візуалізація циркулярного теплового контуру: Компресор -> Теплообмінники балонів -> Кулінарна ванна Су-Від ]</p></div>"
+                        },
+                        {
+                            title: "Економічні переваги та автономія",
+                            text: "Малий бізнес отримує подвійну вигоду: власна служба доставки на легкому пневмотранспорті заправляється стисненим повітрям за мінімальною собівартістю, а саме кафе повністю звільняється від плати за комунальні теплові ресурси. Модель легко масштабується на фермерські тепличні господарства та автономні логістичні пункти.",
+                            mediaContent: "<div class='media-placeholder'><p><b>Економічний ефект модуля:</b><br>• Витрати на технологічне тепло: Оптимізація до 0<br>• Окупність інтегрованого модуля: Кратно вище класичних генераторів<br>• Незалежність від локальних блеккаутів: Повна</p></div>"
+                        }
+                    ]
                 },
                 bottomPanel: {
                     title: "Патентний пул та стратегічне партнерство",
-                    text: "Повний пакет конструкторської документації, креслення профілювання статора та поршня, а також документи, що підтверджують міжнародний патентний пріоритет, є комерційною таємницею EnergaTor Group. Доступ до розширеного сховища та технічного White Paper відкривається інвесторам категорії 'Smart Money' строго після підписання двосторонньої угоди про неразглашення (NDA). Пріоритет зафіксовано.",
+                    text: "Повний пакет конструкторської документації, креслення профілювання статора та поршня, а також документи, що підтверджують міжнародний патентний пріоритет від 06.04.2026, є комерційною таємницею EnergaTor Group. Доступ відкривається строго після підписання двосторонньої угоди про неразглашення (NDA). Пріоритет юридично зафіксовано.",
                     btnText: "Отримати доступ до патентного сейфу (NDA)"
-                }
-            },
-            en: {
-                back: "← To Home",
-                alertNda: "Authorization request has been submitted to the EnergaTor Group patent department.",
-                windowLabels: ["Module 01", "Module 02", "Module 03", "Module 04", "Module 05", "Module 06", "Module 07", "Module 08", "Module 09"],
-                btnText: "Expand Analysis",
-                btnText8: "Open Discussion",
-                btnText9: "Enter Laboratory",
-                
-                window1: {
-                    title: "Aerospace Sector & UAVs",
-                    items: ["Replacing lithium-ion power packs in heavy cargo drones.", "Instant pneumatic refueling instead of multi-hour grid charging.", "Increasing unmanned system survival rates in remote search operations."],
-                    fullTitle: "Aerospace: Breaking Through Chemical Battery Weight Limits",
-                    fullText: "The integration of closed pneumohydraulic units into eVTOL (air taxi) and heavy unmanned aviation sectors completely removes the strict weight constraints inherent to chemical batteries. Instead of slow charging, the EnergaTor system leverages the energy density of compressed air, enabling full operational recovery in minutes. This technology redefines autonomy for search, rescue, and long-range exploration missions in remote areas."
-                },
-                window2: {
-                    title: "Municipal & Logistics Transport",
-                    items: ["100% climate independence during extreme weather conditions.", "Reducing the weight and total cost of municipal e-buses and taxis.", "Continuous 24/7 commercial fleet operation with zero degradation."],
-                    fullTitle: "Commercial Fleet: Elimination of Thermal Degradation",
-                    fullText: "Traditional chemical batteries are critically vulnerable to weather extremes. A city e-bus operating below -15°C instantly loses up to 35% of its nominal charge, excluding the massive energy draw required for passenger cabin heating. A similar drop in efficiency occurs during summer air conditioning.\n\nEnergaTor's hydropneumatic architecture maintains steady performance characteristics in any climate zone. Eradicating cylinder wear and optimizing onboard battery weight provides commercial logistics (up to 3 tons) and urban taxi fleets with seamless 24/7 operation at the lowest Total Cost of Ownership (TCO)."
-                },
-                window3: {
-                    title: "Marine & Subsea Complexes",
-                    items: ["Integrating high-pressure storage into vessel double-bottom cavities.", "Deep-sea robotic platforms functioning without heavy compressors.", "Floating refueling hubs capturing wave, wind, and solar potential."],
-                    fullTitle: "Marine Fleet: Exploiting Natural Hydrostatic Pressure",
-                    fullText: "Positioning high-pressure cylinder cascades inside the structural cavities of speedboats and yachts guarantees premium safety without sacrificing cargo volume. \n\nA unique advantage is unlocked at depth: subsea robots and autonomous research vehicles no longer require heavy compressors for primary compaction—the system utilizes the ocean's natural hydrostatic pressure to activate the energy loop. Floating infrastructure hubs harvest free external wave, wind, and solar energy, converting it into high-pressure air potential."
-                },
-                window4: {
-                    title: "Stationary Energy & Grid Support",
-                    items: ["Instant blackout backup for residential high-rises and utilities.", "Powering elevator shafts, water supply, and ventilation loops.", "Frequency response asset and emergency transmission grid safety."],
-                    fullTitle: "Municipal Sector: Trigeneration and Grid Support Infrastructure",
-                    fullText: "During rolling blackouts and critical power deficits, stationary installations secure an instant backup launch for life-support infrastructure. The architecture guarantees simultaneous electricity generation, space heating, and deep cooling for forced ventilation. \n\nBeyond basic residential survival, the system serves as a highly efficient tool for balancing utility grids as a frequency containment and restoration reserve. Unlike chemical storage complexes, EnergaTor handles endless charge-discharge cycles for decades without performance drops."
-                },
-                window5: {
-                    title: "Warehouse & Industrial Robotics",
-                    items: ["100% fire and explosion safety for closed logistics hubs.", "Rapid air charging eliminating long downtime at electrical outlets.", "Steady operational efficiency in industrial low-temperature zones."],
-                    fullTitle: "Industrial Automation: Absolute Security for Closed Terminals",
-                    fullText: "Modern automated warehouses and logistics terminals demand strict fire safety standards. The risk of lithium battery self-ignition in enclosed spaces remains a critical hazard. \n\nPneumatic specialized transport and automated forklifts completely eradicate fire hazards. The systems maintain peak efficiency in isolated low-temperature cold storage environments and chemical production facilities where explosion-proof design is a primary operational requirement."
-                },
-                window6: {
-                    title: "Autonomous Small Business & HoReCa",
-                    items: ["Synergy of compressed air hubs and Sous-Vide culinary lines.", "Free thermal energy distribution for commercial utility lines.", "Independent power and microclimate supply for agri-complexes."],
-                    fullTitle: "Commercial Sector: Circular Economy and Sous-Vide Technology",
-                    fullText: "The efficiency of commercial trigeneration is directly demonstrated by an energy refueling hub combined with a fast-food restaurant. Cooking via Sous-Vide technology requires prolonged retention of exact temperatures ranging from 50°C to 85°C. \n\nEnergaTor channels the heat generated during rapid air compression straight to the culinary lines, completely eliminating network gas or electricity costs. Simultaneously capturing cold for food storage and cheap compressed air for a private delivery fleet gives small businesses absolute market leadership. The model seamlessly scales to autonomous greenhouses, telecommunication nodes, and data centers."
-                },
-                window7: {
-                    title: "Physics and Architecture of TORUM PTU",
-                    items: ["Closed hydropneumatic loop free from chemical degradation.", "High-density coolant protecting components from critical icing.", "20+ year cylinder lifespan without relying on scarce metals."],
-                    fullTitle: "Platform Architecture: Enclosed High-Density Power Loop",
-                    fullText: "The core of the TORUM system relies on the repeated utilization of compressed air potential without losing quality or pressure. The working fluid that directly impacts the piston and serves as additional rigid blades is a proprietary lubricating coolant.\n\nThis coolant's density is 800 times greater than air, completely blocking critical icing during gas expansion. The construction avoids scarce rare-earth metals, and industrial cascades retain pressure for months. The nominal lifespan of metal and composite structural elements exceeds 20 years, featuring a 90% recycling potential at end-of-life."
-                },
-                window8: {
-                    title: "Open Tribune",
-                    items: ["Expert verification of hydropneumatic design metrics.", "Direct feedback loop from industrial partners and field operators.", "Aggregating industry reviews and specialized technical inquiries."],
-                    fullTitle: "Verification Space: Professional Expertise and Industry Feedback",
-                    fullText: "A specialized panel for transparent engineering exchange. It accumulates analytical feedback from thermodynamic and industrial hydraulics experts. The engineering bureau maintains a direct dialogue, detailing the specific integration steps of TORUM systems into non-standard customer operational flows."
-                },
-                window9: {
-                    title: "Solutions Laboratory",
-                    items: ["Repository of perspective upgrades and system adaptations.", "Registering client briefs for custom modifications design.", "System operation under extreme environmental conditions."],
-                    fullTitle: "R&D Laboratory: Customization Request Processing",
-                    fullText: "An engineering facility handling complex tailored tasks. Industrial enterprises submit custom briefs here to adapt core units to specific environments, including eco-friendly power generation independent of solar arrays or traditional fuels."
-                },
-                bottomPanel: {
-                    title: "Patent Pool & Strategic Partnership",
-                    text: "The complete technical blueprint package, stator/piston profiling configurations, and verified international patent priority documents are the strict intellectual property of EnergaTor Group. Access to the extended repository and technical White Paper is granted to verified 'Smart Money' investors exclusively upon executing a mutual Non-Disclosure Agreement (NDA). Priority is legally secured.",
-                    btnText: "Access Patent Vault (NDA Request)"
-                }
-            },
-            de: {
-                back: "← Zum Hauptmenü",
-                alertNda: "Die Autorisierungsanfrage wurde an die Patentabteilung der EnergaTor Group gesendet.",
-                windowLabels: ["Modul 01", "Modul 02", "Modul 03", "Modul 04", "Modul 05", "Modul 06", "Modul 07", "Modul 08", "Modul 09"],
-                btnText: "Analytik Erweitern",
-                btnText8: "Diskussion Öffnen",
-                btnText9: "Labor Betreten",
-                
-                window1: {
-                    title: "Luft- und Raumfahrt & Drohnen",
-                    items: ["Ersatz von Lithium-Ionen-Akkus in schweren Frachtdrohnen.", "Sofortige pneumatische Betankung statt stundenlangem Laden am Netz.", "Erhöhung der Überlebensrate unbemannter Systeme im Rettungseinsatz."],
-                    fullTitle: "Luftfahrt: Radikale Überwindung chemischer Batteriegrenzen",
-                    fullText: "Die Implementierung geschlossener pneumohydraulischer Aggregate im eVTOL- (Flugtaxis) und schweren Drohnensektor hebt die strengen Gewichtsbeschränkungen chemischer Batterien vollständig auf. Anstelle langsamer Ladung nutzt das EnergaTor-System die Energiedichte von Druckluft, was eine vollständige Betriebsbereitschaft in wenigen Minuten ermöglicht. Diese Technologie definiert Autonomie für Such-, Rettungs- und Forschungsmissionen in abgelegenen Gebieten völlig neu."
-                },
-                window2: {
-                    title: "Kommunaler & Logistiktransport",
-                    items: ["100% Klimaunabhängigkeit bei extremen Temperaturen.", "Gewichts- und Kostenreduzierung bei städtischen E-Bussen und Taxis.", "Kontinuierlicher 24/7-Flottenbetrieb ohne Degradation."],
-                    fullTitle: "Gewerbliche Flotten: Eliminierung thermischer Degradation",
-                    fullText: "Traditionelle chemische Batterien sind extrem anfällig für Wetterextreme. Ein städtischer E-Bus verliert bei Temperaturen unter -15°C sofort bis zu 35% seiner Nennladung, ohne den massiven Energiebedarf für die Kabinenheizung zu berücksichtigen. Ein ähnlicher Effizienzverlust tritt bei sommerlicher Klimatisierung auf.\n\nDie pneumohydraulische Architektur von EnergaTor behält ihre Leistungseigenschaften in jeder Klimazone stabil bei. Die Eliminierung des Zylinderverschleißes und die Optimierung des Batteriegewichts ermöglichen gewerblichen Logistikflotten (bis 3 Tonnen) и städtischen Taxis einen nahtlosen 24/7-Betrieb bei niedrigsten Gesamtbetriebskosten (TCO)."
-                },
-                window3: {
-                    title: "Marine & Unterwasserkomplexe",
-                    items: ["Integration von Hochdruckspeichern in Doppelböden von Schiffen.", "Tiefsee-Roboterplattformen ohne schwere Kompressoren.", "Schwimmende Hubs zur Nutzung von Wellen-, Wind- und Sonnenenergie."],
-                    fullTitle: "Marine Flotte: Nutzung des natürlichen hydrostatischen Drucks",
-                    fullText: "Die Platzierung von Hochdruckzylinderkaskaden in den strukturellen Hohlräumen des Doppelbodens von Schnellbooten und Yachten garantiert höchste Sicherheit ohne Verlust an Nutzvolumen. \n\nEin einzigartiger Vorteil zeigt sich in der Tiefe: Unterwasserroboter und autonome Forschungsfahrzeuge benötigen keine schweren Kompressoren mehr für die Primärverdichtung – das System nutzt den natürlichen hydrostatischen Druck des Ozeans, um den Energiekreislauf zu aktivieren. Schwimmende Hubs speichern kostenlose externe Wellen-, Wind- und Sonnenenergie und wandeln sie in Druckluftpotenzial um."
-                },
-                window4: {
-                    title: "Stationäre Energie & Netzunterstützung",
-                    items: ["Sofortiges Backup bei Blackouts für Wohngebäude und Infrastruktur.", "Stromversorgung für Aufzugsschächte, Wasser- und Lüftungssysteme.", "Frequenzregelung und Notfallsicherung des Übertragungsnetzes."],
-                    fullTitle: "Kommunaler Sektor: Stationäre Trigeneration und Netzunterstützung",
-                    fullText: "Bei rollierenden Blackouts und kritischen Netzdefiziten sichern stationäre Anlagen den sofortigen Start von Notstromsystemen für die Infrastruktur. Die Architektur garantiert die gleichzeitige Stromerzeugung, Raumwärme und Tiefkühlung für die Zwangsbelüftung. \n\nÜber das reine Überleben im Wohnungsbau hinaus dient das System als hocheffizientes Werkzeug zur Netzstabilisierung (Frequenzhaltungs- und Wiederherstellungsreserve). Im Gegensatz zu chemischen Speichern bewältigt EnergaTor endlose Lade-Entlade-Zyklen über Jahrzehnte ohne Leistungsverlust."
-                },
-                window5: {
-                    title: "Lager- & Industrierobotik",
-                    items: ["100% Brand- und Explosionsschutz für geschlossene Logistik-Hubs.", "Schnelle Luftbetankung eliminiert lange Ausfallzeiten an Steckdosen.", "Stabile Effizienz in industriellen Tieftemperaturzonen."],
-                    fullTitle: "Industrieautomatisierung: Absolute Sicherheit für geschlossene Terminals",
-                    fullText: "Moderne automatisierte Lager und Logistikterminals fordern strenge Brandschutzstandards. Das Risiko einer Selbstentzündung von Lithiumbatterien in geschlossenen Räumen bleibt eine kritische Gefahr. \n\nPneumatische Spezialtransporte und automatisierte Gabelstapler eliminieren Brandgefahren vollständig. Die Systeme behalten ihre volle Effizienz in isolierten Tieftemperatur-Kühlhäusern und chemischen Produktionsanlagen, wo Explosionsschutz eine primäre Betriebsanforderung ist."
-                },
-                window6: {
-                    title: "Autonomer Kleinbetrieb & HoReCa",
-                    items: ["Synergie von Drucklufthubs und Sous-Vide-Küchenlinien.", "Kostenlose Wärmeenergieverteilung für gewerbliche Linien.", "Unabhängige Energie- und Mikroklimaversorgung für Agrarkomplexe."],
-                    fullTitle: "Gewerblicher Sektor: Kreislaufwirtschaft und Sous-Vide-Technologie",
-                    fullText: "Die Effizienz der gewerblichen Trigeneration wird durch einen mit einem Restaurant kombinierten Energieknotenpunkt demonstriert. Das Kochen mit der Sous-Vide-Technologie erfordert das dauerhafte Halten exakter Temperaturen zwischen 50°C und 85°C. \n\nEnergaTor leitet die bei der schnellen Luftkompression entstehende Wärme direkt in die Küchenlinien und eliminiert so Netzgas- oder Stromkosten vollständig. Das gleichzeitige Erzeugen von Kälte für die Lebensmittellagerung und billiger Druckluft für eine eigene Lieferflotte sichert Kleinunternehmen die absolute Marktführerschaft. Das Modell lässt sich problemlos auf autonome Gewächshäuser, Telekommunikationsknoten und Rechenzentren skalieren."
-                },
-                window7: {
-                    title: "Physik und Architektur von TORUM TTA",
-                    items: ["Geschlossener Kreislauf ohne chemische Degradation.", "Kühlmittel hoher Dichte schützt Komponenten vor Vereisung.", "20+ Jahre Zylinderlebensdauer ohne seltene Metalle."],
-                    fullTitle: "Plattformarchitektur: Geschlossener Kreislauf hoher Dichte",
-                    fullText: "Der Kern des TORUM-Systems basiert auf der wiederholten Nutzung des Druckluftpotenzials ohne Qualitäts- oder Druckverlust. Das Arbeitsmedium, das direkt auf den Kolben wirkt und als zusätzliche starre Schaufeln dient, ist ein proprietäres Schmierkühlmittel.\n\nDie Dichte dieses Kühlmittels є 800-mal höher als die von Luft, was eine kritische Vereisung während der Gasexpansion vollständig blockiert. Die Konstruktion verzichtet auf seltene Erden, und industrielle Kaskaden halten den Druck über Monate. Die Lebensdauer der metallischen und Verbundstrukturelemente überschreitet 20 Jahre bei einer Recyclingquote von 90%."
-                },
-                window8: {
-                    title: "Offene Tribüne",
-                    items: ["Expertenverifizierung der pneumohydraulischen Parameter.", "Direktes Feedback von Industriepartnern und Betreibern.", "Sammlung von Branchenberichten und technischen Anfragen."],
-                    fullTitle: "Verifizierungsraum: Professionelle Expertise und Branchenfeedback",
-                    fullText: "Ein spezialisiertes Panel für den transparenten technischen Austausch. Es sammelt analytisches Feedback von Experten für Thermodynamik und Industriehydraulik. Das Konstruktionsbüro führt einen direkten Dialog и erläutert die Integrationsschritte von TORUM-Systemen in spezifische Prozesse der Kunden."
-                },
-                window9: {
-                    title: "Labor für Lösungen",
-                    items: ["Verzeichnis für Upgrades und Systemanpassungen.", "Registrierung von Kundenbriefings für kundenspezifische Designs.", "Systembetrieb unter extremen Umweltbedingungen."],
-                    fullTitle: "R&D Labor: Bearbeitung von Anpassungsanfragen",
-                    fullText: "Eine Engineering-Einrichtung für komplexe maßgeschneiderte Aufgaben. Industrieunternehmen reichen hier Briefings ein, um Basiseinheiten an spezifische Umgebungen anzupassen, einschließlich umweltfreundlicher Stromerzeugung unabhängig von Solaranlagen oder traditionellen Kraftstoffen."
-                },
-                bottomPanel: {
-                    title: "Patentpool & Strategische Partnerschaft",
-                    text: "Die vollständigen technischen Blaupausen, Kolbenprofilierungen und verifizierten internationalen Patentprioritätsdokumente sind strenges geistiges Eigentum der EnergaTor Group. Der Zugang zum erweiterten Repository und zum technischen White Paper wird verifizierten 'Smart Money'-Investoren ausschließlich nach Unterzeichnung einer gegenseitigen Geheimhaltungsvereinbarung (NDA) gewährt. Die Priorität ist rechtlich gesichert.",
-                    btnText: "Patenttresor Öffnen (NDA-Anfrage)"
                 }
             },
             ru: {
@@ -507,70 +241,92 @@ HTML
                 btnText: "Развернуть аналитику",
                 btnText8: "Открыть дискуссию",
                 btnText9: "Войти в лабораторию",
+                mainTitles: { ua: "ЕнергаТор: AI Аналітична Матриця", en: "EnergaTor: AI Intelligence Matrix", de: "EnergaTor: AI Analytische Matrix", ru: "ЭнергаТор: AI Аналитическая Матрица" },
+                stepLabels: {
+                    window2: ["01. Климатический тупик АКБ", "02. Гибридная буферная система", "03. Муниципальная экономика"],
+                    window4: ["01. Тепловой дисбаланс ЖКХ", "02. Стационарная тригенерация", "03. Сетевой резерв РВЧ"],
+                    window6: ["01. Издержки HoReCa", "02. Циркулярный контур Су-Вид", "03. Автономная маржа"]
+                },
+                window1: { title: "Аэрокосмический сектор и БПЛА", items: ["Замена литий-ионных накопителей в тяжелых грузовых дронах.", "Мгновенная пневматическая дозаправка вместо многочасового простоя.", "Повышение живучести беспилотных систем в зонах поиска и спасения."] },
+                window3: { title: "Морские и подводные комплексы", items: ["Интеграция накопителей высокого давления в двойное дно судов.", "Глубоководные роботизированные платформы без тяжелых компрессоров.", "Базовые заправочные станции на энергии волн, ветра и солнца."] },
+                window5: { title: "Складская и промышленная робототехника", items: ["100% пожарная и взрывобезопасность закрытых логистических хабов.", "Быстрая заправка воздухом без длительного простоя у розеток.", "Стабильная работоспособность в промышленных низкотемпературных зонах."] },
+                window7: { title: "Физика и архитектура ТПА системы", items: ["Замкнутый гидропневматический контур без химической деградации.", "Технология прямого преобразования давления СОЖ без шатунов и клапанов.", "Ресурс каскадов 20+ лет. Производство без редких металлов."] },
+                window8: { title: "Открытая трибуна", items: ["Экспертная верификация параметров гидропневматики.", "Прямая обратная связь от индустриальных партнеров.", "Агрегация отраслевых отзывов и технических запросов."] },
+                window9: { title: "Лаборатория решений", items: ["Банк перспективных модернизаций и адаптаций системы.", "Регистрация заявок на проектирование нестандартных версий.", "Работа контура в экстремальных экологических режимах."] },
                 
-                window1: {
-                    title: "Аэрокосмический сектор и БПЛА",
-                    items: ["Замена литий-ионных накопителей в тяжелых грузовых дронах.", "Мгновенная пневматическая дозаправка вместо многочасового простоя.", "Повышение живучести беспилотных систем в зонах поиска и спасения."],
-                    fullTitle: "Аэро-Пространство: Радикальное преодоление емкостного тупика АКБ",
-                    fullText: "Внедрение пневмогидравлических агрегатов в секторы eVTOL (аэротакси) и тяжелой беспилотной авиации полностью снимает жесткие весовые ограничения, присущие химическим батареям. Вместо длительного накопления заряда система ЭнергаТор использует плотность энергии сжатого воздуха. Это обеспечивает полное восстановление рабочего ресурса за минуты. Технологию кардинально меняет правила автономности для поисковых, спасательных и длительных исследовательских миссий в удаленных зонах."
-                },
                 window2: {
-                    title: "Муниципальный и логистический транспорт",
-                    items: ["Полная климатическая независимость при экстремальных температурах.", "Снижение веса и стоимости городских электробусов и такси.", "Непрерывный цикл эксплуатации коммерческого парка 24/7."],
-                    fullTitle: "Коммерческий транспорт: Освобождение от температурной деградации",
-                    fullText: "Традиционные химические АКБ критически уязвимы к погодным экстремумам. Городской электробус при температуре ниже -15 °C мгновенно теряет до 35% номинального заряда — без учета колоссального расхода энергии на обогрев пассажирского салона. Аналогичное падение емкости происходит при кондиционировании в жару.\n\nГидропневматическая архитектура ЭнергаТор стабильно удерживает первоначальные технические характеристики в любой климатической зоне. Полное устранение фактора износа цилиндров и кратная оптимизация веса бортовых батарей обеспечивают коммерческой логистике (до 3 тонн) и городским службам такси непрерывную круглосуточную работу 24/7 с минимальной стоимостью владения (TCO)."
-                },
-                window3: {
-                    title: "Морские и подводные комплексы",
-                    items: ["Интеграция накопителей высокого давления в двойное дно судов.", "Глубоководные роботизированные платформы без тяжелых компрессоров.", "Базовые заправочные станции на энергии волн, ветра и солнца."],
-                    fullTitle: "Морской флот: Использование природного гидростатического давления",
-                    fullText: "Размещение каскадов баллонов высокого давления в технологических полостях двойного дна скоростных катеров и яхт гарантирует высочайший уровень безопасности без потери полезного объема судна. \n\nУникальное преимущество раскрывается на глубине: подводным роботам и автономным исследовательским аппаратам больше не требуются тяжелые компрессоры для первичного сжатия — система использует естественное гидростатическое давление океана для активации энергетического контура. Базовые плавучие хабы аккумулируют бесплатную внешнюю энергию волн, ветра и солнца, переводя ее в потенциал сжатого воздуха."
+                    title: "Коммерческий & Муниципальный транспорт",
+                    items: ["Полная климатическая независимость при экстремальных температурах.", "Гибридный контур: Суперконденсаторы + АКБ + буферный ТПА.", "Время восполнения энергии на маршруте в пределах 3-5 минут."],
+                    slides: [
+                        {
+                            title: "Проблема: Температурная деградация городского транзита",
+                            text: "Традиционные химические АКБ критически уязвимы к погоде. Городской электробус при температуре ниже -15 °C мгновенно теряет до 35% номинального запаса хода. Одновременно с этим колоссальные объемы энергии расходуются на обогрев пассажирского салона. Это вынуждает ставить избыточные, тяжелые батареи, что снижает полезную грузоподъемность и увеличивает нагрузку на городские электросети при зарядке.",
+                            mediaContent: "<div class='media-placeholder'><p>[ График падения емкости литий-ионных систем при минусовых температурах по данным Sustainable Bus ]</p></div>"
+                        },
+                        {
+                            title: "Решение: Гибридный буферный контур HESS",
+                            text: "Вместо попыток накопить всю энергию в химических элементах, транспортный модуль использует связку суперконденсаторов и легких АКБ, постоянно подпитываемых от ТПА.\n\nСуперконденсаторы полностью принимают на себя жесткие пиковые токи при старте тяжелой машины с места и рекуперации при торможении. АКБ работает в стабильном, щадящем режиме низких токов. Энергетическая подпитка всего узла осуществляется бортовым ТПА за счет энергии сжатого воздуха, что исключает перегрев и преждевременный износ батарей.",
+                            mediaContent: "<div class='media-placeholder'><svg viewBox='0 0 24 24'><path d='M8 5v14l11-7z'/></svg><p>[ Видео: Принцип взаимодействия ТПА с блоком суперконденсаторов на транспортной платформе ]</p></div>"
+                        },
+                        {
+                            title: "Оптимизация TCO и инфраструктуры",
+                            text: "Такая архитектура позволяет снизить вес и стоимость бортовых аккумуляторных кассет в разы. Вместо многочасового простоя у электрических розеток, восстановление энергетического потенциала сжатого газа на конечных станциях занимает всего 3–5 минут. Срок службы механических узлов превышает 20 лет без деградации показателей емкости.",
+                            mediaContent: "<div class='media-placeholder'><p><b>Показатели для муниципального сектора:</b><br>• Экономическая стоимость хранения (LCOS): Снижение до 40%<br>• Готовность автопарка к выходу на линию: 24/7<br>• Локализация производства без редкоземельных материалов</p></div>"
+                        }
+                    ]
                 },
                 window4: {
                     title: "Стационарная энергетика и РВЧ",
-                    items: ["Мгновенное перекрытие блэкаутов в высотных зданиях и ЖКХ.", "Резервное питание лифтов, систем водоснабжения и вентиляции.", "Балансировка частоты и аварийная защита магистральных сетей."],
-                    fullTitle: "Муниципальный сектор: Энергетическая тригенерация и защита сетей",
-                    fullText: "В условиях веерных отключений и критического дефицита мощности стационарные установки обеспечивают мгновенный подхватывающий старт систем жизнеобеспечения. Архитектура гарантирует параллельную генерацию электричества, выработку тепла для отопительных контуров и глубокого холода для принудительной вентиляции зданий. \n\nПомимо автономного выживания ЖКХ, система выступает как высокоэффективный инструмент для балансировки общих энергосетей в качестве резерва поддержания и восстановления частоты. В отличие от химических накопителей, ЭнергаТор осуществляет циклы 'вдох-выдох' десятилетиями без потери характеристик."
-                },
-                window5: {
-                    title: "Складская и промышленная робототехника",
-                    items: ["100% пожарная и взрывобезопасность закрытых логистических хабов.", "Быстрая заправка воздухом без длительного простоя у розеток.", "Стабильная работоспособность в промышленных низкотемпературных зонах."],
-                    fullTitle: "Промышленная автоматизация: Абсолютная безопасность закрытых терминалов",
-                    fullText: "Современные роботизированные склады и логистические хабы требуют строжайших стандартов противопожарной безопасности. Риск самовозгорания литиевых батарей в закрытых пространствах остается критической угрозой. \n\nPневматический спецтранспорт и автоматизированные погрузчики полностью исключают опасность воспламенения. Системы сохраняют абсолютный КПД в изолированных низкотемпературных холодильных зонах и на химических предприятиях, где искрозащита является главным условием эксплуатации."
+                    items: ["Перекрытие длительных блэкаутов в жилых комплексах.", "Автономное питание критической инфраструктуры, лифтов и насосов.", "Балансировка частоты в общих энергосетях."],
+                    slides: [
+                        {
+                            title: "Проблема: Тепловой дисбаланс и уязвимость городов",
+                            text: "Официальные данные Eurostat и IEA демонстрируют, что более 60-70% всей энергии домохозяйств расходуется на отопление и горячее водоснабжение, а летом сети задыхаются от пиков кондиционирования. Попытки перевести ЖКХ на классические электрические системы приводят к перегрузкам инфраструктуры в часы пик. При блэкаутах города становятся беззащитными из-за остановки насосов подачи воды и лифтовых шахт.",
+                            mediaContent: "<div class='media-placeholder'><p>[ Статистическая диаграмма Eurostat/IEA: Распределение энергозатрат в жилом секторе ]</p></div>"
+                        },
+                        {
+                            title: "Решение: Стационарная тригенерация зданий",
+                            text: "Стационарный модуль ТПА сглаживает эти перекосы за счет эффекта тригенерации. Тепловая энергия, выделяющаяся при заправке и удерживаемая в теплообменниках БВД, БСД и БНД, напрямую используется для контуров отопления дома.\n\nХолод, образующийся при каскадном расширении газов, направляется на вентиляцию и кондиционирование. Пусковые токи лифтовых двигателей полностью гасятся интегрированной системой суперконденсаторов, обеспечивая стабильную работу инфраструктуры даже в условиях полной изоляции от внешних ЛЕП.",
+                            mediaContent: "<div class='media-placeholder'><svg viewBox='0 0 24 24'><path d='M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z'/></svg><p>[ Схема интеграции ТПА в тепловой и электрический узел многоэтажного дома ]</p></div>"
+                        },
+                        {
+                            title: "Балансировка сети и резерв РВЧ",
+                            text: "Вне аварийных режимов стационарные комплексы выступают как высокоэффективные активы для балансировки общих энергосистем. Обладая скоростью отклика на уровне химических накопителей, ТПА осуществляет циклы накопления и отдачи энергии десятилетиями без деградации. Это идеальное решение для рынка резервов поддержания и восстановления частоты (РВЧ), где химический литий быстро изнашивается.",
+                            mediaContent: "<div class='media-placeholder'><p><b>Параметры долговременного хранения:</b><br>• Ресурс каскада баллонов: 20+ лет<br>• Дополнительные энергоресурсы: Бесплатный промышленный холод<br>• Экологический индекс: 0% токсичных выбросов при рециклинге</p></div>"
+                        }
+                    ]
                 },
                 window6: {
-                    title: "Автономный малый бизнес и HoReCa",
-                    items: ["Синергия заправочных пунктов СВ и кулинарной технологии Су-Вид.", "Бесплатная тепловая энергия для ресторанных и сервисных линий.", "Автономное жизнеобеспечение независимых агро-комплексов."],
-                    fullTitle: "Коммерческий сектор: Циркулярная экономика и технология Су-Вид",
-                    fullText: "Эффективность коммерческой тригенерации наглядно доказывается кейсом энергозаправочного пункта, объединенного с кафе быстрого питания. Приготовление блюд по технологии Су-Вид (Sous-Vide) требует длительного удержания точной температуры в диапазоне от 50°C до 85°C. \n\nЭнергаТор направляет тепло, выделяющееся при быстром сжатии воздуха компрессором, напрямую на кулинарные линии, полностью устраняя затраты на оплату сетевого газа или электричества. Одновременное получение холода для хранения продуктов и дешевого сжатого воздуха для собственной службы доставки обеспечивает малому бизнесу абсолютное коммерческое лидерство. Модель масштабируется на автономные теплицы, телекоммуникационные узлы и дата-центры."
-                },
-                window7: {
-                    title: "Физика и архитектура ТПА TORUM",
-                    items: ["Замкнутый гидропневматический контур без химической деградации.", "СОЖ высокой плотности защищает агрегат от критического обмерзания.", "Ресурс баллонов 20+ лет. Производство без редких металлов."],
-                    fullTitle: "Архитектура Платформы: Замкнутый цикл высокой плотности",
-                    fullText: "В основе системы TORUM лежит принцип многократного использования потенциала сжатого воздуха без потери качества и давления. Рабочим органом, который непосредственно давит на поршень и выполняет роль дополнительных жестких лопаток, является специальная смазочно-охлаждающая жидкость (СОЖ). \n\nПлотность СОЖ в 800 раз превышает плотность воздуха, что полностью блокирует эффект критического обмерзания внутренних узлов при резком расширении газов. Конструкция лишена дефицитных редкоземельных материалов, а промышленные каскады сохраняют давление месяцами. Номинальный срок службы металлических и композитных элементов составляет более 20 лет с потенциалом вторичной переработки в 90%."
-                },
-                window8: {
-                    title: "Открытая трибуна",
-                    items: ["Экспертная верификация параметров гидропневматики.", "Прямая обратная связь от индустриальных партнеров.", "Агрегация отраслевых отзывов и технических запросов."],
-                    fullTitle: "Пространство верификации: Профессиональная экспертиза и отзывы",
-                    fullText: "Специализированная панель для открытого инженерного обмена мнениями. Здесь аккумулируются аналитические отзывы экспертов в области термодинамики и промышленной гидравлики. Конструкторское бюро осуществляет прямой диалог, разъясняя специфику интеграции систем TORUM в нестандартные циклы заказчиков."
-                },
-                window9: {
-                    title: "Лаборатория решений",
-                    items: ["Банк перспективных модернизаций и адаптаций системы.", "Регистрация заявок на проектирование нестандартных версий.", "Работа контура в экстремальных экологических режимах."],
-                    fullTitle: "R&D Лаборатория: Обработка запросов на кастомизацию",
-                    fullText: "Технический центр обработки сложных инженерных задач. Сюда поступают запросы от промышленных предприятий на проектирование модификаций агрегатов под конкретные условия эксплуатации, включая экологически чистую генерацию энергии без привлечения солнечных панелей и традиционного топлива."
+                    title: "Автономный малый бизнес & HoReCa",
+                    items: ["Кейс «Кафе Су-Вид» с интегрированной службой доставки.", "Использование бесплатного тепла сжатия для кулинарных линий.", "Абсолютная маржинальная независимость от сетевых тарифов."],
+                    slides: [
+                        {
+                            title: "Проблема: Энергетическое давление на малый сервисный бизнес",
+                            text: "Для объектов HoReCa, ресторанов и независимых сервисных точек постоянный рост сетевых тарифов на электричество и газ является главным фактором снижения маржинальности. При этом технологические процессы (например, длительная кулинарная обработка) требуют непрерывного и точного теплоснабжения, а холодильные установки потребляют колоссальное количество тока летом.",
+                            mediaContent: "<div class='media-placeholder'><p>[ Аналитика издержек малых предприятий на энергоносители ]</p></div>"
+                        },
+                        {
+                            title: "Решение: Циркулярный контур Су-Вид",
+                            text: "Технологический кейс объединения энергозаправочного узла малого транспорта доставки с точкой общественного питания демонстрирует полное устранение этих издержек. Приготовление блюд по технологии Су-Вид требует длительного удержания точной температуры воды (50°C - 85°C).\n\nТепло, аккумулируемое жидкостью в теплообменниках БВД, БСД и БНД при работе компрессора, перенаправляется на кулинарные линии. Холод расширения газа одновременно обеспечивает работу складских морозильников и кондиционирование помещений, закрывая все потребности заведения в рамках единого физического процесса.",
+                            mediaContent: "<div class='media-placeholder'><svg viewBox='0 0 24 24'><path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 12 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H7c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.04-.42 1.99-1.07 2.75z'/></svg><p>[ Визуализация циркулярного теплового контура: Компрессор -> Теплообменники баллонов -> Кулинарная ванна Су-Вид ]</p></div>"
+                        },
+                        {
+                            title: "Экономические преимущества и автономия",
+                            text: "Малый бизнес получает двойную выгоду: собственная служба доставки на легком пневмотранспорте заправляется сжатым воздухом по минимальной себестоимости, а само кафе полностью освобождается от платы за коммунальные тепловые ресурсы. Модель легко масштабируется на фермерские тепличные хозяйства и автономные логистические пункты.",
+                            mediaContent: "<div class='media-placeholder'><p><b>Экономический эффект модуля:</b><br>• Расходы на технологическое тепло: Оптимизация до 0<br>• Окупаемость интегрированного модуля: Кратно выше классических генераторов<br>• Независимость от локальных блэкаутов: Полная</p></div>"
+                        }
+                    ]
                 },
                 bottomPanel: {
                     title: "Патентный пул и стратегическое партнерство",
-                    text: "Полный пакет конструкторской документации, чертежи профилирования статора и поршня, а также документы, подтверждающие международный патентный приоритет, являются коммерческой тайной EnergaTor Group. Доступ к расширенному хранилищу и техническому White Paper открывается инвесторам категории 'Smart Money' строго после подписания двустороннего соглашения о неразглашении (NDA). Приоритет зафиксирован.",
+                    text: "Полный пакет конструкторской документации, чертежи профилирования статора и поршня, а также документы, подтверждающие международный патентный приоритет от 06.04.2026, являются коммерческой тайной EnergaTor Group. Доступ открывается строго после подписания двустороннего соглашения о неразглашении (NDA). Приоритет юридически зафиксирован.",
                     btnText: "Получить доступ к патентному сейфу (NDA)"
                 }
             }
         };
 
         let currentLang = localStorage.getItem('energator_lang') || 'ua';
+        let activeModalKey = null;
 
         function changeLang(lang) {
             currentLang = lang;
@@ -581,19 +337,20 @@ HTML
                 else btn.classList.remove('active');
             });
 
-            const trans = hubTranslations[lang];
+            const trans = hubTranslations[lang] || hubTranslations['ua'];
             document.getElementById('lnBack').innerText = trans.back;
-            document.getElementById('mainTitle').innerText = trans.mainTitles[lang];
+            document.getElementById('mainTitle').innerText = trans.mainTitles[lang] || trans.mainTitles['ua'];
             
             renderMatrix();
             renderBottomPanel();
+            if (activeModalKey) { openModal(activeModalKey); }
         }
 
         function renderMatrix() {
             const gridContainer = document.getElementById('matrixGrid');
             gridContainer.innerHTML = "";
             
-            const trans = hubTranslations[currentLang];
+            const trans = hubTranslations[currentLang] || hubTranslations['ua'];
 
             for (let i = 1; i <= 9; i++) {
                 const data = trans[`window${i}`];
@@ -628,7 +385,8 @@ HTML
 
         function renderBottomPanel() {
             const panelContainer = document.getElementById('bottomPanel');
-            const pData = hubTranslations[currentLang].bottomPanel;
+            const trans = hubTranslations[currentLang] || hubTranslations['ua'];
+            const pData = trans.bottomPanel;
             panelContainer.innerHTML = `
                 <h2 class="panel-title">${pData.title}</h2>
                 <p class="panel-text">${pData.text}</p>
@@ -637,17 +395,51 @@ HTML
         }
 
         function openModal(windowKey) {
-            const data = hubTranslations[currentLang][windowKey];
-            document.getElementById('mTitle').innerText = data.fullTitle;
-            document.getElementById('mContent').innerText = data.fullText;
-            document.getElementById('mVideoZone').innerHTML = "";
-            document.getElementById('infoModal').style.display = 'flex';
+            activeModalKey = windowKey;
+            const trans = hubTranslations[currentLang] || hubTranslations['ua'];
+            const data = trans[windowKey];
+            
+            const modal = document.getElementById('infoModal');
+            const sidebar = document.getElementById('presSidebar');
+            
+            sidebar.innerHTML = "";
+            
+            if (data.slides) {
+                data.slides.forEach((slide, index) => {
+                    const btn = document.createElement('button');
+                    btn.className = `step-btn ${index === 0 ? 'active' : ''}`;
+                    btn.innerText = trans.stepLabels[windowKey][index];
+                    btn.setAttribute('onclick', `loadSlide('${windowKey}', ${index}, this)`);
+                    sidebar.appendChild(btn);
+                });
+                loadSlide(windowKey, 0);
+            } else {
+                sidebar.innerHTML = "<p style='color:var(--text-muted); font-size:0.9rem;'>Модуль в режиме наполнения фактурой...</p>";
+                document.getElementById('presTextZone').innerHTML = `<h2>${data.title}</h2><p>${data.items.join('<br><br>')}</p>`;
+                document.getElementById('presMediaZone').innerHTML = "<div class='media-placeholder'><p>Презентационные материалы готовятся автором...</p></div>";
+            }
+            
+            modal.style.display = 'flex';
             document.body.style.overflow = 'hidden';
+        }
+
+        function loadSlide(windowKey, slideIndex, element) {
+            const trans = hubTranslations[currentLang] || hubTranslations['ua'];
+            const slide = trans[windowKey].slides[slideIndex];
+            
+            if (element) {
+                document.querySelectorAll('.step-btn').forEach(btn => btn.classList.remove('active'));
+                element.classList.add('active');
+            }
+            
+            document.getElementById('presTextZone').innerHTML = `<h2>${slide.title}</h2><p style='white-space: pre-line;'>${slide.text}</p>`;
+            document.getElementById('presMediaZone').innerHTML = slide.mediaContent;
         }
 
         function closeModal() {
             document.getElementById('infoModal').style.display = 'none';
             document.body.style.overflow = 'auto';
+            activeModalKey = null;
         }
 
         changeLang(currentLang);
