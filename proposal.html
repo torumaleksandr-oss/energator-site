@@ -1,0 +1,235 @@
+HTML
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EnergaTor — Аналитический обзор и предложение</title>
+    <style>
+        :root {
+            --space-bg: #030712;
+            --copper-primary: #c87533;
+            --copper-light: #ea580c;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --glass-bg: rgba(15, 23, 42, 0.45);
+            --glass-border: rgba(200, 117, 51, 0.2);
+        }
+
+        body, html {
+            margin: 0; padding: 0; width: 100%; min-height: 100%;
+            background-color: var(--space-bg);
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+            color: var(--text-main);
+            background: radial-gradient(circle at 50% 30%, #0f172a 0%, #030712 80%);
+            background-attachment: fixed;
+        }
+
+        .header {
+            border-bottom: 1px solid var(--glass-border); padding: 20px 40px;
+            display: flex; justify-content: space-between; align-items: center;
+            background: rgba(3, 7, 18, 0.8); backdrop-filter: blur(12px);
+            position: sticky; top: 0; z-index: 100;
+        }
+
+        .header h1 { font-size: 1.4rem; margin: 0; text-transform: uppercase; letter-spacing: 3px; color: var(--copper-primary); }
+        .header-controls { display: flex; align-items: center; gap: 30px; }
+        .lang-panel { display: flex; gap: 12px; }
+        .lang-btn { background: transparent; border: none; color: rgba(255, 255, 255, 0.3); font-size: 0.85rem; font-weight: 700; cursor: pointer; letter-spacing: 1px; transition: all 0.3s ease; }
+        .lang-btn:hover { color: var(--text-main); }
+        .lang-btn.active { color: var(--copper-primary); text-shadow: 0 0 8px rgba(200, 117, 51, 0.5); }
+        .btn-nav { color: var(--text-main); text-decoration: none; font-weight: 600; font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase; border: 1px solid var(--copper-primary); padding: 8px 18px; border-radius: 4px; transition: all 0.3s ease; background: rgba(200, 117, 51, 0.05); }
+        .btn-nav:hover { background: var(--copper-primary); color: var(--space-bg); box-shadow: 0 0 20px rgba(200, 117, 51, 0.4); }
+
+        .container { max-width: 1200px; margin: 50px auto; padding: 0 30px; box-sizing: border-box; }
+        
+        .section-proposal {
+            background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 10px;
+            padding: 40px; margin-bottom: 40px; backdrop-filter: blur(10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+        }
+        
+        .section-proposal h2 {
+            color: var(--copper-primary); text-transform: uppercase; font-size: 1.4rem;
+            letter-spacing: 2px; margin-top: 0; margin-bottom: 25px; padding-bottom: 12px;
+            border-bottom: 1px solid rgba(200, 117, 51, 0.15);
+        }
+
+        .proposal-text { font-size: 1.1rem; line-height: 1.7; color: var(--text-main); text-align: justify; }
+        .proposal-text p { margin-bottom: 20px; }
+
+        .tech-table {
+            width: 100%; border-collapse: collapse; margin-top: 25px; margin-bottom: 25px;
+            background: rgba(3, 7, 18, 0.5); border-radius: 6px; overflow: hidden;
+        }
+        .tech-table th, .tech-table td { padding: 15px 20px; text-align: left; border-bottom: 1px solid rgba(200, 117, 51, 0.1); }
+        .tech-table th { background: rgba(200, 117, 51, 0.1); color: var(--copper-primary); font-weight: 700; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; }
+        .tech-table td { font-size: 1rem; color: var(--text-main); }
+        .tech-table tr:last-child td { border-bottom: none; }
+        .tech-table td strong { color: var(--copper-primary); }
+
+        .footer-nav-zone { display: flex; justify-content: center; margin-top: 50px; margin-bottom: 50px; }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <h1 id="pageTitle">EnergaTor — Аналитическая Платформа</h1>
+        <div class="header-controls">
+            <nav class="lang-panel">
+                <button class="lang-btn" id="btn-ua" onclick="changeLang('ua')">UA</button>
+                <button class="lang-btn" id="btn-en" onclick="changeLang('en')">EN</button>
+                <button class="lang-btn" id="btn-de" onclick="changeLang('de')">DE</button>
+                <button class="lang-btn" id="btn-ru" onclick="changeLang('ru')">RU</button>
+            </nav>
+            <a href="index.html" class="btn-nav" id="lnHome">← На главную</a>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <section class="section-proposal">
+            <h2 id="sec1Title">Вызовы инфраструктуры и архитектура устойчивости</h2>
+            <div class="proposal-text" id="sec1Content"></div>
+        </section>
+
+        <section class="section-proposal">
+            <h2 id="sec2Title">Ограничения альтернативных технологий хранения энергии</h2>
+            <div class="proposal-text">
+                <div id="sec2ContentBefore"></div>
+                <table class="tech-table">
+                    <thead>
+                        <tr id="tableHead"></tr>
+                    </thead>
+                    <tbody id="tableBody"></tbody>
+                </table>
+                <div id="sec2ContentAfter"></div>
+            </div>
+        </section>
+
+        <section class="section-proposal">
+            <h2 id="sec3Title">Многоступенчатая циркулярная термодинамика и производственный потенциал</h2>
+            <div class="proposal-text" id="sec3Content"></div>
+        </section>
+
+        <div class="footer-nav-zone">
+            <a href="intelligence.html" class="btn-nav" id="lnNext" style="padding: 16px 35px; font-size: 1rem; font-weight: bold; letter-spacing: 2px;">Перейти к матрице решений →</a>
+        </div>
+
+    </main>
+
+    <script>
+        const pageTranslations = {
+            ua: {
+                home: "← На головну",
+                next: "Перейти до матриці рішень →",
+                titles: { main: "ЕнергаТор — Аналітична Платформа", sec1: "Виклики інфраструктури та архітектура стійкості", sec2: "Обмеження альтернативних технологій зберігання енергії", sec3: "Багатоступенева циркулярна термодинаміка та виробничий потенціал" },
+                table: {
+                    headers: ["Технологія накопичення", "Критичні обмеження (За даними LAZARD / IEA / CSIRO)"],
+                    rows: [
+                        ["Літій-іонні системи (BESS)", "Висока питома вартість зберігання (LCOS), швидка деградація ємності при інтенсивних циклічних навантаженнях вже через 5–7 років, високі ризики самозаймання в закритих просторах та втрата до 35% номінального запасу ходу при температурах нижче -15 °C."],
+                        ["Класичні САЕС (Стиснене повітря)", "Низький термічний ККД через неконтрольовані втрати тепла при стисненні та обмерзання систем при розширенні, що вимагає спалювання викопного палива для підігріву. Жорстка географічна прив'язка до підземних соляних печер."],
+                        ["ГАЕС (Гідроакумулятори)", "Територіальні обмеження (необхідний специфічний гірський рельєф та великі водойми), колосальний стартовий капітал (CAPEX) та тривалий період будівництва (до 7–12 років)."]
+                    ]
+                },
+                sec1: "<p>Глобальні логістичні капкани, паливні кризи та очевидна уразливість об'єктів нафтопереробної галузі, енергетики та об'єктів їхньої інфраструктури перед сучасними диверсіями та гібридними загрозами вимагають радикального перегляду чинних стандартів безпеки.</p>\n<p><b>Посил проекту:</b> Мир нуждается в переходе от модели полной зависимости от централизованных энергосистем к архитектуре энергетической устойчивости, в которой автономные тригенерационные комплексы становятся опорой для большой энергетики, обеспечивая локальную выработку и хранение электроэнергии, тепла, холода и энергетическое снабжение транспорта. Такой подход позволяет повысить надёжность энергосистем, снизить последствия аварий и обеспечить жизнедеятельность критически важных объектов даже в условиях длительной изоляции.</p>",
+                sec2Before: "<p>Масовий перехід світової інфраструктури на електрифікацію та стрімкий розвиток відновлюваних джерел енергії (ВДЕ) в умовах сучасних викликів уперлися в жорсткий технологічний тупик — дефіцит надійних, дешевих та довговічних технологій промислового тривалого зберігання енергії. Системний аналіз міжнародних звітів показує наступні результати:</p>",
+                sec2After: "<p>Спроби стабілізувати роботу ЖКГ та комерційного транспорту виключно хімічними акумуляторами створюють критичні пікові навантаження на магістральні мережі в ранкові та вечірні години, провокуючи локальні блекаути через відсутність буферних систем.</p>",
+                sec3: "<p><b>Циркулярна термодинаміка:</b> Проєкт передбачає багатоступеневе використання енергії на всіх етапах її перетворення. Тепло, що виникає при стисненні повітря, використовується для опалення, гарячого водопостачання та технологічних процесів, а холод, який утворюється при розширенні, застосовується для кондиціонування, охолодження обладнання та зберігання продукції. Такий підхід дозволяє створити тригенераційну систему, що одночасно забезпечує електроенергію, тепло і холод, підвищуючи енергетичну ефективність об'єктів, знижуючи навантаження на централізовані мережі та скорочуючи витрати бізнесу і населення на енергопостачання.</p>\n<p><b>Надійність та виробничий потенціал:</b> Система «ЕнергаТор» використовує як основний енергоносій стиснене повітря — доступне та повсюдно поширене середовище, що не потребує видобутку, транспортування або складної переробки. При дотриманні вимог до герметичності систем зберігання стиснене повітря може використовуватися для довгострокового накопичення енергії без деградації, характерної для низки електрохімічних накопичувачів.</p>\n<p>Робочим тілом системи є рідина, щільність якої значно перевищує щільність повітря. Вона виконує одночасно кілька функцій: передачу енергії, змащування вузлів тороїдального преобразуючого агрегату (ТПА) та підтримання сприятливого температурного режиму його роботи. Конструкція ТПА орієнтована на зниження механічної складності та кількості навантажених елементів. У ній відсутні зворотно-поступальні механізми, шатунно-кривошипні групи, розподільні та колінчасті вали, що потенційно сприяє підвищенню надійності та зниженню вимог до технічного обслуговування.</p>\n<p>Для виготовлення основних вузлів системи передбачається використання широко доступних конструкційних матеріалів та стандартних виробничих технологій, що створює передумови для локалізації виробництва в різних країнах та регіонах без критичної залежності від рідкоземельних металів та дефіцитних компонентів. Архітектура передбачає можливість стаціонарного, модульного та автономного виконання для застосування в енергетиці, промисловості, транспортній інфраструктурі та видалених об'єктах. Патентний захист проекту забезпечується діючими пріоритетними документами та патентними правами від 06.04.2026.</p>"
+            },
+            ru: {
+                home: "← На главную",
+                next: "Перейти к матрице решений →",
+                titles: { main: "ЭнергаТор — Аналитическая Платформа", sec1: "Вызовы инфраструктуры и архитектура устойчивости", sec2: "Ограничения альтернативных технологий хранения энергии", sec3: "Многоступенчатая циркулярная термодинамика и производственный потенциал" },
+                table: {
+                    headers: ["Технология накопления", "Критические ограничения (По данным LAZARD / IEA / CSIRO)"],
+                    rows: [
+                        ["Литий-ионные системы (BESS)", "Высокая удельная стоимость хранения (LCOS), быстрая деградация емкости при интенсивных циклических нагрузках уже через 5–7 лет, высокие риски самовозгорания в закрытых пространствах и потеря до 35% номинального запаса хода при температурах ниже -15 °C."],
+                        ["Классические САЭС (Сжатый воздух)", "Низкий термический КПД из-за неконтролируемых потерь тепла при сжатии и обмерзания систем при расширении, что требует сжигания ископаемого топлива для подогрева. Жесткая географическая привязка к подземным соляным пещерам."],
+                        ["ГАЭС (Гидроаккумуляторы)", "Территориальные ограничения (требуется специфический горный рельеф и большие водоемы), колоссальный стартовый капитал (CAPEX) и долгий период строительства (до 7–12 лет)."]
+                    ]
+                },
+                sec1: "<p>Глобальные логистические капканы, топливные кризисы и очевидная уязвимость объектов нефтеперерабатывающей отрасли, энергетики и объектов их инфраструктуры перед современными диверсиями и гибридными угрозами требуют радикального пересмотра существующих стандартов безопасности.</p>\n<p><b>Посыл проекта:</b> Мир нуждается в переходе от модели полной зависимости от centralизованных энергосистем к архитектуре энергетической устойчивости, в которой автономные тригенерационные комплексы становятся опорой для большой энергетики, обеспечивая локальную выработку и хранение электроэнергии, тепла, холода и энергетическое снабжение транспорта. Такой подход позволяет повысить надёжность энергосистем, снизить последствия аварий и обеспечить жизнедеятельность критически важных объектов даже в условиях длительной изоляции.</p>",
+                sec2Before: "<p>Массовый переход мировой инфраструктуры на электрификацию и стремительное развитие возобновляемых источников энергии (ВИЭ) в условиях современных вызовов уперлись в жесткий технологический тупик — дефицит надежных, дешевых и долговечных технологий промышленного длительного хранения энергии. Системный анализ международных отчетов показывает следующие результаты:</p>",
+                sec2After: "<p>Попытки стабилизировать работу ЖКХ и коммерческого транспорта исключительно химическими аккумуляторами создают критические пиковые нагрузки на магистральные сети в утренние и вечерние часы, провоцируя локальные блэкауты из-за отсутствия буферных систем.</p>",
+                sec3: "<p><b>Циркулярная термодинамика:</b> Проект предусматривает многоступенчатое использование энергии на всех этапах её преобразования. Тепло, возникающее при сжатии воздуха, используется для отопления, горячего водоснабжения и технологических процессов, а холод, образующийся при расширении, применяется для кондиционирования, охлаждения оборудования и хранения продукции. Такой подход позволяет создать тригенерационную систему, одновременно обеспечивающую электроэнергию, тепло и холод, повышая энергетическую эффективность объектов, снижая нагрузку на централизованные сети и сокращая расходы бизнеса и населения на энергоснабжение.</p>\n<p><b>Надёжность и производственный потенциал:</b> Система «ЭнергаТор» использует в качестве основного энергоносителя сжатый воздух — доступную и повсеместно распространённую среду, не требующую добычи, транспортировки или сложной переработки. При соблюдении требований к герметичности систем хранения сжатый воздух может использоваться для долгосрочного накопления энергии без деградации, характерной для ряда электрохимических накопителей.</p>\n<p>Рабочим телом системы является жидкость, плотность которой значительно превышает плотность воздуха. Она выполняет одновременно несколько функций: передачу энергии, смазку узлов тороидального преобразующего агрегата (ТПА) и поддержание благоприятного температурного режима его работы. Конструкция ТПА ориентирована на снижение механической сложности и количества нагруженных элементов. В ней отсутствуют возвратно-поступательные механизмы, шатунно-кривошипные группы, распределительные и коленчатые валы, что потенциально способствует повышению надёжности и снижению требований к техническому обслуживанию.</p>\n<p>Для изготовления основных узлов системы предполагается использование широко доступных конструкционных материалов и стандартных производственных технологий, что создаёт предпосылки для локализации производства в различных странах и регионах без критической зависимости от редкоземельных металлов и дефицитных компонентов. Архитектура системы предусматривает возможность стационарного, модульного и автономного исполнения для применения в энергетике, промышленности, транспортной инфраструктуре и удалённых объектах. Патентная защита проекта обеспечивается действующими приоритетными документами и патентными правами от 06.04.2026.</p>"
+            },
+            en: {
+                home: "← To Home",
+                next: "Go to Solutions Matrix →",
+                titles: { main: "EnergaTor — Analytical Platform", sec1: "Infrastructure Challenges and Architecture of Resilience", sec2: "Limitations of Alternative Energy Storage Technologies", sec3: "Multistage Circular Thermodynamics and Production Potential" },
+                table: {
+                    headers: ["Storage Technology", "Critical Limitations (Based on LAZARD / IEA / CSIRO)"],
+                    rows: [
+                        ["Lithium-ion systems (BESS)", "High levelized cost of storage (LCOS), rapid capacity degradation during intensive cycling setups within 5–7 years, high fire risks in enclosed environments, and up to 35% loss of nominal driving range at temperatures below -15 °C."],
+                        ["Conventional CAES (Compressed Air)", "Low thermal efficiency due to uncompensated heat losses during compression and heavy component icing upon expansion, requiring fossil fuel combustion for pre-heating. Strict geographical attachment to deep salt caverns."],
+                        ["PHS (Pumped Hydro Storage)", "Territorial constraints (requires specific mountainous terrain and major water reservoirs), massive upfront capital expenditures (CAPEX), and an extended construction period of up to 7–12 years."]
+                    ]
+                },
+                sec1: "<p>Global logistical bottlenecks, fuel crises, and the apparent vulnerability of oil refining sectors, energy grids, and their infrastructure components to modern subversion and hybrid threats demand a radical overhaul of existing security standards.</p>\n<p><b>Project Vision:</b> The world needs to shift from a model of total dependence on centralized energy grids toward an energy resilience architecture where autonomous trigeneration complexes serve as a pillar for large-scale power infrastructure. They secure localized generation and storage of power, heat, and cold alongside energy supply for transportation. This approach enhances grid reliability, minimizes blackout consequences, and ensures the survival of critical facilities even under prolonged isolation.</p>",
+                sec2Before: "<p>The massive shift of global infrastructure toward electrification and the rapid growth of renewable energy sources (RES) have hit a strict technological bottleneck — a severe deficit of reliable, cost-effective, and long-duration technologies for industrial energy storage. Systematic analysis of international reports indicates the following data:</p>",
+                sec2After: "<p>Attempts to stabilize utility operations and commercial transit solely with chemical batteries create critical peak loads on transmission grids during morning and evening hours, triggering localized blackouts due to the lack of buffer storage assets.</p>",
+                sec3: "<p><b>Circular Thermodynamics:</b> The project architecture provides multi-stage utilization of energy across all phases of conversion. The thermal energy generated during air compression is directly funneled into space heating, hot water supply, and commercial processes, while the cold generated during expansion is applied for air conditioning, industrial equipment cooling, and food storage. This method forms an efficient trigeneration system delivering electricity, heat, and cold simultaneously, optimizing commercial margins, easing transmission grid stress, and reducing utility expenses for enterprises and communities.</p>\n<p><b>Reliability & Production Potential:</b> The EnergaTor system leverages compressed air as its primary energy carrier — an universally accessible and widespread medium requiring no extraction, complex transportation, or chemical refining. When strict airtightness parameters of storage units are met, compressed air delivers long-duration energy storage without any of the capacity degradation typical of electrochemical batteries.</p>\n<p>The system's working fluid is a dedicated high-density liquid whose mass significantly exceeds that of air. It performs multiple functions concurrently: power transmission, lubrication of the Toroidal Transforming Unit (PTU) components, and thermal stabilization of its operating envelope. The mechanical layout of the PTU minimizes structural complexity and the number of loaded elements. It entirely excludes reciprocating mechanisms, crankshaft assemblies, timing systems, or camshafts, drastically lowering maintenance overhead and maximizing reliability metrics.</p>\n<p>The core structural elements are designed to utilize widely available construction materials and standard manufacturing setups, creating optimal baselines for regional production localization without critical dependence on rare-earth elements or scarce components. The modular layout allows for stationary, portable, and autonomous configurations across industrial plants, transportation networks, and remote facilities. Intellectual property protection is firmly secured by international patent priority filings dated April 6, 2026.</p>"
+            },
+            de: {
+                home: "← Zum Hauptmenü",
+                next: "Zur Lösungsmatrix gehen →",
+                titles: { main: "EnergaTor — Analytische Plattform", sec1: "Infrastrukturherausforderungen und Architektur der Resilienz", sec2: "Einschränkungen alternativer Energiespeichertechnologien", sec3: "Mehrstufige zirkuläre Thermodynamik und Produktionspotenzial" },
+                table: {
+                    headers: ["Speichertechnologie", "Kritische Einschränkungen (Nach LAZARD / IEA / CSIRO)"],
+                    rows: [
+                        ["Lithium-Ionen-Systeme (BESS)", "Hohe Stromspeicherkosten (LCOS), schneller Kapazitätsabbau bei intensiven Zyklen innerhalb von 5–7 Jahren, hohe Brandgefahr in geschlossenen Räumen und bis zu 35% Reichweitenverlust bei Temperaturen unter -15 °C."],
+                        ["Konventionelle Druckluftspeicher (CAES)", "Niedriger thermischer Wirkungsgrad durch unkontrollierte Wärmeverluste bei der Kompression und Vereisung bei der Expansion, was die Verbrennung fossiler Brennstoffe zur Vorheizung erfordert. Strikte geografische Bindung an unterirdische Salzkavernen."],
+                        ["Pumpspeicherwerke (PSW)", "Territoriale Einschränkungen (erfordert spezifisches Gebirgsrelief und große Wasserreservoirs), enorme Vorab-Kapitalaufwendungen (CAPEX) und eine lange Bauzeit von bis zu 7–12 Jahren."]
+                    ]
+                },
+                sec1: "<p>Globale Logistikengpässe, Treibstoffkrisen und die offensichtliche Verwundbarkeit von Ölraffineriesektoren, Energienetzen und deren Infrastrukturkomponenten gegenüber modernen hybriden Bedrohungen erfordern eine radikale Überarbeitung bestehender Sicherheitsstandards.</p>\n<p><b>Projektvision:</b> Die Welt muss von einem Modell der totalen Abhängigkeit von zentralisierten Energienetzen zu einer Energieresilienz-Architektur übergehen, in der autonome Trigenerationskomplexe als Stütze für die große Strominfrastruktur dienen. Sie sichern die lokale Erzeugung und Speicherung von Strom, Wärme und Kälte sowie die Energieversorgung des Verkehrs. Dieser Ansatz erhöht die Zuverlässigkeit des Netzes, minimiert die Folgen von Blackouts und sichert das Überleben kritischer Einrichtungen auch bei längerer Isolation.</p>",
+                sec2Before: "<p>Die massive Umstellung der weltweiten Infrastruktur на Elektrifizierung und das schnelle Wachstum erneuerbarer Energien (EE) sind auf einen technologischen Engpass gestoßen – einen gravierenden Mangel an zuverlässigen, kostengünstigen und langlebigen Technologien für die industrielle Langzeitspeicherung. Die systematische Analyse internationaler Berichte zeigt folgende Daten:</p>",
+                sec2After: "<p>Versuche, den Betrieb von Versorgungsunternehmen und den kommerziellen Nahverkehr ausschließlich mit chemischen Batterien zu stabilisieren, führen in den Morgen- und Abendstunden zu kritischen Spitzenlasten in den Übertragungsnetzen und lösen mangels Pufferspeicher lokale Blackouts aus.</p>",
+                sec3: "<p><b>Zirkuläre Thermodynamik:</b> Die Projektarchitektur sieht eine mehrstufige Energienutzung in allen Phasen der Umwandlung vor. Die bei der Luftkompression entstehende thermische Energie wird direkt in die Raumheizung, Warmwasserversorgung und gewerbliche Prozesse geleitet, während die bei der Expansion entstehende Kälte für Klimatisierung, industrielle Anlagenkühlung und Lebensmittellagerung genutzt wird. Diese Methode bildet ein effizientes Trigenerationssystem, das gleichzeitig Strom, Wärme und Kälte liefert, die gewerblichen Margen optimiert, den Stress im Übertragungsnetz reduziert und die Betriebskosten für Unternehmen und Gemeinden senkt.</p>\n<p><b>Zuverlässigkeit & Produktionspotenzial:</b> Das EnergaTor-System nutzt Druckluft als primären Energieträger – ein universell zugängliches und weit verbreitetes Medium, das keine Gewinnung, komplexe Transportwege oder chemische Raffination erfordert. Wenn die strengen Luftदichtheitsparameter der Speichereinheiten eingehalten werden, liefert Druckluft eine Langzeitspeicherung ohne den für elektrochemische Batterien typischen Kapazitätsabbau.</p>\n<p>Das Arbeitsmedium des Systems ist eine spezielle Flüssigkeit hoher Dichte, deren Masse die von Luft erheblich übersteigt. Sie erfüllt mehrere Funktionen gleichzeitig: Kraftübertragung, Schmierung der Komponenten des Toroidalen Transformationsaggregats (TTA) und thermische Stabilisierung seines Betriebsbereichs. Das mechanische Layout des TTA minimiert die strukturelle Komplexität und die Anzahl der belasteten Elemente. Es schließt zylinderförmige Kolbenmechanismen, Kurbelwellenbaugruppen oder Nockenwellen vollständig aus, was den Wartungsaufwand drastisch senkt und die Zuverlässigkeitsmetriken maximiert.</p>\n<p>Die Kernstrukturelemente sind für die Verwendung weit verbreiteter Konstruktionsmaterialien und Standardfertigungsanlagen ausgelegt, was optimale Ausgangsbasis für eine regionale Produktionslokalisierung ohne kritische Abhängigkeit von Seltenerdelementen oder knappen Komponenten schafft. Der modulare Aufbau ermöglicht stationäre, tragbare und autonome Konfigurationen in Industrieanlagen, Verkehrsnetzen und abgelegenen Einrichtungen. Der Schutz des geistigen Eigentums ist durch internationale Patentprioritätsanmeldungen vom 6. April 2026 fest gesichert.</p>"
+            }
+        };
+
+        let currentLang = localStorage.getItem('energator_lang') || 'ua';
+
+        function changeLang(lang) {
+            currentLang = lang;
+            localStorage.setItem('energator_lang', lang);
+
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                if (btn.id === `btn-${lang}`) btn.classList.add('active');
+                else btn.classList.remove('active');
+            });
+
+            // Безопасный Fallback (подмена на украинский, если язык не найден)
+            const trans = pageTranslations[lang] || pageTranslations['ua'];
+            
+            document.getElementById('lnHome').innerText = trans.home;
+            document.getElementById('lnNext').innerText = trans.next;
+            document.getElementById('pageTitle').innerText = trans.titles.main;
+            document.getElementById('sec1Title').innerText = trans.titles.sec1;
+            document.getElementById('sec2Title').innerText = trans.titles.sec2;
+            document.getElementById('sec3Title').innerText = trans.titles.sec3;
+            
+            document.getElementById('sec1Content').innerHTML = trans.sec1;
+            document.getElementById('sec2ContentBefore').innerHTML = trans.sec2Before;
+            document.getElementById('sec2ContentAfter').innerHTML = trans.sec2After;
+            document.getElementById('sec3Content').innerHTML = trans.sec3;
+
+            // Рендеринг таблицы
+            const headerRow = document.getElementById('tableHead');
+            headerRow.innerHTML = `<th>${trans.table.headers[0]}</th><th>${trans.table.headers[1]}</th>`;
+            
+            const tableBody = document.getElementById('tableBody');
+            tableBody.innerHTML = "";
+            trans.table.rows.forEach(row => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `<td><strong>${row[0]}</strong></td><td>${row[1]}</td>`;
+                tableBody.appendChild(tr);
+            });
+        }
+
+        changeLang(currentLang);
+    </script>
+</body>
+</html>
