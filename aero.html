@@ -58,7 +58,6 @@ HTML
         .aero-text { font-size: 1.1rem; line-height: 1.7; color: var(--text-main); text-align: justify; }
         .aero-text p { margin-bottom: 20px; }
 
-        /* Сетка для видеолинков */
         .video-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 30px; margin-bottom: 30px; }
         .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 6px; border: 1px solid rgba(200, 117, 51, 0.2); background: #000; }
         .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
@@ -91,13 +90,11 @@ HTML
 
     <main class="container">
         
-        <!-- Блок 1: Эксплуатационный тупик лития -->
         <section class="section-aero">
             <h2 id="sec1Title">Эксплуатационный тупик Lithium-ion систем в БПЛА</h2>
             <div class="aero-text">
                 <div id="sec1Content"></div>
                 
-                <!-- Блок со встроенными YouTube роликами автора -->
                 <div class="video-grid">
                     <div class="video-wrapper">
                         <iframe src="https://www.youtube.com/embed/qaeNyrt5g-I?si=itk0lrJFypeNiXga" title="YouTube video player" allowfullscreen></iframe>
@@ -112,7 +109,6 @@ HTML
             </div>
         </section>
 
-        <!-- Блок 2: Сравнительный анализ параметров -->
         <section class="section-aero">
             <h2 id="sec2Title">Сравнительный анализ параметров бортовых энергосистем</h2>
             <table class="tech-table">
@@ -123,7 +119,6 @@ HTML
             </table>
         </section>
 
-        <!-- Блок 3: Инженерное предложение ЭнергаТор -->
         <section class="section-aero">
             <h2 id="sec3Title">Инженерное решение ЭнергаТор: Облегченный борт с ТПА-подпиткой</h2>
             <div class="aero-text" id="sec3Content"></div>
@@ -152,7 +147,7 @@ HTML
                 back: "← В матрицу",
                 titles: { main: "EnergaTor — Авиационные Технологии", sec1: "Эксплуатационный тупик Lithium-ion систем в БПЛА", sec2: "Сравнительный анализ параметров бортовых энергосистем", sec3: "Инженерное решение ЭнергаТор: Облегченный борт с ТПА-подпиткой" },
                 table: {
-                    headers: ["Параметр эффективности", "Стандартный Lithium-ion борт", "Борт с интегрированным ТПА EnergaTor"],
+                    headers: ["Параметр эффективности", "Стандартный Lithium-ion борт", "Борт с информацией ТПА EnergaTor"],
                     rows: [
                         ["Удельный вес энергоузла", "До 35-45% от массы всего пустого дрона", "Минимальный (вес АКБ снижен в несколько раз)"],
                         ["Время восстановления энергии", "От 1 до 4 часов непрерывного простоя у розетки", "3–5 минут (быстрая заправка сжатым воздухом)"],
@@ -160,7 +155,7 @@ HTML
                         ["Работа при температурах ниже -15 °C", "Критическая потеря до 35% емкости и падение мощности", "Стабильная работа благодаря СОЖ-термостабилизации"]
                     ]
                 },
-                sec1: "<p>Современная индустрия промышленных беспилотников и аэротакси (eVTOL) уперлась в жесткий физический лимит химических источников питания. Чем тяжелее дрон и чем большую полезную грузоподъемность он заявляет, тем более массивный аккумуляторный блок инженеры вынуждены ставить на борт. В результате возникает парадокс: тяжелый промышленный беспилотник расходует большую часть энергии просто на перемещение веса собственной батареи, ограничивая время полета короткими интервалами в 10–20 минут.</p><p>Высокая цена аккумуляторов, составляющая до половины стоимости всего летательного аппарата, в сочетании с длительным временем простоя при зарядке полностью разрушает коммерческую окупаемость логистических и поисковых хабов.</p>",
+                sec1: "<p>Современная индустрия промышленных беспилотников и аэротакси (eVTOL) уперлась в жесткий physicalеский лимит химических источников питания. Чем тяжелее дрон и чем большую полезную грузоподъемность он заявляет, тем более массивный аккумуляторный блок инженеры вынуждены ставить на борт. В результате возникает парадокс: тяжелый промышленный беспилотник расходует большую часть энергии просто на перемещение веса собственной батареи, ограничивая время полета короткими интервалами в 10–20 минут.</p><p>Высокая цена аккумуляторов, составляющая до половины стоимости всего летательного аппарата, в сочетании с длительным временем простоя при зарядке полностью разрушает коммерческую окупаемость логистических и поисковых хабов.</p>",
                 sec3: "<p><b>Оптимизация веса и непрерывный цикл работы:</b> Концепция «ЕнергаТор» полностью переформатирует бортовую энергосеть тяжелых БПЛА. Вместо попыток крутить винты исключительно за счет сжатого воздуха или использования избыточных литиевых кассет, система реализует принцип буферной подпитки.</p><p>С борта дрона полностью удаляется тяжелая основная АКБ. Вместо нее устанавливается уменьшенная, облегченная аккумуляторная батарея, способная выдавать необходимую мощность на моторы. Во время всего полета бортовой тороидальный преобразующий агрегат (ТПА) осуществляет непрерывную подпитку этого уменьшенного накопителя за счет энергии сжатого воздуха из баллонов, стабилизированных системой теплообменников.</p><p>В результате уменьшенная АКБ не разряжается в ноль во время миссии. После приземления дрону не требуется многочасовая зарядка от сети: оператор производит заправку баллонов сжатым воздухом за 3–5 минут через быстроразъемные соединения, и облегченный аппарат мгновенно возвращается на рабочий маршрут.</p>"
             },
             en: {
@@ -176,22 +171,22 @@ HTML
                     ]
                 },
                 sec1: "<p>The modern industrial drone and eVTOL industry has hit a strict physical boundary imposed by chemical power sources. As drone frames grow heavier to support serious industrial payloads, engineers are forced to step up battery mass. This triggers the battery paradox: a heavy-lift UAV spends up to 60-70% of its total energy capacity simply carrying the weight of its own power pack, limiting flight times to narrow 10–20 minute cycles.</p><p>Exorbitant battery costs, often reaching up to half of the drone's total price tag, coupled with hours of charging downtime, completely shatter the commercial viability of autonomous logistic hubs.</p>",
-                sec3: "<p><b>Weight Optimization & Continuous Operational Cycles:</b> The EnergaTor approach completely restructures the airborne power architecture of industrial UAVs. Instead of attempting to drive flight rotors purely via compressed air expansion or relying on oversized lithium modules, the system implements a буферной power generation cycle.</p><p>The massive primary battery pack is completely eliminated from the drone frame. It is replaced with a downsized, lightweight high-discharge battery that provides necessary peak current to the flight motors. Throughout the flight profile, the onboard Toroidal Transforming Unit (PTU) continuously trickle-charges this lightweight battery block utilizing compressed air energy from cylinders stabilized by integrated heat exchangers.</p><p>Consequently, the downsized battery never drops to zero during mission profiles. Upon landing, the drone bypasses multi-hour electrical plug-in charging: the operator refuels the storage cylinders with compressed air within 3–5 minutes via quick-release couplings, allowing the lightweight aircraft to instantly return to its flight route.</p>"
+                sec3: "<p><b>Weight Optimization & Continuous Operational Cycles:</b> The EnergaTor approach completely restructures the airborne power architecture of industrial UAVs. Instead of attempting to drive flight rotors purely via compressed air expansion or relying on oversized lithium modules, the system implements a buffer power generation cycle.</p><p>The massive primary battery pack is completely eliminated from the drone frame. It is replaced with a downsized, lightweight high-discharge battery that provides necessary peak current to the flight motors. Throughout the flight profile, the onboard Toroidal Transforming Unit (PTU) continuously trickle-charges this lightweight battery block utilizing compressed air energy from cylinders stabilized by integrated heat exchangers.</p><p>Consequently, the downsized battery never drops to zero during mission profiles. Upon landing, the drone bypasses multi-hour electrical plug-in charging: the operator refuels the storage cylinders with compressed air within 3–5 minutes via quick-release couplings, allowing the lightweight aircraft to instantly return to its flight route.</p>"
             },
             de: {
                 back: "← Zur Matrix",
-                titles: { main: "EnergaTor — Luftfahrttechnologien", sec1: "Operativer Engpass von Lithium-Ionen-Systemen in Drohnen", sec2: "Vergleichsanalyse der Parameter von Bordsystemen", sec3: "EnergaTor-Ingenieurlösung: Leichtbau-Rahmen mit TTA-Pufferung" },
+                titles: { main: "EnergaTor — Luftfahrttechnologien", sec1: "Operativer Engpass von Lithium-Ionen-Systemen in Drohnen", sec2: "Vergleichsanalyse der Parameter von Bordsystemen", sec3: "EnergaTor-Ingenieurlösung: Leichtbau-Rahmen mit PTU-Pufferung" },
                 table: {
-                    headers: ["Effizienzparameter", "Standard Lithium-Ionen-Rahmen", "Integrierter EnergaTor TTA-Rahmen"],
+                    headers: ["Effizienzparameter", "Standard Lithium-Ionen-Rahmen", "Integrierter EnergaTor PTU-Rahmen"],
                     rows: [
                         ["Gewichtsanteil des Energieblocks", "Bis zu 35-45% des gesamten Leergewichts der Drohne", "Minimal (Batteriegewicht um das Vielfache reduziert)"],
                         ["Energie-Wiederherstellungszeit", "1 bis 4 Stunden kontinuierliche Ladezeit an der Steckdose", "3–5 Minuten (Schnelle Betankung mit Druckluft)"],
                         ["Lebensdauer des Bordspeichers", "Nur 300–400 Zyklen aufgrund hoher Anlaufströme", "Über 20 Jahre Betriebsdauer der mechanischen Kaskaden"],
-                        ["Betrieb bei Temperaturen unter -15 °C", "Kritischer Verlust von bis zu 35% Kapazität und Leistung", "Stabiler Betrieb dank Kältemittel-Thermostabilisierung"]
+                        ["Betrieb bei Temperaturen unter -15 °C", "Kritischer Verlust von... bis zu 35% Kapazität und Leistung", "Stabiler Betrieb dank Kältemittel-Thermostabilisierung"]
                     ]
                 },
-                sec1: "<p>Die moderne Industrie von Industriedrohnen und Flugtaxis (eVTOL) ist an die harten physischen Grenzen chemischer Stromquellen gestoßen. Je schwerer eine Drohne ist, desto massivere Batterieblöcke müssen verbaut werden. Das führt zum Batterie-Paradoxon: Eine schwere Industriedrohne verbraucht den Großteil ihrer Energie nur dafür, das Eigengewicht der Batterie zu tragen, was die Flugzeit auf kurze Intervalle von 10–20 Minuten begrenzt.</p><p>Der hohe Preis der Batterien, der bis zu modular der Hälfte der Gesamtkosten des Fluggeräts ausmacht, zerstört in Kombination mit den langen Ausfallzeiten beim Laden die wirtschaftliche Rentabilität von Logistik-Hubs vollständig.</p>",
-                sec3: "<p><b>Gewichtsoptimierung & kontinuierlicher Arbeitszyklus:</b> Das EnergaTor-Konzept formatiert das Bordnetz schwerer Drohnen komplett um. Anstatt zu versuchen, die Rotoren ausschließlich mit Druckluft zu betreiben oder überdimensionierte Lithium-Kassetten zu verwenden, implementiert das System das Prinzip der Pufferladung.</p><p>Die schwere Hauptbatterie wird vollständig vom Bord der Drohne entfernt. An ihre Stelle tritt eine verkleinerte, leichte Batterie, которая die notwendige Spitzenleistung an die Motoren liefert. Während des gesamten Fluges lädt das bordeigene Toroidale Transformationsaggregat (TTA) diesen verkleinerten Speicher kontinuierlich mit der Energie der Druckluft aus den Flaschen auf, die durch ein System von Wärmetauschern stabilisiert werden.</p><p>Dadurch entlädt sich die verkleinerte Batterie während der Mission nie auf Null. Nach der Landung entfällt das stundenlange Laden am Netz: Der Bediener betankt die Flaschen innerhalb von 3–5 Minuten über Schnellkupplungen mit Druckluft, und das Leichtbaugerät kehrt sofort auf die Flugroute zurück.</p>"
+                sec1: "<p>Die moderne Industrie von Industriedrohnen und Flugtaxis (eVTOL) ist an die harten physischen Grenzen chemischer Stromquellen gestoßen. Je schwerer eine Drohne ist, desto massivere Batterieblöcke müssen verbaut werden. Das führt zum Batterie-Paradoxon: Eine schwere Industriedrohne verbraucht den Großteil ihrer Energie nur dafür, das Eigengewicht der Batterie zu tragen, was die Flugzeit auf kurze Intervalle von 10–20 Minuten begrenzt.</p><p>Der hohe Preis der Batterien, der bis zu der Hälfte der Gesamtkosten des Fluggeräts ausmacht, zerstört in Kombination mit den langen Ausfallzeiten beim Laden die wirtschaftliche Rentabilität von Logistik-Hubs vollständig.</p>",
+                sec3: "<p><b>Gewichtsoptimierung & kontinuierlicher Arbeitszyklus:</b> Das EnergaTor-Konzept formatiert das Bordnetz schwerer Drohnen komplett um. Anstatt zu versuchen, die Rotoren ausschließlich mit Druckluft zu betreiben oder überdimensionierte Lithium-Kassetten zu verwenden, implementiert das System das Prinzip der Pufferladung.</p><p>Die schwere Hauptbatterie wird vollständig vom Bord der Drohne entfernt. An ihre Stelle tritt eine verkleinerте, leichte Batterie, die die notwendige Spitzenleistung an die Motoren liefert. Während des gesamten Fluges lädt das bordeigene Toroidale Transformationsaggregat (PTU) diesen verkleinerten Speicher kontinuierlich mit der Energie der Druckluft aus den Flaschen auf, die durch ein System von Wärmetauschern stabilisiert werden.</p><p>Dadurch entlädt sich die verkleinerte Batterie während der Mission nie auf Null. Nach der Landung entfällt das stundenlange Laden am Netz: Der Bediener betankt die Flaschen innerhalb von 3–5 Minuten über Schnellkupplungen mit Druckluft, und das Leichtbaugerät kehrt sofort auf die Flugroute zurück.</p>"
             }
         };
 
