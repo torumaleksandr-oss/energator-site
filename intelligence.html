@@ -4,7 +4,7 @@ HTML
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ЭнергаТор — Аналитический Хаб Мультиагентной Системы</title>
+    <title>ЭнергаТор — Инженерная Матрица Решений</title>
     <style>
         :root {
             --space-bg: #030712;
@@ -48,7 +48,7 @@ HTML
             background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 8px;
             padding: 30px; display: flex; flex-direction: column; justify-content: space-between;
             backdrop-filter: blur(10px); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3); cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3); text-decoration: none; color: inherit;
         }
         .window-card:hover { border-color: var(--copper-primary); background: rgba(15, 23, 42, 0.6); transform: translateY(-5px); box-shadow: 0 15px 35px rgba(200, 117, 51, 0.15); }
         .window-header { border-bottom: 1px solid rgba(200, 117, 51, 0.15); padding-bottom: 15px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; }
@@ -56,56 +56,17 @@ HTML
         .window-num { font-size: 0.75rem; font-weight: bold; color: var(--copper-primary); border: 1px solid var(--copper-primary); padding: 2px 6px; border-radius: 4px; white-space: nowrap; }
         .window-body ul { margin: 0 0 25px 0; padding-left: 18px; color: var(--text-muted); font-size: 0.95rem; }
         .window-body li { margin-bottom: 10px; line-height: 1.5; }
-        .btn-action { display: block; text-align: center; background: transparent; border: 1.5px solid var(--copper-primary); color: var(--copper-primary); padding: 12px; border-radius: 4px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; }
-
-        /* ИНТЕРАКТИВНОЕ ОКНО ПРЕЗЕНТАЦИИ */
-        .fullscreen-modal {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(3, 7, 18, 0.97); z-index: 1000; display: none;
-            justify-content: center; align-items: center; backdrop-filter: blur(20px);
-        }
-        .modal-content {
-            background: #0b1329; border: 1px solid var(--copper-primary); border-radius: 12px;
-            max-width: 1200px; width: 95%; height: 85vh; display: flex; flex-direction: column;
-            position: relative; box-shadow: 0 30px 70px rgba(0,0,0,0.9); overflow: hidden;
-        }
-        .modal-close { position: absolute; top: 20px; right: 25px; font-size: 2.5rem; color: var(--text-muted); cursor: pointer; z-index: 10; transition: color 0.3s; }
-        .modal-close:hover { color: var(--copper-primary); }
-        
-        .presentation-body { display: flex; width: 100%; height: 100%; }
-        .pres-sidebar { width: 30%; border-right: 1px solid rgba(200, 117, 51, 0.15); background: rgba(3, 7, 18, 0.4); padding: 40px 25px; display: flex; flex-direction: column; gap: 15px; }
-        .pres-main { width: 70%; padding: 40px; overflow-y: auto; display: flex; flex-direction: column; justify-content: space-between; }
-        
-        .step-btn {
-            background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(200, 117, 51, 0.2);
-            color: var(--text-muted); padding: 15px 20px; border-radius: 6px; text-align: left;
-            font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease;
-        }
-        .step-btn:hover { border-color: var(--copper-primary); color: var(--text-main); }
-        .step-btn.active { background: var(--copper-primary); color: #000; border-color: var(--copper-primary); font-weight: 700; box-shadow: 0 0 15px rgba(200, 117, 51, 0.3); }
-
-        .pres-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 20px; }
-        .pres-text-zone { font-size: 1.1rem; line-height: 1.7; color: var(--text-main); }
-        .pres-text-zone h2 { margin: 0 0 20px 0; color: var(--copper-primary); text-transform: uppercase; font-size: 1.4rem; letter-spacing: 1px; border-bottom: 1px solid rgba(200, 117, 51, 0.2); padding-bottom: 10px; }
-        .pres-media-zone { background: #030712; border-radius: 8px; border: 1px solid rgba(200, 117, 51, 0.15); display: flex; justify-content: center; align-items: center; min-height: 350px; position: relative; overflow: hidden; }
-        
-        .media-placeholder { text-align: center; color: var(--text-muted); padding: 20px; font-size: 0.95rem; }
-        .media-placeholder svg { width: 45px; height: 45px; fill: var(--copper-primary); margin-bottom: 15px; opacity: 0.7; }
+        .btn-action { display: block; text-align: center; background: transparent; border: 1.5px solid var(--copper-primary); color: var(--copper-primary); padding: 12px; border-radius: 4px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; transition: all 0.3s ease; }
+        .window-card:hover .btn-action { background: var(--copper-primary); color: var(--space-bg); box-shadow: 0 0 15px rgba(200, 117, 51, 0.3); }
 
         .bottom-panel { background: linear-gradient(180deg, rgba(200, 117, 51, 0.05) 0%, rgba(200, 117, 51, 0.15) 100%); border: 2px solid var(--copper-primary); border-radius: 8px; padding: 35px; margin-top: 40px; }
         .panel-title { margin: 0 0 15px 0; font-size: 1.4rem; text-transform: uppercase; letter-spacing: 3px; color: var(--copper-primary); }
         .panel-text { font-size: 1.05rem; line-height: 1.6; color: var(--text-main); margin-bottom: 25px; }
-        .btn-panel { display: inline-block; background: var(--copper-primary); color: var(--space-bg); border: none; padding: 16px 35px; font-size: 1rem; font-weight: bold; text-transform: uppercase; letter-spacing: 3px; border-radius: 4px; transition: all 0.3s ease; }
+        .btn-panel { display: inline-block; background: var(--copper-primary); color: var(--space-bg); border: none; padding: 16px 35px; font-size: 1rem; font-weight: bold; text-transform: uppercase; letter-spacing: 3px; border-radius: 4px; transition: all 0.3s ease; text-decoration: none; text-align: center; }
         .btn-panel:hover { background: #ffffff; cursor: pointer; }
 
         @media (max-width: 1200px) { .matrix-grid { grid-template-columns: repeat(2, 1fr); } }
-        @media (max-width: 900px) {
-            .presentation-body { flex-direction: column; }
-            .pres-sidebar { width: 100%; height: auto; padding: 20px; flex-direction: row; overflow-x: auto; border-right: none; border-bottom: 1px solid rgba(200, 117, 51, 0.15); }
-            .pres-main { width: 100%; padding: 20px; }
-            .pres-grid { grid-template-columns: 1fr; }
-            .modal-content { height: 95vh; }
-        }
+        @media (max-width: 768px) { .matrix-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -128,126 +89,88 @@ HTML
         <section class="bottom-panel" id="bottomPanel"></section>
     </main>
 
-    <div class="fullscreen-modal" id="infoModal">
-        <div class="modal-content">
-            <span class="modal-close" onclick="closeModal()">&times;</span>
-            <div class="presentation-body">
-                <div class="pres-sidebar" id="presSidebar"></div>
-                <div class="pres-main">
-                    <div class="pres-grid">
-                        <div class="pres-text-zone" id="presTextZone"></div>
-                        <div class="pres-media-zone" id="presMediaZone"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <script>
-        // БАЗОВЫЙ ПАКЕТ НА ОДНОМ ЯЗЫКЕ ДЛЯ ИСПРАВЛЕНИЯ БАГА (FALLBACK СЛОВАРЬ)
-        const baseUaDictionary = {
-            windowLabels: ["Модуль 01", "Модуль 02", "Модуль 03", "Модуль 04", "Модуль 05", "Модуль 06", "Модуль 07", "Модуль 08", "Модуль 09"],
-            btnText: "Розгорнути аналітику", btnText8: "Відкрити дискусію", btnText9: "Увійти в лабораторію",
-            window1: { title: "Аерокосмічний сектор та БПЛА", items: ["Заміна літій-іонних накопичувачів у важких вантажних дронах.", "Миттєва пневматична дозаправка замість багатогодинного простою.", "Підвищення живучості безпілотних систем у зонах пошуку та порятунку."] },
-            window3: { title: "Морські та підводні комплекси", items: ["Інтеграція накопичувачів високого тиску в подвійне дно суден.", "Глибоководні роботизовані платформи без важких компресорів.", "Базові заправні станції на енергії хвиль, вітру та сонця."] },
-            window5: { title: "Складська та промислова робототехніка", items: ["100% пожежна та вибухобезпека закритих логістичних хабів.", "Швидка заправка повітрям без тривалого простою біля розеток.", "Стабільна працездатність у промислових низькотемпературних зонах."] },
-            window7: { title: "Фізика та архітектура ТПА системи", items: ["Замкнутий гідропневматичний контур без хімічної деградації.", "Технологія прямого перетворення тиску СОЖ без шатунів та клапанів.", "Ресурс каскадів 20+ років. Виробництво без рідкісних металів."] },
-            window8: { title: "Відкрита трибуна", items: ["Експертна верифікація параметрів гідропневматики.", "Пнямий зворотний зв'язок від індустріальних партнерів.", "Агрегація галузевих відгуків та технічних запитів."] },
-            window9: { title: "Лабораторія рішень", items: ["Банк перспективних модернізацій та адаптацій системи.", "Реєстрація заявок на проектування нестандартних версій.", "Робота контуру в екстремальних екологічних режимах."] }
+        // Карта перенаправлений для каждого модуля на отдельный файл
+        const moduleLinks = {
+            1: "aero.html",
+            2: "transport.html",
+            3: "marine.html",
+            4: "grid.html",
+            5: "robotics.html",
+            6: "business.html",
+            7: "physics.html",
+            8: "forum.html",
+            9: "lab.html"
         };
 
         const hubTranslations = {
             ua: {
                 back: "← До аналізу", alertNda: "Запит на авторизацію надіслано до патентного відділу EnergaTor Group.",
-                mainTitles: { ua: "ЕнергаТор: AI Аналітична Матриця", en: "EnergaTor: AI Intelligence Matrix", de: "EnergaTor: AI Analytische Matrix", ru: "ЭнергаТор: AI Аналитическая Матрица" },
-                stepLabels: {
-                    window2: ["01. Кліматичний тупик АКБ", "02. Гібридна буферна система", "03. Муніципальна економіка"],
-                    window4: ["01. Тепловий дисбаланс ЖКХ", "02. Стаціонарна тригенерація", "03. Мережевий резерв РВЧ"],
-                    window6: ["01. Видатки HoReCa", "02. Циркулярний контур Су-Від", "03. Автономна маржа"]
-                },
-                ...baseUaDictionary, // Разворачиваем базу
-                window2: {
-                    title: "Комерційний & Муніципальний транспорт",
-                    items: ["Повна кліматична незалежність при екстремальних температурах.", "Гібридний контур: Суперконденсатори + АКБ + буферний ТПА.", "Час відновлення енергії на маршруті в межах 3-5 хвилин."],
-                    slides: [
-                        { title: "Проблема: Температурна деградація міського транзиту", text: "Традиційні хімічні АКБ критично вразливі до погоди. Міський електробус при температурі нижче -15 °C миттєво втрачає до 35% номінального запасу ходу. Одночасно з цим великі об'єми енергії витрачаються на обігрів пасажирського салону. Це змушує муніципалітети ставити надлишкові, важкі батареї, що знижує корисну вантажопідйомність і збільшує навантаження на міські електромережі під час зарядки.", mediaContent: "<div class='media-placeholder'><p>[ Графік падіння ємності літій-іонних систем при мінусових температурах за даними Sustainable Bus ]</p></div>" },
-                        { title: "Рішення: Гібридний буферний контур HESS", text: "Замість спроб накопичити всю енергію в хімічних елементах, транспортний модуль використовує зв'язку суперконденсаторів та легких АКБ, що постійно підживлюються від ТПА.\n\nСуперконденсатори повністю приймають на себе жорсткі пікові струми при старті важкої машини з місця та рекуперації при гальмуванні. АКБ працює в стабільному, щадному режимі низьких струмів. Енергетичне підживлення всього вузла здійснюється бортовим ТПА за рахунок каскаду балонів, що виключає перегрів і передчасний знос батарей.", mediaContent: "<div class='media-placeholder'><svg viewBox='0 0 24 24'><path d='M8 5v14l11-7z'/></svg><p>[ Відео: Принцип взаємодії ТПА з блоком суперконденсаторів на транспортній платформі ]</p></div>" },
-                        { title: "Оптимізація TCO та інфраструктури", text: "Така архітектура дозволяє зменшити вагу і вартість бортових акумуляторних касет в рази. Замість багатогодинного простою біля електричних розеток, відновлення енергетичного потенціалу стисненого газу на кінцевих станціях займає 3–5 хвилин. Термін служби механічних вузлів перевищує 20 років без деградації показників ємності.", mediaContent: "<div class='media-placeholder'><p><b>Показники для муніципального сектору:</b><br>• Економічна вартість зберігання (LCOS): Зниження до 40%<br>• Готовність автопарку до виходу на лінію: 24/7<br>• Локалізація виробництва без рідкоземельних матеріалів</p></div>" }
-                    ]
-                },
-                window4: {
-                    title: "Стаціонарна енергетика та РВЧ",
-                    items: ["Перекриття тривалих блеккаутів у житлових комплексах.", "Автономне живлення критичної інфраструктури, ліфтів та насосів.", "Балансування частоти в загальних енергомережах."],
-                    slides: [
-                        { title: "Проблема: Тепловий перекіс і вразливість міст", text: "Офіційні дані Eurostat та IEA демонструють, що понад 60-70% всієї енергії домохозяйств витрачається на опалення та гаряче водопостачання, а влітку мережі задихаються від піків кондиціонування. Спроби перевести ЖКХ на класичні електричні системи приводять до перевантажень інфраструктури в години пік. При блеккаутах міста стають беззахисними через зупинку насосів подачі води та ліфтових шахт.", mediaContent: "<div class='media-placeholder'><p>[ Статистична діаграма Eurostat/IEA: Розподіл енерговитрат у житловому секторі ]</p></div>" },
-                        { title: "Рішення: Стаціонарна тригенерація будівель", text: "Стаціонарний модуль ТПА згладжує ці перекоси за рахунок ефекту тригенерації. Теплова енергія, що виникає при стисненні повітря і утримується в теплообмінниках БВД, БСД і БНД, напряму використовується для контурів опалення будинку.\n\nХолод, який утворюється при каскадному розширенні газів, йде на вентиляцію та кондиціонування. Пускові струми ліфтових двигунів повністю гасяться інтегрованою системою суперконденсаторов, що забезпечує стабільну роботу інфраструктури навіть за умов повної ізоляції від зовнішніх ЛЕП.", mediaContent: "<div class='media-placeholder'><svg viewBox='0 0 24 24'><path d='M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z'/></svg><p>[ Схема інтеграції ТПА в тепловий та електричний вузол багатоповерхового будинку ]</p></div>" },
-                        { title: "Балансування мережі та резерв РВЧ", text: "Поза аварійними режимами стаціонарные комплексы виступають як високоефективні активи для балансування загальних енергосистем. Маючи швидкість відгуку на рівні хімічних накопичувачів, ТПА здійснює цикли накопичення та віддачі енергії десятиліттями без деградації. Це ідеальне рішення для ринку резервів підтримки та відновлення частоти (РВЧ), де хімічний літій швидко зношується.", mediaContent: "<div class='media-placeholder'><p><b>Параметри довготривалого зберігання:</b><br>• Ресурс каскаду балонів: 20+ років<br>• Додаткові енергоресурси: Безкоштовний промисловий холод<br>• Екологічний індекс: 0% токсичних викидів при рециклінгу</p></div>" }
-                    ]
-                },
-                window6: {
-                    title: "Автономний малий бізнес та HoReCa",
-                    items: ["Кейс «Кафе Су-Від» з інтегрованою службою доставки.", "Використання безкоштовного тепла сжаття для кулінарних ліній.", "Абсолютна маржинальна незалежність від мережевих тарифів."],
-                    slides: [
-                        { title: "Проблема: Енергетичний тиск на малий сервісний бізнес", text: "Для об'єктів HoReCa, ресторанів та незалежних сервісних точок постійне зростання мережевих тарифів на електрику та газ є головним чинником зниження маржинальності. При цьому технологічні процеси (наприклад, тривала кулінарна обробка) вимагають безперервного та точного теплопостачання, а холодильні установки споживають колосальну кількість струму влітку.", mediaContent: "<div class='media-placeholder'><p>[ Аналітика витрат малих підприємств на енергоносії ]</p></div>" },
-                        { title: "Рішення: Циркулярний контур Су-Від", text: "Технологічний кейс об'єднання енергозаправного вузла малого транспорту доставки з точкою громадського харчування демонструє повне усунення цих витрат. Приготування страв за технологією Су-Від вимагає точного утримання температури води (50°C - 85°C).\n\nТепло, що акумулюється рідиною в теплообмінниках БВД, БСД і БНД при роботі компресора, перенаправляється на кулінарні лінії. Холод розширення газу одночасно забезпечує роботу складських морозильників та кондиціонування приміщень, закриваючи всі потреби закладу в межах єдиного фізичного процесу.", mediaContent: "<div class='media-placeholder'><svg viewBox='0 0 24 24'><path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 12 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H7c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.04-.42 1.99-1.07 2.75z'/></svg><p>[ Візуалізація циркулярного теплового контуру: Компресор -> Теплообмінники балонів -> Кулинарная ванна Су-Від ]</p></div>" },
-                        { title: "Економічні переваги та автономія", text: "Малий бізнес отримує подвійну вигоду: власна служба доставки на легкому пневмотранспорті заправляється стисненим повітрям за мінімальною собівартістю, а саме кафе повністю звільняється від плати за комунальні теплові ресурси. Модель легко масштабуется на фермерські тепличні господарства та автономні логістичні пункти.", mediaContent: "<div class='media-placeholder'><p><b>Економічний ефект модуля:</b><br>• Витрати на технологічне тепло: Оптимізація до 0<br>• Окупність інтегрованого модуля: Кратно вище класичних генераторів<br>• Незалежність від локальних блеккаутів: Повна</p></div>" }
-                    ]
-                },
+                windowLabels: ["Модуль 01", "Модуль 02", "Модуль 03", "Модуль 04", "Модуль 05", "Модуль 06", "Модуль 07", "Модуль 08", "Модуль 09"],
+                btnText: "Розгорнути аналітику", btnText8: "Відкрити дискусію", btnText9: "Увійти в лабораторію",
+                mainTitles: "ЕнергаТор: Інженерна Матриця",
+                window1: { title: "Авіаційні Технології (Аеро)", items: ["Полегшення борту БПЛА за рахунок ТПА-підживлення.", "Заправка стисненим повітрям за 3-5 хвилин замість простою.", "Стабільна робота системи при температурах нижче -15 °C."] },
+                window2: { title: "Комерційний & Муніципальний транспорт", items: ["Повна кліматична незалежність при екстремальних температурах.", "Гібридний контур: Суперконденсатори + АКБ + буферний ТПА.", "Час відновлення енергії на маршруті в межах 3-5 хвилин."] },
+                window3: { title: "Морські та підводні комплекси", items: ["Інтеграція накопичувачів високого тиску в подвійне дно суден.", "Глибоководні роботизовані платформи без важких компресорів.", "Базові заправні станції на енергії хвиль, вітру та сонця."] },
+                window4: { title: "Стаціонарна енергетика та РВЧ", items: ["Перекриття тривалих блеккаутів у житлових комплексах.", "Автономне живлення критичної інфраструктури, ліфтів та насосів.", "Балансування частоти та аварійний резерв підтримки мережі."] },
+                window5: { title: "Складська та промислова робототехніка", items: ["100% пожежна та вибухобезпека закритих логістичних хабів.", "Швидка заправка повітрям без тривалого простою біля розеток.", "Стабільна працездатність у промислових низькотемпературних зонах."] },
+                window6: { title: "Автономний малий бізнес та HoReCa", items: ["Синергія заправних пунктів СВ та кулінарної технології Су-Від.", "Безкоштовна теплова енергія для ресторанних і сервісних ліній.", "Автономне життєзабезпечення незалежних агро-комплексів."] },
+                window7: { title: "Фізика та архітектура ТПА системи", items: ["Замкнутий гідропневматичний контур без хімічної деградації.", "Технологія прямого перетворення тиску СОЖ без шатунів та клапанів.", "Ресурс каскадів 20+ років. Виробництво без рідкісних металів."] },
+                window8: { title: "Відкрита трибуна", items: ["Експертна верифікація параметрів гідропневматики.", "Прямий зворотний зв'язок від індустріальних партнерів.", "Агрегація галузевих відгуків та технічних запитів."] },
+                window9: { title: "Лабораторія рішень", items: ["Банк перспективних модернізацій та адаптацій системи.", "Реєстрація заявок на проектування нестандартних версій.", "Робота контуру в екстремальних екологічних режимах."] },
                 bottomPanel: { title: "Патентний пул та стратегічне партнерство", text: "Повний пакет конструкторської документації, креслення профілювання статора та поршня, а також документи, що підтверджують міжнародний патентний пріоритет від 06.04.2026, є комерційною таємницею EnergaTor Group. Доступ відкривається строго після підписання двосторонньої угоди про неразглашення (NDA). Пріоритет зафіксовано.", btnText: "Отримати доступ до патентного сейфу (NDA)" }
             },
             ru: {
                 back: "← К анализу", alertNda: "Запрос на авторизацию направлен в патентный отдел EnergaTor Group.",
-                mainTitles: { ua: "ЕнергаТор: AI Аналітична Матриця", en: "EnergaTor: AI Intelligence Matrix", de: "EnergaTor: AI Analytische Matrix", ru: "ЭнергаТор: AI Аналитическая Матрица" },
-                stepLabels: {
-                    window2: ["01. Климатический тупик АКБ", "02. Гибридная буферная система", "03. Муниципальная экономика"],
-                    window4: ["01. Тепловой дисбаланс ЖКХ", "02. Стационарная тригенерация", "03. Сетевой резерв РВЧ"],
-                    window6: ["01. Издержки HoReCa", "02. Циркулярный контур Су-Вид", "03. Автономная маржа"]
-                },
                 windowLabels: ["Модуль 01", "Модуль 02", "Модуль 03", "Модуль 04", "Модуль 05", "Модуль 06", "Модуль 07", "Модуль 08", "Модуль 09"],
                 btnText: "Развернуть аналитику", btnText8: "Открыть дискуссию", btnText9: "Войти в лабораторию",
-                window1: { title: "Аэрокосмический сектор и БПЛА", items: ["Замена литий-ионных накопителей в тяжелых грузовых дронах.", "Мгновенная пневматическая дозаправка вместо многочасового простоя.", "Повышение живучести беспилотных систем в зонах поиска и спасения."] },
+                mainTitles: "ЕнергаТор: Инженерная Матрица",
+                window1: { title: "Авиационные Технологии (Аэро)", items: ["Облегчение борта БПЛА за счет ТПА-подпитки.", "Заправка сжатым воздухом за 3-5 минут вместо простоя.", "Стабильная работа системы при температурах ниже -15 °C."] },
+                window2: { title: "Коммерческий & Муниципальный транспорт", items: ["Полная климатическая независимость при экстремальных температурах.", "Гибридный контур: Энергоузлы суперконденсаторы + АКБ + буферный ТПА.", "Время восполнения энергии на маршруте в пределах 3-5 минут."] },
                 window3: { title: "Морские и подводные комплексы", items: ["Интеграция накопителей высокого давления в двойное дно судов.", "Глубоководные роботизированные платформы без тяжелых компрессоров.", "Базовые заправочные станции на энергии волн, ветра и солнца."] },
+                window4: { title: "Стационарная энергетика и РВЧ", items: ["Перекрытие длительных блэкаутов в жилых комплексах.", "Автономное питание критической инфраструктуры, лифтов и насосов.", "Балансировка частоты и аварийный резерв поддержки сети."] },
                 window5: { title: "Складская и промышленная робототехника", items: ["100% пожарная и взрывобезопасность закрытых логистических хабов.", "Быстрая заправка воздухом без длительного простоя у розеток.", "Стабильная работоспособность в промышленных низкотемпературных зонах."] },
+                window6: { title: "Автономный малый бизнес & HoReCa", items: ["Синергия заправочных пунктов СВ и кулинарной технологии Су-Вид.", "Бесплатная тепловая энергия для ресторанных и сервисных линий.", "Автономное жизнеобеспечение независимых агро-комплексов."] },
                 window7: { title: "Физика и архитектура ТПА системы", items: ["Замкнутый гидропневматический контур без химической деградации.", "Технология прямого преобразования давления СОЖ без шатунов и клапанов.", "Ресурс каскадов 20+ лет. Производство без редких металлов."] },
                 window8: { title: "Открытая трибуна", items: ["Экспертная верификация параметров гидропневматики.", "Прямая обратная связь от индустриальных партнеров.", "Агрегация отраслевых отзывов и технических запросов."] },
-                window9: { title: "Лаборатория решений", items: ["Банк перспективных модернизаций и адаптаций системы.", "Регистрация заявок на проектирование нестандартных версий.", "Работа контура в экстремальных экологических режимах."] },
-                
-                window2: {
-                    title: "Коммерческий & Муниципальный транспорт",
-                    items: ["Полная климатическая независимость при экстремальных температурах.", "Гибридный контур: Суперконденсаторы + АКБ + буферный ТПА.", "Время восполнения энергии на маршруте в пределах 3-5 минут."],
-                    slides: [
-                        { title: "Проблема: Температурная деградация городского транзита", text: "Традиционные химические АКБ критически уязвимы к погоде. Городской электробус при температуре ниже -15 °C мгновенно теряет до 35% номинального запаса хода. Одновременно с этим колоссальные объемы энергии расходуются на обогрев пассажирского салона. Это вынуждает ставить избыточные, тяжелые батареи, что снижает полезную грузоподъемность и увеличивает нагрузку на городские электросети при зарядке.", mediaContent: "<div class='media-placeholder'><p>[ График падения емкости литий-ионных систем при минусовых температурах по данным Sustainable Bus ]</p></div>" },
-                        { title: "Решение: Гибридный буферный контур HESS", text: "Вместо попыток накопить всю энергию в химических элементах, транспортный модуль использует связку суперконденсаторов и легких АКБ, постоянно подпитываемых от ТПА.\n\nСуперконденсаторы полностью принимают на себя жесткие пиковые токи при старте тяжелой машины с места и рекуперации при торможении. АКБ работает в стабильном, щадящем режиме низких токов. Энергетическая подпитка всего узла осуществляется бортовым ТПА за счет энергии сжатого воздуха, что исключает перегрев и преждевременный износ батарей.", mediaContent: "<div class='media-placeholder'><svg viewBox='0 0 24 24'><path d='M8 5v14l11-7z'/></svg><p>[ Видео: Принцип взаимодействия ТПА с блоком суперконденсаторов на транспортной платформе ]</p></div>" },
-                        { title: "Оптимизация TCO и инфраструктуры", text: "Такая архитектура позволяет снизить вес и стоимость бортовых аккумуляторных кассет в разы. Вместо многочасового простоя у электрических розеток, восстановление энергетического потенциала сжатого газа на конечных станциях занимает всего 3–5 минут. Срок службы механических узлов превышает 20 лет без деградации показателей емкости.", mediaContent: "<div class='media-placeholder'><p><b>Показатели для муниципального сектора:</b><br>• Экономическая стоимость хранения (LCOS): Снижение до 40%<br>• Готовность автопарка к выходу на линию: 24/7<br>• Локализация производства без редкоземельных материалов</p></div>" }
-                    ]
-                },
-                window4: {
-                    title: "Стационарная энергетика и РВЧ",
-                    items: ["Перекрытие длительных блэкаутов в жилых комплексах.", "Автономное питание критической инфраструктуры, лифтов и насосов.", "Балансировка частоты в общих энергосетях."],
-                    slides: [
-                        { title: "Проблема: Тепловой дисбаланс и уязвимость городов", text: "Официальные данные Eurostat и IEA демонстрируют, что более 60-70% всей энергии домохозяйств расходуется на отопление и горячее водоснабжение, а летом сети задыхаются от пиков кондиционирования. Попытки перевести ЖКХ на классические электрические системы приводят к перегрузкам инфраструктуры в часы пик. При блэкаутах города становятся беззащитными из-за остановки насосов подачи воды и лифтовых шахт.", mediaContent: "<div class='media-placeholder'><p>[ Статистическая диаграмма Eurostat/IEA: Распределение энергозатрат в жилом секторе ]</p></div>" },
-                        { title: "Решение: Стационарная тригенерация зданий", text: "Стационарный модуль ТПА сглаживает эти перекосы за счет эффекта тригенерации. Тепловая энергия, выделяющаяся при заправке и удерживаемая в теплообменниках БВД, БСД и БНД, напрямую используется для контуров отопления дома.\n\nХолод, образующийся при каскадном расширении газов, направляется на вентиляцию и кондиционирование. Пусковые токи лифтовых двигателей полностью гасятся интегрированной системой суперконденсаторов, обеспечивая стабильную работу инфраструктуры даже в условиях полной изоляции от внешних ЛЕП.", mediaContent: "<div class='media-placeholder'><svg viewBox='0 0 24 24'><path d='M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z'/></svg><p>[ Схема интеграции ТПА в тепловой и электрический узел многоэтажного дома ]</p></div>" },
-                        { title: "Балансировка сети и резерв РВЧ", text: "Вне аварийных режимов стационарные комплексы выступают как высокоэффективные активы для балансировки общих энергосистем. Обладая скоростью отклика на уровне химических накопителей, ТПА осуществляет циклы накопления и отдачи энергии десятилетиями без деградации. Это идеальное решение для рынка резервов поддержания и восстановления частоты (РВЧ), где химический литий быстро изнашивается.", mediaContent: "<div class='media-placeholder'><p><b>Параметры долговременного хранения:</b><br>• Ресурс каскада баллонов: 20+ лет<br>• Дополнительные энергоресурсы: Бесплатный промышленный холод<br>• Экологический индекс: 0% токсичных выбросов при рециклингу</p></div>" }
-                    ]
-                },
-                window6: {
-                    title: "Автономный малый бизнес & HoReCa",
-                    items: ["Кейс «Кафе Су-Вид» с интегрированной службой доставки.", "Использование бесплатного тепла сжатия для кулинарных линий.", "Абсолютная маржинальная независимость от сетевых тарифов."],
-                    slides: [
-                        { title: "Проблема: Энергетическое давление на малый сервисный бизнес", text: "Для объектов HoReCa, ресторанов и независимых сервисных точек постоянный рост сетевых тарифов на электричество и газ является главным фактором снижения маржинальности. При этом технологические процессы (например, длительная кулинарная обработка) требуют непрерывного и точного теплоснабжения, а холодильные установки потребляют колоссальное количество тока летом.", mediaContent: "<div class='media-placeholder'><p>[ Аналитика издержек малых предприятий на энергоносители ]</p></div>" },
-                        { title: "Решение: Циркулярный контур Су-Вид", text: "Технологический кейс объединения энергозаправочного узла малого транспорта доставки с точкой общественного питания демонстрирует полное устранение этих издержек. Приготовление блюд по технологии Су-Вид требует длительного удержания точной температуры воды (50°C - 85°C).\n\nТепло, аккумулируемое жидкостью в теплообменниках БВД, БСД и БНД при работе компресора, перенаправляется на кулинарные линии. Холод расширения газа одновременно обеспечивает работу складских морозильников и кондиционирование помещений, закрывая все потребности заведения в рамках единого физического процесса.", mediaContent: "<div class='media-placeholder'><svg viewBox='0 0 24 24'><path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 12 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H7c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.04-.42 1.99-1.07 2.75z'/></svg><p>[ Визуализация циркулярного теплового контуру: Компрессор -> Теплообменники баллонов -> Кулинарная ванна Су-Вид ]</p></div>" },
-                        { title: "Экономические преимущества и автономия", text: "Малый бизнес получает двойную выгоду: собственная служба доставки на легком пневмотранспорте заправляется сжатым воздухом по минимальной себестоимости, а само кафе полностью освобождается от платы за коммунальные тепловые ресурсы. Модель легко масштабируется на фермерские тепличные хозяйства и автономные логистические пункты.", mediaContent: "<div class='media-placeholder'><p><b>Экономический эффект модуля:</b><br>• Расходы на технологическое тепло: Оптимизация до 0<br>• Окупность интегрированного модуля: Кратно выше классических генераторов<br>• Независимость от локальных блэкаутов: Полная</p></div>" }
-                    ]
-                },
-                bottomPanel: { title: "Патентный пул и стратегическое партнерство", text: "Полный пакет конструкторской документации, чертежи профилирования статора и поршня, а также документы, подтверждающие международный patentный приоритет от 06.04.2026, являются коммерческой тайной EnergaTor Group. Доступ открывается строго после подписания двустороннего соглашения о неразглашении (NDA). Приоритет юридически зафиксирован.", btnText: "Получить доступ к патентному сейфу (NDA)" }
+                window9: { title: "Лаборатория решений", items: ["Банк перспективных модернизаций и адаптаций системы.", "Регистрацияваи заявок на проектирование нестандартных версий.", "Работа контура в экстремальных экологических режимах."] },
+                bottomPanel: { title: "Патентный пул и стратегическое партнерство", text: "Полный пакет конструкторской документации, чертежи профилирования статора и поршня, а также документы, подтверждающие международный патентный приоритет от 06.04.2026, являются коммерческой тайной EnergaTor Group. Доступ открывается строго после подписания двустороннего соглашения о неразглашении (NDA). Приоритет юридически зафиксирован.", btnText: "Получить доступ к патентному сейфу (NDA)" }
             },
-            // АВТОМАТИЧЕСКИЙ FALLBACK ПАКЕТ ДЛЯ EN И DE СЕКТОРОВ
-            en: { back: "← To Analysis", alertNda: "Authorization request has been sent.", mainTitles: { ua: "ЕнергаТор: AI Аналітична Матриця", en: "EnergaTor: AI Intelligence Matrix", de: "EnergaTor: AI Analytische Matrix", ru: "ЭнергаТор: AI Аналитическая Матрица" }, stepLabels: { window2: ["01. Battery Bottleneck", "02. HESS Buffer Loop", "03. Municipal Economy"], window4: ["01. Utility Heat Gap", "02. Stationary Trigeneration", "03. FCR Grid Reserve"], window6: ["01. HoReCa Expenses", "02. Sous-Vide Loop", "03. Autonomous Margins"] }, bottomPanel: { title: "Patent Pool & Strategic Partnership", text: "Access to the extended technical blueprints and priority document proof from 06.04.2026 is restricted to validated 'Smart Money' investors under a signed NDA setup.", btnText: "Open Patent Vault (NDA Request)" } },
-            de: { back: "← Zur Analyse", alertNda: "Autorisierungsanfrage wurde gesendet.", mainTitles: { ua: "ЕнергаТор: AI Аналітична Матриця", en: "EnergaTor: AI Intelligence Matrix", de: "EnergaTor: AI Analytische Matrix", ru: "ЭнергаТор: AI Аналитическая Матрица" }, stepLabels: { window2: ["01. Batterie-Engpass", "02. HESS-Puffersystem", "03. Kommunale Wirtschaft"], window4: ["01. Wärme-Defizit", "02. Stationäre Trigeneration", "03. FCR-Netzreserve"], window6: ["01. HoReCa-Kosten", "02. Sous-Vide-Kreislauf", "03. Autonome Marge"] }, bottomPanel: { title: "Patentpool & Strategische Partnerschaft", text: "Der Zugriff auf die erweiterten technischen Baupläne und die Prioritätsdokumente vom 06.04.2026 ist verifizierten 'Smart Money'-Investoren nach Unterzeichnung einer NDA vorbehalten.", btnText: "Patenttresor öffnen (NDA-Anfrage)" } }
+            en: {
+                back: "← To Analysis", alertNda: "Authorization request has been sent.",
+                windowLabels: ["Module 01", "Module 02", "Module 03", "Module 04", "Module 05", "Module 06", "Module 07", "Module 08", "Module 09"],
+                btnText: "Expand Solutions", btnText8: "Open Discussion", btnText9: "Enter Laboratory",
+                mainTitles: "EnergaTor: Engineering Matrix",
+                window1: { title: "Aviation Technologies (Aero)", items: ["Slashing UAV weight frame via PTU trickle-charge setups.", "3–5 minutes compressed air refueling instead of charging downtime.", "Flawless operations below -15 °C due to thermal stabilization."] },
+                window2: { title: "Commercial & Municipal Transit", items: ["Complete climate resilience across volatile weather envelopes.", "Hybrid HESS loop: Supercapacitors + Battery + buffer PTU.", "Energy restoration downtime limited to 3–5 minute marks."] },
+                window3: { title: "Marine & Subsea Complexes", items: ["Integrating high-pressure storage into double-bottom hulls.", "Deep-sea robotic modules working without heavy air compressors.", "Wave, wind, and solar-driven offshore fueling network hubs."] },
+                window4: { title: "Stationary Power & FCR Grid Assets", items: ["Mitigating prolonged blackouts within heavy residential zones.", "Autonomous baselines for elevators, water loops, and air vents.", "Frequency containment reserves for large-scale grid structures."] },
+                window5: { title: "Warehouse & Industrial Robotics", items: ["100% fire-safe and explosion-proof warehouse ecosystem loops.", "Instant air fueling bypassing multi-hour terminal grid dependency.", "Uncompromised performance inside cold storage facility zones."] },
+                window6: { title: "Autonomous Small Business & HoReCa", items: ["Synergy of compressed air hubs with circular Sous-Vide kitchen lines.", "Free thermal energy capture for operational serveries.", "Autonomous life support for isolated agricultural setups."] },
+                window7: { title: "PTU System Physics & Architecture", items: ["Closed hydro-pneumatic loop free from chemical aging factors.", "Direct fluid power conversion completely omitting valves or rods.", "20+ year tank cascade operational lifespan without rare metals."] },
+                window8: { title: "Open Expert Forum", items: ["Independent verification of hydro-pneumatic core parameters.", "Direct feedback links with strategic validation industrial bodies.", "Aggregation of technical requests and real-world deployment data."] },
+                window9: { title: "Solutions Laboratory", items: ["Database of prospective modifications and custom systems architecture.", "Engineering registration for non-standard system alterations.", "Testing loops operating under volatile environmental baselines."] },
+                bottomPanel: { title: "Patent Pool & Strategic Partnership", text: "Access to the extended technical blueprints and priority document proof from 06.04.2026 is restricted to validated investors under a signed NDA setup.", btnText: "Open Patent Vault (NDA Request)" }
+            },
+            de: {
+                back: "← Zur Analyse", alertNda: "Autorisierungsanfrage wurde gesendet.",
+                windowLabels: ["Modul 01", "Modul 02", "Modul 03", "Modul 04", "Modul 05", "Modul 06", "Modul 07", "Modul 08", "Modul 09"],
+                btnText: "Analytik öffnen", btnText8: "Diskussion öffnen", btnText9: "Labor betreten",
+                mainTitles: "EnergaTor: Ingenieurmatrix",
+                window1: { title: "Luftfahrttechnologien (Aero)", items: ["Gewichtsreduzierung von Drohnen durch PTU-Pufferladung.", "3–5 Minuten Druckluftbetankung statt langer Ladezeiten.", "Stabiler Systembetrieb bei Temperaturen unter -15 °C."] },
+                window2: { title: "Kommerzieller & Kommunaler Verkehr", items: ["Vollständige Klimaresilienz unter extremen Wetterbedingungen.", "Hybrider HESS-Kreislauf: Superkondensatoren + Batterie + Puffer-PTU.", "Energie-Wiederherstellungszeit auf 3–5 Minuten begrenzt."] },
+                window3: { title: "Marine- & Unterseekomplexe", items: ["Integration von Hochdruckspeichern in Doppelbodenrümpfe.", "Tiefsee-Robotermodule, die ohne schwere Kompressoren arbeiten.", "Wellen-, wind- und solarbetriebene Offshore-Tankstellenhubs."] },
+                window4: { title: "Stationäre Energie- & FCR-Netzanlagen", items: ["Abmilderung lang anhaltender Blackouts in Wohngebieten.", "Autonome Baselines für Aufzüge, Wasserläufe und Lüftungen.", "Frequenzhaltungsreserven für große Netzstrukturen."] },
+                window5: { title: "Lager- & Industrierobotik", items: ["100% feuersichere und explosionsgeschützte Lager-Ökosysteme.", "Sofortige Luftbetankung umgeht mehrstündige Netzabhängigkeit.", "Kompromisslose Leistung in Kühllagerzonen."] },
+                window6: { title: "Autonomes Kleingewerbe & HoReCa", items: ["Synergie von Drucklufthubs mit zirkulären Sous-Vide-Küchenlinien.", "Kostenlose thermische Energienutzung für Restaurantlinien.", "Autonome Lebenshaltung für isolierte landwirtschaftliche Setups."] },
+                window7: { title: "PTU-Systemphysik & Architektur", items: ["Geschlossener hydropneumatischer Kreislauf ohne Alterungsfaktoren.", "Direkte Flüssigkeitskraftumwandlung ohne Ventile oder Stangen.", "20+ Jahre Tankkaskaden-Lebensdauer ohne seltene Metalle."] },
+                window8: { title: "Offenes Expertenforum", items: ["Unabhängige Überprüfung hydropneumatischer Kernparameter.", "Direkte Feedback-Links mit strategischen Industriepartnern.", "Aggregation von technischen Anfragen und realen Einsatzdaten."] },
+                window9: { title: "Lösungslabor", items: ["Datenbank für zukunftsorientierte Modifikationen und Systemarchitektur.", "Technische Registrierung für nicht-standardisierte Systemänderungen.", "Testschleifen, die unter volatilen Umweltbedingungen arbeiten."] },
+                bottomPanel: { title: "Patentpool & Strategische Partnerschaft", text: "Der Zugriff auf die erweiterten technischen Baupläne und die Prioritätsdokumente vom 06.04.2026 ist verifizierten Investoren nach Unterzeichnung einer NDA vorbehalten.", btnText: "Patenttresor öffnen (NDA-Anfrage)" }
+            }
         };
 
         let currentLang = localStorage.getItem('energator_lang') || 'ua';
-        let activeModalKey = null;
 
         function changeLang(lang) {
             currentLang = lang;
@@ -259,45 +182,39 @@ HTML
             });
 
             const trans = hubTranslations[lang] || hubTranslations['ua'];
-            document.getElementById('lnBack').innerText = trans.back || "←";
-            document.getElementById('mainTitle').innerText = trans.mainTitles[lang] || trans.mainTitles['ua'];
+            document.getElementById('lnBack').innerText = trans.back;
+            document.getElementById('mainTitle').innerText = trans.mainTitles;
             
             renderMatrix();
             renderBottomPanel();
-            if (activeModalKey) { openModal(activeModalKey); }
         }
 
         function renderMatrix() {
             const gridContainer = document.getElementById('matrixGrid');
             gridContainer.innerHTML = "";
             
-            // Внедрение логики Fallback: если для en/de нет карточки, берется базовая ua
             const trans = hubTranslations[currentLang] || hubTranslations['ua'];
-            const fallbackTrans = hubTranslations['ru'] || hubTranslations['ua'];
 
             for (let i = 1; i <= 9; i++) {
-                // Ищем модуль в текущем языке, если нет — берем из базового словаря
-                const data = trans[`window${i}`] || baseUaDictionary[`window${i}`];
-                const labels = trans.windowLabels || fallbackTrans.windowLabels;
-                const btnActionLabel = trans.btnText || fallbackTrans.btnText;
-                
+                const data = trans[`window${i}`];
                 if (data) {
-                    const card = document.createElement('div');
+                    // Создаем карточку как прямую ссылку на соответствующий файл html 
+                    const card = document.createElement('a');
                     card.className = 'window-card';
-                    card.setAttribute('onclick', `openModal('window${i}')`);
+                    card.href = moduleLinks[i]; // Ссылка берется из карты перенаправлений
                     
                     let listHtml = '';
                     data.items.forEach(item => { listHtml += `<li>${item}</li>`; });
 
-                    let btnLbl = btnActionLabel;
-                    if (i === 8) btnLbl = trans.btnText8 || fallbackTrans.btnText8;
-                    if (i === 9) btnLbl = trans.btnText9 || fallbackTrans.btnText9;
+                    let btnLbl = trans.btnText;
+                    if (i === 8) btnLbl = trans.btnText8;
+                    if (i === 9) btnLbl = trans.btnText9;
 
                     card.innerHTML = `
                         <div>
                             <div class="window-header">
                                 <h3 class="window-title">${data.title}</h3>
-                                <span class="window-num">${labels[i-1]}</span>
+                                <span class="window-num">${trans.windowLabels[i-1]}</span>
                             </div>
                             <div class="window-body">
                                 <ul>${listHtml}</ul>
@@ -313,72 +230,12 @@ HTML
         function renderBottomPanel() {
             const panelContainer = document.getElementById('bottomPanel');
             const trans = hubTranslations[currentLang] || hubTranslations['ua'];
-            const fallbackTrans = hubTranslations['ru'] || hubTranslations['ua'];
-            
-            const pData = trans.bottomPanel || fallbackTrans.bottomPanel;
+            const pData = trans.bottomPanel;
             panelContainer.innerHTML = `
                 <h2 class="panel-title">${pData.title}</h2>
                 <p class="panel-text">${pData.text}</p>
-                <button class="btn-panel" onclick="alert(hubTranslations[currentLang].alertNda || fallbackTrans.bottomPanel.btnText);">${pData.btnText}</button>
+                <button class="btn-panel" onclick="event.preventDefault(); alert(hubTranslations[currentLang].alertNda);">${pData.btnText}</button>
             `;
-        }
-
-        function openModal(windowKey) {
-            activeModalKey = windowKey;
-            const trans = hubTranslations[currentLang] || hubTranslations['ua'];
-            const fallbackTrans = hubTranslations['ru'] || hubTranslations['ua'];
-            
-            // Загружаем данные модуля (с подстраховкой из базового языка)
-            const data = trans[windowKey] || hubTranslations['ru'][windowKey] || hubTranslations['ua'][windowKey];
-            
-            const modal = document.getElementById('infoModal');
-            const sidebar = document.getElementById('presSidebar');
-            
-            sidebar.innerHTML = "";
-            
-            if (data && data.slides) {
-                // Если это развернутый презентационный модуль
-                const steps = trans.stepLabels && trans.stepLabels[windowKey] ? trans.stepLabels[windowKey] : fallbackTrans.stepLabels[windowKey];
-                
-                data.slides.forEach((slide, index) => {
-                    const btn = document.createElement('button');
-                    btn.className = `step-btn ${index === 0 ? 'active' : ''}`;
-                    btn.innerText = steps[index];
-                    btn.setAttribute('onclick', `loadSlide('${windowKey}', ${index}, this)`);
-                    sidebar.appendChild(btn);
-                });
-                loadSlide(windowKey, 0);
-            } else {
-                // Если модуль пустой — берем текст из ru или ua пакета, чтобы не было пустоты на en/de
-                const fallbackData = hubTranslations['ru'][windowKey] || hubTranslations['ua'][windowKey];
-                sidebar.innerHTML = "<p style='color:var(--text-muted); font-size:0.9rem;'>R&D Briefing...</p>";
-                document.getElementById('presTextZone').innerHTML = `<h2>${fallbackData.title}</h2><p>${fallbackData.items.join('<br><br>')}</p>`;
-                document.getElementById('presMediaZone').innerHTML = "<div class='media-placeholder'><p>Презентационные материалы готовятся автором...</p></div>";
-            }
-            
-            modal.style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-        }
-
-        function loadSlide(windowKey, slideIndex, element) {
-            // Строгий fallback на уровне слайдов
-            const trans = hubTranslations[currentLang] || hubTranslations['ua'];
-            const slideSource = trans[windowKey] && trans[windowKey].slides ? trans[windowKey] : (hubTranslations['ru'][windowKey] || hubTranslations['ua'][windowKey]);
-            const slide = slideSource.slides[slideIndex];
-            
-            if (element) {
-                document.querySelectorAll('.step-btn').forEach(btn => btn.classList.remove('active'));
-                element.classList.add('active');
-            }
-            
-            document.getElementById('presTextZone').innerHTML = `<h2>${slide.title}</h2><p style='white-space: pre-line;'>${slide.text}</p>`;
-            document.getElementById('presMediaZone').innerHTML = slide.mediaContent;
-        }
-
-        function closeModal() {
-            document.getElementById('infoModal').style.display = 'none';
-            document.body.style.overflow = 'auto';
-            activeModalKey = null;
         }
 
         changeLang(currentLang);
