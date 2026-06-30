@@ -1,0 +1,234 @@
+HTML
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EnergaTor — Муниципальный и коммерческий транспорт</title>
+    <style>
+        :root {
+            --space-bg: #030712;
+            --copper-primary: #c87533;
+            --copper-light: #ea580c;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --glass-bg: rgba(15, 23, 42, 0.45);
+            --glass-border: rgba(200, 117, 51, 0.2);
+        }
+
+        body, html {
+            margin: 0; padding: 0; width: 100%; min-height: 100%;
+            background-color: var(--space-bg);
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+            color: var(--text-main);
+            background: radial-gradient(circle at 50% 30%, #0f172a 0%, #030712 80%);
+            background-attachment: fixed;
+        }
+
+        .header {
+            border-bottom: 1px solid var(--glass-border); padding: 20px 40px;
+            display: flex; justify-content: space-between; align-items: center;
+            background: rgba(3, 7, 18, 0.8); backdrop-filter: blur(12px);
+            position: sticky; top: 0; z-index: 100;
+        }
+
+        .header h1 { font-size: 1.4rem; margin: 0; text-transform: uppercase; letter-spacing: 3px; color: var(--copper-primary); }
+        .header-controls { display: flex; align-items: center; gap: 30px; }
+        .lang-panel { display: flex; gap: 12px; }
+        .lang-btn { background: transparent; border: none; color: rgba(255, 255, 255, 0.3); font-size: 0.85rem; font-weight: 700; cursor: pointer; letter-spacing: 1px; transition: all 0.3s ease; }
+        .lang-btn:hover { color: var(--text-main); }
+        .lang-btn.active { color: var(--copper-primary); text-shadow: 0 0 8px rgba(200, 117, 51, 0.5); }
+        .btn-nav { color: var(--text-main); text-decoration: none; font-weight: 600; font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase; border: 1px solid var(--copper-primary); padding: 8px 18px; border-radius: 4px; transition: all 0.3s ease; background: rgba(200, 117, 51, 0.05); }
+        .btn-nav:hover { background: var(--copper-primary); color: var(--space-bg); box-shadow: 0 0 20px rgba(200, 117, 51, 0.4); }
+
+        .container { max-width: 1200px; margin: 50px auto; padding: 0 30px; box-sizing: border-box; }
+        
+        .section-transport {
+            background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 10px;
+            padding: 40px; margin-bottom: 40px; backdrop-filter: blur(10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+        }
+        
+        .section-transport h2 {
+            color: var(--copper-primary); text-transform: uppercase; font-size: 1.4rem;
+            letter-spacing: 2px; margin-top: 0; margin-bottom: 25px; padding-bottom: 12px;
+            border-bottom: 1px solid rgba(200, 117, 51, 0.15);
+        }
+
+        .transport-text { font-size: 1.1rem; line-height: 1.7; color: var(--text-main); text-align: justify; }
+        .transport-text p { margin-bottom: 20px; }
+        .transport-text h3 { color: var(--copper-primary); margin-top: 30px; margin-bottom: 15px; font-size: 1.2rem; }
+
+        .video-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; margin-top: 35px; margin-bottom: 35px; }
+        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 6px; border: 1px solid rgba(200, 117, 51, 0.2); background: #000; }
+        .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+
+        .tech-table {
+            width: 100%; border-collapse: collapse; margin-top: 25px; margin-bottom: 25px;
+            background: rgba(3, 7, 18, 0.5); border-radius: 6px; overflow: hidden;
+        }
+        .tech-table th, .tech-table td { padding: 15px 20px; text-align: left; border-bottom: 1px solid rgba(200, 117, 51, 0.1); }
+        .tech-table th { background: rgba(200, 117, 51, 0.1); color: var(--copper-primary); font-weight: 700; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; }
+        .tech-table td { font-size: 1rem; color: var(--text-main); }
+        .tech-table tr:last-child td { border-bottom: none; }
+        .tech-table td strong { color: var(--copper-primary); }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <h1 id="pageTitle">EnergaTor — Транспортные Решения</h1>
+        <div class="header-controls">
+            <nav class="lang-panel">
+                <button class="lang-btn" id="btn-ua" onclick="changeLang('ua')">UA</button>
+                <button class="lang-btn" id="btn-en" onclick="changeLang('en')">EN</button>
+                <button class="lang-btn" id="btn-de" onclick="changeLang('de')">DE</button>
+                <button class="lang-btn" id="btn-ru" onclick="changeLang('ru')">RU</button>
+            </nav>
+            <a href="intelligence.html" class="btn-nav" id="lnBack">← В матрицу</a>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <section class="section-transport">
+            <h2 id="sec1Title">Кризис аккумуляторного (BESS) и традиционного транспорта</h2>
+            <div class="transport-text">
+                <div id="sec1Content"></div>
+                
+                <div class="video-grid">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/Di9RH1VEQKQ?si=SXBiKVY30sZ0Xk9S" title="YouTube video player" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/7Ab2DdLAddU?si=s5MfoPSaPNojQRwX" title="YouTube video player" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/jZ_orL_2vC0" title="YouTube video player" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/v6D96wA4eY4" title="YouTube video player" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-transport">
+            <h2 id="sec2Title">Сравнительный анализ эксплуатационных параметров</h2>
+            <table class="tech-table">
+                <thead>
+                    <tr id="tableHead"></tr>
+                </thead>
+                <tbody id="tableBody"></tbody>
+            </table>
+        </section>
+
+        <section class="section-transport">
+            <h2 id="sec3Title">Инженерная платформа ЭнергаТор: Варианты интеграции</h2>
+            <div class="transport-text" id="sec3Content"></div>
+        </section>
+
+    </main>
+
+    <script>
+        const transportTranslations = {
+            ua: {
+                back: "← В матрицю",
+                titles: { main: "EnergaTor — Муніципальний та комерційний транспорт", sec1: "Енергетична криза комерційного та муніципального електротранспорту", sec2: "Порівняльний аналіз експлуатаційних параметрів", sec3: "Інженерне рішення ЕнергаТор: Послідовна гібридна архітектура" },
+                table: {
+                    headers: ["Параметр ефективності", "Стандартний електробус (BESS)", "Транспортна платформа EnergaTor"],
+                    rows: [
+                        ["Корисне навантаження платформи", "Знижене через величезну масу важких акумуляторів", "Максимальне (вага бортової системи мінімізована)"],
+                        ["Простій на маршрутній лінії", "Години очікування біля розетки або на терміналах швидкої зарядки", "Заправка балонів стисненим повітрям за 5–10 хвилин"],
+                        ["Зносостійкість накопичувача", "Всього 300–400 циклів через пускові струми та рекуперацію", "Не має обмежень щодо циклічного ресурсу хімічних ячеєк"],
+                        ["Кліматична стабільність салону", "Втрата до 40-50% запасу ходу взимку через опалення салону", "Стабільна робота при температурах нижче -15 °C та вище 35 °C"]
+                    ]
+                },
+                sec1: "<p>Сучасний міський та комерційний транспорт перебуває під зростаючим тиском одразу кількох факторів. Посилення екологічних вимог, зростання вартості палива та електроенергії, дефіцит потужностей розподільних мереж, а також висока вартість тягових акумуляторів змушують транспортні компанії шукати нові підходи. Сьогодні більшість рішень заснована або на двигунах внутрішнього згоряння, або на повністю акумуляторному електроприводі. Кожна з цих концепцій має свої жорсткі обмеження.</p><p>Використання викопного палива супроводжується зростанням експлуатаційних витрат та збільшенням екологічного навантаження, тоді як акумуляторний міський транспорт зіткнувся із системними експлуатаційними та інфраструктурними бар'єрами:</p><ul><li><b>Кліматичний провал:</b> При падінні температури повітря нижче -10 °C реальний запас ходу електробусів скорочується на 40–50%. Охолодження АКБ поєднується з колосальним енергоспоживанням систем опалення салону, викликаючи зриви графіків.</li><li><b>Деградація ячеєк у режимі старт-стоп:</b> Високі пускові струми при розгоні багатотонної машини викликають небезпечний перегрів акумуляторів, а потужні імпульсні струми рекуперації при частих гальмуваннях призводять до втрати ємності вже через 3–5 років.</li><li><b>Інфраструктурний тупик:</b> Станції ультрашвидкої зарядки (пантографи) вимагають від 1 до 3.5 МВт на один пост. Підключення навіть невеликого парку створює критичні пікові навантаження на муніципальні електромережі та вимагає мільйонних капітальних вкладень (CAPEX).</li></ul>",
+                sec3: "<p>Концепція «ЕнергаТор» пропонує альтернативний підхід, заснований на використанні стисненого повітря як довготривалого накопичувача енергії в поєднанні з високоефективною системою її перетворення безпосередньо на борту. Енергетичним ядром системи є зв'язка ТПА + Генератор. Тороїдальний преобразуючий агрегат через СОЖ перетворює кінетичну енергію стисненого повітря в стабільний крутний момент. Генератор, керований інтелектуальною електронною системою, забезпечує безперервне і плавне живлення тягових електродвигунів. Енергетичне ядро формує електроенергію за мірою необхідності, що дозволяє значно зменшити вимоги до ємності буферної АКБ.</p><p>Для адаптації до специфіки міського руху ЕнергаТор пропонує два варіанти виконання бортової платформи:</p><h3>Опція А. Пневмо-електричний HESS-контур (Для інтенсивного міського трафіку)</h3><p>Конфігурація поєднує в собі ТПА, легкий генератор, блок суперконденсаторів і оптимізовану зменшену буферну АКБ. У моменти інтенсивного гальмування електродвигуни генерують потужний імпульс рекуперації, який миттєво поглинається суперконденсаторами, зберігаючи до 40% кінетичної енергії. При старті з місця вони миттєво віддають цей струм для силового ривка машини. Хімічна буферна АКБ повністю ізольована від руйнівних струмів, а ТПА у фоновому режимі безперервно заповнює базовий баланс енергії. Опція забезпечує максимальний ресурс обладнання в рваному ритмі міста.</p><h3>Опція Б. Прямий послідовний гібрид (Для міських та приміських регулярних маршрутів)</h3><p>Конфігурація включає в собі ТПА, генератор і компактну тягову буферну АКБ (без суперконденсаторів). Струм від генератора ТПА через електронний блок інвертора прямує безпосередньо на обмотки тягових електродвигунів. Компактна АКБ використовується для згладжування стандартних навантажень. У разі збою або падіння тиску, ємності буферної АКБ гарантовано вистачає на 5–10 хвилин автономного ходу, щоб безпечно відвести машину з проїжджої частини або доїхати до найближчого місця паркування. Це забезпечує граничну простоту та зниження стартової вартості машини (CAPEX) при стабільній швидкості.</p><p><b>Муніципальні переваги та інтеграція з мережею:</b> Заправка бортових балонів займає від 5 до 10 хвилин, повертаючи машину на маршрут у режимі 24/7. Енергія стиснення та розширення повітря, а також циркуляція рідини в контурі дозволяють використовувати розподілене тепло і холод для клімат-контролю салону без додаткового виснаження АКБ. Наземні станції заправки накопичують повітря в стаціонарних каскадах у плавному цілодобовому режимі (наприклад, за нічним тарифом або від ВДЕ), що мінімізує мегаваттні удари по мережах. Дана екологічна екосистема не протиставляється централізованій енергетиці, а підвищує її стійкість та знижує пікові навантаження.</p>"
+            },
+            ru: {
+                back: "← В матрицу",
+                titles: { main: "EnergaTor — Муниципальный и коммерческий транспорт", sec1: "Энергетический кризис коммерческого и муниципального электротранспорта", sec2: "Сравнительный анализ эксплуатационных параметров", sec3: "Инженерное решение ЭнергаТор: Последовательная гибридная архитектура" },
+                table: {
+                    headers: ["Параметр эффективности", "Стандартный электробус (BESS)", "Транспортная платформа EnergaTor"],
+                    rows: [
+                        ["Полезная нагрузка платформы", "Снижена из-за огромной массы тяжелых аккумуляторов", "Максимальная (вес бортовой системы минимизирован)"],
+                        ["Простой на маршрутной линии", "Часы ожидания у розетки или на терминалах быстрой зарядки", "Заправка баллонов сжатым воздухом за 5–10 минут"],
+                        ["Износостойкость накопителя", "Всего 300–400 циклов из-за пусковых токов и рекуперации", "Не имеет ограничений по циклическому ресурсу химических ячеек"],
+                        ["Климатическая стабильность салона", "Потеря до 40-50% запаса хода зимой из-за отопления салона", "Стабильная работа при температурах ниже -15 °C и выше 35 °C"]
+                    ]
+                },
+                sec1: "<p>Современный городской и коммерческий транспорт находится под растущим давлением сразу нескольких факторов. Ужесточение экологических требований, рост стоимости топлива и электроэнергии, дефицит мощностей распределительных сетей, а также высокая стоимость тяговых аккумуляторов заставляют транспортные компании искать новые подходы. Сегодня большинство решений основано либо на двигателях внутреннего сгорания, либо на полностью аккумуляторном электроприводе. Каждая из этих концепций имеет свои жесткие ограничения.</p><p>Использование ископаемого топлива сопровождается ростом эксплуатационных расходов и увеличением экологической нагрузки, тогда как аккумуляторный городской транспорт столкнулся с системными эксплуатационными и инфраструктурными барьерами:</p><ul><li><b>Климатический провал:</b> При падении температуры воздуха ниже -10 °C реальный запас хода электробусов сокращается на 40–50%. Охлаждение АКБ сочетается с колоссальным энергопотреблением систем отопления салона, вызывая срывы графиков.</li><li><b>Деградация ячеек в режиме старт-стоп:</b> Высокие пусковые токи при разгоне многотонной машины вызывают опасный перегрев аккумуляторов, а мощные импульсные токи рекуперации при частых торможениях приводят к потере емкости уже через 3–5 лет.</li><li><b>Инфраструктурный тупик:</b> Станции ультрабыстрой зарядки (пантографы) требуют от 1 до 3.5 МВт на один пост. Подключение даже небольшего парка создает критические пиковые нагрузки на муниципальные электросети и требует миллионных капитальных вложений (CAPEX).</li></ul>",
+                sec3: "<p>Концепция «ЭнергаТор» предлагает альтернативный подход, основанный на использовании сжатого воздуха как долговременного накопителя энергии в сочетании с высокоэффективной системой её преобразования непосредственно на борту. Энергетическим ядром системы является связка ТПА + Генератор. Тороидальный преобразующий агрегат через СОЖ преобразует кинетическую энергию сжатого воздуха в стабильный крутящий момент. Генератор, управляемый интеллектуальной электронной системой, обеспечивает непрерывное и плавное питание тяговых электродвигателей. Энергетическое ядро формирует электроэнергию по мере необходимости, что позволяет значительно уменьшить требования к ёмкости буферной АКБ.</p><p>Для адаптации к специфике городского движения ЭнергаТор предлагает два варианта исполнения бортовой платформы:</p><h3>Опция А. Пневмо-электрический HESS-контур (Для интенсивного городского трафика)</h3><p>Конфигурация сочетает в себе ТПА, легкий генератор, блок суперконденсаторов и оптимизированную уменьшенную буферную АКБ. В моменты интенсивного торможения тяговые электродвигатели генерируют мощный импульс рекуперации, который мгновенно поглощается суперконденсаторами, сохраняя до 40% кинетической энергии. При старте с места они мгновенно отдают этот ток для силового рывка машины. Химическая буферная АКБ полностью изолирована от разрушительных токов, а ТПА в фоновом режиме непрерывно восполняет базовый баланс энергии. Опция обеспечивает максимальный ресурс оборудования в рваном ритме города.</p><h3>Опция Б. Прямой последовательный гибрид (Для городских и пригородных регулярных маршрутов)</h3><p>Конфигурация включает в себя ТПА, генератор и компактную тяговую буферную АКБ (без суперконденсаторов). Ток от генератора ТПА через электронный блок инвертора направляется напрямую на обмотки тяговых электродвигателей. Компактная АКБ используется для сглаживания стандартных нагрузок. В случае сбоя или падения давления, емкости буферной АКБ гарантированно хватает на 5–10 минут автономного хода, чтобы безопасно отвести машину с проезжей части или доехать до ближайшего места парковки. Это обеспечивает предельную простоту и снижение стартовой стоимости машины (CAPEX) при стабильной скорости.</p><p><b>Муниципальные преимущества и интеграция с сетью:</b> Заправка бортовых баллонов занимает от 5 до 10 минут, возвращая машину на маршрут в требуемом режиме 24/7. Энергия сжатия и расширения воздуха, а также циркуляция жидкости в контуре позволяют использовать распределенное тепло и холод для климат-контроля салона без дополнительного истощения АКБ. Наземные станции заправки накапливают воздух в стационарных каскадах в плавном круглосуточном режиме (например, по ночному тарифу или от ВИЭ), что минимизирует мегаваттные удары по сетям. Данная экологическая экосистема не противопоставляется централизованной энергетике, а повышает её устойчивость и снижает пиковые нагрузки.</p>"
+            },
+            en: {
+                back: "← To Matrix",
+                titles: { main: "EnergaTor — Municipal & Commercial Transit", sec1: "Energy Crisis of Commercial and Municipal Electric Vehicles", sec2: "Comparative Analysis of Operational Parameters", sec3: "EnergaTor Engineering Platform: Integration Options" },
+                table: {
+                    headers: ["Efficiency Parameter", "Standard EV Bus (BESS)", "EnergaTor Transit Platform"],
+                    rows: [
+                        ["Useful Vehicle Payload", "Slashed significantly due to massive heavy battery weights", "Maximum efficiency (onboard system mass minimized)"],
+                        ["Route Operational Downtime", "Hours of absolute grid dependency at slow or rapid plug terminals", "Storage cylinder air refueling complete within 5–10 min"],
+                        ["Storage System Lifespan", "Mere 300–400 cycles under heavy startup and regen currents", "Free from degradation constraints typical of chemical batteries"],
+                        ["Cabin Climate Stability", "Loss of up to 40-50% operational range due to winter heating loads", "Stable performance secured below -15 °C and above 35 °C bounds"]
+                    ]
+                },
+                sec1: "<p>Modern urban and commercial transit is facing immense pressure from multiple compounding factors. Tightening environmental regulations, escalating fuel and electricity costs, grid distribution capacity limits, and exorbitant traction battery expenses force fleet operators to seek new approaches. Today, most options rely either on fossil fuel ICEs or pure battery electric powertrains. Both concepts present severe operational dead-ends.</p><p>Fossil fuel utilization guarantees rising OPEX and heavy ecological fines, while battery-powered municipal transit has run directly into structural and infrastructural barriers:</p><ul><li><b>Climate Failure:</b> When temperatures plunge below -10 °C, the real-world driving range of pure EVs drops by 40–50% due to battery freezing combined with massive cabin heating power demands, breaking schedule intervals.</li><li><b>Cell Degradation under Stop-and-Go Cycles:</b> High startup currents during heavy multi-ton vehicle acceleration trigger extreme internal heat build-up, while powerful regeneration spikes during frequent braking ruin capacity within 3–5 years.</li><li><b>Infrastructure Bottleneck:</b> Ultra-fast charging stations require 1 to 3.5 MW of dedicated capacity per single dock. Implementing this for even a small fleet overloads municipal grids and demands millions in CAPEX.</li></ul>",
+                sec3: "<p>The EnergaTor concept delivers an alternative approach utilizing compressed air as a long-term energy storage medium coupled with highly efficient onboard conversion. The power core consists of a PTU + Generator setup. The Toroidal Transforming Unit transforms compressed air potential energy via working fluid into stable torque. The generator, governed by an intelligent electronic matrix, provides continuous, smooth power to the traction motors, generating electricity on demand and slashing buffer battery capacity needs.</p><p>To adapt to volatile urban transit profiles, EnergaTor offers two distinct onboard platform options:</p><h3>Option A. Pneumatic-Electric HESS Circuit (For Heavy Stop-and-Go Urban Routes)</h3><p>This layout integrates the PTU, a lightweight generator, a supercapacitor block, and a downsized buffer battery. During heavy braking, the traction motors generate massive regeneration energy spikes, instantly absorbed by the supercapacitors, capturing up to 40% of kinetic energy. Upon acceleration, they instantly discharge this energy for a powerful launch. The chemical buffer battery remains fully insulated from destructive peak loads, while the PTU handles baseline energy replenishment, maximizing system lifespan.</p><h3>Option B. Direct Series Hybrid (For Suburban and Scheduled Fixed-Speed Lines)</h3><p>This layout features the PTU, a generator, and a compact traction buffer battery without supercapacitors. Current from the PTU generator routes directly to the motor inverters through an electronic control system. The compact battery handles minor voltage smoothing and serves as an emergency backup. If a pressure drop occurs, the buffer battery secures 5–10 minutes of autonomous range, enough to clear the roadway safely or reach a parking zone. This option delivers extreme design simplicity and lower vehicle CAPEX.</p><p><b>Municipal Benefits & Grid Integration:</b> Onboard cylinder refueling takes only 5–10 minutes, securing 24/7 fleet availability. Expansion thermal properties and fluid circulation allow the capture of free heating and cooling for cabin climate control without depleting the battery. Micro-grids accumulate air within ground cascades in a smooth, continuous 24-hour cycle (via off-peak night tariffs or local renewables), completely eliminating megawatt-level grid shocks. This ecosystem supports central grids, acting as a vital peak-shaving tool.</p>"
+            },
+            de: {
+                back: "← Zur Matrix",
+                titles: { main: "EnergaTor — Kommunaler & Kommerzieller Verkehr", sec1: "Energiekrise des kommerziellen und kommunalen Elektroverkehrs", sec2: "Vergleichsanalyse der Betriebsparameter", sec3: "EnergaTor-Ingenieurlösung: Serielle Hybridarchitektur" },
+                table: {
+                    headers: ["Effizienzparameter", "Standard-Elektrobus (BESS)", "EnergaTor-Transportplattform"],
+                    rows: [
+                        ["Nutzlast der Plattform", "Erheblich reduziert durch das enorme Gewicht schwerer Batterien", "Maximal (Gewicht des Bordsystems minimiert)"],
+                        ["Ausfallzeiten auf der Linie", "Stundenlanges Warten an der Steckdose oder an Schnellladestationen", "Druckluftbetankung der Flaschen in 5–10 Minuten"],
+                        ["Lebensdauer des Speichers", "Nur 300–400 Zyklen aufgrund hoher Anlauf- und Rekuperationsströme", "Frei von den zyklischen Verschleißgrenzen chemischer Zellen"],
+                        ["Klimatische Stabilität des Salons", "Verlust von bis zu 40-50% der Reichweite im Winter durch Heizung", "Stabiler Betrieb unter -15 °C und über 35 °C gesichert"]
+                    ]
+                },
+                sec1: "<p>Der moderne städtische und kommerzielle Verkehr steht unter dem wachsenden Druck mehrerer Faktoren. Strengere Umweltauflagen, steigende Kraftstoff- und Stromkosten, Kapazitätsенгpässe der Verteilungsnetze und hohe Kosten für Traktionsbatterien zwingen Transportunternehmen zum Umdenken. Heute basieren die meisten Lösungen entweder auf Verbrennungsmotoren oder rein batterieelektrischen Antrieben. Beide Konzepte weisen gravierende operative Grenzen auf.</p><p>Die Nutzung fossiler Brennstoffe führt zu steigenden Betriebskosten und hoher Umweltbelastung, während der batteriebetriebene Stadtverkehr auf systemische Barrieren stößt:</p><ul><li><b>Klimatischer Einbruch:</b> Bei Temperaturen unter -10 °C sinkt die reale Reichweite von Elektrobussen um 40–50%. Die Abkühlung der Batterie kombiniert mit dem enormen Stromverbrauch der Fahrgastraumbelüftung führt zu Fahrplanausfällen.</li><li><b>Zelldegradation im Stop-and-Go-Betrieb:</b> Hohe Anlaufströme beim Beschleunigen tonnenschwerer Fahrzeuge verursachen eine gefährliche Überhitzung der Batterien, während starke Impulsströme bei häufigem Bremsen die Kapazität bereits nach 3–5 Jahren ruinieren.</li><li><b>Infrastruktur-Sackgasse:</b> Ultraschnellladestationen (Pantografen) erfordern 1 bis 3,5 MW pro Ladesäule. Der Anschluss selbst einer kleinen Flotte verursacht kritische Spitzenlasten im städtischen Stromnetz und erfordert millionenschwere Investitionen (CAPEX).</li></ul>",
+                sec3: "<p>Das EnergaTor-Konzept bietet einen alternativen Ansatz, der auf der Nutzung von Druckluft als Langzeitspeichermedium in Kombination mit einer hocheffizienten On-Board-Transformation basiert. Der Kern des Systems ist eine PTU + Generator-Einheit. Das Aggregat wandelt Druckluftenergie über das Arbeitsmedium in ein stabiles Drehmoment um. Der Generator speist die Elektromotoren kontinuierlich und reibungslos über ein elektronisches Steuerungssystem und reduziert so die Anforderungen an die Pufferbatterie drastisch.</p><p>Für die spezifischen Anforderungen des Stadtverkehrs bietet EnergaTor zwei Plattformoptionen an:</p><h3>Option A. Pneumatisch-Elektrischer HESS-Kreislauf (Für dichten innerstädtischen Stop-and-Go-Verkehr)</h3><p>Diese Konfiguration kombiniert die PTU, einen Leichtbaugenerator, einen Superkondensatorenblock und eine optimierte Pufferbatterie. Beim starken Bremsen erzeugen die Motoren einen starken Rekuperationsimpuls, der sofort von den Superkondensatoren absorbiert wird und bis zu 40% der kinetischen Energie speichert. Beim Anfahren geben sie diesen Strom sofort für die Beschleunigung ab. Die chemische Pufferbatterie bleibt von den zerstörerischen Spitzenströmen vollständig isoliert, während die PTU die Basisenergie kontinuierlich nachlädt. Dies sichert eine maximale Lebensdauer im dichten Stadtverkehr.</p><h3>Option B. Direkter Serieller Hybrid (Für Vorort- und Linienverkehr mit gleichmäßiger Geschwindigkeit)</h3><p>Diese Konfiguration umfasst die PTU, einen Generator und eine kompakte Pufferbatterie ohne Superkondensatoren. Der Strom aus dem PTU-Generator fließt über den Wechselrichter direkt zu den Motoren. Die kompakte Batterie dient zur Glättung von Standardlasten. Bei einem Systemausfall reicht die Kapazität der Pufferbatterie garantiert für 5–10 Minuten autonomen Fahrbetriebs aus, um das Fahrzeug sicher von der Fahrbahn zu entfernen oder den nächsten Parkplatz anzusteuern. Dies bietet maximale Konstruktionsinfachheit und senkt die CAPEX des Fahrzeugs.</p><p><b>Kommunale Vorteile & Netzintegration:</b> Die Betankung der Flaschen dauert nur 5–10 Minuten und sichert eine 24/7-Flottenverfügbarkeit. Die thermischen Eigenschaften der Luftexpansion ermöglichen die Nutzung von Wärme und Kälte für die Klimatisierung des Innenraums, ohne die Batterie zu belasten. Bodenstationen speichern Luft in Kaskaden rund um die Uhr (z. B. zu günstigen Nachttarifen oder aus erneuerbaren Energien), wodurch Megawatt-Spitzen im Netz vermieden werden. Dieses System unterstützt die zentrale Energieversorgung direkt als Peak-Shaving-Werkzeug.</p>"
+            }
+        };
+
+        let currentLang = localStorage.getItem('energator_lang') || 'ua';
+
+        function changeLang(lang) {
+            currentLang = lang;
+            localStorage.setItem('energator_lang', lang);
+
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                if (btn.id === `btn-${lang}`) btn.classList.add('active');
+                else btn.classList.remove('active');
+            });
+
+            const trans = transportTranslations[lang] || transportTranslations['ua'];
+            
+            document.getElementById('lnBack').innerText = trans.back;
+            document.getElementById('pageTitle').innerText = trans.titles.main;
+            document.getElementById('sec1Title').innerText = trans.titles.sec1;
+            document.getElementById('sec2Title').innerText = trans.titles.sec2;
+            document.getElementById('sec3Title').innerText = trans.titles.sec3;
+            
+            document.getElementById('sec1Content').innerHTML = trans.sec1;
+            document.getElementById('sec3Content').innerHTML = trans.sec3;
+
+            const headerRow = document.getElementById('tableHead');
+            headerRow.innerHTML = `<th>${trans.table.headers[0]}</th><th>${trans.table.headers[1]}</th><th>${trans.table.headers[2]}</th>`;
+            
+            const tableBody = document.getElementById('tableBody');
+            tableBody.innerHTML = "";
+            trans.table.rows.forEach(row => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `<td><strong>${row[0]}</strong></td><td>${row[1]}</td><td>${row[2]}</td>`;
+                tableBody.appendChild(tr);
+            });
+        }
+
+        changeLang(currentLang);
+    </script>
+</body>
+</html>
