@@ -1,0 +1,182 @@
+HTML
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EnergaTor — Стационарная энергетика и РВЧ</title>
+    <style>
+        :root {
+            --space-bg: #030712;
+            --copper-primary: #c87533;
+            --copper-light: #ea580c;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --glass-bg: rgba(15, 23, 42, 0.45);
+            --glass-border: rgba(200, 117, 51, 0.2);
+        }
+
+        body, html {
+            margin: 0; padding: 0; width: 100%; min-height: 100%;
+            background-color: var(--space-bg);
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+            color: var(--text-main);
+            background: radial-gradient(circle at 50% 30%, #0f172a 0%, #030712 80%);
+            background-attachment: fixed;
+        }
+
+        .header {
+            border-bottom: 1px solid var(--glass-border); padding: 20px 40px;
+            display: flex; justify-content: space-between; align-items: center;
+            background: rgba(3, 7, 18, 0.8); backdrop-filter: blur(12px);
+            position: sticky; top: 0; z-index: 100;
+        }
+
+        .header h1 { font-size: 1.4rem; margin: 0; text-transform: uppercase; letter-spacing: 3px; color: var(--copper-primary); }
+        .header-controls { display: flex; align-items: center; gap: 30px; }
+        .lang-panel { display: flex; gap: 12px; }
+        .lang-btn { background: transparent; border: none; color: rgba(255, 255, 255, 0.3); font-size: 0.85rem; font-weight: 700; cursor: pointer; letter-spacing: 1px; transition: all 0.3s ease; }
+        .lang-btn:hover { color: var(--text-main); }
+        .lang-btn.active { color: var(--copper-primary); text-shadow: 0 0 8px rgba(200, 117, 51, 0.5); }
+        .btn-nav { color: var(--text-main); text-decoration: none; font-weight: 600; font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase; border: 1px solid var(--copper-primary); padding: 8px 18px; border-radius: 4px; transition: all 0.3s ease; background: rgba(200, 117, 51, 0.05); }
+        .btn-nav:hover { background: var(--copper-primary); color: var(--space-bg); box-shadow: 0 0 20px rgba(200, 117, 51, 0.4); }
+
+        .container { max-width: 1200px; margin: 50px auto; padding: 0 30px; box-sizing: border-box; }
+        
+        .section-grid {
+            background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 10px;
+            padding: 40px; margin-bottom: 40px; backdrop-filter: blur(10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+        }
+        
+        .section-grid h2 {
+            color: var(--copper-primary); text-transform: uppercase; font-size: 1.4rem;
+            letter-spacing: 2px; margin-top: 0; margin-bottom: 25px; padding-bottom: 12px;
+            border-bottom: 1px solid rgba(200, 117, 51, 0.15);
+        }
+
+        .grid-text { font-size: 1.1rem; line-height: 1.7; color: var(--text-main); text-align: justify; }
+        .grid-text p { margin-bottom: 20px; }
+        .grid-text h3 { color: var(--copper-primary); margin-top: 30px; margin-bottom: 15px; font-size: 1.2rem; text-transform: uppercase; letter-spacing: 1px; }
+        .grid-text ul { margin-bottom: 20px; padding-left: 20px; }
+        .grid-text li { margin-bottom: 12px; }
+        .grid-text strong { color: var(--copper-primary); }
+
+        .video-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; margin-top: 35px; margin-bottom: 35px; }
+        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 6px; border: 1px solid rgba(200, 117, 51, 0.2); background: #000; }
+        .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+
+        hr { border: 0; border-top: 1px solid rgba(200, 117, 51, 0.15); margin: 40px 0; }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <h1 id="pageTitle">EnergaTor — Стационарная Энергетика</h1>
+        <div class="header-controls">
+            <nav class="lang-panel">
+                <button class="lang-btn" id="btn-ua" onclick="changeLang('ua')">UA</button>
+                <button class="lang-btn" id="btn-en" onclick="changeLang('en')">EN</button>
+                <button class="lang-btn" id="btn-de" onclick="changeLang('de')">DE</button>
+                <button class="lang-btn" id="btn-ru" onclick="changeLang('ru')">RU</button>
+            </nav>
+            <a href="intelligence.html" class="btn-nav" id="lnBack">← В матрицу</a>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <section class="section-grid">
+            <h2 id="sec1Title">Дисбаланс энергосистем и потребность в буферизации</h2>
+            <div class="grid-text">
+                <div id="sec1Content"></div>
+                
+                <div class="video-grid">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/8KOYyfZbPzo" title="Grid and AI Loads" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/P31qNA1GgVE" title="Pumped Hydro Storage" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/Di9RH1VEQKQ" title="HESS Lithium Systems" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/we0FbP7OvfQ" title="Hydrogen Energy" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-grid">
+            <h2 id="sec2Title">Аудит технологических ниш и ограничений мировых ESS</h2>
+            <div class="grid-text" id="sec2Content"></div>
+        </section>
+
+        <section class="section-grid">
+            <h2 id="sec3Title">Наше предложение — локальный энергетический комплекс «ЭнергаТор»</h2>
+            <div class="grid-text" id="sec3Content"></div>
+        </section>
+
+    </main>
+
+    <script>
+        const gridTranslations = {
+            ua: {
+                back: "← В матрицю",
+                titles: { main: "EnergaTor — Стаціонарна енергетика та РВЧ", sec1: "Дисбаланс енергосистем та потреба в буферизації", sec2: "Аудит технологічних ніш та обмежень світових ESS", sec3: "Наша пропозиція — локальний енергетичний комплекс «ЕнергаТор»" },
+                sec1: "<p>Сучасна енергетика функціонує в умовах динамічної зміни балансу. Пікові навантаження (ранкові та вечірні максимуми) вимагають миттєвого введення резервних потужностей. З іншого боку, стрімкий розвиток відновлюваних джерел енергії (ВДЕ) створює періоди надлишкового виробництва, коли мережа не здатна поглинути всю генеровану потужність без ризику порушення стабільності частоти.</p><p>Споживання енергії гарантовано зростає — цей тренд диктується тотальною електрифікацією транспорту, автоматизацією виробництв і масштабним будівництвом сучасних дата-центрів. У цих реаліях накопичувачі енергії стають не просто допоміжним елементом, а ключовим стабілізатором усієї енергетичної інфраструктури. Однак універсального рішення не існує: кожен інструмент ефективний строго у своїй експлуатаційній ніші.</p>",
+                sec2: "<h3>ГАЕС (Гідроакумулюючі електростанції)</h3><p><b>Найкраще рішення для:</b> Глобального, масштабного стратегічного резервування на рівні цілих держав та енергосистем. Ідеально підходять для згладжування базового добового графіка за рахунок оперування колосальними обсягами енергії. Мають рекордний життєвий цикл (50+ років) і найнижчу вартість зберігання в перерахунку на десятиліття.</p><p><b>Але обмежено:</b> Жорсткими географічними факторами. Будівництво можливе виключно в регіонах зі специфічним рельєфом (значний перепад висот) та рясними водними ресурсами. Проєкти вимагають величезних капітальних вкладень (CAPEX), тривають роками та призводять до затоплення значних площ, що унеможливлює їх локальне застосування біля конкретних міських споживачів.</p><h3>BESS (Хімічні акумулятори: Li-ion, LFP)</h3><p><b>Найкраще рішення для:</b> Миттєвого (мілісекундного) реагування на частотні коливання мережі та короткострокового покриття піків. Літієві накопичувачі стали незамінним інструментом для локальних систем, де критично важливі компактність, висока щільність енергії та висока швидкість відгуку «туди-назад» (КПД до 90%).</p><p><b>Але обмежено:</b> Інтервалами короткострокового зберігання (ефективна економічна межа — від 2 до 4 годин). При роботі в режимах глибокого циклічного балансування промислових мереж хімічні ячейки схильні до деградації, що обмежує їх термін служби рамками 3–5 років при швидкій зарядці. Також великі стаціонарні масиви вимагають складних систем термостабілізації для виключення ризику теплового розгону.</p><h3>Водневі енергетичні комплекси (Hydrogen Storage)</h3><p><b>Найкраще рішення для:</b> Міжсезонного, наддовготривалого зберігання надлишків енергії, що виробляється великими вітропарками або сонячними станціями в періоди їх максимальної активності. Водень як хімічний носій дозволяє консервувати мегавати енергії на місяці вперед без саморозряду.</p><p><b>Але обмежено:</b> Низьким наскрізним ККД повного циклу перетворення, який у комерційних системах рідко перевищує 40–45%. Висока летючість і хімічна активність водню накладають суворі вимоги до матеріалів резервуарів високого тиску або систем кріогенного зрідження, що робить заправно-компресорну інфраструктуру технічно складною та дорогою.</p><h3>Проточні батареї та традиційні CAES</h3><p><b>Найкраще рішення для:</b> Стаціонарного добового резервування промислових об'єктів. Проточні системи дозволяють незалежно масштабувати потужність і ємність, а класичні CAES використовують підземні порожнини для середньострокових запасів, виступаючи довговічною механічною альтернативою без токсичної хімії.</p><p><b>Але обмежено:</b> Проточні батареї мають низький ККД через постійну роботу насосів (65–75%) та великі габарити гідравліки. Традиційні наземні CAES жорстко прив'язані до наявності підземних соляних печер і мають значні термодинамічні втрати, що часто вимагає спалювання природного газу для підігріву повітря перед турбіною.</p>",
+                sec3: "<p>Втративши орієнтацію на виконання однієї вузької функції (накопичення енергії, генерація або забезпечення транспорту), концепція «ЕнергаТор» об'єднує ці завдання в єдиний тригенераційний енергетичний комплекс.</p><p><b>Цільове призначення:</b><br>Концепція «ЕнергаТор» призначена для створення розподілених тригенераційних енергетичних комплексів, здатних одночасно забезпечувати об'єкти електроенергією, теплом і холодом, а також забезпечувати міський та комерційний транспорт еколочіно безпечним енергоносієм. Такі комплекси не замінюють централізовану енергетику, а доповнюють її, знижуючи пікові навантаження на розподільні мережі, підвищуючи стійкість енергопостачання та забезпечуючи автономну роботу об'єктів у разі аварійних або кризових ситуацій.</p><p><b>Можливості та баланс характеристик:</b><br>Архітектура «ЕнергаТор» поєднує переваги різних технологій зберігання енергії. Від механічних систем вона успадковує тривалий термін служби (<b>понад 20 років без деградації накопичувача</b>), а від модульних рішень — можливість гнучкого масштабування та розміщення в безпосередній близькості від споживачів енергії, включаючи промислові підприємства, комерційні об'єкти та житлові комплекси.</p><p>Енергетичним ядром комплексу є тороїдальний преобразуючий агрегат (<b>ТПА</b>), що перетворює енергію стисненого повітря на електричну енергію. Одночасно система використовує природні термодинамічні процеси: тепло, що виділяється при стисненні повітря, направляється на опалення та технологічні потреби, а холод, що виникає при його розширенні, використовується для кондиціонування приміщень, охолодження обладнання та зберігання продукції.</p><p>Комплексне використання всіх енергетичних потоків дозволяє істотно підвищити ефективність використання накопиченої енергії, знизити експлуатаційні витрати споживачів і перетворити локальний енергетичний комплекс на інтелектуальний буфер між об'єктом і централізованою енергосистемою. У періоди пікового споживання такі комплекси здатні компенсувати частину навантаження на електричні мережі, підвищуючи їхню стійкість і знижуючи потребу в будівництві додаткової інфраструктури.</p>"
+            },
+            ru: {
+                back: "← В матрицу",
+                titles: { main: "EnergaTor — Стационарная Энергетика", sec1: "Дисбаланс энергосистем и потребность в буферизации", sec2: "Аудит технологических ниш и ограничений мировых ESS", sec3: "Наше предложение — локальный энергетический комплекс «ЭнергаТор»" },
+                sec1: "<p>Современная энергетика функционирует в условиях динамического изменения баланса. Пиковые нагрузки (утренние и вечерние максимумы) требуют мгновенного ввода резервных мощностей. С другой стороны, стремительное развитие возобновляемых источников энергии (ВИЭ) создает периоды избыточного производства, когда сеть не способна поглотить всю генерируемую мощность без риска нарушения стабильности частоты.</p><p>Потребление энергии гарантированно растет — этот тренд диктуется тотальной электрификацией транспорта, автоматизацией производств и масштабным строительством современных дата-центров. В этих реалиях накопители энергии становятся не просто вспомогательным элементом, а ключевым стабилизатором всей энергетической инфраструктуры. Однако универсального решения не существует: каждый инструмент эффективен строго в своей эксплуатационной нише.</p>",
+                sec2: "<h3>ГАЭС (Гидроаккумулирующие электростанции)</h3><p><b>Лучшее решение для:</b> Глобального, масштабного стратегического резервирования на уровне целых государств и энергосистем. Идеально подходят для сглаживания базового суточного графика за счет оперирования колоссальными объемами энергии. Обладают рекордным жизненным циклом (50+ лет) и самой низкой стоимостью хранения в пересчете на десятилетия.</p><p><b>Но ограничено:</b> Жесткими географическими факторами. Строительство возможно исключительно в регионах со специфическим рельефом (значительный перепад высот) и обильными водными ресурсами. Проекты требуют огромных капитальных вложений (CAPEX), длятся годами и приводят к затоплению значительных площадей, что делает их локальное применение возле конкретных городских потребителей невозможным.</p><h3>BESS (Химические аккумуляторы: Li-ion, LFP)</h3><p><b>Лучшее решение для:</b> Мгновенного (миллисекундного) реагирования на частотные колебания сети и краткосрочного покрытия пиков. Литиевые накопители стали незаменимым инструментом для локальных систем, где критически важны компактность, высокая плотность энергии и высокая скорость отклика «туда-обратно» (КПД до 90%).</p><p><b>Но ограничено:</b> Интервалами краткосрочного хранения (эффективный экономический предел — от 2 до 4 часов). При работе в режимах глубокого циклического балансирования промышленных сетей chemical ячейки подвержены деградации, что ограничивает их срок службы рамками 3–5 лет при быстрой зарядке. Также крупные стационарные массивы требуют сложных систем термостабилизации для исключения риска теплового разгона.</p><h3>Водородные энергетические комплексы (Hydrogen Storage)</h3><p><b>Лучшее решение для:</b> Межсезонного, сверхдолговременного хранения избытков энергии, вырабатываемой крупными ветропарками или солнечными станциями в периоды их максимальной активности. Водород как химический носитель позволяет консервировать мегаватты энергии на месяцы вперед без саморазряда.</p><p><b>Но ограничено:</b> Низким сквозным КПД полного цикла преобразования, который в коммерческих системах редко превышает 40–45%. Высокая летучесть и химическая активность водорода накладывают строгие требования к материалам резервуаров высокого давления или системам криогенного сжижения, что делает заправочно-компрессорную инфраструктуру технически сложной и дорогостоящей.</p><h3>Проточные батареи и традиционные CAES</h3><p><b>Лучшее решение для:</b> Стационарного суточного резервирования промышленных мощностей. Проточные системы позволяют независимо масштабировать мощность и емкость, а классические CAES используют подземные полости для среднесрочных запасов, выступая долговечной механической альтернативой без токсичной химии.</p><p><b>Но ограничено:</b> Проточные батареи обладают низким КПД из-за постоянной работы насосов (65–75%) и большими габаритами гидравлики. Традиционные наземные CAES жестко привязаны к наличию подземных соляных пещер и имеют значительные термодинамические потери, что часто требует сжигания природного газа для подогрева воздуха перед турбиной.</p>",
+                sec3: "<p>В отличие от существующих решений, ориентированных на выполнение одной узкой функции (накопление энергии, генерация или обеспечение транспорта), концепция «ЭнергаТор» объединяет эти задачи в единый тригенерационный энергетический комплекс.</p><p><b>Целевое назначение:</b><br>Концепция «ЭнергаТор» предназначена для создания распределённых тригенерационных энергетических комплексов, способных одновременно обеспечивать объекты электроэнергией, теплом и холодом, а также снабжать городской и коммерческий транспорт экологически безопасным энергоносителем[cite: 2]. Такие комплексы не заменяют централизованную энергетику, а дополняют её, снижая пиковые нагрузки на распределительные сети, повышая устойчивость энергоснабжения и обеспечивая автономную работу объектов в случае аварийных или кризисных ситуаций[cite: 2].</p><p><b>Возможности и баланс характеристик:</b><br>Архитектура «ЭнергаТор» сочетает преимущества различных технологий хранения энергии[cite: 2]. От механических систем она наследует длительный срок службы (<b>более 20 лет без деградации накопителя</b>), а от модульных решений — возможность гибкого масштабирования и размещения в непосредственной близости от потребителей энергии, включая промышленные предприятия, коммерческие объекты и жилые комплексы[cite: 2].</p><p>Энергетическим ядром комплекса является тороидальный преобразующий агрегат (<b>ТПА</b>), преобразующий энергию сжатого воздуха в электрическую энергию[cite: 2]. Одновременно система использует естественные термодинамические процессы: тепло, выделяющееся при сжатии воздуха, направляется на отопление и технологические нужды, а холод, возникающий при его расширении, используется для кондиционирования помещений, охлаждения оборудования и хранения продукции[cite: 2].</p><p>Комплексное использование всех энергетических потоков позволяет существенно повысить эффективность использования накопленной энергии, снизить эксплуатационные расходы потребителей и превратить локальный энергетический комплекс в интеллектуальный буфер между объектом и централизованной энергосистемой[cite: 2]. В периоды пикового потребления такие комплексы способны компенсивать часть нагрузки на электрические сети, повышая их устойчивость и снижая потребность в строительстве дополнительной инфраструктуры[cite: 2].</p>"
+            },
+            en: {
+                back: "← To Matrix",
+                titles: { main: "EnergaTor — Stationary Power & Grid Balancing", sec1: "Grid Imbalance and the Critical Need for Buffering", sec2: "Niche Audit and Limits of Global ESS Solutions", sec3: "Our Proposal — The EnergaTor Local Energy Complex" },
+                sec1: "<p>Modern grids operate under highly dynamic, shifting parameters. Peak loads (morning and evening spikes) demand instantaneous backup power injections. Conversely, rapid expansion of variable renewable energy (VRE) generates periods of overproduction where the grid cannot absorb excess power without threatening frequency stability.</p><p>Energy demand is guaranteed to climb, driven by total transportation electrification, industrial automation, and massive AI data center deployments. In this reality, energy storage systems transition from secondary assets to the primary stabilizers of energy infrastructure. However, no universal tool exists: each technology thrives strictly within its native operational envelope.</p>",
+                sec2: "<h3>PHS (Pumped Hydro Storage)</h3><p><b>Best suited for:</b> Large-scale strategic backup at state and nation-wide transmission levels. Ideal for base load diurnal smoothing via massive energy volumes. Features long lifespans (50+ years) and the lowest storage cost calculated over decades.</p><p><b>Limited by:</b> Rigid geological factors. Execution requires major elevation differentials and abundant water resources. Projects demand heavy CAPEX, span years to build, and flood substantial land areas, making localized deployment near urban consumers impossible.</p><h3>BESS (Chemical Storage: Li-ion, LFP)</h3><p><b>Best suited for:</b> Instantaneous (millisecond) frequency response and short-duration peak trimming. Lithium storage revolutionized portable devices and localized grid support where compact footprints, high density, and round-trip efficiencies (up to 90%) are paramount.</p><p><b>Limited by:</b> Short duration storage limits (economically capped at 2 to 4 hours). Under aggressive cycling profiles, chemical cells suffer rapid degradation, dropping operational life to 3–5 years under rapid modes. Large installations demand complex thermal management to eliminate thermal runaway risks.</p><h3>Hydrogen Storage Systems</h3><p><b>Best suited for:</b> Seasonal, long-duration storage of clean energy captured during peak renewable production seasons. Hydrogen acts as a chemical medium capable of locking in megawatts of potential power for months without self-discharge overheads.</p><p><b>Limited by:</b> Disappointing round-trip efficiency, which rarely breaks 40–45% in commercial loops. High volatility and molecule migration require specialized alloys for high-pressure tanks or cryo-liquefaction assets, leading to highly complex and expensive compressing infrastructure.</p><h3>Flow Batteries & Traditional CAES</h3><p><b>Best suited for:</b> Fixed-site daily industrial buffering. Flow platforms separate power from capacity scaling, while classic CAES uses underground features for medium-term storage, providing a non-toxic mechanical alternative.</p><p><b>Limited by:</b> Flow platforms carry low round-trip efficiencies (65–75%) due to parasitic pump losses and massive footprints. Traditional land-based CAES remains chained to salt caverns and suffers deep thermodynamic losses, often requiring natural gas combustion to pre-heat expanding air before the turbine stage.</p>",
+                sec3: "<p>Unlike existing solutions focused on performing a single narrow function (energy storage, generation, or transit provisioning), the \"EnergaTor\" concept integrates these tasks into a single trigeneration energy complex.</p><p><b>Target Purpose:</b><br>The \"EnergaTor\" concept is designed to create distributed trigeneration energy complexes capable of simultaneously supplying facilities with electricity, heat, and cooling, as well as providing urban and commercial transit with an environmentally friendly energy carrier. These complexes do not replace centralized power grids but complement them, reducing peak loads on distribution networks, enhancing power supply resilience, and ensuring autonomous facility operation during emergencies or crisis situations.</p><p><b>Capabilities and Balance of Characteristics:</b><br>The \"EnergaTor\" architecture combines the advantages of various energy storage technologies. From mechanical systems, it inherits a long service life (<b>over 20 years without storage degradation</b>), and from modular solutions, it adopts the ability for flexible scaling and localized deployment in immediate proximity to energy consumers, including industrial enterprises, commercial properties, and residential complexes.</p><p>The energetic core of the complex is the Toroidal Transforming Unit (<b>TPA</b>), which converts compressed air energy into electricity. Concurrently, the system utilizes natural thermodynamic processes: heat generated during air compression is directed toward heating and technological demands, while the cooling produced during its expansion is used for space conditioning, equipment cooling, and product storage.</p><p>Comprehensive utilization of all energy streams significantly increases the efficiency of stored energy use, lowers consumer OPEX, and transforms the local energy complex into an intelligent buffer between the facility and the centralized energy system. During peak consumption periods, these complexes can offset part of the load on electrical grids, increasing their stability and reducing the need to construct additional infrastructure.</p>"
+            },
+            de: {
+                back: "← Zur Matrix",
+                titles: { main: "EnergaTor — Stationäre Energie & Netzstabilisierung", sec1: "Netzungleichgewicht und die kritische Notwendigkeit der Pufferung", sec2: "Nischenprüfung und Grenzen globaler ESS-Lösungen", sec3: "Unser Angebot — Der lokale Energiekomplex „EnergaTor“" },
+                sec1: "<p>Moderne Stromnetze arbeiten unter hochdynamischen Bedingungen. Spitzenlasten erfordern eine sofortige Einspeisung von Reserveleistung. Umgekehrt führt der rasche Ausbau der erneuerbaren Energien zu Phasen der Überproduktion, in denen das Netz die überschüssige Leistung nicht ohne Gefährdung der Frequenzstabilität aufnehmen kann.</p><p>Der Energiebedarf wird weiter steigen, angetrieben durch die Elektrifizierung des Verkehrs, die industrielle Automatisierung und massive Rechenзенtren. In dieser Realität werden Energiespeicher von sekundären zu primären Stabilisatoren der Infrastruktur. Es gibt jedoch keine Universallösung: Jede Technologie arbeitet strikt in ihrer eigenen Nische.</p>",
+                sec2: "<h3>PSW (Pumpspeicherkraftwerke)</h3><p><b>Bestens geeignet für:</b> Großлініige strategische Absicherung auf Landes- und Übertragungsnetzebene. Ideal для den Ausgleich des täglichen Lastprofils durch gewaltige Energiemengen. Zeichnen sich durch extrem lange Lebensdauern (50+ Jahre) und die niedrigsten Speicherkosten aus.</p><p><b>Begrenzt durch:</b> Starre geografische Faktoren. Der Bau erfordert große Höhenunterschiede und reichlich Wasserressourcen. Die Projekte sind CAPEX-intensiv, dauern Jahre im Bau und fluten erhebliche Landflächen, was einen dezentralen Einsatz in Ballungsräumen ausschließt.</p><h3>BESS (Chemische Speicher: Li-Ion, LFP)</h3><p><b>Bestens geeignet für:</b> Sekundenschnelle Frequenzregelung und kurzfristiges Kappen von Lastspitzen. Lithiumspeicher revolutionierten lokale Netze dort, wo Kompaktheit, hohe Energiedichte und ein hoher Wirkungsgrad (bis zu 90%) entscheidend sind.</p><p><b>Begrenzt durch:</b> Kurzzeitige Speichergrenzen (wirtschaftlich auf 2 bis 4 Stunden begrenzt). Bei tiefen Zyklen degradieren chemische Zellen schnell, was die Lebensdauer bei Schnellladung auf 3–5 Jahre senkt. Großanlagen erfordern komplexe Kühlsysteme, um thermische Risiken zu eliminieren.</p><h3>Wasserstoff-Energiesysteme</h3><p><b>Bestens geeignet für:</b> Saisonale Langzeitspeicherung von sauberer Energie, die in Spitzenzeiten anfällt. Wasserstoff fungiert als chemisches Medium, das Megawatt an potenzieller Leistung über Monate ohne Selbstentladung konservieren kann.</p><p><b>Begrenzt durch:</b> Einen geringen Gesamtwirkungsgrad, der in kommerziellen Systemen selten 40–45% übersteigt. Hohe Flüchtigkeit erfordert Spezialtanks oder Kryoverflüssigung, was die Kompressor-Infrastruktur technisch hochkomplex und teuer macht.</p><h3>Flussbatterien & klassische CAES</h3><p><b>Bestens geeignet für:</b> Stationäre tägliche Industriepufferung. Flussbatterien trennen Leistung von Kapazität, während klassische CAES unterirdische Hohlräume für mittelfristige Speicher nutzen – eine langlebige mechanische Alternative ohne toxische Chemie.</p><p><b>Begrenzt durch:</b> Flussbatterien haben niedrige Wirkungsgrade (65–75%) aufgrund von Pumpverlusten und enorme Abmessungen. Traditionelle CAES-Systeme sind an Salzkavernen gebunden und leiden unter thermodynamischen Verlusten, was oft die Verbrennung von Erdgas zum Vorheizen der Luft erfordert.</p>",
+                sec3: "<p>Im Gegensatz zu bestehenden Lösungen, die auf eine einzige enge Funktion ausgerichtet sind (Energiespeicherung, Erzeugung oder Transportversorgung), integriert das „EnergaTor“-Konzept diese Aufgaben in einen einzigen Trigenerations-Energiekomplex.</p><p><b>Zielsetzung:</b><br>Das „EnergaTor“-Konzept ist für den Aufbau dezentraler Trigenerations-Energiekomplexe konzipiert, die Anlagen gleichzeitig mit Strom, Wärme und Kälte versorgen und den städtischen und kommerziellen Verkehr mit einem umweltfreundlichen Energieträger beliefern können. Diese Komplexe ersetzen nicht die zentrale Energieversorgung, sondern ergänzen sie, indem sie Spitzenlasten in den Verteilungsnetzen senken, die Versorgungssicherheit erhöhen und den autonomen Betrieb von Anlagen in Not- oder Krisensituationen gewährleisten.</p><p><b>Möglichkeiten und ausgewogene Eigenschaften:</b><br>Die „EnergaTor“-Architektur kombiniert die Vorteile verschiedener Energiespeichertechnologien. Von mechanischen Systemen erbt sie eine lange Lebensdauer (<b>über 20 Jahre ohne Degradation des Speichers</b>), und von modulalen Lösungen übernimmt sie die Fähigkeit zur flexiblen Skalierung und lokalen Aufstellung in unmittelbarer Nähe zum Verbraucher, einschließlich Industriebetrieben, Gewerbeimmobilien und Wohnkomplexen.</p><p>Der Energiekern des Komplexes ist das Toroidal Transforming Unit (<b>TPA</b>), das Druckluftenergie in Strom umwandelt. Gleichzeitig nutzt das System natürliche thermodynamische Prozesse: Die bei der Luftkompression entstehende Wärme wird für Heiz- und technologische Zwecke genutzt, während die bei der Expansion entstehende Kälte zur Raumklimatisierung, Gerätekühlung und Produktlagerung eingesetzt wird.</p><p>Die ganzheitliche Nutzung aller Energieströme steigert die Effizienz der gespeicherten Energie erheblich, senkt die OPEX der Verbraucher und verwandelt den lokalen Energiekomplex in einen intelligenten Puffer zwischen der Anlage und dem zentralen Stromnetz. In Spitzenlastzeiten können diese Komplexe einen Teil der Last in den Stromnetzen ausgleichen, deren Stabilität erhöhen und den Bedarf an zusätzlicher Infrastruktur verringern.</p>"
+            }
+        };
+
+        let currentLang = localStorage.getItem('energator_lang') || 'ua';
+
+        function changeLang(lang) {
+            currentLang = lang;
+            localStorage.setItem('energator_lang', lang);
+
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                if (btn.id === `btn-${lang}`) btn.classList.add('active');
+                else btn.classList.remove('active');
+            });
+
+            const trans = gridTranslations[lang] || gridTranslations['ua'];
+            
+            document.getElementById('lnBack').innerText = trans.back;
+            document.getElementById('pageTitle').innerText = trans.titles.main;
+            document.getElementById('sec1Title').innerText = trans.titles.sec1;
+            document.getElementById('sec2Title').innerText = trans.titles.sec2;
+            document.getElementById('sec3Title').innerText = trans.titles.sec3;
+            
+            document.getElementById('sec1Content').innerHTML = trans.sec1;
+            document.getElementById('sec2Content').innerHTML = trans.sec2;
+            document.getElementById('sec3Content').innerHTML = trans.sec3;
+        }
+
+        changeLang(currentLang);
+    </script>
+</body>
+</html>
