@@ -4,7 +4,7 @@ HTML
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ЭнергаТор — Инженерная Матрица Решений</title>
+    <title>EnergaTor — Интеллектуальная Матрица Модулей</title>
     <style>
         :root {
             --space-bg: #030712;
@@ -17,80 +17,76 @@ HTML
         }
 
         body, html {
-            margin: 0; padding: 0; width: 100%; min-height: 100%;
+            margin: 0; padding: 0; width: 100%; height: 100%;
             background-color: var(--space-bg);
             font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
             color: var(--text-main);
-            background: radial-gradient(circle at 50% 30%, #0f172a 0%, #030712 80%);
-            background-attachment: fixed;
+            overflow: hidden;
+            background: radial-gradient(circle at 50% 50%, #0f172a 0%, #030712 100%);
         }
 
         .header {
             border-bottom: 1px solid var(--glass-border); padding: 20px 40px;
             display: flex; justify-content: space-between; align-items: center;
             background: rgba(3, 7, 18, 0.8); backdrop-filter: blur(12px);
-            position: sticky; top: 0; z-index: 100;
+            position: relative; z-index: 10;
         }
 
         .header h1 { font-size: 1.4rem; margin: 0; text-transform: uppercase; letter-spacing: 3px; color: var(--copper-primary); }
-        .header-controls { display: flex; align-items: center; gap: 30px; }
         .lang-panel { display: flex; gap: 12px; }
         .lang-btn { background: transparent; border: none; color: rgba(255, 255, 255, 0.3); font-size: 0.85rem; font-weight: 700; cursor: pointer; letter-spacing: 1px; transition: all 0.3s ease; }
         .lang-btn:hover { color: var(--text-main); }
         .lang-btn.active { color: var(--copper-primary); text-shadow: 0 0 8px rgba(200, 117, 51, 0.5); }
-        .btn-back { color: var(--text-main); text-decoration: none; font-weight: 600; font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase; border: 1px solid var(--copper-primary); padding: 8px 18px; border-radius: 4px; transition: all 0.3s ease; background: rgba(200, 117, 51, 0.05); }
-        .btn-back:hover { background: var(--copper-primary); color: var(--space-bg); box-shadow: 0 0 20px rgba(200, 117, 51, 0.4); }
 
-        .dashboard-container { max-width: 1600px; margin: 40px auto; padding: 0 30px; box-sizing: border-box; }
-        .matrix-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-bottom: 40px; }
-        
-        .window-card {
-            background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 8px;
-            padding: 30px; display: flex; flex-direction: column; justify-content: space-between;
-            backdrop-filter: blur(10px); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3); text-decoration: none; color: inherit;
+        .matrix-container {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px;
+            max-width: 1100px; margin: 60px auto; padding: 0 40px; box-sizing: border-box;
+            height: calc(100vh - 200px); align-content: center;
         }
-        .window-card:hover { border-color: var(--copper-primary); background: rgba(15, 23, 42, 0.6); transform: translateY(-5px); box-shadow: 0 15px 35px rgba(200, 117, 51, 0.15); }
-        .window-header { border-bottom: 1px solid rgba(200, 117, 51, 0.15); padding-bottom: 15px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; }
-        .window-title { margin: 0; font-size: 1.2rem; font-weight: 700; color: var(--text-main); line-height: 1.3; }
-        .window-num { font-size: 0.75rem; font-weight: bold; color: var(--copper-primary); border: 1px solid var(--copper-primary); padding: 2px 6px; border-radius: 4px; white-space: nowrap; }
-        .window-body ul { margin: 0 0 25px 0; padding-left: 18px; color: var(--text-muted); font-size: 0.95rem; }
-        .window-body li { margin-bottom: 10px; line-height: 1.5; }
-        .btn-action { display: block; text-align: center; background: transparent; border: 1.5px solid var(--copper-primary); color: var(--copper-primary); padding: 12px; border-radius: 4px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; transition: all 0.3s ease; }
-        .window-card:hover .btn-action { background: var(--copper-primary); color: var(--space-bg); box-shadow: 0 0 15px rgba(200, 117, 51, 0.3); }
 
-        .bottom-panel { background: linear-gradient(180deg, rgba(200, 117, 51, 0.05) 0%, rgba(200, 117, 51, 0.15) 100%); border: 2px solid var(--copper-primary); border-radius: 8px; padding: 35px; margin-top: 40px; }
-        .panel-title { margin: 0 0 15px 0; font-size: 1.4rem; text-transform: uppercase; letter-spacing: 3px; color: var(--copper-primary); }
-        .panel-text { font-size: 1.05rem; line-height: 1.6; color: var(--text-main); margin-bottom: 25px; }
-        .btn-panel { display: inline-block; background: var(--copper-primary); color: var(--space-bg); border: none; padding: 16px 35px; font-size: 1rem; font-weight: bold; text-transform: uppercase; letter-spacing: 3px; border-radius: 4px; transition: all 0.3s ease; text-decoration: none; text-align: center; }
-        .btn-panel:hover { background: #ffffff; cursor: pointer; }
+        .module-card {
+            background: var(--glass-bg); border: 1px solid var(--glass-border);
+            border-radius: 8px; padding: 30px; display: flex; flex-direction: column;
+            justify-content: space-between; text-decoration: none; color: var(--text-main);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); backdrop-filter: blur(8px);
+            position: relative; overflow: hidden; cursor: pointer;
+        }
 
-        @media (max-width: 1200px) { .matrix-grid { grid-template-columns: repeat(2, 1fr); } }
-        @media (max-width: 768px) { .matrix-grid { grid-template-columns: 1fr; } }
+        .module-card::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, rgba(200, 117, 51, 0.1) 0%, transparent 100%);
+            opacity: 0; transition: opacity 0.4s ease;
+        }
+
+        .module-card:hover {
+            transform: translateY(-5px); border-color: var(--copper-primary);
+            box-shadow: 0 10px 30px rgba(200, 117, 51, 0.15);
+        }
+
+        .module-card:hover::before { opacity: 1; }
+
+        .module-num { font-size: 0.8rem; font-weight: 700; color: var(--copper-primary); letter-spacing: 2px; text-transform: uppercase; }
+        .module-title { font-size: 1.2rem; font-weight: 600; margin-top: 15px; margin-bottom: 10px; line-height: 1.4; transition: color 0.3s ease; }
+        .module-card:hover .module-title { color: var(--copper-primary); }
+        .module-status { font-size: 0.75rem; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; margin-top: auto; }
     </style>
 </head>
 <body>
 
     <header class="header">
-        <h1 id="mainTitle">EnergaTor Intelligence Matrix</h1>
-        <div class="header-controls">
-            <nav class="lang-panel">
-                <button class="lang-btn" id="btn-ua" onclick="changeLang('ua')">UA</button>
-                <button class="lang-btn" id="btn-en" onclick="changeLang('en')">EN</button>
-                <button class="lang-btn" id="btn-de" onclick="changeLang('de')">DE</button>
-                <button class="lang-btn" id="btn-ru" onclick="changeLang('ru')">RU</button>
-            </nav>
-            <a href="proposal.html" class="btn-back" id="lnBack">← К анализу</a>
-        </div>
+        <h1 id="mainTitle">EnergaTor — Интеллектуальная Платформа</h1>
+        <nav class="lang-panel">
+            <button class="lang-btn" id="btn-ua" onclick="changeLang('ua')">UA</button>
+            <button class="lang-btn" id="btn-en" onclick="changeLang('en')">EN</button>
+            <button class="lang-btn" id="btn-de" onclick="changeLang('de')">DE</button>
+            <button class="lang-btn" id="btn-ru" onclick="changeLang('ru')">RU</button>
+        </nav>
     </header>
 
-    <main class="dashboard-container">
-        <div class="matrix-grid" id="matrixGrid"></div>
-        <section class="bottom-panel" id="bottomPanel"></section>
-    </main>
+    <main class="matrix-container" id="matrix">
+        </main>
 
     <script>
-        // Карта перенаправлений для каждого модуля на отдельный файл
         const moduleLinks = {
             1: "aero.html",
             2: "transport.html",
@@ -99,74 +95,70 @@ HTML
             5: "robotics.html",
             6: "business.html",
             7: "physics.html",
-            8: "forum.html",
-            9: "lab.html"
+            8: "analytics.html",
+            9: "trends.html"
         };
 
-        const hubTranslations = {
+        const translations = {
             ua: {
-                back: "← До аналізу", alertNda: "Запит на авторизацію надіслано до патентного відділу EnergaTor Group.",
-                windowLabels: ["Модуль 01", "Модуль 02", "Модуль 03", "Модуль 04", "Модуль 05", "Модуль 06", "Модуль 07", "Модуль 08", "Модуль 09"],
-                btnText: "Розгорнути аналітику", btnText8: "Відкрити дискусію", btnText9: "Увійти в лабораторію",
-                mainTitles: "ЕнергаТор: Інженерна Матриця",
-                window1: { title: "Авіаційні Технології (Аеро)", items: ["Полегшення борту БПЛА за рахунок ТПА-підживлення.", "Заправка стисненим повітрям за 3-5 хвилин замість простою.", "Стабільна робота системи при температурах нижче -15 °C."] },
-                window2: { title: "Комерційний & Муніципальний транспорт", items: ["Повна кліматична незалежність при екстремальних температурах.", "Гібридний контур: Суперконденсатори + АКБ + буферний ТПА.", "Час відновлення енергії на маршруті в межах 3-5 хвилин."] },
-                window3: { title: "Морські та підводні комплекси", items: ["Інтеграція накопичувачів високого тиску в подвійне дно суден.", "Глибоководні роботизовані платформи без важких компресорів.", "Базові заправні станції на енергії хвиль, вітру та сонця."] },
-                window4: { title: "Стаціонарна енергетика та РВЧ", items: ["Перекриття тривалих блеккаутів у житлових комплексах.", "Автономне живлення критичної інфраструктури, ліфтів та насосів.", "Балансування частоти та аварійний резерв підтримки мережі."] },
-                window5: { title: "Складська та промислова робототехніка", items: ["100% пожежна та вибухобезпека закритих логістичних хабів.", "Швидка заправка повітрям без тривалого простою біля розеток.", "Стабільна працездатність у промислових низькотемпературних зонах."] },
-                window6: { title: "Автономний малий бізнес та HoReCa", items: ["Синергія заправних пунктів СВ та кулінарної технології Су-Від.", "Безкоштовна теплова енергія для ресторанних і сервісних ліній.", "Автономне життєзабезпечення незалежних агро-комплексів."] },
-                window7: { title: "Фізика та архітектура ТПА системи", items: ["Замкнутий гідропневматичний контур без хімічної деградації.", "Технологія прямого перетворення тиску СОЖ без шатунів та клапанів.", "Ресурс каскадів 20+ років. Виробництво без рідкісних металів."] },
-                window8: { title: "Відкрита трибуна", items: ["Експертна верифікація параметрів гідропневматики.", "Прямий зворотний зв'язок від індустріальних партнерів.", "Агрегація галузевих відгуків та технічних запитів."] },
-                window9: { title: "Лабораторія рішень", items: ["Банк перспективних модернізацій та адаптацій системи.", "Реєстрація заявок на проектування нестандартних версій.", "Робота контуру в екстремальних екологічних режимах."] },
-                bottomPanel: { title: "Патентний пул та стратегічне партнерство", text: "Повний пакет конструкторської документації, креслення профілювання статора та поршня, а також документи, що підтверджують міжнародний патентний пріоритет від 06.04.2026, є комерційною таємницею EnergaTor Group. Доступ відкривається строго після підписання двосторонньої угоди про неразглашення (NDA). Пріоритет зафіксовано.", btnText: "Отримати доступ до патентного сейфу (NDA)" }
+                mainTitle: "EnergaTor — Інтелектуальна Платформа",
+                mod: "Модуль",
+                names: {
+                    1: "Авіаційні Технології (БПЛА, eVTOL)",
+                    2: "Муніципальний та комерційний транспорт",
+                    3: "Морські та водні системи (Порти, логістика)",
+                    4: "Стаціонарна енергетика та РВЧ",
+                    5: "Промисловість та Робототехніка",
+                    6: "Бізнес-модель та Інвестиційні пропозиції",
+                    7: "Фізика та архітектура ТПА системи",
+                    8: "Глобальний аудит енергетичних дефіцитів",
+                    9: "Ринкові тренди, динаміка цін та прогрес ESS"
+                }
             },
             ru: {
-                back: "← К анализу", alertNda: "Запрос на авторизацию направлен в патентный отдел EnergaTor Group.",
-                windowLabels: ["Модуль 01", "Модуль 02", "Модуль 03", "Модуль 04", "Модуль 05", "Модуль 06", "Модуль 07", "Модуль 08", "Модуль 09"],
-                btnText: "Развернуть аналитику", btnText8: "Открыть дискуссию", btnText9: "Войти в лабораторию",
-                mainTitles: "ЕнергаТор: Инженерная Матрица",
-                window1: { title: "Авиационные Технологии (Аэро)", items: ["Облегчение борта БПЛА за счет ТПА-подпитки.", "Заправка сжатым воздухом за 3-5 минут вместо простоя.", "Стабильная работа системы при температурах ниже -15 °C."] },
-                window2: { title: "Коммерческий & Муниципальный транспорт", items: ["Полная климатическая независимость при экстремальных температурах.", "Гибридный контур: Энергоузлы суперконденсаторы + АКБ + буферный ТПА.", "Время восполнения энергии на маршруте в пределах 3-5 минут."] },
-                window3: { title: "Морские и подводные комплексы", items: ["Интеграция накопителей высокого давления в двойное дно судов.", "Глубоководные роботизированные платформы без тяжелых компрессоров.", "Базовые заправочные станции на энергии волн, ветра и солнца."] },
-                window4: { title: "Стационарная энергетика и РВЧ", items: ["Перекрытие длительных блэкаутов в жилых комплексах.", "Автономное питание критической инфраструктуры, лифтов и насосов.", "Балансировка частоты и аварийный резерв поддержки сети."] },
-                window5: { title: "Складская и промышленная робототехника", items: ["100% пожарная и взрывобезопасность закрытых логистических хабов.", "Быстрая заправка воздухом без длительного простоя у розеток.", "Стабильная работоспособность в промышленных низкотемпературных зонах."] },
-                window6: { title: "Автономный малый бизнес & HoReCa", items: ["Синергия заправочных пунктов СВ и кулинарной технологии Су-Вид.", "Бесплатная тепловая энергия для ресторанных и сервисных линий.", "Автономное жизнеобеспечение независимых агро-комплексов."] },
-                window7: { title: "Физика и архитектура ТПА системы", items: ["Замкнутый гидропневматический контур без химической деградации.", "Технология прямого преобразования давления СОЖ без шатунов и клапанов.", "Ресурс каскадов 20+ лет. Производство без редких металлов."] },
-                window8: { title: "Открытая трибуна", items: ["Экспертная верификация параметров гидропневматики.", "Прямая обратная связь от индустриальных партнеров.", "Агрегация отраслевых отзывов и технических запросов."] },
-                window9: { title: "Лаборатория решений", items: ["Банк перспективных модернизаций и адаптаций системы.", "Регистрацияваи заявок на проектирование нестандартных версий.", "Работа контура в экстремальных экологических режимах."] },
-                bottomPanel: { title: "Патентный пул и стратегическое партнерство", text: "Полный пакет конструкторской документации, чертежи профилирования статора и поршня, а также документы, подтверждающие международный патентный приоритет от 06.04.2026, являются коммерческой тайной EnergaTor Group. Доступ открывается строго после подписания двустороннего соглашения о неразглашении (NDA). Приоритет юридически зафиксирован.", btnText: "Получить доступ к патентному сейфу (NDA)" }
+                mainTitle: "EnergaTor — Интеллектуальная Платформа",
+                mod: "Модуль",
+                names: {
+                    1: "Авиационные Технологии (БПЛА, eVTOL)",
+                    2: "Муниципальный и коммерческий транспорт",
+                    3: "Морские и водные системы (Порты, логистика)",
+                    4: "Стационарная энергетика и РВЧ",
+                    5: "Промышленность и Робототехника",
+                    6: "Бизнес-модель и Инвестиционные предложения",
+                    7: "Физика и архитектура ТПА системы",
+                    8: "Глобальный аудит энергетических дефицитов",
+                    9: "Рыночные тренды, динамика цен и прогрес ESS"
+                }
             },
             en: {
-                back: "← To Analysis", alertNda: "Authorization request has been sent.",
-                windowLabels: ["Module 01", "Module 02", "Module 03", "Module 04", "Module 05", "Module 06", "Module 07", "Module 08", "Module 09"],
-                btnText: "Expand Solutions", btnText8: "Open Discussion", btnText9: "Enter Laboratory",
-                mainTitles: "EnergaTor: Engineering Matrix",
-                window1: { title: "Aviation Technologies (Aero)", items: ["Slashing UAV weight frame via PTU trickle-charge setups.", "3–5 minutes compressed air refueling instead of charging downtime.", "Flawless operations below -15 °C due to thermal stabilization."] },
-                window2: { title: "Commercial & Municipal Transit", items: ["Complete climate resilience across volatile weather envelopes.", "Hybrid HESS loop: Supercapacitors + Battery + buffer PTU.", "Energy restoration downtime limited to 3–5 minute marks."] },
-                window3: { title: "Marine & Subsea Complexes", items: ["Integrating high-pressure storage into double-bottom hulls.", "Deep-sea robotic modules working without heavy air compressors.", "Wave, wind, and solar-driven offshore fueling network hubs."] },
-                window4: { title: "Stationary Power & FCR Grid Assets", items: ["Mitigating prolonged blackouts within heavy residential zones.", "Autonomous baselines for elevators, water loops, and air vents.", "Frequency containment reserves for large-scale grid structures."] },
-                window5: { title: "Warehouse & Industrial Robotics", items: ["100% fire-safe and explosion-proof warehouse ecosystem loops.", "Instant air fueling bypassing multi-hour terminal grid dependency.", "Uncompromised performance inside cold storage facility zones."] },
-                window6: { title: "Autonomous Small Business & HoReCa", items: ["Synergy of compressed air hubs with circular Sous-Vide kitchen lines.", "Free thermal energy capture for operational serveries.", "Autonomous life support for isolated agricultural setups."] },
-                window7: { title: "PTU System Physics & Architecture", items: ["Closed hydro-pneumatic loop free from chemical aging factors.", "Direct fluid power conversion completely omitting valves or rods.", "20+ year tank cascade operational lifespan without rare metals."] },
-                window8: { title: "Open Expert Forum", items: ["Independent verification of hydro-pneumatic core parameters.", "Direct feedback links with strategic validation industrial bodies.", "Aggregation of technical requests and real-world deployment data."] },
-                window9: { title: "Solutions Laboratory", items: ["Database of prospective modifications and custom systems architecture.", "Engineering registration for non-standard system alterations.", "Testing loops operating under volatile environmental baselines."] },
-                bottomPanel: { title: "Patent Pool & Strategic Partnership", text: "Access to the extended technical blueprints and priority document proof from 06.04.2026 is restricted to validated investors under a signed NDA setup.", btnText: "Open Patent Vault (NDA Request)" }
+                mainTitle: "EnergaTor — Intelligence Platform",
+                mod: "Module",
+                names: {
+                    1: "Aviation Technologies (UAV, eVTOL)",
+                    2: "Municipal & Commercial Transit Platforms",
+                    3: "Marine & Aquatic Infrastructure Systems",
+                    4: "Stationary Grid Power & Peak Shaving",
+                    5: "Industrial Automation & Robotics",
+                    6: "Business Model & Smart Money Ventures",
+                    7: "PTU Core Physics & Thermal Architecture",
+                    8: "Global Energy Deficit Strategic Audit",
+                    9: "Market Trends, Asset Pricing & ESS Progress"
+                }
             },
             de: {
-                back: "← Zur Analyse", alertNda: "Autorisierungsanfrage wurde gesendet.",
-                windowLabels: ["Modul 01", "Modul 02", "Modul 03", "Modul 04", "Modul 05", "Modul 06", "Modul 07", "Modul 08", "Modul 09"],
-                btnText: "Analytik öffnen", btnText8: "Diskussion öffnen", btnText9: "Labor betreten",
-                mainTitles: "EnergaTor: Ingenieurmatrix",
-                window1: { title: "Luftfahrttechnologien (Aero)", items: ["Gewichtsreduzierung von Drohnen durch PTU-Pufferladung.", "3–5 Minuten Druckluftbetankung statt langer Ladezeiten.", "Stabiler Systembetrieb bei Temperaturen unter -15 °C."] },
-                window2: { title: "Kommerzieller & Kommunaler Verkehr", items: ["Vollständige Klimaresilienz unter extremen Wetterbedingungen.", "Hybrider HESS-Kreislauf: Superkondensatoren + Batterie + Puffer-PTU.", "Energie-Wiederherstellungszeit auf 3–5 Minuten begrenzt."] },
-                window3: { title: "Marine- & Unterseekomplexe", items: ["Integration von Hochdruckspeichern in Doppelbodenrümpfe.", "Tiefsee-Robotermodule, die ohne schwere Kompressoren arbeiten.", "Wellen-, wind- und solarbetriebene Offshore-Tankstellenhubs."] },
-                window4: { title: "Stationäre Energie- & FCR-Netzanlagen", items: ["Abmilderung lang anhaltender Blackouts in Wohngebieten.", "Autonome Baselines für Aufzüge, Wasserläufe und Lüftungen.", "Frequenzhaltungsreserven für große Netzstrukturen."] },
-                window5: { title: "Lager- & Industrierobotik", items: ["100% feuersichere und explosionsgeschützte Lager-Ökosysteme.", "Sofortige Luftbetankung umgeht mehrstündige Netzabhängigkeit.", "Kompromisslose Leistung in Kühllagerzonen."] },
-                window6: { title: "Autonomes Kleingewerbe & HoReCa", items: ["Synergie von Drucklufthubs mit zirkulären Sous-Vide-Küchenlinien.", "Kostenlose thermische Energienutzung für Restaurantlinien.", "Autonome Lebenshaltung für isolierte landwirtschaftliche Setups."] },
-                window7: { title: "PTU-Systemphysik & Architektur", items: ["Geschlossener hydropneumatischer Kreislauf ohne Alterungsfaktoren.", "Direkte Flüssigkeitskraftumwandlung ohne Ventile oder Stangen.", "20+ Jahre Tankkaskaden-Lebensdauer ohne seltene Metalle."] },
-                window8: { title: "Offenes Expertenforum", items: ["Unabhängige Überprüfung hydropneumatischer Kernparameter.", "Direkte Feedback-Links mit strategischen Industriepartnern.", "Aggregation von technischen Anfragen und realen Einsatzdaten."] },
-                window9: { title: "Lösungslabor", items: ["Datenbank für zukunftsorientierte Modifikationen und Systemarchitektur.", "Technische Registrierung für nicht-standardisierte Systemänderungen.", "Testschleifen, die unter volatilen Umweltbedingungen arbeiten."] },
-                bottomPanel: { title: "Patentpool & Strategische Partnerschaft", text: "Der Zugriff auf die erweiterten technischen Baupläne und die Prioritätsdokumente vom 06.04.2026 ist verifizierten Investoren nach Unterzeichnung einer NDA vorbehalten.", btnText: "Patenttresor öffnen (NDA-Anfrage)" }
+                mainTitle: "EnergaTor — Intelligente Plattform",
+                mod: "Modul",
+                names: {
+                    1: "Luftfahrttechnologien (UAV, eVTOL)",
+                    2: "Kommunaler & Kommerzieller Verkehr",
+                    3: "Maritime Systemlösungen & Hafenlogistik",
+                    4: "Stationäre Netzenergie & Spitzenlastabdeckung",
+                    5: "Industrieautomatisierung & Robotik",
+                    6: "Geschäftsmodell & Smart Money Investments",
+                    7: "PTU-Kernphysik & Thermodynamik",
+                    8: "Globales Audit der Energiedezifite",
+                    9: "Markttrends, Rohstoffpreise & ESS-Fortschritt"
+                }
             }
         };
 
@@ -181,61 +173,26 @@ HTML
                 else btn.classList.remove('active');
             });
 
-            const trans = hubTranslations[lang] || hubTranslations['ua'];
-            document.getElementById('lnBack').innerText = trans.back;
-            document.getElementById('mainTitle').innerText = trans.mainTitles;
-            
-            renderMatrix();
-            renderBottomPanel();
-        }
+            const trans = translations[lang] || translations['ua'];
+            document.getElementById('mainTitle').innerText = trans.mainTitle;
 
-        function renderMatrix() {
-            const gridContainer = document.getElementById('matrixGrid');
-            gridContainer.innerHTML = "";
-            
-            const trans = hubTranslations[currentLang] || hubTranslations['ua'];
+            const matrix = document.getElementById('matrix');
+            matrix.innerHTML = "";
 
             for (let i = 1; i <= 9; i++) {
-                const data = trans[`window${i}`];
-                if (data) {
-                    // Создаем карточку как прямую ссылку на соответствующий файл html 
-                    const card = document.createElement('a');
-                    card.className = 'window-card';
-                    card.href = moduleLinks[i]; // Ссылка берется из карты перенаправлений
-                    
-                    let listHtml = '';
-                    data.items.forEach(item => { listHtml += `<li>${item}</li>`; });
-
-                    let btnLbl = trans.btnText;
-                    if (i === 8) btnLbl = trans.btnText8;
-                    if (i === 9) btnLbl = trans.btnText9;
-
-                    card.innerHTML = `
-                        <div>
-                            <div class="window-header">
-                                <h3 class="window-title">${data.title}</h3>
-                                <span class="window-num">${trans.windowLabels[i-1]}</span>
-                            </div>
-                            <div class="window-body">
-                                <ul>${listHtml}</ul>
-                            </div>
-                        </div>
-                        <div class="btn-action">${btnLbl}</div>
-                    `;
-                    gridContainer.appendChild(card);
-                }
+                const card = document.createElement('a');
+                card.className = "module-card";
+                card.href = moduleLinks[i];
+                
+                const numStr = i < 10 ? `0${i}` : i;
+                
+                card.innerHTML = `
+                    <div class="module-num">${trans.mod} ${numStr}</div>
+                    <div class="module-title">${trans.names[i]}</div>
+                    <div class="module-status">System Operational</div>
+                `;
+                matrix.appendChild(card);
             }
-        }
-
-        function renderBottomPanel() {
-            const panelContainer = document.getElementById('bottomPanel');
-            const trans = hubTranslations[currentLang] || hubTranslations['ua'];
-            const pData = trans.bottomPanel;
-            panelContainer.innerHTML = `
-                <h2 class="panel-title">${pData.title}</h2>
-                <p class="panel-text">${pData.text}</p>
-                <button class="btn-panel" onclick="event.preventDefault(); alert(hubTranslations[currentLang].alertNda);">${pData.btnText}</button>
-            `;
         }
 
         changeLang(currentLang);
