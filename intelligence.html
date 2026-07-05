@@ -55,11 +55,13 @@ HTML
             box-shadow: 0 0 12px rgba(200, 117, 51, 0.4); 
         }
 
+        /* Контейнер расширен на 30% для вмещения более широких окон */
         .matrix-container {
             display: grid; grid-template-columns: repeat(3, 1fr); gap: 35px;
-            max-width: 1200px; margin: 60px auto; padding: 0 40px; box-sizing: border-box;
+            max-width: 1560px; margin: 60px auto; padding: 0 40px; box-sizing: border-box;
         }
 
+        /* Окна стали шире на 30%, минимальная высота сохранена неизменной */
         .module-card {
             background: var(--glass-bg); 
             border: 2px solid var(--glass-border);
@@ -125,6 +127,7 @@ HTML
             ua: {
                 mainTitle: "EnergaTor — Інтелектуальна Платформа",
                 mod: "Модуль",
+                status: "Система активована",
                 names: {
                     1: "Авіаційні Технології (БПЛА, eVTOL)",
                     2: "Муніципальний та комерційний транспорт",
@@ -140,6 +143,7 @@ HTML
             ru: {
                 mainTitle: "EnergaTor — Интеллектуальная Платформа",
                 mod: "Модуль",
+                status: "Система активирована",
                 names: {
                     1: "Авиационные Технологии (БПЛА, eVTOL)",
                     2: "Муниципальный и коммерческий транспорт",
@@ -147,7 +151,7 @@ HTML
                     4: "Стационарная энергетика и РВЧ",
                     5: "Промышленность и Робототехника",
                     6: "Бизнес-модель и Инвестиционные предложения",
-                    7: "Физика и architecture ТПА системы",
+                    7: "Физика и архитектура ТПА системы",
                     8: "Балансирование энергосистем",
                     9: "R&D Лаборатория и Патенты"
                 }
@@ -155,6 +159,7 @@ HTML
             en: {
                 mainTitle: "EnergaTor — Intelligence Platform",
                 mod: "Module",
+                status: "System Operational",
                 names: {
                     1: "Aviation Technologies (UAV, eVTOL)",
                     2: "Municipal & Commercial Transit",
@@ -170,6 +175,7 @@ HTML
             de: {
                 mainTitle: "EnergaTor — Intelligente Plattform",
                 mod: "Modul",
+                status: "System Aktiviert",
                 names: {
                     1: "Luftfahrttechnologien (UAV, eVTOL)",
                     2: "Kommunaler & Kommerzieller Verkehr",
@@ -211,7 +217,7 @@ HTML
                 card.innerHTML = `
                     <div class="module-num">${trans.mod} ${numStr}</div>
                     <div class="module-title">${trans.names[i]}</div>
-                    <div class="module-status">System Operational</div>
+                    <div class="module-status">${trans.status}</div>
                 `;
                 matrix.appendChild(card);
             }
