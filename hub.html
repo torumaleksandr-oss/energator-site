@@ -115,83 +115,106 @@ HTML
         </div>
     </header>
 
-    <main class="matrix-container" id="matrix">
-        </main>
+    <main class="matrix-container">
+        <a href="aero.html" class="module-card">
+            <div class="module-num" id="m1Num">Модуль 01</div>
+            <div class="module-title" id="m1Title">Авіаційні Технології (БПЛА, eVTOL)</div>
+            <div class="module-status" id="m1Status">Система активована</div>
+        </a>
+
+        <a href="hub.html" class="module-card">
+            <div class="module-num" id="m2Num">Модуль 02</div>
+            <div class="module-title" id="m2Title">Муніципальний та комерційний транспорт</div>
+            <div class="module-status" id="m2Status">Система активована</div>
+        </a>
+
+        <a href="marine.html" class="module-card">
+            <div class="module-num" id="m3Num">Модуль 03</div>
+            <div class="module-title" id="m3Title">Морські та водні системи</div>
+            <div class="module-status" id="m3Status">Система активована</div>
+        </a>
+
+        <a href="grid.html" class="module-card">
+            <div class="module-num" id="m4Num">Модуль 04</div>
+            <div class="module-title" id="m4Title">Стаціонарна енергетика та РВЧ</div>
+            <div class="module-status" id="m4Status">Система активована</div>
+        </a>
+
+        <a href="robotics.html" class="module-card">
+            <div class="module-num" id="m5Num">Модуль 05</div>
+            <div class="module-title" id="m5Title">Промисловість та Робототехніка</div>
+            <div class="module-status" id="m5Status">Система активована</div>
+        </a>
+
+        <a href="proposal.html" class="module-card">
+            <div class="module-num" id="m6Num">Модуль 06</div>
+            <div class="module-title" id="m6Title">Бізнес-модель та Інвестиційні пропозиції</div>
+            <div class="module-status" id="m6Status">Система активована</div>
+        </a>
+
+        <a href="physics.html" class="module-card">
+            <div class="module-num" id="m7Num">Модуль 07</div>
+            <div class="module-title" id="m7Title">Фізика та архітектура ТПА системи</div>
+            <div class="module-status" id="m7Status">Система активована</div>
+        </a>
+
+        <a href="analytics.html" class="module-card">
+            <div class="module-num" id="m8Num">Модуль 08</div>
+            <div class="module-title" id="m8Title">Глобальний аудит дефіцитів (Аналітика)</div>
+            <div class="module-status" id="m8Status">Система активована</div>
+        </a>
+
+        <a href="trends.html" class="module-card">
+            <div class="module-num" id="m9Num">Модуль 09</div>
+            <div class="module-title" id="m9Title">Ринкові тренди, літієва пастка та прогрес ESS</div>
+            <div class="module-status" id="m9Status">Система активована</div>
+        </a>
+    </main>
 
     <script>
-        const moduleLinks = {
-            1: "aero.html", 2: "hub.html", 3: "marine.html",
-            4: "grid.html", 5: "robotics.html", 6: "proposal.html",
-            7: "physics.html", 8: "analytics.html", 9: "trends.html"
-        };
-
         const translations = {
             ua: {
-                mainTitle: "EnergaTor — Інтелектуальна Платформа",
-                back: "← На головну",
-                mod: "Модуль",
-                status: "Система активована",
+                mainTitle: "EnergaTor — Інтелектуальна Матриця",
+                back: "← На головну", mod: "Модуль", status: "Система активована",
                 names: {
-                    1: "Авіаційні Технології (БПЛА, eVTOL)",
-                    2: "Муніципальний та комерційний транспорт",
-                    3: "Морські та водні системи",
-                    4: "Стаціонарна енергетика та РВЧ",
-                    5: "Промисловість та Робототехніка",
-                    6: "Бізнес-модель та Інвестиційні пропозиції",
-                    7: "Фізика та архітектура ТПА системи",
-                    8: "Глобальний аудит дефіцитів (Аналітика)",
+                    1: "Авіаційні Технології (БПЛА, eVTOL)", 2: "Муніципальний та комерційний транспорт",
+                    3: "Морські та водні системи", 4: "Стаціонарна енергетика та РВЧ",
+                    5: "Промисловість та Робототехніка", 6: "Бізнес-модель та Інвестиційні пропозиції",
+                    7: "Фізика та архітектура ТПА системи", 8: "Глобальний аудит дефіцитів (Аналітика)",
                     9: "Ринкові тренди, літієва пастка та прогрес ESS"
                 }
             },
             ru: {
                 mainTitle: "EnergaTor — Интеллектуальная Матрица",
-                back: "← На главную",
-                mod: "Модуль",
-                status: "Система активирована",
+                back: "← На главную", mod: "Модуль", status: "Система активирована",
                 names: {
-                    1: "Aвиационные Технологии (БПЛА, eVTOL)",
-                    2: "Муниципальный и коммерческий транспорт",
-                    3: "Морские и管ные системы",
-                    4: "Стационарная энергетика и РВЧ",
-                    5: "Промышленность и Робототехника",
-                    6: "Бизнес-модель и Инвестиционные предложения",
-                    7: "Физика и архитектура ТПА системы",
-                    8: "Глобальный аудит дефицитов (Аналитика)",
+                    1: "Авиационные Технологии (БПЛА, eVTOL)", 2: "Муниципальный и коммерческий транспорт",
+                    3: "Морские и водные системы", 4: "Стационарная энергетика и РВЧ",
+                    5: "Промышленность и Робототехника", 6: "Бизнес-модель и Investment предложения",
+                    7: "Физика и архитектура ТПА системы", 8: "Глобальный audit дефицитов (Аналитика)",
                     9: "Рыночные тренды, литиевая ловушка и прогресс ESS"
                 }
             },
             en: {
                 mainTitle: "EnergaTor — Intelligence Matrix",
-                back: "← To Main",
-                mod: "Module",
-                status: "System Operational",
+                back: "← To Main", mod: "Module", status: "System Operational",
                 names: {
-                    1: "Aviation Technologies (UAV, eVTOL)",
-                    2: "Municipal & Commercial Transit",
-                    3: "Marine & Aquatic Systems",
-                    4: "Stationary Power & Peak Shaving",
-                    5: "Industrial Automation & Robotics",
-                    6: "Business Model & Investment Offers",
-                    7: "PTU Core Physics & Architecture",
-                    8: "Global Energy Audit (Analytics)",
+                    1: "Aviation Technologies (UAV, eVTOL)", 2: "Municipal & Commercial Transit",
+                    3: "Marine & Aquatic Systems", 4: "Stationary Power & Peak Shaving",
+                    5: "Industrial Automation & Robotics", 6: "Business Model & Investment Offers",
+                    7: "PTU Core Physics & Architecture", 8: "Global Energy Audit (Analytics)",
                     9: "Market Trends, Lithium Trap & ESS Progress"
                 }
             },
             de: {
                 mainTitle: "EnergaTor — Intelligente Matrix",
-                back: "← Hauptseite",
-                mod: "Modul",
-                status: "System Aktiviert",
+                back: "← Hauptseite", mod: "Modul", status: "System Aktiviert",
                 names: {
-                    1: "Luftfahrttechnologien (UAV, eVTOL)",
-                    2: "Kommunaler & Kommerzieller Verkehr",
-                    3: "Maritime & Aquatische Systeme",
-                    4: "Stationäre Netzenergie & Spitzenlast",
-                    5: "Industrieautomatisierung & Robotik",
-                    6: "Geschäftsmodell & Investitionsangebote",
-                    7: "PTU-Kernphysik & Architektur",
-                    8: "Globales Energie-Audit (Analytik)",
-                    9: "Markttrends, Beschreibung & ESS-Fortschritt"
+                    1: "Luftfahrttechnologien (UAV, eVTOL)", 2: "Kommunaler & Kommerzieller Verkehr",
+                    3: "Maritime & Aquatische Systeme", 4: "Stationäre Netzenergie & Spitzenlast",
+                    5: "Industrieautomatisierung & Robotik", 6: "Geschäftsmodell & Investitionsangebote",
+                    7: "PTU-Kernphysik & Architektur", 8: "Globales Energie-Audit (Analytik)",
+                    9: "Markttrends, Lithium-Falle & ESS-Fortschritt"
                 }
             }
         };
@@ -211,22 +234,10 @@ HTML
             document.getElementById('mainTitle').innerHTML = trans.mainTitle;
             document.getElementById('lnBack').innerText = trans.back;
 
-            const matrix = document.getElementById('matrix');
-            matrix.innerHTML = "";
-
             for (let i = 1; i <= 9; i++) {
-                const card = document.createElement('a');
-                card.className = "module-card";
-                card.href = moduleLinks[i];
-                
-                const numStr = i < 10 ? `0${i}` : i;
-                
-                card.innerHTML = `
-                    <div class="module-num">${trans.mod} ${numStr}</div>
-                    <div class="module-title">${trans.names[i]}</div>
-                    <div class="module-status">${trans.status}</div>
-                `;
-                matrix.appendChild(card);
+                document.getElementById(`m${i}Num`).innerText = `${trans.mod} 0${i}`;
+                document.getElementById(`m${i}Title`).innerText = trans.names[i];
+                document.getElementById(`m${i}Status`).innerText = trans.status;
             }
         }
 
