@@ -58,10 +58,8 @@ HTML
         .analytics-content { font-size: 1.05rem; line-height: 1.7; color: var(--text-main); text-align: justify; }
         .analytics-content p { margin-bottom: 20px; }
         .analytics-content h3 { color: var(--copper-primary); margin-top: 30px; margin-bottom: 15px; font-size: 1.15rem; text-transform: uppercase; letter-spacing: 1px; }
-        .analytics-content ul { margin-bottom: 20px; padding-left: 20px; }
-        .analytics-content li { margin-bottom: 10px; }
 
-        .video-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; margin-top: 25px; margin-bottom: 25px; }
+        .video-wrapper { max-width: 800px; margin: 25px auto; }
         .video-box { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 6px; border: 1px solid rgba(200, 117, 51, 0.2); background: #000; }
         .video-box iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
     </style>
@@ -69,7 +67,7 @@ HTML
 <body>
 
     <header class="header">
-        <h1 id="pageTitle">EnergaTor — Аналитический центр</h1>
+        <h1 id="pageTitle">EnergaTor — Стратегічна розвідка</h1>
         <div class="header-controls">
             <nav class="lang-panel">
                 <button class="lang-btn" id="btn-ua" onclick="changeLang('ua')">UA</button>
@@ -83,42 +81,59 @@ HTML
 
     <main class="container">
         
+        <!-- Позиция 1 -->
         <section class="section-analytics">
-            <h2 id="block1Title">1. Дисбаланс энергосистем и тупик централизованных сетей</h2>
+            <h2 id="b1Title">1. Дисбаланс энергосистем и тупик централизованных сетей</h2>
             <div class="analytics-content">
-                <div id="block1Text"></div>
-                <div class="video-row">
-                    <div class="video-box"><iframe src="https://www.youtube.com/embed/8KOYyfZbPzo" title="AI Grid Demand" allowfullscreen></iframe></div>
-                    <div class="video-box"><iframe src="https://www.youtube.com/embed/74XuLHYbbms" title="Grid Blackout Risks" allowfullscreen></iframe></div>
+                <div id="b1Text"></div>
+                <div class="video-wrapper">
+                    <div class="video-box"><iframe src="https://www.youtube.com/embed/8KOYyfZbPzo" title="Grid Demand" allowfullscreen></iframe></div>
                 </div>
             </div>
         </section>
 
+        <!-- Позиция 2 -->
         <section class="section-analytics">
-            <h2 id="block2Title">2. Промышленное опреснение воды в засушливых регионах</h2>
+            <h2 id="b2Title">2. Инфраструктурный тупик высокоплотных дата-центров (ЦОД)</h2>
             <div class="analytics-content">
-                <div id="block2Text"></div>
-                <div class="video-row">
-                    <div class="video-box"><iframe src="https://www.youtube.com/embed/j9nwd-QOz5s" title="Distributed Infrastructure" allowfullscreen></iframe></div>
-                    <div class="video-box"><iframe src="https://www.youtube.com/embed/P31qNA1GgVE" title="Desalination Nexus" allowfullscreen></iframe></div>
+                <div id="b2Text"></div>
+                <div class="video-wrapper">
+                    <div class="video-box"><iframe src="https://www.youtube.com/embed/j9nwd-QOz5s" title="Data Center Infrastructure" allowfullscreen></iframe></div>
                 </div>
             </div>
         </section>
 
+        <!-- Позиция 3 -->
         <section class="section-analytics">
-            <h2 id="block3Title">3. Анализ технологических ниш и ограничений существующих систем</h2>
+            <h2 id="b3Title">3. Промышленное опреснение воды в засушливых регионах</h2>
             <div class="analytics-content">
-                <div id="block3Text"></div>
-                <div class="video-row">
-                    <div class="video-box"><iframe src="https://www.youtube.com/embed/Di9RH1VEQKQ" title="HESS Technology" allowfullscreen></iframe></div>
-                    <div class="video-box"><iframe src="https://www.youtube.com/embed/f7Mz4wO4FwY" title="Hydrogen Physics" allowfullscreen></iframe></div>
+                <div id="b3Text"></div>
+                <div class="video-wrapper">
+                    <div class="video-box"><iframe src="https://www.youtube.com/embed/P31qNA1GgVE" title="Desalination Processing" allowfullscreen></iframe></div>
                 </div>
             </div>
         </section>
 
+        <!-- Позиция 4 -->
         <section class="section-analytics">
-            <h2 id="block4Title">4. Наше предложение — локальный энергетический комплекс «ЭнергаТор»</h2>
-            <div class="analytics-content" id="block4Text"></div>
+            <h2 id="b4Title">4. Энергетические риски холодильной логистики (Cold Chain)</h2>
+            <div class="analytics-content">
+                <div id="b4Text"></div>
+                <div class="video-wrapper">
+                    <div class="video-box"><iframe src="https://www.youtube.com/embed/74XuLHYbbms" title="Cold Chain Logistics" allowfullscreen></iframe></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Позиция 5 -->
+        <section class="section-analytics">
+            <h2 id="b5Title">5. Энергоемкость комплексов закрытого грунта (CEA)</h2>
+            <div class="analytics-content">
+                <div id="b5Text"></div>
+                <div class="video-wrapper">
+                    <div class="video-box"><iframe src="https://www.youtube.com/embed/Di9RH1VEQKQ" title="CEA Greenhouses" allowfullscreen></iframe></div>
+                </div>
+            </div>
         </section>
 
     </main>
@@ -130,58 +145,69 @@ HTML
                 titles: {
                     main: "EnergaTor — Глобальний аудит енергетичних дефіцитів",
                     b1: "1. Дисбаланс енергосистем і тупик централізованих мереж",
-                    b2: "2. Промислове опріснення води в посушливих регіонах",
-                    b3: "3. Аналіз технологічних ніш та обмежень існуючих систем",
-                    b4: "4. Наше пропозиція — локальний енергетичний комплекс «ЕнергаТор»"
+                    b2: "2. Інфраструктурний тупик високоплотних дата-центрів (ЦОД)",
+                    b3: "3. Промислове опріснення води в посушливих регіонах",
+                    b4: "4. Енергетичні риски холодильної логістики (Cold Chain)",
+                    b5: "5. Енергоємність комплексів закритого ґрунту (CEA)"
                 },
-                b1: "<p>Сучасна енергетика функціонує в умовах динамічної зміни балансу. Пікові навантаження вимагають миттєвого введення резервних потужностей, тоді як стрімкий розвиток відновлюваних джерел енергії (ВДЕ) створює періоди надмірного виробництва. Потреба в енергії гарантовано зростає через тотальну електрифікацію транспорту та масштабне будівництво сучасних ІІ дата-центрів. Сучасні розподільні мережі великих міст опинилися на межі фізичної межі через експоненціальне зростання навантажень.</p><p>Перехід до розподіленої енергетики (Distributed Generation) стає єдиним рішенням, здатним запобігти колапсу за рахунок створення незалежних локальних вузлів безпосередньо у споживача.</p>",
-                b2: "<p>Опріснення морської води є життєво важливою індустрією для багатьох регіонів світу, проте сучасні технології зворотного осмосу стикаються з серйозними енергетичними обмеженнями. Процес вимагає безперервного високого тиску для продавлювання води через мембрани, що робить електроенергію головною статтею витрат (до 55% вартості води). Різкі коливання потужності при спробах підключення до нестабільних ВДЕ викликають падіння тиску та руйнують дорогі фільтраційні каскади.</p>",
-                b3: "<h3>ГАЕС (Гідроакумулюючі електростанції)</h3><p><b>Найкраще рішення для:</b> Глобального стратегічного резервування на рівні великих енергосистем. Мають величезний життєвий цикл (50+ років).</p><p><b>Але обмежено:</b> Жорсткими географічними факторами, тривалим будівництвом та великими площами затоплення територій.</p><h3>BESS (Хімічні акумулятори)</h3><p><b>Найкраще рішення для:</b> Мілісекундного реагування на коливання частоти мережі та короткочасного покриття піків (2–4 години).</p><p><b>Але обмежено:</b> Швидкою деградацією ячеєк (ресурс 3-5 років при інтенсивних швидких токах) та необхідністю складних систем термостабілізації.</p><h3>Водневі комплекси</h3><p><b>Найкраще рішення для:</b> Міжсезонного довготривалого зберігання енергії без саморозряду.</p><p><b>Але обмежено:</b> Низьким наскрізним КПД циклу (40–45%) та високою конструктивною складністю утримання летючого газу.</p><h3>Проточні батареї та CAES</h3><p><b>Найкраще рішення для:</b> Стаціонарного добового резервування промислових об'єктів.</p><p><b>Але обмежено:</b> Великими габаритами, складною гідравлікою та термодинамічними втратами тепла при класичному стисненні повітря.</p>",
-                b4: "<p>В отличие от существующих решений, ориентированных на выполнение одной узкой функции (накопление энергии, генерация или обеспечение транспорта), концепция «ЭнергаТор» объединяет эти задачи в единый тригенерационный энергетический комплекс.</p><p><b>Цільове призначення:</b> Концепція «ЕнергаТор» призначена для створення розподілених тригенераційних енергетичних комплексів, здатних одночасно забезпечувати об'єкти електроенергією, теплом і холодом, а також забезпечувати міський та комерційний транспорт екологічно безпечним енергоносієм. Такі комплекси не замінюють централізовану енергетику, а доповнюють її, знижуючи пікові навантаження на розподільні мережі, підвищуючи стійкість енергопостачання та забезпечуючи автономну роботу об'єктів у разі аварійних або кризових ситуацій.</p><p><b>Можливості та баланс характеристик:</b> Архітектура «ЕнергаТор» поєднує переваги різних технологій зберігання енергії. Від механічних систем вона наслідує тривалий термін служби (більше 20 років без деградації накопичувача), а від модульних рішень — можливість гнучкого масштабування та розміщення в безпосередній близькості від споживачів енергії, включаючи промислові підприємства, комерційні об'єкти та житлові комплекси.</p><p>Енергетичним ядром комплексу є тороїдальний преобразуючий агрегат (ТПА), що перетворює енергію стисненого повітря в електричну енергію. Одночасно система використовує природні термодинамічні процеси: тепло, що виділяється при стисненні повітря, прямує на опалення та технологічні потреби, а холод, що виникає при його розширенні, використовується для кондиціювання приміщень, охолодження обладнання та зберігання продукції.</p><p>Комплексне використання всіх енергетичних потоків дозволяє істотно підвищити ефективність використання накопиченої енергії, знизити експлуатаційні витрати споживачів і перетворити локальний енергетичний комплекс на інтелектуальний буфер між об'єктом і централізованою енергосистемою. У періоди пікового споживання такі комплекси здатні компенсувати частину навантаження на електричні мережі, підвищуючи їх стійкість і знижуючи потребу в будівництві додаткової інфраструктури.</p>"
+                b1: "<p>Сучасна енергетика функціонує в умовах динамічної зміни балансу. Пікові навантаження вимагають миттєвого введення резервних потужностей, тоді як стрімкий розвиток відновлюваних джерел енергії (ВДЕ) створює періоди надмірного виробництва. Сучасні розподільні мережі великих міст опинилися на межі фізичної межі через експоненціальне зростання навантажень. Перехід до розподіленої енергетики стає єдиним рішенням, здатним запобігти колапсу за рахунок створення незалежних локальних вузлів безпосередньо у споживача.</p>",
+                b2: "<p>Експоненціальне зростання щільності обчислень та систем штучного інтелекту робить традиційне повітряне охолодження неефективним[cite: 3]. Індустрія змушена масово переходити на рідинні та комбіновані схеми (direct-to-liquid cooling), де надійність та енергоємність контурів охолодження стають головним обмежувачем розвитку[cite: 3]. Ведучі світові лабораторії (включаючи NREL) досліджують складні схеми акумулювання теплової енергії та термосифонні системи, прагнучи знизити коефіцієнт PUE нижче 1.04 та мінімізувати гігантську витрату води[cite: 3]. Платформа «ЕнергаТор» вирішує цю проблему системно, надаючи високоефективний технологічний холод як продукт розширення повітря для контурів охолодження чіпів, одночасно утилізуючи супутнє тепло компресії[cite: 1, 3].</p>",
+                b3: "<p>Опріснення морської води є життєво важливою індустрією для багатьох регіонів світу, проте сучасні технології зворотного осмосу стикаються з серйозними енергетичними обмеженнями. Процес вимагає безперервного високого тиску для продавлювання води через мембрани, що робить електроенергію головною статтею витрат (до 55% вартості води). Різкі коливання потужності при спробах підключення до нестабільних ВДЕ викликають падіння тиску та руйнують дорогі фільтраційні каскади.</p>",
+                b4: "<p>Глобальний сектор зберігання та транспортування температурних вантажів (фармацевтика, біопрепарати, продукти харчування) лавиноподібно зростає[cite: 3]. Організація критично чутлива до вартості енергоресурсів та тотально залежна від безперервності холодопостачання[cite: 3]. Аварійні відключення або нестабільність живильних мереж тягнуть за собою багатомільйонні збитки через псування делікатної продукції[cite: 3]. Комплекс «ЕнергаТор» виступає в ролі автономного механічного буфера безпеки, який у разі блекDynamic забезпечує логістичний термінал як резервною електрикою, так і прямим холодом[cite: 1, 3].</p>",
+                b5: "<p>Сучасні тепличні господарства та вертикальні ферми дозволяють економити до 90% води порівняно з відкритим ґрунтом, але потрапляють у жорстку залежність від витрат на електроенергію та HVAC-системи (клімат-контроль)[cite: 3]. Дослідження підтверджують, що ізольоване використання систем обігріву або кондиціювання вичерпало свій потенціал ефективності[cite: 3]. Зниження енергоспоживання на 18–36% можливе лише при повній системній інтеграції потоків тепла, холоду та CO2[cite: 3]. Модульна тригенераційна архітектура платформи «ЕнергаТор» ідеально закриває комплексний дефіцит агрокомплексів, перетворюючи енергію в збалансовані потоки електрики для LED-освітлення, тепла для зимового обігріву та холоду для літньої стабілізації[cite: 1, 3].</p>"
             },
             ru: {
                 back: "← В матрицу",
                 titles: {
                     main: "EnergaTor — Глобальный аудит энергетических дефицитов",
                     b1: "1. Дисбаланс энергосистем и тупик централизованных сетей",
-                    b2: "2. Промышленное опреснение воды в засушливых регионах",
-                    b3: "3. Анализ технологических ниш и ограничений существующих систем",
-                    b4: "4. Наше предложение — локальный энергетический комплекс «ЭнергаТор»"
+                    b2: "2. Инфраструктурный тупик высокоплотных дата-центров (ЦОД)",
+                    b3: "3. Промышленное опреснение воды в засушливых регионах",
+                    b4: "4. Энергетические риски холодильной логистики (Cold Chain)",
+                    b5: "5. Энергоемкость комплексов закрытого грунта (CEA)"
                 },
-                b1: "<p>Современная энергетика функционирует в условиях динамического изменения баланса. Пиковые нагрузки требуют мгновенного ввода резервных мощностей, тогда как стремительное развитие возобновляемых источников энергии (ВИЭ) создает периоды избыточного производства. Потребление энергии гарантированно растет из-за тотальной электрификации транспорта и масштабного строительства современных ИИ дата-центров. Современные распределительные сети крупных городов оказались на грани физического предела из-за экспоненциального роста нагрузок.</p><p>Переход к распределенной энергетике (Distributed Generation) становится единственным решением, способным предотвратить коллапс за счет создания независимых локальных узлов непосредственно у потребителя.</p>",
-                b2: "<p>Опреснение морской воды является жизненно важной индустрией для многих регионов мира, однако современные технологии обратного осмоса упираются в серьезные энергетические ограничения. Процесс требует непрерывного высокого давления для продавливания воды через мембраны, что делает электроэнергию главной статьей затрат (до 55% стоимости воды). Резкие колебания мощности при попытках подключения к нестабильным ВИЭ вызывают падения давления и разрушают дорогостоящие фильтрационные каскады.</p>",
-                b3: "<h3>ГАЭС (Гидроаккумулирующие электростанции)</h3><p><b>Лучшее решение для:</b> Глобального стратегического резервирования на уровне крупных энергосистем. Обладают огромным жизненным циклом (50+ лет).</p><p><b>Но ограничено:</b> Жесткими географическими факторами, длительным строительством и большими площадями затопления территорий.</p><h3>BESS (Химические аккумуляторы)</h3><p><b>Лучшее решение для:</b> Миллисекундного реагирования на колебания частоты сети и краткосрочного покрытия пиков (2–4 часа).</p><p><b>Но ограничено:</b> Быстрой деградацией ячеек (ресурс 3-5 лет при интенсивных быстрых токах) и необходимостью сложных систем термостабилизации.</p><h3>Водородные комплексы</h3><p><b>Лучшее решение для:</b> Межсезонного долговременного хранения энергии без саморазряда.</p><p><b>Но ограничено:</b> Низким сквозным КПД цикла (40–45%) и высокой конструктивной сложностью удержания летучего газа.</p><h3>Проточные батареи и CAES</h3><p><b>Лучшее решение для:</b> Стационарного суточного резервирования промышленных объектов.</p><p><b>Но ограничено:</b> Большими габаритами, сложной гидравликой и термодинамическими потерями тепла при классическом сжатии воздуха.</p>",
-                b4: "<p>В отличие от существующих решений, ориентированных на выполнение одной узкой функции (накопление энергии, генерация или обеспечение транспорта), концепция «ЭнергаТор» объединяет эти задачи в единый тригенерационный энергетический комплекс.</p><p><b>Целевое назначение:</b> Концепция «ЭнергаТор» предназначена для создания распределённых тригенерационных энергетических complexes, способных одновременно обеспечивать объекты электроэнергией, теплом и холодом, а также снабжать городской и коммерческий транспорт экологически безопасным энергоносителем. Такие комплексы не заменяют централизованную энергетику, а дополняют её, снижая пиковые нагрузки на распределительные сети, повышая устойчивость энергоснабжения и обеспечивая автономную работу объектов в случае аварийных или кризисных ситуаций.</p><p><b>Возможности и баланс характеристик:</b> Архитектура «ЭнергаТор» сочетает преимущества различных технологий хранения энергии. От механических систем она наследует длительный срок службы (более 20 лет без деградации накопителя), а от модульных решений — возможность гибкого масштабирования и размещения в непосредственной близости от потребителей энергии, включая промышленные предприятия, коммерческие объекты и жилые комплексы.</p><p>Энергетическим ядром комплекса является тороидальный преобразующий агрегат (ТПА), преобразующий энергию сжатого воздуха в электрическую энергию. Одновременно система использует естественные термодинамические процессы: тепло, выделяющееся при сжатии воздуха, направляется на отопление и технологические нужды, а холод, возникающий при его расширении, используется для кондиционирования помещений, охлаждения оборудования и хранения продукции.</p><p>Комплексное использование всех энергетических потоков позволяет существенно повысить эффективность использования накопленной энергии, снизить эксплуатационные расходы потребителей и превратить локальный энергетический комплекс в интеллектуальный буфер между объектом и централизованной энергосистемой. В периоды пикового потребления такие комплексы способны компенсировать часть нагрузки на электрические сети, повышая их устойчивость и снижая потребность в строительстве дополнительной инфраструктуры.</p>"
+                b1: "<p>Современная энергетика функционирует в условиях динамического изменения баланса. Пиковые нагрузки требуют мгновенного ввода резервных мощностей, тогда как стремительное развитие возобновляемых источников энергии (ВИЭ) создает периоды избыточного производства. Современные распределительные сети крупных городов оказались на грани физического предела из-за экспоненциального роста нагрузок. Переход к распределенной энергетике становится единственным решением, способным предотвратить коллапс за счет создания независимых локальных узлов непосредственно у потребителя.</p>",
+                b2: "<p>Экспоненциальный рост плотности вычислений и систем ИИ делает традиционное воздушное охлаждение неэффективным[cite: 3]. Индустрия вынуждена массово переходить на жидкостные и комбинированные схемы (direct-to-liquid cooling), где надежность и энергоемкость контуров охлаждения становятся главным ограничителем развития[cite: 3]. Ведущие мировые лаборатории (включаю NREL) исследуют сложные схемы аккумулирования тепловой энергии и термосифонные системы, стремясь снизить коэффициент PUE ниже 1.04 и минимизировать гигантский расход воды[cite: 3]. Платформа «ЭнергаТор» решает эту проблему системно, предоставляя высокоэффективный технологический холод как продукт расширения воздуха для контуров охлаждения чипов, одновременно утилизируя сопутствующее тепло компрессии[cite: 1, 3].</p>",
+                b3: "<p>Опреснение морской воды является жизненно важной индустрией для многих регионов мира, однако современные технологии обратного осмоса упираются в серьезные энергетические ограничения. Процесс требует непрерывного высокого давления для продавливания воды через мембраны, что делает электроэнергию главной статьей затрат (до 55% стоимости воды). Резкие колебания мощности при попытках подключения к нестабильным ВИЭ вызывают падения давления и разрушают дорогостоящие фильтрационные каскады.</p>",
+                b4: "<p>Глобальный сектор хранения и транспортировки температурных грузов (фармацевтика, биопрепараты, продукты питания) лавинообразно растет[cite: 3]. Отрасль критически чувствительна к стоимости энергоресурсов и тотально зависима от непрерывности холодоснабжения[cite: 3]. Аварийные отключения или нестабильность питающих сетей влекут за собой многомиллионные убытки из-за порчи деликатной продукции[cite: 3]. Комплекс «ЭнергаТор» выступает в роли автономного механического буфера безопасности, который в случае блэкаута мгновенно обеспечивает логистический терминал как резервным электричеством, так и прямым холодом[cite: 1, 3].</p>",
+                b5: "<p>Современные тепличные хозяйства и вертикальные фермы позволяют экономить до 90% воды по сравнению с открытым грунтом, но попадают в жесткую зависимость от затрат на электроэнергию и HVAC-системы (климат-контроль)[cite: 3]. Исследования подтверждают, что изолированное использование систем обогрева или кондиционирования исчерпало свой потенциал эффективности[cite: 3]. Снижение энергопотребления на 18–36% возможно только при полной системной интеграции потоков тепла, холода и CO2[cite: 3]. Модульная тригенерационная архитектура платформы «ЭнергаТор» идеально закрывает комплексный дефицит агрокомплексов, преобразуя энергию в сбалансированные потоки электричества для LED-освещения, тепла для зимнего обогрева и холода для летней стабилизации[cite: 1, 3].</p>"
             },
             en: {
                 back: "← To Matrix",
                 titles: {
-                    main: "EnergaTor — Global Energy Deficit Audit",
+                    main: "EnergaTor — Global Energy Deficit Strategic Audit",
                     b1: "1. Grid Imbalance and Centralized Network Dead-end",
-                    b2: "2. Industrial Water Desalination in Arid Regions",
-                    b3: "3. Analysis of Technological Niches and Competitors Limits",
-                    b4: "4. Our Solution — EnergaTor Distributed Energy Complex"
+                    b2: "2. High-Density Datacenter Constraints (AI/HPC)",
+                    b3: "3. Industrial Water Desalination in Arid Regions",
+                    b4: "4. Energy Vulnerabilities in Cold Chain Logistics",
+                    b5: "5. Energy Intensity in Controlled-Environment Agriculture (CEA)"
                 },
-                b1: "<p>Modern energy works under volatile balancing profiles. Peak demands dictate rapid reserve injections, while renewable growth drives overproduction. Consumption is expanding exponentially via transport electrification and AI datacenter buildouts. Urban distribution grids face absolute limits under these loads.</p><p>Transitioning to Distributed Generation delivers the single viable escape route by deploying autonomous local energy nodes right at the client site.</p>",
-                b2: "<p>Sea water desalination acts as a lifeline sector, yet standard reverse osmosis plants face harsh energy limits. The process requires steady high-pressure streams, forcing electricity costs up to 55% of the clean water value. Rapid voltage drops from unstable renewables destroy sensitive filtration arrays.</p>",
-                b3: "<h3>PHS (Pumped Hydro Storage)</h3><p><b>Best for:</b> Large macro grid strategic multi-gigawatt backup. Long lifespan (50+ years).</p><p><b>Limits:</b> Strict terrain altitude demands and massive ecological footprint.</p><h3>BESS (Battery Energy Storage Systems)</h3><p><b>Best for:</b> Millisecond grid frequency stabilization and short-term peak smoothing (2–4 hours).</p><p><b>Limits:</b> Severe cell degradation within 3-5 years under rapid current profiles and thermal runaway risks.</p><h3>Hydrogen Plants</h3><p><b>Best for:</b> Seasonal long-duration storage free from chemical self-discharge factors.</p><p><b>Limits:</b> Poor full cycle round-trip efficiency (40–45%) and high gas leakage retention costs.</p><h3>Flow Batteries and CAES</h3><p><b>Best for:</b> Fixed 24-hour industrial facility backup lines.</p><p><b>Limits:</b> Heavy scale, complex hydraulic layouts, and thermal losses during compression stages.</p>",
-                b4: "<p>Unlike existing single-purpose solutions, the EnergaTor concept integrates energy storage, generation, and vehicle refueling into one trigeneration system.</p><p><b>Target Application:</b> EnergaTor builds distributed trigeneration systems supplying electricity, heat, and cooling while fueling clean transit networks. They support centralized grids, reducing peak distribution loads and ensuring localized emergency resilience.</p><p><b>Capabilities and Parameters:</b> The layout captures long mechanical asset lifespan (20+ years free from capacity loss) combined with battery-like scalability. The power core relies on the PTU setup. The system redirects thermodynamic compression heat to facility utilities, while expansion properties generate high-grade cooling for conditioning and industrial operations.</p>"
+                b1: "<p>Modern grids manage volatile load dynamics. Peak hours force fast generation ramps, while renewable additions trigger excess structural capacity. Local urban distribution networks face absolute failure profiles under growing infrastructure expansion.</p>",
+                en_b2: "<p>Rapid density adjustments in compute and AI models void classical air cooling solutions[cite: 3]. Global footprints now transition to direct-to-liquid hardware architectures[cite: 3]. Entities like NREL trace deep underground thermals and thermosyphons targeting sub-1.04 PUE bands without heavy fresh water consumption[cite: 3]. The EnergaTor deployment addresses this by pairing expander cold generation with compressor structural heating cycles[cite: 1, 3].</p>",
+                b3: "<p>Desalination scales rapidly but requires massive uninterrupted industrial mechanical pressure. Energy dynamics dominate up to 55% of full cubic water processing pricing vectors.</p>",
+                b4: "<p>Temperature-controlled shipping lines experience huge volume spikes across pharmaceutical and supply portfolios[cite: 3]. Sudden grid dropouts translate to quick multi-million operational asset degradation[cite: 3]. The EnergaTor unit interfaces as a mechanical protective node providing line power and deep fluid cooling[cite: 1, 3].</p>",
+                b5: "<p>Indoor vertical structures bypass 90% agricultural water limits but transfer the strain over to grid utility and HVAC inputs[cite: 3]. True 18-36% load optimization demands continuous tri-state mapping of power, building thermal management, and carbon injection profiles[cite: 3]. EnergaTor balances this layout dynamically[cite: 1, 3].</p>"
             },
             de: {
                 back: "← Zur Matrix",
                 titles: {
                     main: "EnergaTor — Globales Audit der Energiedezifite",
                     b1: "1. Netzimbalance und Sackgasse zentralisierter Netze",
-                    b2: "2. Industrielle Meerwasserentsalzung in ariden Regionen",
-                    b3: "3. Analyse technologischer Nischen und Grenzen bestehender Systeme",
-                    b4: "4. Unser Angebot — Der dezentrale Energiekomplex EnergaTor"
+                    b2: "2. Physische Grenzen von High-Density-Rechenzentren (KI)",
+                    b3: "3. Industrielle Meerwasserentsalzung in ariden Regionen",
+                    b4: "4. Energetische Risiken in der Kühllogistik (Cold Chain)",
+                    b5: "5. Energieintensität von geschlossenen Gewächshäusern (CEA)"
                 },
-                b1: "<p>Die moderne Energiewirtschaft operiert unter volatilen Bedingungen. Spitzenlasten erfordern sofortige Leistungsreserven, während erneuerbare Energien Überschüsse erzeugen. Der Bedarf steigt durch die Elektrifizierung des Verkehrs und KI-Rechenzentren massiv an. Städtische Verteilnetze stoßen an physische Grenzen.</p><p>Der Übergang zur dezentralen Erzeugung (Distributed Generation) ist die einzige Lösung, um Netzzusammenbrüche durch lokale Knotenpunkte direkt beim Verbraucher zu verhindern.</p>",
-                b2: "<p>Die Meerwasserentsalzung ist lebenswichtig, aber Umkehrosmoseanlagen stoßen an Energiegrenzen. Der Prozess erfordert konstanten Hochdruck, wodurch Strom bis zu 55% der Wasserkosten ausmacht. Leistungsschwankungen instabiler erneuerbarer Energien zerstören teure Filtermembranen.</p>",
-                b3: "<h3>Pumpspeicherkraftwerke (PSW)</h3><p><b>Beste Nische:</b> Strategische Großspeicherung für Netze. Lange Lebensdauer (50+ Jahre).</p><p><b>Grenzen:</b> Strikte geografische Anforderungen und große Flächennutzung.</p><h3>BESS (Batteriespeicher)</h3><p><b>Beste Nische:</b> Millisekundenschnelle Frequenzstabilisierung und Kurzzeit-Spitzenlastabdeckung (2–4 Std.).</p><p><b>Grenzen:</b> Schnelle Zelldegradation (3-5 Jahre bei Schnellladung) und thermische Risiken.</p><h3>Wasserstoffsysteme</h3><p><b>Beste Nische:</b> Saisonale Langzeitspeicherung ohne Selbstentladung.</p><p><b>Grenzen:</b> Niedriger Wirkungsgrad (40–45%) und komplexe Gaslagerung.</p><h3>Flow-Batterien und CAES</h3><p><b>Beste Nische:</b> Stationäre 24-Stunden-Absicherung für Industrieanlagen.</p><p><b>Grenzen:</b> Große Abmessungen, komplexe Hydraulik und thermische Verluste bei der Kompression.</p>",
-                b4: "<p>Im Gegensatz zu Einzelfunktionssystemen verbindet EnergaTor Speicherung, Erzeugung und Verkehrsinfrastruktur в einem Trigenerationskomplex.</p><p><b>Einsatzbereich:</b> EnergaTor dient dem Aufbau dezentraler Netze für Strom, Wärme und Kälte. Sie ergänzen das Zentralnetz, entlasten Verteilnetze in Spitzenzeiten und sichern den autonomen Betrieb bei Krisen.</p><p><b>Eigenschaften:</b> Die Architektur bietet mechanische Langlebigkeit (20+ Jahre ohne Kapazitätsverlust) gepaart mit modularer Skalierbarkeit. Das Herzstück ist die PTU-Einheit. Kompressionswärme heizt Gebäude, während Expansionskälte zur Klimatisierung und Kühlung genutzt wird.</p>"
+                b1: "<p>Moderne Netze operieren an Belastungsgrenzen. Spitzenlasten erfordern teure Regelenergie, während volatile Einspeisung Überschüsse erzeugt.</p>",
+                b2: "<p>Künstliche Intelligenz treibt die Leistungsdichte pro Serverrack in Dimensionen, die klassische Luftkühlung unmöglich machen[cite: 3]. NREL validiert direkte Flüssigkühlung und Thermosiphons für minimale PUE-Werte unter 1.04[cite: 3]. EnergaTor liefert Expansionskälte direkt in den Serverkreislauf[cite: 1, 3].</p>",
+                b3: "<p>Umkehrosmose erfordert permanenten Hochdruck. Stromkosten machen bis zu 55% der Betriebskosten der Wasseraufbereitung aus.</p>",
+                b4: "<p>Lieferketten für Pharmazeutika hängen von lückenloser Kühlung ab[cite: 3]. Netzausfälle verursachen sofortige Schäden in Millionenhöhe[cite: 3]. EnergaTor sichert die Kühlhäuser mechanisch ab[cite: 1, 3].</p>",
+                b5: "<p>Vertical Farming spart Wasser, verlagert den Ressourcenverbrauch jedoch komplett auf HVAC-Anlagen[cite: 3]. Nur die gekoppelte Trigeneration von Strom, Wärme und Kälte senkt den Bedarf nachhaltig[cite: 3].</p>"
             }
         };
+
+        // Корректная обработка пропущенного ключа перевода для английского b2/b2Text
+        analyticsTranslations.en.b2 = analyticsTranslations.en.en_b2;
 
         let currentLang = localStorage.getItem('energator_lang') || 'ua';
 
@@ -198,15 +224,17 @@ HTML
             
             document.getElementById('lnBack').innerText = trans.back;
             document.getElementById('pageTitle').innerText = trans.titles.main;
-            document.getElementById('block1Title').innerText = trans.titles.b1;
-            document.getElementById('block2Title').innerText = trans.titles.b2;
-            document.getElementById('block3Title').innerText = trans.titles.b3;
-            document.getElementById('block4Title').innerText = trans.titles.b4;
+            document.getElementById('b1Title').innerText = trans.titles.b1;
+            document.getElementById('b2Title').innerText = trans.titles.b2;
+            document.getElementById('b3Title').innerText = trans.titles.b3;
+            document.getElementById('b4Title').innerText = trans.titles.b4;
+            document.getElementById('b5Title').innerText = trans.titles.b5;
             
-            document.getElementById('block1Text').innerHTML = trans.b1;
-            document.getElementById('block2Text').innerHTML = trans.b2;
-            document.getElementById('block3Text').innerHTML = trans.b3;
-            document.getElementById('block4Text').innerHTML = trans.b4;
+            document.getElementById('b1Text').innerHTML = trans.b1;
+            document.getElementById('b2Text').innerHTML = trans.b2;
+            document.getElementById('b3Text').innerHTML = trans.b3;
+            document.getElementById('b4Text').innerHTML = trans.b4;
+            document.getElementById('b5Text').innerHTML = trans.b5;
         }
 
         changeLang(currentLang);
