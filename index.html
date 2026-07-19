@@ -3,14 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <meta
-    name="description"
-    content="EnergaTor — автономная энергетическая платформа на основе хранения энергии в сжатом воздухе."
-  />
-
+  <meta name="description" content="EnergaTor — автономная энергетическая платформа на основе хранения энергии в сжатом воздухе." />
   <meta name="theme-color" content="#040710" />
-
   <title>EnergaTor — Autonomous Energy Platform</title>
 
   <style>
@@ -18,31 +12,22 @@
       --bg-main: #040710;
       --bg-secondary: #08101c;
       --bg-panel: rgba(7, 14, 27, 0.72);
-
       --text-main: #f5f7fa;
       --text-secondary: #b8c1cc;
       --text-muted: #7e8a99;
-
       --copper: #c87533;
       --copper-light: #e18a46;
       --copper-dark: #87451d;
-
       --line-light: rgba(255, 255, 255, 0.12);
       --line-copper: rgba(225, 138, 70, 0.45);
-
       --shadow-dark: 0 30px 80px rgba(0, 0, 0, 0.55);
       --shadow-copper: 0 18px 55px rgba(200, 117, 51, 0.18);
-
       --header-height: 96px;
       --page-padding: clamp(20px, 4vw, 72px);
       --transition: 0.35s ease;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     html {
       min-width: 320px;
@@ -57,30 +42,14 @@
       overflow: hidden;
       background: var(--bg-main);
       color: var(--text-main);
-      font-family:
-        "Segoe UI",
-        -apple-system,
-        BlinkMacSystemFont,
-        "Helvetica Neue",
-        Arial,
-        sans-serif;
+      font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
       text-rendering: optimizeLegibility;
       -webkit-font-smoothing: antialiased;
     }
 
-    button,
-    a {
-      font: inherit;
-    }
-
-    button {
-      border: 0;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+    button, a { font: inherit; }
+    button { border: 0; }
+    a { color: inherit; text-decoration: none; }
 
     .page {
       position: relative;
@@ -88,17 +57,8 @@
       overflow: hidden;
       isolation: isolate;
       background:
-        radial-gradient(
-          circle at 75% 45%,
-          rgba(34, 77, 112, 0.18),
-          transparent 34%
-        ),
-        linear-gradient(
-          135deg,
-          #040710 0%,
-          #07101c 50%,
-          #040710 100%
-        );
+        radial-gradient(circle at 75% 45%, rgba(34, 77, 112, 0.18), transparent 34%),
+        linear-gradient(135deg, #040710 0%, #07101c 50%, #040710 100%);
     }
 
     .page::before {
@@ -107,16 +67,8 @@
       inset: 0;
       z-index: -8;
       background:
-        radial-gradient(
-          circle at 90% 14%,
-          rgba(200, 117, 51, 0.08),
-          transparent 22%
-        ),
-        radial-gradient(
-          circle at 10% 92%,
-          rgba(13, 47, 78, 0.35),
-          transparent 30%
-        );
+        radial-gradient(circle at 90% 14%, rgba(200, 117, 51, 0.08), transparent 22%),
+        radial-gradient(circle at 10% 92%, rgba(13, 47, 78, 0.35), transparent 30%);
       pointer-events: none;
     }
 
@@ -127,23 +79,10 @@
       opacity: 0.11;
       pointer-events: none;
       background-image:
-        linear-gradient(
-          rgba(255, 255, 255, 0.08) 1px,
-          transparent 1px
-        ),
-        linear-gradient(
-          90deg,
-          rgba(255, 255, 255, 0.08) 1px,
-          transparent 1px
-        );
+        linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
       background-size: 64px 64px;
-      mask-image:
-        linear-gradient(
-          90deg,
-          transparent 0%,
-          rgba(0, 0, 0, 0.35) 30%,
-          #000 100%
-        );
+      mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.35) 30%, #000 100%);
     }
 
     .background-glow {
@@ -174,17 +113,13 @@
     .background-glow::before {
       inset: 14%;
       border: 1px solid rgba(225, 138, 70, 0.26);
-      box-shadow:
-        inset 0 0 80px rgba(11, 37, 61, 0.45),
-        0 0 80px rgba(225, 138, 70, 0.08);
+      box-shadow: inset 0 0 80px rgba(11, 37, 61, 0.45), 0 0 80px rgba(225, 138, 70, 0.08);
     }
 
     .background-glow::after {
       inset: 31%;
       border: 2px solid rgba(225, 138, 70, 0.48);
-      box-shadow:
-        inset 0 0 60px rgba(12, 39, 65, 0.75),
-        0 0 80px rgba(225, 138, 70, 0.14);
+      box-shadow: inset 0 0 60px rgba(12, 39, 65, 0.75), 0 0 80px rgba(225, 138, 70, 0.14);
     }
 
     .slide {
@@ -193,100 +128,26 @@
       z-index: -5;
       opacity: 0;
       transform: scale(1.04);
-      transition:
-        opacity 1.25s ease,
-        transform 8s linear;
+      transition: opacity 1.25s ease, transform 8s linear;
       background-position: center;
       background-size: cover;
       background-repeat: no-repeat;
       will-change: opacity, transform;
     }
 
-    .slide.active {
-      opacity: 1;
-      transform: scale(1);
-    }
+    .slide.active { opacity: 1; transform: scale(1); }
 
-    .slide-1 {
-      background-image:
-        linear-gradient(
-          rgba(4, 7, 16, 0.08),
-          rgba(4, 7, 16, 0.1)
-        ),
-        url("assets/slide-01-evtol.png");
-    }
-
-    .slide-2 {
-      background-image:
-        linear-gradient(
-          rgba(4, 7, 16, 0.16),
-          rgba(4, 7, 16, 0.16)
-        ),
-        url("assets/slide-02-home.webp");
-    }
-
-    .slide-3 {
-      background-image:
-        linear-gradient(
-          rgba(4, 7, 16, 0.16),
-          rgba(4, 7, 16, 0.16)
-        ),
-        url("assets/slide-03-greenhouse.webp");
-    }
-
-    .slide-4 {
-      background-image:
-        linear-gradient(
-          rgba(4, 7, 16, 0.16),
-          rgba(4, 7, 16, 0.16)
-        ),
-        url("assets/slide-04-station.webp");
-    }
+    .slide-1 { background-image: linear-gradient(rgba(4,7,16,.08),rgba(4,7,16,.1)), url("assets/slide-01-evtol.png"); }
+    .slide-2 { background-image: linear-gradient(rgba(4,7,16,.16),rgba(4,7,16,.16)), url("assets/slide-02-home.webp"); }
+    .slide-3 { background-image: linear-gradient(rgba(4,7,16,.16),rgba(4,7,16,.16)), url("assets/slide-03-greenhouse.webp"); }
+    .slide-4 { background-image: linear-gradient(rgba(4,7,16,.16),rgba(4,7,16,.16)), url("assets/slide-04-station.webp"); }
 
     .visual-fallback {
       position: absolute;
       inset: 0;
       z-index: -6;
       pointer-events: none;
-      background:
-        radial-gradient(
-          circle at 81% 42%,
-          rgba(25, 63, 96, 0.82) 0%,
-          rgba(10, 28, 47, 0.9) 25%,
-          rgba(4, 7, 16, 1) 64%
-        );
-    }
-
-    .visual-fallback::before {
-      content: "";
-      position: absolute;
-      right: 7vw;
-      top: 21vh;
-      width: min(31vw, 520px);
-      height: min(31vw, 520px);
-      min-width: 330px;
-      min-height: 330px;
-      border: 2px solid rgba(225, 138, 70, 0.46);
-      border-radius: 50%;
-      box-shadow:
-        inset 0 0 100px rgba(8, 31, 53, 0.85),
-        0 0 100px rgba(225, 138, 70, 0.12);
-    }
-
-    .visual-fallback::after {
-      content: "";
-      position: absolute;
-      right: 15vw;
-      top: 29vh;
-      width: min(15vw, 250px);
-      height: min(15vw, 250px);
-      min-width: 170px;
-      min-height: 170px;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 50%;
-      box-shadow:
-        0 0 60px rgba(28, 82, 121, 0.36),
-        inset 0 0 45px rgba(225, 138, 70, 0.1);
+      background: radial-gradient(circle at 81% 42%, rgba(25, 63, 96, 0.82) 0%, rgba(10, 28, 47, 0.9) 25%, rgba(4, 7, 16, 1) 64%);
     }
 
     .dark-overlay {
@@ -295,37 +156,16 @@
       z-index: -4;
       pointer-events: none;
       background:
-        linear-gradient(
-          90deg,
-          rgba(4, 7, 16, 0.99) 0%,
-          rgba(4, 7, 16, 0.95) 21%,
-          rgba(4, 7, 16, 0.76) 43%,
-          rgba(4, 7, 16, 0.2) 68%,
-          rgba(4, 7, 16, 0.46) 100%
-        ),
-        linear-gradient(
-          180deg,
-          rgba(4, 7, 16, 0.4) 0%,
-          transparent 48%,
-          rgba(4, 7, 16, 0.84) 100%
-        );
+        linear-gradient(90deg, rgba(4,7,16,.99) 0%, rgba(4,7,16,.95) 21%, rgba(4,7,16,.76) 43%, rgba(4,7,16,.2) 68%, rgba(4,7,16,.46) 100%),
+        linear-gradient(180deg, rgba(4,7,16,.4) 0%, transparent 48%, rgba(4,7,16,.84) 100%);
     }
 
     .top-line {
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
+      top: 0; left: 0; right: 0;
       z-index: 20;
       height: 2px;
-      background:
-        linear-gradient(
-          90deg,
-          transparent 0%,
-          rgba(225, 138, 70, 0.75) 22%,
-          rgba(225, 138, 70, 0.22) 54%,
-          transparent 100%
-        );
+      background: linear-gradient(90deg, transparent 0%, rgba(225,138,70,.75) 22%, rgba(225,138,70,.22) 54%, transparent 100%);
       box-shadow: 0 0 18px rgba(225, 138, 70, 0.2);
     }
 
@@ -338,18 +178,10 @@
       gap: 28px;
       width: 100%;
       min-height: var(--header-height);
-      padding:
-        29px
-        var(--page-padding)
-        0;
+      padding: 29px var(--page-padding) 0;
     }
 
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 24px;
-      min-width: 0;
-    }
+    .brand { display: flex; align-items: center; gap: 24px; min-width: 0; }
 
     .brand-mark {
       position: relative;
@@ -360,36 +192,14 @@
       place-items: center;
       border: 1px solid rgba(225, 138, 70, 0.52);
       border-radius: 50%;
-      box-shadow:
-        inset 0 0 24px rgba(225, 138, 70, 0.08),
-        0 0 24px rgba(225, 138, 70, 0.08);
+      box-shadow: inset 0 0 24px rgba(225, 138, 70, 0.08), 0 0 24px rgba(225, 138, 70, 0.08);
     }
 
-    .brand-mark::before,
-    .brand-mark::after {
-      content: "";
-      position: absolute;
-      border-radius: 50%;
-    }
+    .brand-mark::before, .brand-mark::after { content: ""; position: absolute; border-radius: 50%; }
+    .brand-mark::before { inset: 7px; border: 1px solid rgba(225, 138, 70, 0.75); }
+    .brand-mark::after { width: 8px; height: 8px; background: var(--copper-light); box-shadow: 0 0 14px rgba(225, 138, 70, 0.62); }
 
-    .brand-mark::before {
-      inset: 7px;
-      border: 1px solid rgba(225, 138, 70, 0.75);
-    }
-
-    .brand-mark::after {
-      width: 8px;
-      height: 8px;
-      background: var(--copper-light);
-      box-shadow: 0 0 14px rgba(225, 138, 70, 0.62);
-    }
-
-    .brand-copy {
-      display: flex;
-      flex-direction: column;
-      gap: 7px;
-    }
-
+    .brand-copy { display: flex; flex-direction: column; gap: 7px; }
     .brand-name {
       color: var(--copper-light);
       font-size: clamp(1.7rem, 2.7vw, 2.85rem);
@@ -397,25 +207,18 @@
       line-height: 0.92;
       letter-spacing: 0.052em;
       text-transform: uppercase;
-      text-shadow:
-        0 0 30px rgba(225, 138, 70, 0.14);
     }
 
     .brand-tagline {
-      color: rgba(245, 247, 250, 0.7);
-      font-size: 0.61rem;
+      color: rgba(245,247,250,.7);
+      font-size: .61rem;
       font-weight: 700;
       line-height: 1.45;
-      letter-spacing: 0.17em;
+      letter-spacing: .17em;
       text-transform: uppercase;
     }
 
-    .language-switcher {
-      display: flex;
-      align-items: center;
-      gap: 19px;
-      padding-top: 2px;
-    }
+    .language-switcher { display: flex; align-items: center; gap: 19px; padding-top: 2px; }
 
     .language-switcher button {
       position: relative;
@@ -423,1136 +226,425 @@
       background: transparent;
       color: var(--text-main);
       cursor: pointer;
-      font-size: 0.88rem;
+      font-size: .88rem;
       font-weight: 650;
-      opacity: 0.63;
-      transition:
-        color var(--transition),
-        opacity var(--transition);
+      opacity: .63;
+      transition: color var(--transition), opacity var(--transition);
     }
 
     .language-switcher button::after {
       content: "";
       position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 2px;
+      left: 0; right: 0; bottom: 2px;
       height: 2px;
       background: var(--copper-light);
       transform: scaleX(0);
-      transform-origin: center;
       transition: transform var(--transition);
     }
 
-    .language-switcher button:hover,
-    .language-switcher button:focus-visible,
-    .language-switcher button.active {
-      color: var(--copper-light);
-      opacity: 1;
-      outline: none;
-    }
+    .language-switcher button.active { color: var(--copper-light); opacity: 1; }
+    .language-switcher button.active::after { transform: scaleX(1); }
 
-    .language-switcher button.active::after {
-      transform: scaleX(1);
     .hero {
       position: relative;
       z-index: 10;
       display: flex;
       align-items: center;
       min-height: calc(100vh - var(--header-height));
-      padding:
-        2vh
-        var(--page-padding)
-        7vh;
+      padding: 2vh var(--page-padding) 7vh;
     }
 
-    .hero-content{
-      width:min(690px,54vw);
-      animation:heroReveal .9s ease both;
+    .hero-content { width: min(690px,54vw); animation: heroReveal .9s ease both; }
+
+    @keyframes heroReveal {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    @keyframes heroReveal{
-      from{
-        opacity:0;
-        transform:translateY(30px);
-      }
-      to{
-        opacity:1;
-        transform:translateY(0);
-      }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 26px;
+      color: var(--text-secondary);
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .22em;
+      text-transform: uppercase;
     }
 
-    .eyebrow{
-      display:inline-flex;
-      align-items:center;
-      gap:14px;
-      margin-bottom:26px;
+    .eyebrow::before { content: ""; width: 42px; height: 1px; background: var(--copper-light); }
 
-      color:var(--text-secondary);
-
-      font-size:.72rem;
-      font-weight:700;
-      letter-spacing:.22em;
-      text-transform:uppercase;
+    .hero-title {
+      font-size: clamp(3.2rem,5.8vw,6.5rem);
+      line-height: .94;
+      font-weight: 800;
+      letter-spacing: -.05em;
+      text-transform: uppercase;
+      text-shadow: 0 8px 35px rgba(0,0,0,.65);
     }
 
-    .eyebrow::before{
-      content:"";
-      width:42px;
-      height:1px;
-      background:var(--copper-light);
-      box-shadow:0 0 12px rgba(225,138,70,.45);
+    .hero-title span { display: block; }
+    .hero-title .accent { color: var(--copper-light); }
+
+    .divider { width: 82px; height: 2px; margin: 34px 0 30px; background: var(--copper-light); }
+
+    .hero-description {
+      max-width: 620px;
+      color: var(--text-main);
+      font-size: clamp(1.05rem,1.5vw,1.35rem);
+      line-height: 1.65;
     }
 
-    .hero-title{
-      margin:0;
+    .hero-buttons { display: flex; gap: 18px; flex-wrap: wrap; margin-top: 44px; }
 
-      font-size:
-        clamp(3.2rem,5.8vw,6.5rem);
-
-      line-height:.94;
-
-      font-weight:800;
-
-      letter-spacing:-.05em;
-
-      text-transform:uppercase;
-
-      text-shadow:
-        0 8px 35px rgba(0,0,0,.65);
+    .button-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 36px;
+      min-width: 360px;
+      padding: 19px 26px;
+      border: 1px solid var(--copper-light);
+      background: rgba(4,7,16,.45);
+      backdrop-filter: blur(12px);
+      color: var(--copper-light);
+      text-transform: uppercase;
+      letter-spacing: .13em;
+      font-size: .88rem;
+      font-weight: 700;
+      transition: .35s;
+      box-shadow: var(--shadow-dark);
     }
 
-    .hero-title span{
-      display:block;
+    .button-primary:hover {
+      background: var(--copper-light);
+      color: #05080f;
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-copper);
     }
 
-    .hero-title .accent{
-      color:var(--copper-light);
+    .button-primary span:last-child { font-size: 1.5rem; }
+
+    .slider-navigation {
+      position: fixed;
+      right: 42px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      z-index: 30;
     }
 
-    .divider{
-
-      width:82px;
-      height:2px;
-
-      margin:
-        34px
-        0
-        30px;
-
-      background:var(--copper-light);
-
-      box-shadow:
-        0 0 18px rgba(225,138,70,.55);
+    .slider-navigation button {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,.75);
+      background: transparent;
+      cursor: pointer;
+      transition: .3s;
     }
 
-    .hero-description{
+    .slider-navigation button.active { background: var(--copper-light); border-color: var(--copper-light); }
 
-      max-width:620px;
-
-      color:var(--text-main);
-
-      font-size:
-        clamp(1.05rem,1.5vw,1.35rem);
-
-      line-height:1.65;
-
-      text-shadow:
-        0 4px 18px rgba(0,0,0,.75);
-
+    .slide-caption {
+      position: fixed;
+      right: 42px;
+      bottom: 34px;
+      z-index: 25;
+      color: rgba(255,255,255,.58);
+      text-transform: uppercase;
+      letter-spacing: .16em;
+      font-size: .64rem;
+      font-weight: 700;
     }
 
-    .hero-buttons{
-
-      display:flex;
-
-      gap:18px;
-
-      flex-wrap:wrap;
-
-      margin-top:44px;
-
+    .platform-status {
+      position: fixed;
+      left: 42px;
+      bottom: 32px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      z-index: 25;
+      color: rgba(255,255,255,.58);
+      text-transform: uppercase;
+      letter-spacing: .15em;
+      font-size: .63rem;
+      font-weight: 700;
     }
 
-    .button-primary{
-
-      display:inline-flex;
-
-      align-items:center;
-
-      justify-content:space-between;
-
-      gap:36px;
-
-      min-width:360px;
-
-      padding:
-
-        19px
-        26px;
-
-      border:
-
-        1px solid
-        var(--copper-light);
-
-      background:
-
-        rgba(4,7,16,.45);
-
-      backdrop-filter:
-
-        blur(12px);
-
-      color:
-
-        var(--copper-light);
-
-      text-transform:
-
-        uppercase;
-
-      letter-spacing:
-
-        .13em;
-
-      font-size:
-
-        .88rem;
-
-      font-weight:
-
-        700;
-
-      transition:
-
-        .35s;
-
-      box-shadow:
-
-        var(--shadow-dark);
-
+    .platform-status::before {
+      content: "";
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--copper-light);
+      box-shadow: 0 0 12px rgba(225,138,70,.7);
     }
 
-    .button-primary:hover{
-
-      background:
-
-        var(--copper-light);
-
-      color:
-
-        #05080f;
-
-      transform:
-
-        translateY(-3px);
-
-      box-shadow:
-
-        var(--shadow-copper);
-
+    @media(max-width:720px) {
+      body { overflow-y: auto; }
+      .header { padding: 18px 18px 0; }
+      .hero { align-items: flex-end; min-height: calc(100vh - 70px); padding: 0 20px 72px; }
+      .hero-content { width: 100%; }
+      .hero-title { font-size: clamp(2.5rem,12vw,4.3rem); }
+      .button-primary { width: 100%; min-width: 0; }
+      .slider-navigation { right: 16px; }
+      .slide-caption { display: none; }
+      .platform-status { left: 18px; bottom: 18px; font-size: .55rem; }
     }
-
-    .button-primary span:last-child{
-
-      font-size:1.5rem;
-
-    }
-
-    .slider-navigation{
-
-      position:fixed;
-
-      right:42px;
-
-      top:50%;
-
-      transform:translateY(-50%);
-
-      display:flex;
-
-      flex-direction:column;
-
-      gap:14px;
-
-      z-index:30;
-
-    }
-
-    .slider-navigation button{
-
-      width:12px;
-      height:12px;
-
-      border-radius:50%;
-
-      border:
-
-        1px solid
-        rgba(255,255,255,.75);
-
-      background:transparent;
-
-      cursor:pointer;
-
-      transition:.3s;
-
-    }
-
-    .slider-navigation button:hover{
-
-      transform:scale(1.18);
-
-    }
-
-    .slider-navigation button.active{
-
-      background:
-
-        var(--copper-light);
-
-      border-color:
-
-        var(--copper-light);
-
-    }
-
-    .slide-caption{
-
-      position:fixed;
-
-      right:42px;
-
-      bottom:34px;
-
-      z-index:25;
-
-      color:
-
-        rgba(255,255,255,.58);
-
-      text-transform:uppercase;
-
-      letter-spacing:.16em;
-
-      font-size:.64rem;
-
-      font-weight:700;
-
-    }
-
-    .platform-status{
-
-      position:fixed;
-
-      left:42px;
-
-      bottom:32px;
-
-      display:flex;
-
-      align-items:center;
-
-      gap:12px;
-
-      z-index:25;
-
-      color:
-
-        rgba(255,255,255,.58);
-
-      text-transform:uppercase;
-
-      letter-spacing:.15em;
-
-      font-size:.63rem;
-
-      font-weight:700;
-
-    }
-
-    .platform-status::before{
-
-      content:"";
-
-      width:8px;
-      height:8px;
-
-      border-radius:50%;
-
-      background:
-
-        var(--copper-light);
-
-      box-shadow:
-
-        0 0 12px rgba(225,138,70,.7);
-
-    }
-
-    @media(max-width:980px){
-
-      .hero-content{
-
-        width:74vw;
-
-      }
-
-      .brand-tagline{
-
-        display:none;
-
-      }
-
-    }
-
-    @media(max-width:720px){
-
-      body{
-
-        overflow-y:auto;
-
-      }
-
-      .header{
-
-        padding:
-
-          18px
-          18px
-          0;
-
-      }
-
-      .hero{
-
-        align-items:flex-end;
-
-        min-height:
-
-          calc(100vh - 70px);
-
-        padding:
-
-          0
-          20px
-          72px;
-
-      }
-
-      .hero-content{
-
-        width:100%;
-
-      }
-
-      .hero-title{
-
-        font-size:
-
-          clamp(
-            2.5rem,
-            12vw,
-            4.3rem
-          );
-
-      }
-
-      .button-primary{
-
-        width:100%;
-
-        min-width:0;
-
-      }
-
-      .slider-navigation{
-
-        right:16px;
-
-      }
-
-      .slide-caption{
-
-        display:none;
-
-      }
-
-      .platform-status{
-
-        left:18px;
-        bottom:18px;
-
-        font-size:.55rem;
-
-      }
-
-    }
-
   </style>
-
 </head>
 
 <body>
-
 <div class="page">
+  <div class="background-grid"></div>
+  <div class="background-glow"></div>
+  <div class="visual-fallback"></div>
 
-<div class="background-grid"></div>
+  <div class="slide slide-1 active" data-caption="slide1"></div>
+  <div class="slide slide-2" data-caption="slide2"></div>
+  <div class="slide slide-3" data-caption="slide3"></div>
+  <div class="slide slide-4" data-caption="slide4"></div>
 
-<div class="background-glow"></div>
+  <div class="dark-overlay"></div>
+  <div class="top-line"></div>
 
-<div class="visual-fallback"></div>
+  <header class="header">
+    <div class="brand">
+      <div class="brand-mark"></div>
+      <div class="brand-copy">
+        <div class="brand-name">EnergaTor</div>
+        <div class="brand-tagline">Платформа энергии сжатого воздуха</div>
+      </div>
+    </div>
 
-<div class="slide slide-1 active"></div>
+    <nav class="language-switcher">
+      <button type="button" data-lang="uk">UA</button>
+      <button type="button" data-lang="en">EN</button>
+      <button type="button" data-lang="ru" class="active">RU</button>
+      <button type="button" data-lang="de">DE</button>
+    </nav>
+  </header>
 
-<div class="slide slide-2"></div>
+  <main class="hero">
+    <section class="hero-content">
+      <div class="eyebrow">АВТОНОМНАЯ ЭНЕРГЕТИЧЕСКАЯ ПЛАТФОРМА</div>
 
-<div class="slide slide-3"></div>
+      <h1 class="hero-title">
+        <span>Электричество</span>
+        <span>Тепло</span>
+        <span class="accent">Холод</span>
+      </h1>
 
-<div class="slide slide-4"></div>
+      <div class="divider"></div>
 
-<div class="dark-overlay"></div>
+      <p class="hero-description">
+        EnergaTor создаёт автономную энергетическую платформу, которая преобразует энергию сжатого воздуха в электричество, тепло и холод для зданий, транспорта, бизнеса и критической инфраструктуры.
+      </p>
 
-<div class="top-line"></div>
+      <div class="hero-buttons">
+        <a class="button-primary" href="hub.html">
+          <span class="button-label">ОТКРЫТЬ ENERGATOR</span>
+          <span>→</span>
+        </a>
+      </div>
+    </section>
+  </main>
 
-<header class="header">
-
-<div class="brand">
-
-<div class="brand-mark"></div>
-
-<div class="brand-copy">
-
-<div class="brand-name">
-
-EnergaTor
-
+  <div class="slider-navigation" id="sliderNavigation" aria-label="Навигация по слайдам"></div>
+  <div class="platform-status">ЭНЕРГЕТИЧЕСКАЯ ПЛАТФОРМА / УКРАИНА</div>
+  <div class="slide-caption" id="slideCaption">АВИАЦИОННЫЕ ТЕХНОЛОГИИ</div>
 </div>
 
-<div class="brand-tagline">
-
-Compressed Air Energy Platform
-
-</div>
-
-</div>
-
-</div>
-
-<nav class="language-switcher">
-
-<button class="active">UA</button>
-
-<button>EN</button>
-
-<button>RU</button>
-
-<button>DE</button>
-
-</nav>
-
-</header>
-
-<main class="hero">
-
-<section class="hero-content">
-
-<div class="eyebrow">
-
-AUTONOMOUS ENERGY PLATFORM
-
-</div>
-
-<h1 class="hero-title">
-
-<span>Electricity</span>
-
-<span>Heat</span>
-
-<span class="accent">
-
-Cold
-
-</span>
-
-</h1>
-
-<div class="divider"></div>
-
-<p class="hero-description">
-title2:
-"Тепло",
-
-title3:
-"Холод",
-
-description:
-"EnergaTor створює автономну енергетичну платформу, яка перетворює енергію стисненого повітря на електроенергію, тепло і холод для будівель, транспорту, бізнесу та критичної інфраструктури.",
-
-button:
-"ВІДКРИТИ ENERGATOR",
-
-status:
-"ЕНЕРГЕТИЧНА ПЛАТФОРМА / УКРАЇНА",
-
-slide1:
-"АВІАЦІЙНІ ТЕХНОЛОГІЇ",
-
-slide2:
-"АВТОНОМНІ БУДИНКИ",
-
-slide3:
-"ТЕПЛИЧНІ КОМПЛЕКСИ",
-
-slide4:
-"ЕНЕРГЕТИЧНІ СТАНЦІЇ"
-
-},
-
-en: {
-
-pageTitle:
-"EnergaTor — Autonomous Energy Platform",
-
-brandTagline:
-"Compressed Air Energy Platform",
-
-eyebrow:
-"AUTONOMOUS ENERGY PLATFORM",
-
-title1:
-"Electricity",
-
-title2:
-"Heat",
-
-title3:
-"Cold",
-
-description:
-"EnergaTor is creating an autonomous energy platform that converts compressed-air energy into electricity, heat and cooling for buildings, transport, businesses and critical infrastructure.",
-
-button:
-"ENTER ENERGATOR",
-
-status:
-"ENERGY PLATFORM / UKRAINE",
-
-slide1:
-"AVIATION TECHNOLOGIES",
-
-slide2:
-"AUTONOMOUS HOMES",
-
-slide3:
-"GREENHOUSE COMPLEXES",
-
-slide4:
-"ENERGY STATIONS"
-
-},
-
-ru: {
-
-pageTitle:
-"EnergaTor — автономная энергетическая платформа",
-
-brandTagline:
-"Платформа энергии сжатого воздуха",
-
-eyebrow:
-"АВТОНОМНАЯ ЭНЕРГЕТИЧЕСКАЯ ПЛАТФОРМА",
-
-title1:
-"Электричество",
-
-title2:
-"Тепло",
-
-title3:
-"Холод",
-
-description:
-"EnergaTor создаёт автономную энергетическую платформу, которая преобразует энергию сжатого воздуха в электричество, тепло и холод для зданий, транспорта, бизнеса и критической инфраструктуры.",
-
-button:
-"ОТКРЫТЬ ENERGATOR",
-
-status:
-"ЭНЕРГЕТИЧЕСКАЯ ПЛАТФОРМА / УКРАИНА",
-
-slide1:
-"АВИАЦИОННЫЕ ТЕХНОЛОГИИ",
-
-slide2:
-"АВТОНОМНЫЕ ДОМА",
-
-slide3:
-"ТЕПЛИЧНЫЕ КОМПЛЕКСЫ",
-
-slide4:
-"ЭНЕРГЕТИЧЕСКИЕ СТАНЦИИ"
-
-},
-
-de: {
-
-pageTitle:
-"EnergaTor — Autonome Energieplattform",
-
-brandTagline:
-"Druckluft-Energieplattform",
-
-eyebrow:
-"AUTONOME ENERGIEPLATTFORM",
-
-title1:
-"Strom",
-
-title2:
-"Wärme",
-
-title3:
-"Kälte",
-
-description:
-"EnergaTor entwickelt eine autonome Energieplattform, die gespeicherte Druckluftenergie in Strom, Wärme und Kälte für Gebäude, Mobilität, Unternehmen und kritische Infrastruktur umwandelt.",
-
-button:
-"ENERGATOR ÖFFNEN",
-
-status:
-"ENERGIEPLATTFORM / UKRAINE",
-
-slide1:
-"LUFTFAHRTTECHNOLOGIEN",
-
-slide2:
-"AUTONOME HÄUSER",
-
-slide3:
-"GEWÄCHSHAUSKOMPLEXE",
-
-slide4:
-"ENERGIESTATIONEN"
-
-}
-
-};
-
-const slides =
-Array.from(
-document.querySelectorAll(".slide")
-);
-
-const navigation =
-document.getElementById(
-"sliderNavigation"
-);
-
-const caption =
-document.getElementById(
-"slideCaption"
-);
-
-const languageButtons =
-Array.from(
-document.querySelectorAll(
-".language-switcher button"
-)
-);
-
-const brandTagline =
-document.querySelector(
-".brand-tagline"
-);
-
-const eyebrow =
-document.querySelector(
-".eyebrow"
-);
-
-const titleLines =
-document.querySelectorAll(
-".hero-title span"
-);
-
-const description =
-document.querySelector(
-".hero-description"
-);
-
-const mainButton =
-document.querySelector(
-".button-primary span:first-child"
-);
-
-const platformStatus =
-document.querySelector(
-".platform-status"
-);
-
-let currentSlide = 0;
-
-let currentLanguage =
-localStorage.getItem(
-"energator-language"
-) || "ru";
-
-let sliderInterval;
-
-if(
-!translations[
-currentLanguage
-]
-){
-
-currentLanguage = "ru";
-
-}
-
-slides.forEach(
-(slide,index)=>{
-
-slide.dataset.caption =
-"slide" + (index + 1);
-
-const dot =
-document.createElement(
-"button"
-);
-
-dot.type =
-"button";
-
-dot.setAttribute(
-"aria-label",
-"Slide " + (index + 1)
-);
-
-if(index === 0){
-
-dot.classList.add(
-"active"
-);
-
-}
-
-dot.addEventListener(
-"click",
-()=>{
-
-showSlide(index);
-
-restartSlider();
-
-}
-);
-
-navigation.appendChild(
-dot
-);
-
-}
-);
-
-const navigationDots =
-Array.from(
-navigation.querySelectorAll(
-"button"
-)
-);
-
-function showSlide(index){
-
-slides[
-currentSlide
-].classList.remove(
-"active"
-);
-
-navigationDots[
-currentSlide
-].classList.remove(
-"active"
-);
-
-currentSlide =
-(
-index +
-slides.length
-)
-%
-slides.length;
-
-slides[
-currentSlide
-].classList.add(
-"active"
-);
-
-navigationDots[
-currentSlide
-].classList.add(
-"active"
-);
-
-updateSlideCaption();
-
-}
-
-function updateSlideCaption(){
-
-const captionKey =
-slides[
-currentSlide
-].dataset.caption;
-
-caption.textContent =
-translations[
-currentLanguage
-][
-captionKey
-];
-
-}
-
-function startSlider(){
-
-sliderInterval =
-setInterval(
-()=>{
-
-showSlide(
-currentSlide + 1
-);
-
-},
-7000
-);
-
-}
-
-function restartSlider(){
-
-clearInterval(
-sliderInterval
-);
-
-startSlider();
-
-}
-
-function applyLanguage(
-language
-){
-
-const dictionary =
-translations[
-language
-];
-
-if(
-!dictionary
-){
-
-return;
-
-}
-
-currentLanguage =
-language;
-
-localStorage.setItem(
-"energator-language",
-language
-);
-
-document.documentElement.lang =
-language;
-
-document.title =
-dictionary.pageTitle;
-
-brandTagline.textContent =
-dictionary.brandTagline;
-
-eyebrow.textContent =
-dictionary.eyebrow;
-
-titleLines[
-0
-].textContent =
-dictionary.title1;
-
-titleLines[
-1
-].textContent =
-dictionary.title2;
-
-titleLines[
-2
-].textContent =
-dictionary.title3;
-
-description.textContent =
-dictionary.description;
-
-mainButton.textContent =
-dictionary.button;
-
-platformStatus.textContent =
-dictionary.status;
-
-languageButtons.forEach(
-button=>{
-
-const isActive =
-button.dataset.lang === language;
-
-button.classList.toggle(
-"active",
-isActive
-);
-
-button.setAttribute(
-"aria-pressed",
-String(isActive)
-);
-
-}
-);
-
-updateSlideCaption();
-
-}
-
-languageButtons.forEach(
-button=>{
-
-button.addEventListener(
-"click",
-()=>{
-
-applyLanguage(
-button.dataset.lang
-);
-
-}
-);
-
-}
-);
-
-document.addEventListener(
-"keydown",
-event=>{
-
-if(
-event.key ===
-"ArrowRight"
-){
-
-showSlide(
-currentSlide + 1
-);
-
-restartSlider();
-
-}
-
-if(
-event.key ===
-"ArrowLeft"
-){
-
-showSlide(
-currentSlide - 1
-);
-
-restartSlider();
-
-}
-
-}
-);
-
-let touchStartX = 0;
-
-document.addEventListener(
-"touchstart",
-event=>{
-
-touchStartX =
-event.changedTouches[
-0
-].clientX;
-
-},
-{
-passive:true
-}
-);
-
-document.addEventListener(
-"touchend",
-event=>{
-
-const touchEndX =
-event.changedTouches[
-0
-].clientX;
-
-const difference =
-touchStartX -
-touchEndX;
-
-if(
-Math.abs(
-difference
-)
-<
-50
-){
-
-return;
-
-}
-
-if(
-difference > 0
-){
-
-showSlide(
-currentSlide + 1
-);
-
-}else{
-
-showSlide(
-currentSlide - 1
-);
-
-}
-
-restartSlider();
-
-},
-{
-passive:true
-}
-);
-
-applyLanguage(
-currentLanguage
-);
-
-startSlider();
-
-</script>
-
-</body>
-
-</html>    
+<script>
+  const translations = {
+    uk: {
+      pageTitle: "EnergaTor — автономна енергетична платформа",
+      brandTagline: "Платформа енергії стисненого повітря",
+      eyebrow: "АВТОНОМНА ЕНЕРГЕТИЧНА ПЛАТФОРМА",
+      title1: "Електроенергія",
+      title2: "Тепло",
+      title3: "Холод",
+      description: "EnergaTor створює автономну енергетичну платформу, яка перетворює енергію стисненого повітря на електроенергію, тепло і холод для будівель, транспорту, бізнесу та критичної інфраструктури.",
+      button: "ВІДКРИТИ ENERGATOR",
+      status: "ЕНЕРГЕТИЧНА ПЛАТФОРМА / УКРАЇНА",
+      slide1: "АВІАЦІЙНІ ТЕХНОЛОГІЇ",
+      slide2: "АВТОНОМНІ БУДИНКИ",
+      slide3: "ТЕПЛИЧНІ КОМПЛЕКСИ",
+      slide4: "ЕНЕРГЕТИЧНІ СТАНЦІЇ"
+    },
+    en: {
+      pageTitle: "EnergaTor — Autonomous Energy Platform",
+      brandTagline: "Compressed Air Energy Platform",
+      eyebrow: "AUTONOMOUS ENERGY PLATFORM",
+      title1: "Electricity",
+      title2: "Heat",
+      title3: "Cold",
+      description: "EnergaTor is creating an autonomous energy platform that converts compressed-air energy into electricity, heat and cooling for buildings, transport, businesses and critical infrastructure.",
+      button: "ENTER ENERGATOR",
+      status: "ENERGY PLATFORM / UKRAINE",
+      slide1: "AVIATION TECHNOLOGIES",
+      slide2: "AUTONOMOUS HOMES",
+      slide3: "GREENHOUSE COMPLEXES",
+      slide4: "ENERGY STATIONS"
+    },
+    ru: {
+      pageTitle: "EnergaTor — автономная энергетическая платформа",
+      brandTagline: "Платформа энергии сжатого воздуха",
+      eyebrow: "АВТОНОМНАЯ ЭНЕРГЕТИЧЕСКАЯ ПЛАТФОРМА",
+      title1: "Электричество",
+      title2: "Тепло",
+      title3: "Холод",
+      description: "EnergaTor создаёт автономную энергетическую платформу, которая преобразует энергию сжатого воздуха в электричество, тепло и холод для зданий, транспорта, бизнеса и критической инфраструктуры.",
+      button: "ОТКРЫТЬ ENERGATOR",
+      status: "ЭНЕРГЕТИЧЕСКАЯ ПЛАТФОРМА / УКРАИНА",
+      slide1: "АВИАЦИОННЫЕ ТЕХНОЛОГИИ",
+      slide2: "АВТОНОМНЫЕ ДОМА",
+      slide3: "ТЕПЛИЧНЫЕ КОМПЛЕКСЫ",
+      slide4: "ЭНЕРГЕТИЧЕСКИЕ СТАНЦИИ"
+    },
+    de: {
+      pageTitle: "EnergaTor — Autonome Energieplattform",
+      brandTagline: "Druckluft-Energieplattform",
+      eyebrow: "AUTONOME ENERGIEPLATTFORM",
+      title1: "Strom",
+      title2: "Wärme",
+      title3: "Kälte",
+      description: "EnergaTor entwickelt eine autonome Energieplattform, die gespeicherte Druckluftenergie in Strom, Wärme und Kälte für Gebäude, Mobilität, Unternehmen und kritische Infrastruktur umwandelt.",
+      button: "ENERGATOR ÖFFNEN",
+      status: "ENERGIEPLATTFORM / UKRAINE",
+      slide1: "LUFTFAHRTTECHNOLOGIEN",
+      slide2: "AUTONOME HÄUSER",
+      slide3: "GEWÄCHSHAUSKOMPLEXE",
+      slide4: "ENERGIESTATIONEN"
     }
+  };
+
+  const slides = Array.from(document.querySelectorAll(".slide"));
+  const navigation = document.getElementById("sliderNavigation");
+  const caption = document.getElementById("slideCaption");
+  const languageButtons = Array.from(document.querySelectorAll(".language-switcher button"));
+  const brandTagline = document.querySelector(".brand-tagline");
+  const eyebrow = document.querySelector(".eyebrow");
+  const titleLines = document.querySelectorAll(".hero-title span");
+  const description = document.querySelector(".hero-description");
+  const mainButton = document.querySelector(".button-label");
+  const platformStatus = document.querySelector(".platform-status");
+
+  let currentSlide = 0;
+  let currentLanguage = localStorage.getItem("energator-language") || "ru";
+  let sliderInterval;
+
+  if (!translations[currentLanguage]) currentLanguage = "ru";
+
+  slides.forEach((slide, index) => {
+    const dot = document.createElement("button");
+    dot.type = "button";
+    dot.setAttribute("aria-label", "Slide " + (index + 1));
+    if (index === 0) dot.classList.add("active");
+
+    dot.addEventListener("click", () => {
+      showSlide(index);
+      restartSlider();
+    });
+
+    navigation.appendChild(dot);
+  });
+
+  const navigationDots = Array.from(navigation.querySelectorAll("button"));
+
+  function showSlide(index) {
+    slides[currentSlide].classList.remove("active");
+    navigationDots[currentSlide].classList.remove("active");
+
+    currentSlide = (index + slides.length) % slides.length;
+
+    slides[currentSlide].classList.add("active");
+    navigationDots[currentSlide].classList.add("active");
+    updateSlideCaption();
+  }
+
+  function updateSlideCaption() {
+    const captionKey = slides[currentSlide].dataset.caption;
+    caption.textContent = translations[currentLanguage][captionKey];
+  }
+
+  function startSlider() {
+    sliderInterval = setInterval(() => showSlide(currentSlide + 1), 7000);
+  }
+
+  function restartSlider() {
+    clearInterval(sliderInterval);
+    startSlider();
+  }
+
+  function applyLanguage(language) {
+    const dictionary = translations[language];
+    if (!dictionary) return;
+
+    currentLanguage = language;
+    localStorage.setItem("energator-language", language);
+    document.documentElement.lang = language;
+    document.title = dictionary.pageTitle;
+    brandTagline.textContent = dictionary.brandTagline;
+    eyebrow.textContent = dictionary.eyebrow;
+    titleLines[0].textContent = dictionary.title1;
+    titleLines[1].textContent = dictionary.title2;
+    titleLines[2].textContent = dictionary.title3;
+    description.textContent = dictionary.description;
+    mainButton.textContent = dictionary.button;
+    platformStatus.textContent = dictionary.status;
+
+    languageButtons.forEach(button => {
+      const isActive = button.dataset.lang === language;
+      button.classList.toggle("active", isActive);
+      button.setAttribute("aria-pressed", String(isActive));
+    });
+
+    updateSlideCaption();
+  }
+
+  languageButtons.forEach(button => {
+    button.addEventListener("click", () => applyLanguage(button.dataset.lang));
+  });
+
+  document.addEventListener("keydown", event => {
+    if (event.key === "ArrowRight") {
+      showSlide(currentSlide + 1);
+      restartSlider();
+    }
+    if (event.key === "ArrowLeft") {
+      showSlide(currentSlide - 1);
+      restartSlider();
+    }
+  });
+
+  let touchStartX = 0;
+
+  document.addEventListener("touchstart", event => {
+    touchStartX = event.changedTouches[0].clientX;
+  }, { passive: true });
+
+  document.addEventListener("touchend", event => {
+    const touchEndX = event.changedTouches[0].clientX;
+    const difference = touchStartX - touchEndX;
+
+    if (Math.abs(difference) < 50) return;
+
+    if (difference > 0) {
+      showSlide(currentSlide + 1);
+    } else {
+      showSlide(currentSlide - 1);
+    }
+
+    restartSlider();
+  }, { passive: true });
+
+  applyLanguage(currentLanguage);
+  startSlider();
+</script>
+</body>
+</html>
